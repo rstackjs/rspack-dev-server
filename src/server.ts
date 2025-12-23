@@ -9,7 +9,7 @@
  */
 import type { Server } from "node:http";
 import type { Socket } from "node:net";
-import { type Compiler, MultiCompiler } from "@rspack/core";
+import type { Compiler, MultiCompiler } from "@rspack/core";
 import type { FSWatcher } from "chokidar";
 import WebpackDevServer from "webpack-dev-server";
 // @ts-ignore 'package.json' is not under 'rootDir'
@@ -46,6 +46,12 @@ const getFreePort = async function getFreePort(port: string, host: string) {
 
 WebpackDevServer.getFreePort = getFreePort;
 
+function isMultiCompiler(
+	compiler: Compiler | MultiCompiler
+): compiler is MultiCompiler {
+	return Array.isArray((compiler as MultiCompiler).compilers);
+}
+
 export class RspackDevServer extends WebpackDevServer {
 	static getFreePort = getFreePort;
 	/**
@@ -74,10 +80,9 @@ export class RspackDevServer extends WebpackDevServer {
 	}
 
 	async initialize() {
-		const compilers =
-			this.compiler instanceof MultiCompiler
-				? this.compiler.compilers
-				: [this.compiler];
+		const compilers = isMultiCompiler(this.compiler)
+			? this.compiler.compilers
+			: [this.compiler];
 
 		for (const compiler of compilers) {
 			const mode = compiler.options.mode || process.env.NODE_ENV;
