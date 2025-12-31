@@ -1,80 +1,52 @@
-name: Release Full
+# This action will publish the package to npm and create a GitHub release.
+name: Release
 
 on:
+  # Run `npm run bump` to bump the version and create a git tag.
+  push:
+    tags:
+      - 'v*'
+
   workflow_dispatch:
-    inputs:
-      version:
-        type: choice
-        description: 'Release Version Type'
-        required: true
-        default: 'patch'
-        options:
-          - major
-          - premajor
-          - minor
-          - preminor
-          - patch
-          - prepatch
-          - prerelease
-
-      tag:
-        type: choice
-        description: 'Release Npm Tag'
-        required: true
-        default: 'latest'
-        options:
-          - canary
-          - nightly
-          - latest
-          - beta
-          - alpha
-
-      dry_run:
-        type: boolean
-        description: 'DryRun release'
-        required: true
-        default: false
 
 permissions:
   contents: write
-  # To publish packages with provenance
   id-token: write
 
 jobs:
-  release:
-    name: Release
+  publish:
     runs-on: ubuntu-latest
     environment: npm
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Pnpm
-        run: |
-          npm install -g corepack@latest
-          corepack enable
-
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
-          cache: 'pnpm'
+          node-version: 24.11.1
 
       # Update npm to the latest version to enable OIDC
-      - name: Update npm
+      # Use corepack to install pnpm
+      - name: Setup Package Managers
         run: |
           npm install -g npm@latest
           npm --version
+          npm install -g corepack@latest --force
+          corepack enable
 
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Run Test
-        run: pnpm run test
+      - name: Build
+        run: pnpm run build
 
-      - name: Try release to npm
-        run: pnpm run release
-        env:
-          DRY_RUN: ${{ inputs.dry_run }}
-          TAG: ${{ inputs.tag }}
-          VERSION: ${{ inputs.version }}
+      - name: Publish
+        uses: JS-DevTools/npm-publish@v4
+        with:
+          token: empty
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: 'true'

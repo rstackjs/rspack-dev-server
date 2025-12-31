@@ -28,7 +28,7 @@
     "prettier:ci": "prettier --check .",
     "test:install": "cross-env ./node_modules/.bin/puppeteer browsers install chrome",
     "test": "pnpm run test:install && pnpm run build && cross-env NO_COLOR=1 node --expose-gc --max-old-space-size=8192 --experimental-vm-modules ./node_modules/jest-cli/bin/jest --colors",
-    "release": "node ./scripts/release.mjs"
+    "bump": "npx bumpp"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"
@@ -70,8 +70,6 @@
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "connect": "^3.7.0",
-    "execa": "9.3.0",
-    "fs-extra": "11.2.0",
     "graceful-fs": "4.2.10",
     "http-proxy": "^1.18.1",
     "hono": "^4.6.8",
@@ -84,7 +82,6 @@
     "puppeteer": "^24.34.0",
     "react-refresh": "0.14.0",
     "require-from-string": "^2.0.2",
-    "semver": "7.6.3",
     "simple-git-hooks": "^2.11.1",
     "sockjs-client": "^1.6.1",
     "style-loader": "^4.0.0",
