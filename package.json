@@ -44,7 +44,7 @@
   "engines": {
     "node": ">= 18.12.0"
   },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@10.27.0",
   "homepage": "https://rspack.dev",
   "bugs": "https://github.com/rspack-contrib/rspack-dev-server/issues",
   "repository": {
