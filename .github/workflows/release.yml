@@ -45,8 +45,3 @@ jobs:
         uses: JS-DevTools/npm-publish@v4
         with:
           token: empty
-
-      - name: Create GitHub Release
-        uses: ncipollo/release-action@v1
-        with:
-          generateReleaseNotes: 'true'
