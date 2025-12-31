@@ -1,8 +1,3 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://assets.rspack.dev/rspack/rspack-banner-plain-dark.png">
-  <img alt="Rspack Banner" src="https://assets.rspack.dev/rspack/rspack-banner-plain-light.png">
-</picture>
-
 # @rspack/dev-server
 
 <p>
@@ -68,7 +63,7 @@ $ rspack serve
 $ rspack serve -c ./your.config.js
 ```
 
-> See [CLI](https://rspack.dev/api/cli) for more details.
+> See [CLI](https://rspack.rs/api/cli) for more details.
 
 While starting the development server, you can specify the configuration by the `devServer` field of your Rspack config file:
 
@@ -83,7 +78,7 @@ export default {
 };
 ```
 
-> See [DevServer](https://rspack.dev/config/dev-server) for all configuration options.
+> See [DevServer](https://rspack.rs/config/dev-server) for all configuration options.
 
 ### With the API
 
