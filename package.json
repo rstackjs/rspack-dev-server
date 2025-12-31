@@ -59,7 +59,7 @@
     "@rspack/plugin-react-refresh": "1.0.0",
     "@types/express": "5.0.6",
     "@types/jest": "29.5.12",
-    "@types/mime-types": "2.1.4",
+    "@types/mime-types": "3.0.1",
     "@types/ws": "8.5.10",
     "@hono/node-server": "^1.13.3",
     "cross-env": "^7.0.3",
