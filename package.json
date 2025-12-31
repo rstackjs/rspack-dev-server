@@ -76,7 +76,7 @@
     "jest-serializer-path": "^0.1.15",
     "nano-staged": "^0.8.0",
     "prettier": "3.2.5",
-    "puppeteer": "^23.2.2",
+    "puppeteer": "^24.34.0",
     "react-refresh": "0.14.0",
     "require-from-string": "^2.0.2",
     "semver": "7.6.3",
