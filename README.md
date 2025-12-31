@@ -9,7 +9,7 @@
   <a href="https://npmjs.com/package/@rspack/dev-server?activeTab=readme"><img src="https://img.shields.io/npm/v/@rspack/dev-server?style=flat-square&colorA=564341&colorB=EDED91" alt="npm version" /></a>
   <a href="https://npmcharts.com/compare/@rspack/dev-server?minimal=true"><img src="https://img.shields.io/npm/dm/@rspack/dev-server.svg?style=flat-square&colorA=564341&colorB=EDED91" alt="downloads" /></a>
   <a href="https://nodejs.org/en/about/previous-releases"><img src="https://img.shields.io/node/v/@rspack/dev-server.svg?style=flat-square&colorA=564341&colorB=EDED91" alt="node version"></a>
-  <a href="https://github.com/web-infra-dev/rspack-dev-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&colorA=564341&colorB=EDED91" alt="license" /></a>
+  <a href="https://github.com/rspack-contrib/rspack-dev-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&colorA=564341&colorB=EDED91" alt="license" /></a>
 </p>
 
 Use Rspack with a development server that provides live reloading. This should be used for development only.
@@ -75,11 +75,11 @@ While starting the development server, you can specify the configuration by the 
 ```js
 // rspack.config.mjs
 export default {
-	// ...
-	devServer: {
-		// the configuration of the development server
-		port: 8080
-	}
+  // ...
+  devServer: {
+    // the configuration of the development server
+    port: 8080
+  }
 };
 ```
 
@@ -96,15 +96,15 @@ import rspackConfig from "./rspack.config.mjs";
 
 const compiler = rspack(rspackConfig);
 const devServerOptions = {
-	...rspackConfig.devServer,
-	// override
-	port: 8888
+  ...rspackConfig.devServer,
+  // override
+  port: 8888
 };
 
 const server = new RspackDevServer(devServerOptions, compiler);
 
 server.startCallback(() => {
-	console.log("Successfully started server on http://localhost:8888");
+  console.log("Successfully started server on http://localhost:8888");
 });
 ```
 
@@ -116,4 +116,4 @@ Thanks to the [webpack-dev-server](https://github.com/webpack/webpack-dev-server
 
 ## License
 
-[MIT licensed](https://github.com/web-infra-dev/rspack-dev-server/blob/main/LICENSE).
+[MIT licensed](https://github.com/rspack-contrib/rspack-dev-server/blob/main/LICENSE).
