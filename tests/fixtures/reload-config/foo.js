@@ -1,3 +1,3 @@
-"use strict";
+'use strict';
 
-require("./main.css");
+require('./main.css');

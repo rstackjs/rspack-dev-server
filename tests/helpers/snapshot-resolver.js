@@ -1,23 +1,23 @@
-const path = require("node:path");
-const webpack = require("@rspack/core");
+const path = require('node:path');
+const webpack = require('@rspack/core');
 
 const [webpackVersion] = webpack.version;
 const snapshotExtension = `.snap.webpack${webpackVersion}`;
 
 module.exports = {
-	resolveSnapshotPath: testPath =>
-		path.join(
-			path.dirname(testPath),
-			"__snapshots__",
-			`${path.basename(testPath)}${snapshotExtension}`
-		),
-	resolveTestPath: snapshotPath =>
-		snapshotPath
-			.replace(`${path.sep}__snapshots__`, "")
-			.slice(0, -snapshotExtension.length),
-	testPathForConsistencyCheck: path.join(
-		"consistency_check",
-		"__tests__",
-		"example.test.js"
-	)
+  resolveSnapshotPath: (testPath) =>
+    path.join(
+      path.dirname(testPath),
+      '__snapshots__',
+      `${path.basename(testPath)}${snapshotExtension}`,
+    ),
+  resolveTestPath: (snapshotPath) =>
+    snapshotPath
+      .replace(`${path.sep}__snapshots__`, '')
+      .slice(0, -snapshotExtension.length),
+  testPathForConsistencyCheck: path.join(
+    'consistency_check',
+    '__tests__',
+    'example.test.js',
+  ),
 };

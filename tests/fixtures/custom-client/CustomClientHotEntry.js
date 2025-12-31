@@ -1,1 +1,1 @@
-console.log("custom client hot entry");
+console.log('custom client hot entry');

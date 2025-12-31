@@ -12,7 +12,7 @@ const HTMLContentForIndex = `
 </html>
 `;
 
-const HTMLContentForAssets = assetName => `
+const HTMLContentForAssets = (assetName) => `
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,41 +40,41 @@ const HTMLContentForTest = `
 `;
 
 module.exports = class HTMLGeneratorPlugin {
-	// eslint-disable-next-line class-methods-use-this
-	apply(compiler) {
-		const pluginName = "html-generator-plugin";
+  // eslint-disable-next-line class-methods-use-this
+  apply(compiler) {
+    const pluginName = 'html-generator-plugin';
 
-		compiler.hooks.thisCompilation.tap(pluginName, compilation => {
-			const { RawSource } = compiler.webpack.sources;
+    compiler.hooks.thisCompilation.tap(pluginName, (compilation) => {
+      const { RawSource } = compiler.webpack.sources;
 
-			compilation.hooks.processAssets.tap(
-				{
-					name: pluginName,
-					stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
-				},
-				() => {
-					const indexSource = new RawSource(HTMLContentForIndex);
-					const testSource = new RawSource(HTMLContentForTest);
-					const assets = compilation.getAssets();
+      compilation.hooks.processAssets.tap(
+        {
+          name: pluginName,
+          stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+        },
+        () => {
+          const indexSource = new RawSource(HTMLContentForIndex);
+          const testSource = new RawSource(HTMLContentForTest);
+          const assets = compilation.getAssets();
 
-					compilation.emitAsset("index.html", indexSource);
-					compilation.emitAsset("test.html", testSource);
+          compilation.emitAsset('index.html', indexSource);
+          compilation.emitAsset('test.html', testSource);
 
-					for (const asset of assets) {
-						const assetName = asset.name;
+          for (const asset of assets) {
+            const assetName = asset.name;
 
-						if (assetName !== "main.js" && assetName.endsWith(".js")) {
-							const assetSource = new RawSource(
-								HTMLContentForAssets(assetName)
-							);
-							compilation.emitAsset(
-								assetName.replace(".js", ".html"),
-								assetSource
-							);
-						}
-					}
-				}
-			);
-		});
-	}
+            if (assetName !== 'main.js' && assetName.endsWith('.js')) {
+              const assetSource = new RawSource(
+                HTMLContentForAssets(assetName),
+              );
+              compilation.emitAsset(
+                assetName.replace('.js', '.html'),
+                assetSource,
+              );
+            }
+          }
+        },
+      );
+    });
+  }
 };

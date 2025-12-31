@@ -1,11 +1,11 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.0/schema.json",
-	"files": {
-		"ignore": [
-			"client-src/**/*",
-			"client/**/*.js",
-			"dist/**/*",
-			"tests/fixtures/**/*"
-		]
-	}
+  "$schema": "https://biomejs.dev/schemas/1.8.0/schema.json",
+  "files": {
+    "ignore": [
+      "client-src/**/*",
+      "client/**/*.js",
+      "dist/**/*",
+      "tests/fixtures/**/*",
+    ],
+  },
 }

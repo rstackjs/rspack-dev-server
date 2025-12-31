@@ -1,5 +1,5 @@
-"use strict";
+'use strict';
 
-console.log("one");
+console.log('one');
 // comment
 // comment

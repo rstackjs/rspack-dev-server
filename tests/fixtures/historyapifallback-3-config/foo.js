@@ -1,5 +1,5 @@
-"use strict";
+'use strict';
 
-require("./bar.html");
+require('./bar.html');
 
-console.log("Hey.");
+console.log('Hey.');

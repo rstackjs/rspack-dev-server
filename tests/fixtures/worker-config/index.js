@@ -1,7 +1,7 @@
-const myWorker = new Worker("./worker.js");
+const myWorker = new Worker('./worker.js');
 
-myWorker.onmessage = event => {
-	console.log(`Worker said: ${event.data}`);
+myWorker.onmessage = (event) => {
+  console.log(`Worker said: ${event.data}`);
 };
 
-myWorker.postMessage("message");
+myWorker.postMessage('message');

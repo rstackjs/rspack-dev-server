@@ -1,1 +1,1 @@
-console.log("custom client entry");
+console.log('custom client entry');

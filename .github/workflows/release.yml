@@ -5,9 +5,9 @@ on:
     inputs:
       version:
         type: choice
-        description: "Release Version Type"
+        description: 'Release Version Type'
         required: true
-        default: "patch"
+        default: 'patch'
         options:
           - major
           - premajor
@@ -19,9 +19,9 @@ on:
 
       tag:
         type: choice
-        description: "Release Npm Tag"
+        description: 'Release Npm Tag'
         required: true
-        default: "latest"
+        default: 'latest'
         options:
           - canary
           - nightly
@@ -31,7 +31,7 @@ on:
 
       dry_run:
         type: boolean
-        description: "DryRun release"
+        description: 'DryRun release'
         required: true
         default: false
 
@@ -58,7 +58,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: 'pnpm'
 
       # Update npm to the latest version to enable OIDC
       - name: Update npm

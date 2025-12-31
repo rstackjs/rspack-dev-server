@@ -1,5 +1,5 @@
 postMessage("I'm working before postMessage");
 
-onmessage = event => {
-	postMessage(`Message sent: ${event.data}`);
+onmessage = (event) => {
+  postMessage(`Message sent: ${event.data}`);
 };
