@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const webpack = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const WebsocketServer = require('webpack-dev-server/lib/servers/WebsocketServer');
+const WebsocketServer = require('../../dist/servers/WebsocketServer');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['web-socket-communication'];

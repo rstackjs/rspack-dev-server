@@ -107,7 +107,9 @@ server.startCallback(() => {
 
 ## Credits
 
-Thanks to the [webpack-dev-server](https://github.com/webpack/webpack-dev-server) project created by [@sokra](https://github.com/sokra)
+This plugin is forked from [webpack-dev-server](https://github.com/webpack/webpack-dev-server), and is used to smooth out some differences between rspack and webpack, while also providing rspack-specific new features.
+
+> Thanks to the [webpack-dev-server](https://github.com/webpack/webpack-dev-server) project created by [@sokra](https://github.com/sokra)
 
 ## License
 

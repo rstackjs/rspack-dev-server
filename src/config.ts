@@ -1,26 +1,35 @@
 import type { DevServer } from '@rspack/core';
-import type WebpackDevServer from 'webpack-dev-server';
+import type { Service as BonjourOptions } from 'bonjour-service';
+import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
+import type {
+  ClientConfiguration,
+  NormalizedStatic,
+  Open,
+  ServerConfiguration,
+  WatchFiles,
+  WebSocketServerConfiguration,
+} from './server';
 
 export type { DevServer };
 
 export interface ResolvedDevServer extends DevServer {
   port: number | string;
-  static: false | Array<WebpackDevServer.NormalizedStatic>;
+  static: false | Array<NormalizedStatic>;
   devMiddleware: DevServer['devMiddleware'];
   hot: boolean | 'only';
   host?: string;
-  open: WebpackDevServer.Open[];
+  open: Open[];
   magicHtml: boolean;
   liveReload: boolean;
-  webSocketServer: false | WebpackDevServer.WebSocketServerConfiguration;
+  webSocketServer: false | WebSocketServerConfiguration;
   proxy: Required<DevServer['proxy']>;
-  client: WebpackDevServer.ClientConfiguration;
+  client: ClientConfiguration;
   allowedHosts: 'auto' | string[] | 'all';
-  bonjour: false | Record<string, never> | WebpackDevServer.BonjourOptions;
+  bonjour: false | Record<string, never> | BonjourOptions;
   compress: boolean;
-  historyApiFallback: false | WebpackDevServer.ConnectHistoryApiFallbackOptions;
-  server: WebpackDevServer.ServerConfiguration;
+  historyApiFallback: false | ConnectHistoryApiFallbackOptions;
+  server: ServerConfiguration;
   ipc: string | undefined;
   setupExitSignals: boolean;
-  watchFiles: WebpackDevServer.WatchFiles[];
+  watchFiles: WatchFiles[];
 }

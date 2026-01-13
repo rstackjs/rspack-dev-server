@@ -328,7 +328,7 @@ describe('client option', () => {
         title: 'as a path ("sockjs")',
         client: {
           webSocketTransport: require.resolve(
-            'webpack-dev-server/client/clients/SockJSClient',
+            '@rspack/dev-server/client/clients/SockJSClient',
           ),
         },
         webSocketServer: 'sockjs',
@@ -338,7 +338,7 @@ describe('client option', () => {
         title: 'as a path ("ws")',
         client: {
           webSocketTransport: require.resolve(
-            'webpack-dev-server/client/clients/WebSocketClient',
+            '@rspack/dev-server/client/clients/WebSocketClient',
           ),
         },
         webSocketServer: 'ws',

@@ -10,5 +10,6 @@
     "declarationMap": false,
     "declaration": false
   },
-  "include": ["client-src"]
+  "include": ["client-src/**/*"],
+  "exclude": ["client-src/modules/**/*", "client-src/rspack.config.js"]
 }
