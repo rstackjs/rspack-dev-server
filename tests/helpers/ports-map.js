@@ -1,3 +1,5 @@
+'use strict';
+
 // important: new port mappings must be added to the bottom of this list
 const listOfTests = {
   // CLI tests
@@ -79,6 +81,7 @@ const listOfTests = {
   'setup-middlewares-option': 1,
   'options-request-response': 2,
   app: 1,
+  'cross-origin-request': 2,
 };
 
 let startPort = 8089;
@@ -90,10 +93,9 @@ for (const key of Object.keys(listOfTests)) {
 
   ports[key] =
     value === 1
-      ? // biome-ignore lint/suspicious/noAssignInExpressions: _
-        (startPort += 1)
-      : // biome-ignore lint/suspicious/noAssignInExpressions: _
-        [...new Array(value)].map(() => (startPort += 1));
+      ? (startPort += 1)
+      : // eslint-disable-next-line no-loop-func
+        Array.from({ length: value }).map(() => (startPort += 1));
 }
 
 const busy = {};

@@ -1,6 +1,6 @@
 const webpack = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const WebsocketServer = require('webpack-dev-server/lib/servers/WebsocketServer');
+const WebsocketServer = require('../../dist/servers/WebsocketServer').default;
 const defaultConfig = require('../fixtures/provide-plugin-default/webpack.config');
 const sockjsConfig = require('../fixtures/provide-plugin-sockjs-config/webpack.config');
 const wsConfig = require('../fixtures/provide-plugin-ws-config/webpack.config');
@@ -286,9 +286,7 @@ describe('server and client transport', () => {
       client: {
         webSocketTransport: 'ws',
       },
-      webSocketServer: require.resolve(
-        'webpack-dev-server/lib/servers/WebsocketServer',
-      ),
+      webSocketServer: require.resolve('../../dist/servers/WebsocketServer'),
     };
     const server = new Server(devServerOptions, compiler);
 
@@ -329,7 +327,7 @@ describe('server and client transport', () => {
         webSocketTransport: 'ws',
       },
       webSocketServer: {
-        type: require.resolve('webpack-dev-server/lib/servers/WebsocketServer'),
+        type: require.resolve('../../dist/servers/WebsocketServer'),
       },
     };
     const server = new Server(devServerOptions, compiler);

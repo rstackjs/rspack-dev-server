@@ -1,13 +1,11 @@
 /**
  * The following code is modified based on
- * https://github.com/mahdyar/ansi-html-community/blob/b86cc3f1fa1d118477877352f0eafe1a70fd20ab/index.js
+ * https://github.com/webpack/webpack-dev-server
  *
- * Supported:
- *  - added support for 24-bit RGB colors.
- *
- * Apache 2.0 Licensed
- * Author @Tjatse
- * https://github.com/mahdyar/ansi-html-community/blob/master/LICENSE
+ * MIT Licensed
+ * Author Tobias Koppers @sokra
+ * Copyright (c) JS Foundation and other contributors
+ * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 interface AnsiHtmlTags {
   open: typeof _openTags;
@@ -139,8 +137,8 @@ export default function ansiHTML(text: string) {
   // Cache opened sequence.
   const ansiCodes: string[] = [];
   // Replace with markup.
-  //@ts-ignore TS1487 error
   let ret = text.replace(
+    //@ts-ignore TS1487 error
     /\033\[(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?m/g,
     (m) => {
       const match = m.match(/(;?\d+)/g)?.map(normalizeSeq) as unknown as Match;
