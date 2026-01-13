@@ -17,6 +17,16 @@ import * as ipaddr from 'ipaddr.js';
 import { validate } from 'schema-utils';
 import schema from './options.json';
 
+// Type definition matching open package's Options type
+// (Cannot import directly from ES module in CommonJS context)
+type OpenOptions = {
+  readonly wait?: boolean;
+  readonly background?: boolean;
+  readonly newInstance?: boolean;
+  readonly app?: OpenApp | readonly OpenApp[];
+  readonly allowNonzeroExitCode?: boolean;
+};
+
 import type {
   Server as HTTPServer,
   IncomingMessage,
@@ -214,7 +224,7 @@ export interface Open {
 
 export interface NormalizedOpen {
   target: string;
-  options: EXPECTED_ANY;
+  options: OpenOptions;
 }
 
 export interface WebSocketURL {
@@ -289,7 +299,7 @@ export interface Configuration<
     | string
     | WebSocketServerConfiguration;
   proxy?: ProxyConfigArray;
-  open?: EXPECTED_ANY;
+  open?: boolean | string | Open | Array<string | Open>;
   setupExitSignals?: boolean;
   client?: boolean | ClientConfiguration;
   headers?:
@@ -1104,9 +1114,7 @@ class Server<
         options: {},
       };
     } else {
-      const serverOptions =
-        /** @type {ServerConfiguration<A, S>} */
-        options.server || {};
+      const serverOptions = options.server || ({} as ServerConfiguration<A, S>);
 
       options.server = {
         type: serverOptions.type || 'http',
@@ -1146,7 +1154,6 @@ class Server<
           continue;
         }
 
-        /** @type {any} */
         const value = serverOptions[property];
         const readFile = (
           item: string | Buffer | undefined,
@@ -1344,21 +1351,19 @@ class Server<
       options.open = [];
     } else if (typeof options.open === 'boolean') {
       options.open = options.open
-        ? [
+        ? ([
             {
               target: '<url>',
-              options: defaultOpenOptions as EXPECTED_ANY,
+              options: defaultOpenOptions as OpenOptions,
             },
-          ]
+          ] as NormalizedOpen[])
         : [];
     } else if (typeof options.open === 'string') {
-      /** @type {NormalizedOpen[]} */
-      options.open = [{ target: options.open, options: defaultOpenOptions }];
+      options.open = [
+        { target: options.open, options: defaultOpenOptions },
+      ] as NormalizedOpen[];
     } else if (Array.isArray(options.open)) {
-      /**
-       * @type {NormalizedOpen[]}
-       */
-      const result = [];
+      const result: NormalizedOpen[] = [];
 
       for (const item of options.open) {
         if (typeof item === 'string') {
@@ -1370,11 +1375,11 @@ class Server<
         result.push(...getOpenItemsFromObject(item));
       }
 
-      /** @type {NormalizedOpen[]} */
-      options.open = result;
+      options.open = result as NormalizedOpen[];
     } else {
-      /** @type {NormalizedOpen[]} */
-      options.open = [...getOpenItemsFromObject(options.open)];
+      options.open = [
+        ...getOpenItemsFromObject(options.open),
+      ] as NormalizedOpen[];
     }
 
     if (typeof options.port === 'string' && options.port !== 'auto') {
@@ -2204,9 +2209,6 @@ class Server<
        * ]
        */
       for (const proxyConfigOrCallback of this.options.proxy) {
-        /**
-         * @type {RequestHandler}
-         */
         let proxyMiddleware: RequestHandler | undefined;
 
         let proxyConfig =
@@ -2621,7 +2623,9 @@ class Server<
             : new URL(item.target, defaultOpenTarget).toString();
         }
 
-        return open(openTarget, item.options).catch(() => {
+        // Type assertion needed: OpenOptions is compatible at runtime but TypeScript can't verify
+        // the type match between our type definition and the ES module's type in CommonJS context
+        return open(openTarget, item.options as EXPECTED_ANY).catch(() => {
           const app = item.options.app as OpenApp | undefined;
           this.logger.warn(
             `Unable to open "${openTarget}" page${
