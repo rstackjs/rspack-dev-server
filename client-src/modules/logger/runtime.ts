@@ -10,7 +10,8 @@
 
 import { SyncBailHook } from './tapable';
 import { Logger } from './Logger';
-import createConsoleLogger, { type LoggerOptions } from './createConsoleLogger';
+import createConsoleLogger from './createConsoleLogger';
+import type { LoggerOptions } from '../types';
 
 const currentDefaultLoggerOptions = {
   level: 'info',

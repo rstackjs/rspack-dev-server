@@ -8,38 +8,15 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-import type { FilterItemTypes, FilterTypes } from '@rspack/core';
-import { type LogTypeEnum, type Args, LogType } from './Logger';
-
-export type FilterFunction = (item: string) => boolean;
-export type LoggingFunction = (
-  value: string,
-  type: LogTypeEnum,
-  args?: Args,
-) => void;
-
-export type LoggerConsole = {
-  clear: () => void;
-  trace: () => void;
-  info: (...args: Args) => void;
-  log: (...args: Args) => void;
-  warn: (...args: Args) => void;
-  error: (...args: Args) => void;
-  debug?: (...args: Args) => void;
-  group?: (...args: Args) => void;
-  groupCollapsed?: (...args: Args) => void;
-  groupEnd?: (...args: Args) => void;
-  status?: (...args: Args) => void;
-  profile?: (...args: Args) => void;
-  profileEnd?: (...args: Args) => void;
-  logTime?: (...args: Args) => void;
-};
-
-export type LoggerOptions = {
-  level: false | true | 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose';
-  debug: FilterTypes | boolean;
-  console: LoggerConsole;
-};
+import {
+  LogType,
+  type Args,
+  type FilterFunction,
+  type FilterItemTypes,
+  type LoggerOptions,
+  type LoggingFunction,
+  type LogTypeEnum,
+} from '../types';
 
 const filterToFunction = (
   item: FilterItemTypes,
