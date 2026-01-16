@@ -585,13 +585,8 @@ const formatURL = (objURL: {
     hash = `#${hash}`;
   }
 
-  pathname = pathname.replace(
-    /[?#]/g,
-    /**
-     * @param {string} match
-     * @returns {string}
-     */
-    (match) => encodeURIComponent(match),
+  pathname = pathname.replace(/[?#]/g, (match: string): string =>
+    encodeURIComponent(match),
   );
   search = search.replace('#', '%23');
 

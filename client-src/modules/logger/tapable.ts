@@ -8,11 +8,6 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-// @ts-nocheck
-/**
- * @returns {SyncBailHook} mocked sync bail hook
- * @constructor
- */
 function SyncBailHook() {
   return {
     call() {},

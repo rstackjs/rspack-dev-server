@@ -8,6 +8,4 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-// @ts-nocheck
-// @ts-expect-error
 export { default } from './runtime';

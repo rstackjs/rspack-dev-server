@@ -1,16 +1,14 @@
-import type { DevServer } from '@rspack/core';
-import type { Service as BonjourOptions } from 'bonjour-service';
-import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
+  BonjourOptions,
   ClientConfiguration,
+  ConnectHistoryApiFallbackOptions,
+  DevServer,
   NormalizedStatic,
   Open,
   ServerConfiguration,
   WatchFiles,
   WebSocketServerConfiguration,
-} from './server';
-
-export type { DevServer };
+} from './types';
 
 export interface ResolvedDevServer extends DevServer {
   port: number | string;
