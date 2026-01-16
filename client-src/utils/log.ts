@@ -8,7 +8,7 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-import type { LoggerOptions } from '../modules/logger/createConsoleLogger';
+import type { LoggerOptions } from '../modules/types';
 import logger from '../modules/logger/index';
 import { LogLevel } from '../type';
 
