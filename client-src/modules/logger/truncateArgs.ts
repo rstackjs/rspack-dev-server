@@ -8,26 +8,15 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-// @ts-nocheck
+import { EXPECTED_ANY } from '../types';
 
-'use strict';
-
-/**
- * @param {number[]} array array of numbers
- * @returns {number} sum of all numbers in array
- */
-const arraySum = (array) => {
+const arraySum = (array: number[]): number => {
   let sum = 0;
   for (const item of array) sum += item;
   return sum;
 };
 
-/**
- * @param {EXPECTED_ANY[]} args items to be truncated
- * @param {number} maxLength maximum length of args including spaces between
- * @returns {string[]} truncated args
- */
-const truncateArgs = (args, maxLength) => {
+const truncateArgs = (args: EXPECTED_ANY[], maxLength: number): string[] => {
   const lengths = args.map((a) => `${a}`.length);
   const availableLength = maxLength - lengths.length + 1;
 

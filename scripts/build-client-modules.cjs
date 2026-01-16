@@ -35,6 +35,10 @@ const baseForModules = {
   // experiments: {
   //   outputModule: true,
   // },
+  resolve: {
+    extensions: ['.js', '.ts'],
+    tsConfig: path.resolve(__dirname, '../tsconfig.client.json'),
+  },
   output: {
     path: modulesDir,
     ...library,
@@ -50,15 +54,31 @@ const baseForModules = {
           },
         ],
       },
+      {
+        test: /\.ts$/,
+        loader: 'builtin:swc-loader',
+        options: {
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+        },
+        type: 'javascript/auto',
+      },
     ],
   },
 };
 
 const configs = [
   merge(baseForModules, {
-    entry: path.resolve(__dirname, '../client-src/modules/logger/index.js'),
+    entry: path.resolve(__dirname, '../client-src/modules/logger/index.ts'),
     output: {
       filename: 'logger/index.js',
+    },
+    resolve: {
+      extensions: ['.js', '.ts'],
+      tsConfig: path.resolve(__dirname, '../tsconfig.client.json'),
     },
     module: {
       rules: [
@@ -69,6 +89,18 @@ const configs = [
               loader: 'builtin:swc-loader',
             },
           ],
+        },
+        {
+          test: /\.ts$/,
+          loader: 'builtin:swc-loader',
+          options: {
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+              },
+            },
+          },
+          type: 'javascript/auto',
         },
       ],
     },
@@ -86,7 +118,7 @@ const configs = [
   merge(baseForModules, {
     entry: path.resolve(
       __dirname,
-      '../client-src/modules/sockjs-client/index.js',
+      '../client-src/modules/sockjs-client/index.ts',
     ),
     output: {
       filename: 'sockjs-client/index.js',

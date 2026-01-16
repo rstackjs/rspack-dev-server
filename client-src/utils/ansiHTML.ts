@@ -202,7 +202,6 @@ export default function ansiHTML(text: string) {
 
 /**
  * Customize colors.
- * @param {Object} colors reference to _defColors
  */
 ansiHTML.setColors = (colors: typeof _defColors) => {
   if (typeof colors !== 'object') {
@@ -258,7 +257,6 @@ ansiHTML.reset = () => {
 
 /**
  * Expose tags, including open and close.
- * @type {Object}
  */
 ansiHTML.tags = {} as AnsiHtmlTags;
 

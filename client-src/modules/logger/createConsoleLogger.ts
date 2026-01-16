@@ -8,54 +8,42 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-// @ts-nocheck
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
+import type { FilterItemTypes, FilterTypes } from '@rspack/core';
+import { type LogTypeEnum, type Args, LogType } from './Logger';
 
-'use strict';
+export type FilterFunction = (item: string) => boolean;
+export type LoggingFunction = (
+  value: string,
+  type: LogTypeEnum,
+  args?: Args,
+) => void;
 
-const { LogType } = require('./Logger');
+export type LoggerConsole = {
+  clear: () => void;
+  trace: () => void;
+  info: (...args: Args) => void;
+  log: (...args: Args) => void;
+  warn: (...args: Args) => void;
+  error: (...args: Args) => void;
+  debug?: (...args: Args) => void;
+  group?: (...args: Args) => void;
+  groupCollapsed?: (...args: Args) => void;
+  groupEnd?: (...args: Args) => void;
+  status?: (...args: Args) => void;
+  profile?: (...args: Args) => void;
+  profileEnd?: (...args: Args) => void;
+  logTime?: (...args: Args) => void;
+};
 
-/** @typedef {import("../../declarations/WebpackOptions").FilterItemTypes} FilterItemTypes */
-/** @typedef {import("../../declarations/WebpackOptions").FilterTypes} FilterTypes */
-/** @typedef {import("./Logger").LogTypeEnum} LogTypeEnum */
-/** @typedef {import("./Logger").Args} Args */
+export type LoggerOptions = {
+  level: false | true | 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose';
+  debug: FilterTypes | boolean;
+  console: LoggerConsole;
+};
 
-/** @typedef {(item: string) => boolean} FilterFunction */
-/** @typedef {(value: string, type: LogTypeEnum, args?: Args) => void} LoggingFunction */
-
-/**
- * @typedef {object} LoggerConsole
- * @property {() => void} clear
- * @property {() => void} trace
- * @property {(...args: Args) => void} info
- * @property {(...args: Args) => void} log
- * @property {(...args: Args) => void} warn
- * @property {(...args: Args) => void} error
- * @property {(...args: Args) => void=} debug
- * @property {(...args: Args) => void=} group
- * @property {(...args: Args) => void=} groupCollapsed
- * @property {(...args: Args) => void=} groupEnd
- * @property {(...args: Args) => void=} status
- * @property {(...args: Args) => void=} profile
- * @property {(...args: Args) => void=} profileEnd
- * @property {(...args: Args) => void=} logTime
- */
-
-/**
- * @typedef {object} LoggerOptions
- * @property {false | true | "none" | "error" | "warn" | "info" | "log" | "verbose"} level loglevel
- * @property {FilterTypes | boolean} debug filter for debug logging
- * @property {LoggerConsole} console the console to log to
- */
-
-/**
- * @param {FilterItemTypes} item an input item
- * @returns {FilterFunction | undefined} filter function
- */
-const filterToFunction = (item) => {
+const filterToFunction = (
+  item: FilterItemTypes,
+): FilterFunction | undefined => {
   if (typeof item === 'string') {
     const regExp = new RegExp(
       `[\\\\/]${item.replace(/[-[\]{}()*+?.\\^$|]/g, '\\$&')}([\\\\/]|$|!|\\?)`,
@@ -73,10 +61,7 @@ const filterToFunction = (item) => {
   }
 };
 
-/**
- * @enum {number}
- */
-const LogLevel = {
+const LogLevel: Record<string, number> = {
   none: 6,
   false: 6,
   error: 5,
@@ -87,29 +72,19 @@ const LogLevel = {
   verbose: 1,
 };
 
-/**
- * @param {LoggerOptions} options options object
- * @returns {LoggingFunction} logging function
- */
-module.exports = ({ level = 'info', debug = false, console }) => {
-  const debugFilters =
-    /** @type {FilterFunction[]} */
-    (
-      typeof debug === 'boolean'
-        ? [() => debug]
-        : /** @type {FilterItemTypes[]} */ ([
-            ...(Array.isArray(debug) ? debug : [debug]),
-          ]).map(filterToFunction)
-    );
+export default ({
+  level = 'info',
+  debug = false,
+  console,
+}: LoggerOptions): LoggingFunction => {
+  const debugFilters = (
+    typeof debug === 'boolean'
+      ? [() => debug]
+      : [...(Array.isArray(debug) ? debug : [debug])].map(filterToFunction)
+  ) as FilterFunction[];
   const loglevel = LogLevel[`${level}`] || 0;
 
-  /**
-   * @param {string} name name of the logger
-   * @param {LogTypeEnum} type type of the log entry
-   * @param {Args=} args arguments of the log entry
-   * @returns {void}
-   */
-  const logger = (name, type, args) => {
+  const logger = (name: string, type: LogTypeEnum, args?: Args): void => {
     const labeledArgs = () => {
       if (Array.isArray(args)) {
         if (args.length > 0 && typeof args[0] === 'string') {
@@ -176,9 +151,7 @@ module.exports = ({ level = 'info', debug = false, console }) => {
         break;
       case LogType.time: {
         if (!debug && loglevel > LogLevel.log) return;
-        const [label, start, end] =
-          /** @type {[string, number, number]} */
-          (args);
+        const [label, start, end] = args as [string, number, number];
         const ms = start * 1000 + end / 1000000;
         const msg = `[${name}] ${label}: ${ms} ms`;
         if (typeof console.logTime === 'function') {

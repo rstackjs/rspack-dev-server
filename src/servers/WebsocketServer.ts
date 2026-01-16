@@ -10,7 +10,7 @@
 
 import WebSocket from 'ws';
 import type Server from '../server';
-import type { ClientConnection, WebSocketServerConfiguration } from '../server';
+import type { ClientConnection, WebSocketServerConfiguration } from '../types';
 import BaseServer from './BaseServer';
 
 class WebsocketServer extends BaseServer {
@@ -18,9 +18,6 @@ class WebsocketServer extends BaseServer {
 
   implementation: WebSocket.Server;
 
-  /**
-   * @param {Server} server server
-   */
   constructor(server: Server) {
     super(server);
 

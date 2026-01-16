@@ -9,7 +9,7 @@
  */
 
 import type Server from '../server';
-import type { ClientConnection } from '../server';
+import type { ClientConnection } from '../types';
 
 // base class that users should extend if they are making their own
 // server implementation
@@ -17,9 +17,6 @@ class BaseServer {
   server: Server;
   clients: ClientConnection[];
 
-  /**
-   * @param {Server} server server
-   */
   constructor(server: Server) {
     this.server = server;
     this.clients = [];

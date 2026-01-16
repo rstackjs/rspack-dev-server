@@ -14,7 +14,7 @@ import type {
   ClientConnection,
   EXPECTED_ANY,
   WebSocketServerConfiguration,
-} from '../server';
+} from '../types';
 import BaseServer from './BaseServer';
 
 // Workaround for sockjs@~0.3.19
@@ -25,9 +25,6 @@ import BaseServer from './BaseServer';
 
   const { decorateConnection } = SockjsSession.prototype;
 
-  /**
-   * @param {import("http").IncomingMessage} req request
-   */
   // eslint-disable-next-line func-names
   SockjsSession.prototype.decorateConnection = function (
     req: import('http').IncomingMessage,
@@ -50,9 +47,6 @@ class SockJSServer extends BaseServer {
   implementation: sockjs.Server & { close?: (callback: () => void) => void };
 
   // options has: error (function), debug (function), server (http/s server), path (string)
-  /**
-   * @param {Server} server server
-   */
   constructor(server: Server) {
     super(server);
 
@@ -60,11 +54,6 @@ class SockJSServer extends BaseServer {
       this.server.options.webSocketServer as WebSocketServerConfiguration
     ).options as NonNullable<WebSocketServerConfiguration['options']>;
 
-    /**
-     * Get sockjs URL
-     * @param {NonNullable<WebSocketServerConfiguration["options"]>} options options
-     * @returns {string} sockjs URL
-     */
     const getSockjsUrl = (
       options: NonNullable<WebSocketServerConfiguration['options']>,
     ): string => {
@@ -91,11 +80,6 @@ class SockJSServer extends BaseServer {
       },
     });
 
-    /**
-     * Get prefix
-     * @param {sockjs.ServerOptions & { path?: string }} options options
-     * @returns {string | undefined} prefix
-     */
     const getPrefix = (
       options: sockjs.ServerOptions & { path?: string },
     ): string | undefined => {

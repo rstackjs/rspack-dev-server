@@ -8,45 +8,42 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-// @ts-nocheck
+import { SyncBailHook } from './tapable';
+import { Logger } from './Logger';
+import createConsoleLogger, { type LoggerOptions } from './createConsoleLogger';
 
-'use strict';
-
-const { SyncBailHook } = require('tapable');
-const { Logger } = require('./Logger');
-const createConsoleLogger = require('./createConsoleLogger');
-
-/** @type {createConsoleLogger.LoggerOptions} */
 const currentDefaultLoggerOptions = {
   level: 'info',
   debug: false,
   console,
-};
+} as LoggerOptions;
+
 let currentDefaultLogger = createConsoleLogger(currentDefaultLoggerOptions);
 
-/**
- * @param {createConsoleLogger.LoggerOptions} options new options, merge with old options
- * @returns {void}
- */
-module.exports.configureDefaultLogger = (options) => {
+const configureDefaultLogger = (options: LoggerOptions): void => {
   Object.assign(currentDefaultLoggerOptions, options);
   currentDefaultLogger = createConsoleLogger(currentDefaultLoggerOptions);
 };
 
-/**
- * @param {string} name name of the logger
- * @returns {Logger} a logger
- */
-module.exports.getLogger = (name) =>
+const getLogger = (name: string): Logger =>
   new Logger(
     (type, args) => {
-      if (module.exports.hooks.log.call(name, type, args) === undefined) {
+      if (hooks.log.call(name, type, args) === undefined) {
         currentDefaultLogger(name, type, args);
       }
     },
-    (childName) => module.exports.getLogger(`${name}/${childName}`),
+    (childName) => getLogger(`${name}/${childName}`),
   );
 
-module.exports.hooks = {
+const hooks = {
+  // @ts-ignore
   log: new SyncBailHook(['origin', 'type', 'args']),
+};
+
+export { getLogger, configureDefaultLogger, hooks };
+
+export default {
+  getLogger,
+  configureDefaultLogger,
+  hooks,
 };
