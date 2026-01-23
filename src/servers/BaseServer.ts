@@ -8,7 +8,7 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-import type Server from '../server';
+import type { Server } from '../server';
 import type { ClientConnection } from '../types';
 
 // base class that users should extend if they are making their own

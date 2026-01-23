@@ -9,7 +9,7 @@
  */
 
 import * as sockjs from 'sockjs';
-import type Server from '../server';
+import type { Server } from '../server';
 import type {
   ClientConnection,
   EXPECTED_ANY,
