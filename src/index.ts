@@ -1,2 +1,2 @@
-export { default as RspackDevServer } from './server';
+export { Server as RspackDevServer } from './server';
 export type { DevServer as Configuration } from '@rspack/core';

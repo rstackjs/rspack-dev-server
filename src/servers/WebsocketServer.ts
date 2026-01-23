@@ -9,7 +9,7 @@
  */
 
 import WebSocket from 'ws';
-import type Server from '../server';
+import type { Server } from '../server';
 import type { ClientConnection, WebSocketServerConfiguration } from '../types';
 import BaseServer from './BaseServer';
 
