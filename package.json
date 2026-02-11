@@ -64,7 +64,7 @@
     "@biomejs/biome": "^1.8.3",
     "@jest/reporters": "29.7.0",
     "@jest/test-sequencer": "^29.7.0",
-    "@rspack/core": "1.7.1",
+    "@rspack/core": "2.0.0-beta.2",
     "@rspack/plugin-react-refresh": "1.0.0",
     "@types/express": "5.0.6",
     "@types/jest": "29.5.12",
