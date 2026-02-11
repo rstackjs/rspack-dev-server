@@ -965,7 +965,6 @@ class Server<
           }
         };
 
-        // @ts-expect-error too complex
         serverOptions[property] = (
           Array.isArray(value)
             ? value.map((item) => readFile(item as string))
