@@ -9,7 +9,9 @@
 
 Use Rspack with a development server that provides live reloading. This should be used for development only.
 
-> `@rspack/dev-server` is based on `webpack-dev-server@5`
+> [!NOTE]
+> The `main` branch is under active development for 2.0.
+> The stable `1.x` releases are maintained in the [v1.x](https://github.com/rstackjs/rspack-dev-server/tree/v1.x) branch.
 
 ## Installation
 
