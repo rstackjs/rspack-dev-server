@@ -554,7 +554,7 @@ describe('watchFiles option', () => {
   describe('should work with options', () => {
     const file = path.join(watchDir, 'assets/example.txt');
 
-    const chokidarMock = jest.spyOn(chokidar, 'watch');
+    const chokidarMock = rstest.spyOn(chokidar, 'watch');
 
     const optionCases = [
       {

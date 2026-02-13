@@ -39,18 +39,18 @@ describe('setupExitSignals option', () => {
       consoleMessages = [];
       doExit = false;
 
-      exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      exitSpy = rstest.spyOn(process, 'exit').mockImplementation(() => {
         doExit = true;
       });
 
-      stdinResumeSpy = jest
+      stdinResumeSpy = rstest
         .spyOn(process.stdin, 'resume')
         .mockImplementation(() => {});
 
-      stopCallbackSpy = jest.spyOn(server, 'stopCallback');
+      stopCallbackSpy = rstest.spyOn(server, 'stopCallback');
 
       if (server.compiler.close) {
-        closeCallbackSpy = jest.spyOn(server.compiler, 'close');
+        closeCallbackSpy = rstest.spyOn(server.compiler, 'close');
       }
     });
 

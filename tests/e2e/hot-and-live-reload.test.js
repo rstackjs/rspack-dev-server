@@ -712,7 +712,7 @@ describe('hot and live reload', () => {
 //       plugins: [...config.plugins, new webpack.HotModuleReplacementPlugin()],
 //     });
 
-//     loggerWarnSpy = jest.fn();
+//     loggerWarnSpy = rstest.fn();
 
 //     getInfrastructureLoggerSpy = jest
 //       .spyOn(compiler, "getInfrastructureLogger")
