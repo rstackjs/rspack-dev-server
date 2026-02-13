@@ -594,8 +594,22 @@ describe('overlay', () => {
   });
 
   it('should open editor when error with file info is clicked', async () => {
-    const mockLaunchEditorCb = jest.fn();
-    jest.mock('launch-editor', () => mockLaunchEditorCb);
+    const mockLaunchEditorCb = rstest.fn();
+    // TODO: fix the issue of mock require
+    // rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
+
+    // const { RspackDevServer: Server } = require('@rspack/dev-server');
+    const launchEditorPath = require.resolve('launch-editor');
+    const cachedLaunchEditorModule = require.cache[launchEditorPath];
+
+    require.cache[launchEditorPath] = {
+      id: launchEditorPath,
+      filename: launchEditorPath,
+      loaded: true,
+      exports: mockLaunchEditorCb,
+      children: [],
+      paths: [],
+    };
 
     const compiler = webpack(config);
     const devServerOptions = {
@@ -636,6 +650,11 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, originalCode);
     } finally {
+      if (cachedLaunchEditorModule) {
+        require.cache[launchEditorPath] = cachedLaunchEditorModule;
+      } else {
+        delete require.cache[launchEditorPath];
+      }
       await browser.close();
       await server.stop();
     }
