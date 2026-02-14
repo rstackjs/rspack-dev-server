@@ -327,8 +327,8 @@ describe('server option', () => {
       afterEach(async () => {
         createServerSpy.mockRestore();
 
-        browser && await browser.close();
-        server && await server.stop();
+        browser && (await browser.close());
+        server && (await server.stop());
       });
 
       it('should handle GET request to index route (/)', async () => {
