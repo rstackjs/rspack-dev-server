@@ -20,6 +20,7 @@ try {
   };
 }
 
+// temporary fix require.resolve error in rstest, see https://github.com/web-infra-dev/rstest/issues/848
 const originalResolveFilename = Module._resolveFilename;
 const moduleAliasMap = new Map([
   [
