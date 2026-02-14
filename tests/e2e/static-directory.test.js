@@ -98,36 +98,39 @@ describe('static.directory option', () => {
       expect(pageErrors).toMatchSnapshot('page errors');
     });
 
-    it('Watches folder recursively', (done) => {
-      // chokidar emitted a change,
-      // meaning it watched the file correctly
-      server.staticWatchers[0].on('change', () => {
-        done();
-      });
+    it('Watches folder recursively', async () => {
+      await new Promise((resolve) => {
+        // chokidar emitted a change,
+        // meaning it watched the file correctly
+        server.staticWatchers[0].once('change', () => {
+          resolve();
+        });
 
-      // change a file manually
-      setTimeout(() => {
-        fs.writeFileSync(nestedFile, 'Heyo', 'utf8');
-      }, 1000);
+        // change a file manually
+        setTimeout(() => {
+          fs.writeFileSync(nestedFile, 'Heyo', 'utf8');
+        }, 1000);
+      });
     });
 
-    it('Watches node_modules', (done) => {
+    it('Watches node_modules', async () => {
       const filePath = path.join(publicDirectory, 'node_modules', 'index.html');
 
       fs.writeFileSync(filePath, 'foo', 'utf8');
 
-      // chokidar emitted a change,
-      // meaning it watched the file correctly
-      server.staticWatchers[0].on('change', () => {
-        fs.unlinkSync(filePath);
+      await new Promise((resolve) => {
+        // chokidar emitted a change,
+        // meaning it watched the file correctly
+        server.staticWatchers[0].once('change', () => {
+          fs.unlinkSync(filePath);
+          resolve();
+        });
 
-        done();
+        // change a file manually
+        setTimeout(() => {
+          fs.writeFileSync(filePath, 'bar', 'utf8');
+        }, 1000);
       });
-
-      // change a file manually
-      setTimeout(() => {
-        fs.writeFileSync(filePath, 'bar', 'utf8');
-      }, 1000);
     });
   });
 
@@ -475,92 +478,129 @@ describe('static.directory option', () => {
   describe('testing single & multiple external paths', () => {
     let server;
 
-    afterEach((done) => {
-      testServer.close(() => {
-        done();
+    afterEach(async () => {
+      await new Promise((resolve) => {
+        testServer.close(resolve);
       });
     });
 
-    it('Should throw exception (external url)', (done) => {
+    it('Should throw exception (external url)', async () => {
       expect.assertions(1);
 
-      server = testServer.start(
-        config,
-        {
-          static: 'https://example.com/',
-        },
-        (error) => {
-          expect(error.message).toBe(
-            'Using a URL as static.directory is not supported',
-          );
-
-          server.stopCallback(done);
-        },
-      );
-    });
-
-    it('Should not throw exception (local path with lower case first character)', (done) => {
-      testServer.start(
-        config,
-        {
-          static: {
-            directory:
-              publicDirectory.charAt(0).toLowerCase() +
-              publicDirectory.substring(1),
-            watch: true,
+      await new Promise((resolve, reject) => {
+        server = testServer.start(
+          config,
+          {
+            static: 'https://example.com/',
           },
-          port,
-        },
-        done,
-      );
-    });
+          (error) => {
+            try {
+              expect(error.message).toBe(
+                'Using a URL as static.directory is not supported',
+              );
 
-    it("Should not throw exception (local path with lower case first character & has '-')", (done) => {
-      testServer.start(
-        config,
-        {
-          static: {
-            directory: 'c:\\absolute\\path\\to\\content-base',
-            watch: true,
+              server.stopCallback(resolve);
+            } catch (e) {
+              reject(e);
+            }
           },
-          port,
-        },
-        done,
-      );
+        );
+      });
     });
 
-    it("Should not throw exception (local path with upper case first character & has '-')", (done) => {
-      testServer.start(
-        config,
-        {
-          static: {
-            directory: 'C:\\absolute\\path\\to\\content-base',
-            watch: true,
+    it('Should not throw exception (local path with lower case first character)', async () => {
+      await new Promise((resolve, reject) => {
+        testServer.start(
+          config,
+          {
+            static: {
+              directory:
+                publicDirectory.charAt(0).toLowerCase() +
+                publicDirectory.substring(1),
+              watch: true,
+            },
+            port,
           },
-          port,
-        },
-        done,
-      );
+          (error) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve();
+          },
+        );
+      });
     });
 
-    it('Should throw exception (array with absolute url)', (done) => {
-      server = testServer.start(
-        config,
-        {
-          static: [publicDirectory, 'https://example.com/'],
-        },
-        (error) => {
-          expect(error.message).toBe(
-            'Using a URL as static.directory is not supported',
-          );
+    it("Should not throw exception (local path with lower case first character & has '-')", async () => {
+      await new Promise((resolve, reject) => {
+        testServer.start(
+          config,
+          {
+            static: {
+              directory: 'c:\\absolute\\path\\to\\content-base',
+              watch: true,
+            },
+            port,
+          },
+          (error) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve();
+          },
+        );
+      });
+    });
 
-          server.stopCallback(done);
-        },
-      );
+    it("Should not throw exception (local path with upper case first character & has '-')", async () => {
+      await new Promise((resolve, reject) => {
+        testServer.start(
+          config,
+          {
+            static: {
+              directory: 'C:\\absolute\\path\\to\\content-base',
+              watch: true,
+            },
+            port,
+          },
+          (error) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve();
+          },
+        );
+      });
+    });
+
+    it('Should throw exception (array with absolute url)', async () => {
+      await new Promise((resolve, reject) => {
+        server = testServer.start(
+          config,
+          {
+            static: [publicDirectory, 'https://example.com/'],
+          },
+          (error) => {
+            try {
+              expect(error.message).toBe(
+                'Using a URL as static.directory is not supported',
+              );
+
+              server.stopCallback(resolve);
+            } catch (e) {
+              reject(e);
+            }
+          },
+        );
+      });
     });
   });
 
   describe('defaults to PWD', () => {
+    let cwdSpy;
     let compiler;
     let server;
     let page;
@@ -569,7 +609,7 @@ describe('static.directory option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      jest
+      cwdSpy = rstest
         .spyOn(process, 'cwd')
         .mockImplementation(() => path.resolve(staticDirectory));
       compiler = webpack(config);
@@ -592,6 +632,7 @@ describe('static.directory option', () => {
     });
 
     afterEach(async () => {
+      cwdSpy.mockRestore();
       await browser.close();
       await server.stop();
     });
@@ -632,7 +673,7 @@ describe('static.directory option', () => {
     beforeEach(async () => {
       // This is a somewhat weird test, but it is important that we mock
       // the PWD here, and test if /other.html in our "fake" PWD really is not requested.
-      jest.spyOn(process, 'cwd').mockImplementation(() => publicDirectory);
+      rstest.spyOn(process, 'cwd').mockImplementation(() => publicDirectory);
 
       compiler = webpack(config);
 

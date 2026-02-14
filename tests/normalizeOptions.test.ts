@@ -1,11 +1,7 @@
 import { type RspackOptions, rspack } from '@rspack/core';
 import { type Configuration, RspackDevServer } from '@rspack/dev-server';
 import ReactRefreshPlugin from '@rspack/plugin-react-refresh';
-// @ts-expect-error
-import serializer from 'jest-serializer-path';
 import customConfig from './fixtures/provide-plugin-custom/webpack.config';
-
-expect.addSnapshotSerializer(serializer);
 
 // The aims of use a cutstom value rather than
 // default is to avoid stack overflow trigged

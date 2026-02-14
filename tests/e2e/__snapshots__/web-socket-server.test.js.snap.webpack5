@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Rstest Snapshot v1
 
-exports[`web socket server should work allow to disable: console messages 1`] = `
+exports[`web socket server > should work allow to disable > console messages 1`] = `
 [
   "Hey.",
 ]
 `;
 
-exports[`web socket server should work allow to disable: page errors 1`] = `[]`;
+exports[`web socket server > should work allow to disable > page errors 1`] = `[]`;

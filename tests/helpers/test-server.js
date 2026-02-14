@@ -68,7 +68,7 @@ function startAwaitingCompilation(config, options, done) {
 
 function start(config, options, done) {
   // I suspect that almost all tests need to wait for compilation to
-  // finish, because not doing so leaves open handles for jest,
+  // finish, because not doing so leaves open handles for the test runner,
   // in the case where a compilation didn't finish before destroying
   // the server and moving on. Thus, the default "start" should wait
   // for compilation, and only special cases where you don't expect

@@ -436,7 +436,7 @@ describe('historyApiFallback option', () => {
     let consoleSpy;
 
     beforeEach(async () => {
-      consoleSpy = jest.spyOn(global.console, 'log');
+      consoleSpy = rstest.spyOn(global.console, 'log');
 
       compiler = webpack(config);
 
@@ -512,7 +512,7 @@ describe('historyApiFallback option', () => {
     let consoleSpy;
 
     beforeEach(async () => {
-      consoleSpy = jest.spyOn(global.console, 'log');
+      consoleSpy = rstest.spyOn(global.console, 'log');
 
       compiler = webpack(config);
 

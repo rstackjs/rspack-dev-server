@@ -17,7 +17,7 @@ describe('API', () => {
 
     beforeEach(async () => {
       // this is important - it clears the cache
-      jest.resetModules();
+      rstest.resetModules();
 
       process.env = { ...OLD_ENV };
 
@@ -307,7 +307,7 @@ describe('API', () => {
     });
 
     it('should use the default `noop` callback when invalidate is called without any callback', async () => {
-      const callback = jest.fn();
+      const callback = rstest.fn();
 
       server.invalidate();
       server.middleware.context.callbacks[0] = callback;
@@ -326,7 +326,7 @@ describe('API', () => {
     });
 
     it('should use the provided `callback` function', async () => {
-      const callback = jest.fn();
+      const callback = rstest.fn();
 
       server.invalidate(callback);
 
@@ -606,20 +606,16 @@ describe('API', () => {
     });
 
     it("should throw the error when the port isn't found", async () => {
-      expect.assertions(1);
-
-      jest.mock(
+      rs.doMockRequire(
         '../../dist/getPort',
         () => () => Promise.reject(new Error('busy')),
       );
 
       process.env.WEBPACK_DEV_SERVER_PORT_RETRY = 1;
 
-      try {
-        await Server.getFreePort();
-      } catch (error) {
-        expect(error.message).toMatchSnapshot();
-      }
+      const { RspackDevServer: Server } = require('@rspack/dev-server');
+
+      await expect(Server.getFreePort()).rejects.toThrowErrorMatchingSnapshot();
     });
   });
 

@@ -69,6 +69,9 @@ let prettierHTML;
 let prettierCSS;
 
 describe('overlay', () => {
+  const mockLaunchEditorCb = rstest.fn();
+  rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
+
   beforeAll(async () => {
     // Due problems with ESM modules for Node.js@18
     // TODO replace it on import/require when Node.js@18 will be dropped
@@ -330,6 +333,12 @@ describe('overlay', () => {
 
     const { page, browser } = await runBrowser();
 
+    const pathToFile = path.resolve(
+      __dirname,
+      '../fixtures/overlay-config/foo.js',
+    );
+    const originalCode = fs.readFileSync(pathToFile);
+
     try {
       await page.goto(`http://localhost:${port}/`, {
         waitUntil: 'networkidle0',
@@ -345,12 +354,6 @@ describe('overlay', () => {
           plugins: [prettierHTML, prettierCSS],
         }),
       ).toMatchSnapshot('page html initial');
-
-      const pathToFile = path.resolve(
-        __dirname,
-        '../fixtures/overlay-config/foo.js',
-      );
-      const originalCode = fs.readFileSync(pathToFile);
 
       fs.writeFileSync(pathToFile, '`;');
 
@@ -383,7 +386,9 @@ describe('overlay', () => {
         hidden: true,
       });
 
-      pageHtml = await page.evaluate(() => document.body.outerHTML);
+      await waitForExpect(async () => {
+        pageHtml = await page.evaluate(() => document.body.outerHTML);
+      });
       overlayHandle = await page.$('#webpack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
@@ -394,6 +399,7 @@ describe('overlay', () => {
         }),
       ).toMatchSnapshot('page html after fix error');
     } finally {
+      fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
       await server.stop();
     }
@@ -594,8 +600,8 @@ describe('overlay', () => {
   });
 
   it('should open editor when error with file info is clicked', async () => {
-    const mockLaunchEditorCb = jest.fn();
-    jest.mock('launch-editor', () => mockLaunchEditorCb);
+    mockLaunchEditorCb.mockClear();
+    const { RspackDevServer: Server } = require('@rspack/dev-server');
 
     const compiler = webpack(config);
     const devServerOptions = {
@@ -607,16 +613,16 @@ describe('overlay', () => {
 
     const { page, browser } = await runBrowser();
 
+    const pathToFile = path.resolve(
+      __dirname,
+      '../fixtures/overlay-config/foo.js',
+    );
+    const originalCode = fs.readFileSync(pathToFile);
+
     try {
       await page.goto(`http://localhost:${port}/`, {
         waitUntil: 'networkidle0',
       });
-
-      const pathToFile = path.resolve(
-        __dirname,
-        '../fixtures/overlay-config/foo.js',
-      );
-      const originalCode = fs.readFileSync(pathToFile);
 
       fs.writeFileSync(pathToFile, '`;');
 
@@ -633,9 +639,8 @@ describe('overlay', () => {
       await waitForExpect(() => {
         expect(mockLaunchEditorCb).toHaveBeenCalledTimes(1);
       });
-
-      fs.writeFileSync(pathToFile, originalCode);
     } finally {
+      fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
       await server.stop();
     }
