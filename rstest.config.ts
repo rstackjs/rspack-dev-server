@@ -11,9 +11,12 @@ export default defineConfig({
   exclude: [
     '**/node_modules/**',
     '**/dist/**',
-    'tests/e2e/host.test.js',
-    'tests/e2e/watch-files.test.js',
-    'tests/e2e/web-socket-server-url.test.js',
+    // TODO: check why this test timeout
+    '<rootDir>/tests/e2e/host.test.js',
+    // TODO: check why this test throw error when run with other tests
+    '<rootDir>/tests/e2e/watch-files.test.js',
+    // TODO: check why this test timeout
+    '<rootDir>/tests/e2e/web-socket-server-url.test.js',
   ],
   pool: {
     maxWorkers: '80%',

@@ -596,8 +596,8 @@ describe('overlay', () => {
 
   it('should open editor when error with file info is clicked', async () => {
     const mockLaunchEditorCb = rstest.fn((...args) => {
-      const lanchEditorModule = rs.requireActual('launch-editor');
-      return lanchEditorModule(...args);
+      const launchEditorModule = rs.requireActual('launch-editor');
+      return launchEditorModule(...args);
     });
     rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
 
