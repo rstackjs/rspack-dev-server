@@ -67,7 +67,7 @@
     "@jest/test-sequencer": "^29.7.0",
     "@rspack/core": "1.7.1",
     "@rspack/plugin-react-refresh": "1.0.0",
-    "@rstest/core": "^0.8.4",
+    "@rstest/core": "^0.8.5",
     "@types/compression": "^1.7.2",
     "@types/express": "5.0.6",
     "@types/graceful-fs": "^4.1.9",

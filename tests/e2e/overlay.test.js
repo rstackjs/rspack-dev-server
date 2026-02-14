@@ -330,6 +330,12 @@ describe('overlay', () => {
 
     const { page, browser } = await runBrowser();
 
+    const pathToFile = path.resolve(
+        __dirname,
+        '../fixtures/overlay-config/foo.js',
+      );
+     const originalCode = fs.readFileSync(pathToFile);
+
     try {
       await page.goto(`http://localhost:${port}/`, {
         waitUntil: 'networkidle0',
@@ -345,12 +351,6 @@ describe('overlay', () => {
           plugins: [prettierHTML, prettierCSS],
         }),
       ).toMatchSnapshot('page html initial');
-
-      const pathToFile = path.resolve(
-        __dirname,
-        '../fixtures/overlay-config/foo.js',
-      );
-      const originalCode = fs.readFileSync(pathToFile);
 
       fs.writeFileSync(pathToFile, '`;');
 
@@ -394,6 +394,7 @@ describe('overlay', () => {
         }),
       ).toMatchSnapshot('page html after fix error');
     } finally {
+      fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
       await server.stop();
     }
@@ -594,22 +595,13 @@ describe('overlay', () => {
   });
 
   it('should open editor when error with file info is clicked', async () => {
-    const mockLaunchEditorCb = rstest.fn();
-    // TODO: fix the issue of mock require
-    // rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
+    const mockLaunchEditorCb = rstest.fn((...args) => {
+      const lanchEditorModule = rs.requireActual('launch-editor');
+      return lanchEditorModule(...args);
+    });
+    rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
 
-    // const { RspackDevServer: Server } = require('@rspack/dev-server');
-    const launchEditorPath = require.resolve('launch-editor');
-    const cachedLaunchEditorModule = require.cache[launchEditorPath];
-
-    require.cache[launchEditorPath] = {
-      id: launchEditorPath,
-      filename: launchEditorPath,
-      loaded: true,
-      exports: mockLaunchEditorCb,
-      children: [],
-      paths: [],
-    };
+    const { RspackDevServer: Server } = require('@rspack/dev-server');
 
     const compiler = webpack(config);
     const devServerOptions = {
@@ -621,16 +613,16 @@ describe('overlay', () => {
 
     const { page, browser } = await runBrowser();
 
+    const pathToFile = path.resolve(
+        __dirname,
+        '../fixtures/overlay-config/foo.js',
+      );
+    const originalCode = fs.readFileSync(pathToFile);
+
     try {
       await page.goto(`http://localhost:${port}/`, {
         waitUntil: 'networkidle0',
       });
-
-      const pathToFile = path.resolve(
-        __dirname,
-        '../fixtures/overlay-config/foo.js',
-      );
-      const originalCode = fs.readFileSync(pathToFile);
 
       fs.writeFileSync(pathToFile, '`;');
 
@@ -648,13 +640,9 @@ describe('overlay', () => {
         expect(mockLaunchEditorCb).toHaveBeenCalledTimes(1);
       });
 
-      fs.writeFileSync(pathToFile, originalCode);
     } finally {
-      if (cachedLaunchEditorModule) {
-        require.cache[launchEditorPath] = cachedLaunchEditorModule;
-      } else {
-        delete require.cache[launchEditorPath];
-      }
+      fs.writeFileSync(pathToFile, '');
+      rs.doUnmock('launch-editor');
       await browser.close();
       await server.stop();
     }
