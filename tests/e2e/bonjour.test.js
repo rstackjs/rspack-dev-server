@@ -11,11 +11,11 @@ describe('bonjour option', () => {
   let mockDestroy;
 
   beforeEach(() => {
-    mockPublish = jest.fn();
-    mockUnpublishAll = jest.fn((callback) => {
+    mockPublish = rstest.fn();
+    mockUnpublishAll = rstest.fn((callback) => {
       callback();
     });
-    mockDestroy = jest.fn();
+    mockDestroy = rstest.fn();
   });
 
   describe('as true', () => {
@@ -27,9 +27,9 @@ describe('bonjour option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      jest.mock('bonjour-service', () => {
+      rs.doMockRequire('bonjour-service', () => {
         return {
-          Bonjour: jest.fn().mockImplementation(() => {
+          Bonjour: rs.fn().mockImplementation(() => {
             return {
               publish: mockPublish,
               unpublishAll: mockUnpublishAll,
@@ -104,9 +104,9 @@ describe('bonjour option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      jest.mock('bonjour-service', () => {
+      rs.doMockRequire('bonjour-service', () => {
         return {
-          Bonjour: jest.fn().mockImplementation(() => {
+          Bonjour: rs.fn().mockImplementation(() => {
             return {
               publish: mockPublish,
               unpublishAll: mockUnpublishAll,
@@ -177,9 +177,9 @@ describe('bonjour option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      jest.mock('bonjour-service', () => {
+      rs.doMockRequire('bonjour-service', () => {
         return {
-          Bonjour: jest.fn().mockImplementation(() => {
+          Bonjour: rs.fn().mockImplementation(() => {
             return {
               publish: mockPublish,
               unpublishAll: mockUnpublishAll,
@@ -260,9 +260,9 @@ describe('bonjour option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      jest.mock('bonjour-service', () => {
+      rs.doMockRequire('bonjour-service', () => {
         return {
-          Bonjour: jest.fn().mockImplementation(() => {
+          Bonjour: rs.fn().mockImplementation(() => {
             return {
               publish: mockPublish,
               unpublishAll: mockUnpublishAll,

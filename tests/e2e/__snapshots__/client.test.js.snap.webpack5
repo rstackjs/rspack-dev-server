@@ -1,27 +1,27 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Rstest Snapshot v1
 
-exports[`client option configure client entry should disable client entry: console messages 1`] = `[]`;
+exports[`client option > configure client entry > should disable client entry > console messages 1`] = `[]`;
 
-exports[`client option configure client entry should disable client entry: page errors 1`] = `[]`;
+exports[`client option > configure client entry > should disable client entry > page errors 1`] = `[]`;
 
-exports[`client option configure client entry should disable client entry: response status 1`] = `200`;
+exports[`client option > configure client entry > should disable client entry > response status 1`] = `200`;
 
-exports[`client option configure client entry should redirect client entry to rspack: console messages 1`] = `[]`;
+exports[`client option > configure client entry > should redirect client entry to rspack > console messages 1`] = `[]`;
 
-exports[`client option configure client entry should redirect client entry to rspack: page errors 1`] = `[]`;
+exports[`client option > configure client entry > should redirect client entry to rspack > page errors 1`] = `[]`;
 
-exports[`client option configure client entry should redirect client entry to rspack: response status 1`] = `200`;
+exports[`client option > configure client entry > should redirect client entry to rspack > response status 1`] = `200`;
 
-exports[`client option default behaviour responds with a 200 status code for /ws path: console messages 1`] = `[]`;
+exports[`client option > default behaviour > responds with a 200 status code for /ws path > console messages 1`] = `[]`;
 
-exports[`client option default behaviour responds with a 200 status code for /ws path: page errors 1`] = `[]`;
+exports[`client option > default behaviour > responds with a 200 status code for /ws path > page errors 1`] = `[]`;
 
-exports[`client option default behaviour responds with a 200 status code for /ws path: response status 1`] = `200`;
+exports[`client option > default behaviour > responds with a 200 status code for /ws path > response status 1`] = `200`;
 
-exports[`client option override client entry should disable client entry: response status 1`] = `200`;
+exports[`client option > override client entry > should disable client entry > response status 1`] = `200`;
 
-exports[`client option should respect path option responds with a 200 status code for /foo/test/bar path: console messages 1`] = `[]`;
+exports[`client option > should respect path option > responds with a 200 status code for /foo/test/bar path > console messages 1`] = `[]`;
 
-exports[`client option should respect path option responds with a 200 status code for /foo/test/bar path: page errors 1`] = `[]`;
+exports[`client option > should respect path option > responds with a 200 status code for /foo/test/bar path > page errors 1`] = `[]`;
 
-exports[`client option should respect path option responds with a 200 status code for /foo/test/bar path: response status 1`] = `200`;
+exports[`client option > should respect path option > responds with a 200 status code for /foo/test/bar path > response status 1`] = `200`;

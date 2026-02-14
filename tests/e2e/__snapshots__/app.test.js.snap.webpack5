@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Rstest Snapshot v1
 
-exports[`app option should work using "connect (async)" application and "http" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -8,11 +8,11 @@ exports[`app option should work using "connect (async)" application and "http" s
 ]
 `;
 
-exports[`app option should work using "connect (async)" application and "http" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "connect (async)" application and "http" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "connect (async)" application and "http" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@ exports[`app option should work using "connect (async)" application and "http" s
 "
 `;
 
-exports[`app option should work using "connect" application and "http" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -36,11 +36,11 @@ exports[`app option should work using "connect" application and "http" server sh
 ]
 `;
 
-exports[`app option should work using "connect" application and "http" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "connect" application and "http" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "connect" application and "http" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@ exports[`app option should work using "connect" application and "http" server sh
 "
 `;
 
-exports[`app option should work using "connect" application and "http2" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -64,11 +64,11 @@ exports[`app option should work using "connect" application and "http2" server s
 ]
 `;
 
-exports[`app option should work using "connect" application and "http2" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "connect" application and "http2" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "connect" application and "http2" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,7 @@ exports[`app option should work using "connect" application and "http2" server s
 "
 `;
 
-exports[`app option should work using "connect" application and "https" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -92,11 +92,11 @@ exports[`app option should work using "connect" application and "https" server s
 ]
 `;
 
-exports[`app option should work using "connect" application and "https" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "connect" application and "https" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "connect" application and "https" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -112,7 +112,7 @@ exports[`app option should work using "connect" application and "https" server s
 "
 `;
 
-exports[`app option should work using "connect" application and "spdy" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -120,11 +120,11 @@ exports[`app option should work using "connect" application and "spdy" server sh
 ]
 `;
 
-exports[`app option should work using "connect" application and "spdy" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "connect" application and "spdy" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "connect" application and "spdy" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -140,7 +140,7 @@ exports[`app option should work using "connect" application and "spdy" server sh
 "
 `;
 
-exports[`app option should work using "express" application and "http" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "express" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -148,11 +148,11 @@ exports[`app option should work using "express" application and "http" server sh
 ]
 `;
 
-exports[`app option should work using "express" application and "http" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "express" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "express" application and "http" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "express" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "express" application and "http" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "express" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -168,7 +168,7 @@ exports[`app option should work using "express" application and "http" server sh
 "
 `;
 
-exports[`app option should work using "express" application and "https" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "express" application and "https" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -176,11 +176,11 @@ exports[`app option should work using "express" application and "https" server s
 ]
 `;
 
-exports[`app option should work using "express" application and "https" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "express" application and "https" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "express" application and "https" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "express" application and "https" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "express" application and "https" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "express" application and "https" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -196,7 +196,7 @@ exports[`app option should work using "express" application and "https" server s
 "
 `;
 
-exports[`app option should work using "express" application and "spdy" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -204,11 +204,11 @@ exports[`app option should work using "express" application and "spdy" server sh
 ]
 `;
 
-exports[`app option should work using "express" application and "spdy" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "express" application and "spdy" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "express" application and "spdy" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -224,7 +224,7 @@ exports[`app option should work using "express" application and "spdy" server sh
 "
 `;
 
-exports[`app option should work using "hono" application and "[object Object]" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "hono" application and "[object Object]" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -232,11 +232,11 @@ exports[`app option should work using "hono" application and "[object Object]" s
 ]
 `;
 
-exports[`app option should work using "hono" application and "[object Object]" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "hono" application and "[object Object]" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "hono" application and "[object Object]" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "hono" application and "[object Object]" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "hono" application and "[object Object]" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "hono" application and "[object Object]" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -252,7 +252,7 @@ exports[`app option should work using "hono" application and "[object Object]" s
 "
 `;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): console messages 1`] = `
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -260,7 +260,7 @@ exports[`app option should work using "hono" application and "custom server" ser
 ]
 `;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): console messages 2`] = `
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > console messages 2`] = `
 [
   "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -268,15 +268,15 @@ exports[`app option should work using "hono" application and "custom server" ser
 ]
 `;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): page errors 1`] = `[]`;
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): page errors 2`] = `[]`;
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > page errors 2`] = `[]`;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): response status 1`] = `200`;
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): response status 2`] = `200`;
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > response status 2`] = `200`;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): response text 1`] = `
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -292,7 +292,7 @@ exports[`app option should work using "hono" application and "custom server" ser
 "
 `;
 
-exports[`app option should work using "hono" application and "custom server" server should handle GET request to index route (/): response text 2`] = `
+exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > response text 2`] = `
 "
 <!DOCTYPE html>
 <html>

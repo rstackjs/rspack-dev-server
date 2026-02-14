@@ -5,7 +5,7 @@ const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').stats;
 
-global.console.log = jest.fn();
+global.console.log = rstest.fn();
 
 describe('stats', () => {
   const cases = [

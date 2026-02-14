@@ -285,7 +285,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -327,8 +327,8 @@ describe('server option', () => {
       afterEach(async () => {
         createServerSpy.mockRestore();
 
-        await browser.close();
-        await server.stop();
+        browser && (await browser.close());
+        server && (await server.stop());
       });
 
       it('should handle GET request to index route (/)', async () => {
@@ -368,7 +368,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -459,7 +459,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -548,7 +548,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -646,7 +646,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -721,7 +721,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -800,7 +800,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -873,7 +873,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -956,7 +956,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -1047,7 +1047,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -1143,7 +1143,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -1225,7 +1225,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(https, 'createServer');
+        createServerSpy = rstest.spyOn(https, 'createServer');
 
         server = new Server(
           {
@@ -1291,7 +1291,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(spdy, 'createServer');
+        createServerSpy = rstest.spyOn(spdy, 'createServer');
 
         server = new Server(
           {
@@ -1372,7 +1372,7 @@ describe('server option', () => {
       beforeEach(async () => {
         compiler = webpack(config);
 
-        createServerSpy = jest.spyOn(customHTTP, 'createServer');
+        createServerSpy = rstest.spyOn(customHTTP, 'createServer');
 
         server = new Server(
           {

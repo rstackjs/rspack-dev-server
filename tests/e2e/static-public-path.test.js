@@ -485,7 +485,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      cwdSpy = jest
+      cwdSpy = rstest
         .spyOn(process, 'cwd')
         .mockImplementation(() => staticDirectory);
 

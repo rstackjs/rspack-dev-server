@@ -12,12 +12,6 @@ const RELATIVE_CSS_LOADER = path.relative(
 );
 const RSPACK = path.dirname(require.resolve('@rspack/core/package.json'));
 
-const rspack = require('@rspack/core');
-const RSPACK_MODULE = require.cache[require.resolve('@rspack/core')];
-const TAPABLE = path.dirname(
-  RSPACK_MODULE.require.resolve('@rspack/lite-tapable'),
-);
-
 const normalize = (str) => {
   let normalizedStr = str.replace(/(\\)+/g, '/');
 
@@ -36,10 +30,6 @@ const normalize = (str) => {
   normalizedStr = normalizedStr
     .split(RELATIVE_CSS_LOADER.replace(/(\\)+/g, '/'))
     .join('<cssloader>');
-
-  normalizedStr = normalizedStr
-    .split(TAPABLE.replace(/(\\)+/g, '/'))
-    .join('<tapable>');
 
   normalizedStr = normalizedStr
     .split(ROOT.replace(/(\\)+/g, '/'))
