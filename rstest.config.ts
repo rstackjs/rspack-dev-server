@@ -27,6 +27,7 @@ export default defineConfig({
   testTimeout: process.env.CI ? 120000 : 30000,
   setupFiles: ['./tests/helpers/setup-test.js'],
   globalSetup: ['./tests/helpers/global-setup-test.js'],
+  reporters: ['default'],
   resolveSnapshotPath: (testPath) =>
     path.join(
       path.dirname(testPath),

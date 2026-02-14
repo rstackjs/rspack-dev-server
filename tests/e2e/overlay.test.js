@@ -69,6 +69,9 @@ let prettierHTML;
 let prettierCSS;
 
 describe('overlay', () => {
+  const mockLaunchEditorCb = rstest.fn();
+  rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
+
   beforeAll(async () => {
     // Due problems with ESM modules for Node.js@18
     // TODO replace it on import/require when Node.js@18 will be dropped
@@ -383,7 +386,9 @@ describe('overlay', () => {
         hidden: true,
       });
 
-      pageHtml = await page.evaluate(() => document.body.outerHTML);
+      await waitForExpect(async () => {
+        pageHtml = await page.evaluate(() => document.body.outerHTML);
+      });
       overlayHandle = await page.$('#webpack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
@@ -595,12 +600,7 @@ describe('overlay', () => {
   });
 
   it('should open editor when error with file info is clicked', async () => {
-    const mockLaunchEditorCb = rstest.fn((...args) => {
-      const launchEditorModule = rs.requireActual('launch-editor');
-      return launchEditorModule(...args);
-    });
-    rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
-
+    mockLaunchEditorCb.mockClear();
     const { RspackDevServer: Server } = require('@rspack/dev-server');
 
     const compiler = webpack(config);
@@ -640,8 +640,7 @@ describe('overlay', () => {
         expect(mockLaunchEditorCb).toHaveBeenCalledTimes(1);
       });
     } finally {
-      fs.writeFileSync(pathToFile, '');
-      rs.doUnmock('launch-editor');
+      fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
       await server.stop();
     }
