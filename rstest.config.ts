@@ -15,11 +15,11 @@ export default defineConfig({
     'tests/e2e/watch-files.test.js',
     'tests/e2e/web-socket-server-url.test.js',
   ],
-  output: {
-    module: false
-  },
   pool: {
     maxWorkers: '80%',
+  },
+  env: {
+    FORCE_COLOR: 'true',
   },
   testTimeout: process.env.CI ? 120000 : 30000,
   setupFiles: ['./tests/helpers/setup-test.js'],

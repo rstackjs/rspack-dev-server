@@ -112,8 +112,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(react-refresh@0.14.0)
       '@rstest/core':
-        specifier: ^0.8.4
-        version: 0.8.4
+        specifier: ^0.8.5
+        version: 0.8.5
       '@types/compression':
         specifier: ^1.7.2
         version: 1.8.1
@@ -734,8 +734,8 @@ packages:
       react-refresh:
         optional: true
 
-  '@rstest/core@0.8.4':
-    resolution: {integrity: sha512-iHW2u19uNpjEJf8nN4t14e6UwBXBKOtZ/41ASD7SQz9zt4iWm0ppb3Im6J/ddgeEE8dz2rox59preNtAreUMZQ==}
+  '@rstest/core@0.8.5':
+    resolution: {integrity: sha512-4E9pXpy2Jxy1+J4mqGnsVQn7gVnkIv2lA7AbwAY0Zy90jJo+YCchpTGosba/jhBJJhETRAr3GIkPUECxFoyQ9A==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     peerDependencies:
@@ -3796,7 +3796,7 @@ snapshots:
     optionalDependencies:
       react-refresh: 0.14.0
 
-  '@rstest/core@0.8.4':
+  '@rstest/core@0.8.5':
     dependencies:
       '@rsbuild/core': 1.7.3
       '@types/chai': 5.2.3
