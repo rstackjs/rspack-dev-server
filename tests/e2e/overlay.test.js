@@ -331,10 +331,10 @@ describe('overlay', () => {
     const { page, browser } = await runBrowser();
 
     const pathToFile = path.resolve(
-        __dirname,
-        '../fixtures/overlay-config/foo.js',
-      );
-     const originalCode = fs.readFileSync(pathToFile);
+      __dirname,
+      '../fixtures/overlay-config/foo.js',
+    );
+    const originalCode = fs.readFileSync(pathToFile);
 
     try {
       await page.goto(`http://localhost:${port}/`, {
@@ -614,9 +614,9 @@ describe('overlay', () => {
     const { page, browser } = await runBrowser();
 
     const pathToFile = path.resolve(
-        __dirname,
-        '../fixtures/overlay-config/foo.js',
-      );
+      __dirname,
+      '../fixtures/overlay-config/foo.js',
+    );
     const originalCode = fs.readFileSync(pathToFile);
 
     try {
@@ -639,7 +639,6 @@ describe('overlay', () => {
       await waitForExpect(() => {
         expect(mockLaunchEditorCb).toHaveBeenCalledTimes(1);
       });
-
     } finally {
       fs.writeFileSync(pathToFile, '');
       rs.doUnmock('launch-editor');
