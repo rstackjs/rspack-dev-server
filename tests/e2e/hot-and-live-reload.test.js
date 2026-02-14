@@ -714,7 +714,7 @@ describe('hot and live reload', () => {
 
 //     loggerWarnSpy = rstest.fn();
 
-//     getInfrastructureLoggerSpy = jest
+//     getInfrastructureLoggerSpy = rstest
 //       .spyOn(compiler, "getInfrastructureLogger")
 //       .mockImplementation(() => {
 //         return {
