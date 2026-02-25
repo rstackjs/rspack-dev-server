@@ -112,13 +112,15 @@ exports[`app option > should work using "connect" application and "https" server
 "
 `;
 
-exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `[]`;
-
-exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > page errors 1`] = `
+exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  [SyntaxError: Invalid or unexpected token],
+  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[HMR] Waiting for update signal from WDS...",
+  "Hey.",
 ]
 `;
+
+exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
 exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
@@ -194,13 +196,15 @@ exports[`app option > should work using "express" application and "https" server
 "
 `;
 
-exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `[]`;
-
-exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > page errors 1`] = `
+exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  [SyntaxError: Invalid or unexpected token],
+  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[HMR] Waiting for update signal from WDS...",
+  "Hey.",
 ]
 `;
+
+exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
 exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
