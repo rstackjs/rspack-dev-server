@@ -1895,11 +1895,11 @@ class Server<
 
           const statsForPrint =
             typeof (stats as unknown as MultiStats).stats !== 'undefined'
-              ? ((stats as unknown as MultiStats).toJson({})
+              ? ((stats as unknown as MultiStats).toJson({ assets: true })
                   .children as NonNullable<StatsCompilation['children']>)
-              : ([(stats as unknown as Stats).toJson()] as NonNullable<
-                  StatsCompilation[]
-                >);
+              : ([
+                  (stats as unknown as Stats).toJson({ assets: true }),
+                ] as NonNullable<StatsCompilation[]>);
 
           res.write('<h1>Assets Report:</h1>');
 
@@ -2270,8 +2270,9 @@ class Server<
   }
 
   createWebSocketServer() {
-    // @ts-expect-error constructor
-    this.webSocketServer = new (this.getServerTransport())(this);
+    this.webSocketServer = new (this.getServerTransport() as EXPECTED_ANY)(
+      this,
+    );
 
     (this.webSocketServer?.implementation as WebSocketServer).on(
       'connection',

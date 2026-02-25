@@ -9,7 +9,7 @@ module.exports = [
     entry: ['./entry1.js', './entry2.js'],
     output: {
       path: '/',
-      libraryTarget: 'umd',
+      library: { type: 'umd' },
     },
     infrastructureLogging: {
       level: 'warn',
