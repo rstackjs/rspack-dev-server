@@ -178,6 +178,18 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
 
+  example:
+    devDependencies:
+      '@rspack/cli':
+        specifier: 2.0.0-beta.2
+        version: 2.0.0-beta.2(@rspack/core@2.0.0-beta.2(@swc/helpers@0.5.18))(@rspack/dev-server@)
+      '@rspack/core':
+        specifier: 2.0.0-beta.2
+        version: 2.0.0-beta.2(@swc/helpers@0.5.18)
+      '@rspack/dev-server':
+        specifier: workspace:*
+        version: link:..
+
 packages:
 
   '@babel/code-frame@7.24.7':
@@ -244,6 +256,10 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@discoveryjs/json-ext@0.5.7':
+    resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
+    engines: {node: '>=10.0.0'}
 
   '@emnapi/core@1.6.0':
     resolution: {integrity: sha512-zq/ay+9fNIJJtJiZxdTnXS20PllcYMX3OE23ESc4HK/bdYu3cOWYVhsOhVnXALfU/uqJIxn5NBPd9z4v+SfoSg==}
@@ -436,6 +452,16 @@ packages:
 
   '@rspack/binding@2.0.0-beta.2':
     resolution: {integrity: sha512-02V7uH82c9CqPifH9k4r10DM0gQyaW9aUUOCqwQdV8bjhdP+cta7qbz2iGOWGcJiprQqme635gVmfhsY26Sv0Q==}
+
+  '@rspack/cli@2.0.0-beta.2':
+    resolution: {integrity: sha512-MazD4GKfu2vF/zvK3E5o/gwVlxVLJ34+DI4OfXTzStqPATQB7HLpEZT9qH8uKHE4kZD2JcGESwly1okKaeCjNg==}
+    hasBin: true
+    peerDependencies:
+      '@rspack/core': ^2.0.0-0
+      '@rspack/dev-server': ~1.2.1
+    peerDependenciesMeta:
+      '@rspack/dev-server':
+        optional: true
 
   '@rspack/core@1.7.6':
     resolution: {integrity: sha512-Iax6UhrfZqJajA778c1d5DBFbSIqPOSrI34kpNIiNpWd8Jq7mFIa+Z60SQb5ZQDZuUxcCZikjz5BxinFjTkg7Q==}
@@ -1153,6 +1179,10 @@ packages:
   eventsource@2.0.2:
     resolution: {integrity: sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA==}
     engines: {node: '>=12.0.0'}
+
+  exit-hook@4.0.0:
+    resolution: {integrity: sha512-Fqs7ChZm72y40wKjOFXBKg7nJZvQJmewP5/7LtePDdnah/+FH9Hp5sgMujSCMPXlxOAW2//1jrW9pnsY7o20vQ==}
+    engines: {node: '>=18'}
 
   express@4.22.1:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
@@ -2300,6 +2330,8 @@ snapshots:
   '@biomejs/cli-win32-x64@1.9.2':
     optional: true
 
+  '@discoveryjs/json-ext@0.5.7': {}
+
   '@emnapi/core@1.6.0':
     dependencies:
       '@emnapi/wasi-threads': 1.1.0
@@ -2503,6 +2535,14 @@ snapshots:
       '@rspack/binding-win32-arm64-msvc': 2.0.0-beta.2
       '@rspack/binding-win32-ia32-msvc': 2.0.0-beta.2
       '@rspack/binding-win32-x64-msvc': 2.0.0-beta.2
+
+  '@rspack/cli@2.0.0-beta.2(@rspack/core@2.0.0-beta.2(@swc/helpers@0.5.18))(@rspack/dev-server@)':
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      '@rspack/core': 2.0.0-beta.2(@swc/helpers@0.5.18)
+      exit-hook: 4.0.0
+    optionalDependencies:
+      '@rspack/dev-server': 'link:'
 
   '@rspack/core@1.7.6(@swc/helpers@0.5.18)':
     dependencies:
@@ -3209,6 +3249,8 @@ snapshots:
   events@3.3.0: {}
 
   eventsource@2.0.2: {}
+
+  exit-hook@4.0.0: {}
 
   express@4.22.1:
     dependencies:
