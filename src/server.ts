@@ -2485,7 +2485,7 @@ class Server<
         }
       }
 
-      const urlLogs = [];
+      const urlLogs: string[] = [];
 
       const local = localhost || loopbackIPv4 || loopbackIPv6;
       if (local) {
