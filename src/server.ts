@@ -361,16 +361,16 @@ class Server<
     }
 
     if (!dir) {
-      return path.resolve(cwd, '.cache/webpack-dev-server');
+      return path.resolve(cwd, '.cache/rspack-dev-server');
     }
     if (process.versions.pnp === '1') {
-      return path.resolve(dir, '.pnp/.cache/webpack-dev-server');
+      return path.resolve(dir, '.pnp/.cache/rspack-dev-server');
     }
     if (process.versions.pnp === '3') {
-      return path.resolve(dir, '.yarn/.cache/webpack-dev-server');
+      return path.resolve(dir, '.yarn/.cache/rspack-dev-server');
     }
 
-    return path.resolve(dir, 'node_modules/.cache/webpack-dev-server');
+    return path.resolve(dir, 'node_modules/.cache/rspack-dev-server');
   }
 
   static isWebTarget(compiler: Compiler): boolean {
@@ -1651,13 +1651,13 @@ class Server<
   }
 
   setupHooks(): void {
-    this.compiler.hooks.invalid.tap('webpack-dev-server', () => {
+    this.compiler.hooks.invalid.tap('rspack-dev-server', () => {
       if (this.webSocketServer) {
         this.sendMessage(this.webSocketServer.clients, 'invalid');
       }
     });
     this.compiler.hooks.done.tap(
-      'webpack-dev-server',
+      'rspack-dev-server',
       (stats: Stats | MultiStats): void => {
         if (this.webSocketServer) {
           this.sendStats(this.webSocketServer.clients, this.getStats(stats));
@@ -1861,8 +1861,8 @@ class Server<
     });
 
     middlewares.push({
-      name: 'webpack-dev-server-assets',
-      path: '/webpack-dev-server',
+      name: 'rspack-dev-server-assets',
+      path: '/rspack-dev-server',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
