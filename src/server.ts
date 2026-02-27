@@ -14,7 +14,6 @@ import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
 import * as ipaddr from 'ipaddr.js';
-import schema from './options.json';
 import type {
   BasicApplication,
   ExpressApplication,
@@ -195,10 +194,6 @@ class Server<
     this.sockets = [];
 
     this.currentHash = undefined;
-  }
-
-  static get schema() {
-    return schema;
   }
 
   static get DEFAULT_STATS(): StatsOptions {
