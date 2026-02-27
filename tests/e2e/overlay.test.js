@@ -1543,7 +1543,7 @@ describe('overlay', () => {
 
       await new Promise((resolve) => {
         const interval = setInterval(() => {
-          if (consoleMessages.includes('[webpack-dev-server] Disconnected!')) {
+          if (consoleMessages.includes('[rspack-dev-server] Disconnected!')) {
             clearInterval(interval);
 
             resolve();

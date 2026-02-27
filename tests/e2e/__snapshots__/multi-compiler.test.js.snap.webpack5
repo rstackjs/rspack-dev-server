@@ -2,7 +2,7 @@
 
 exports[`multi compiler > should work with one web target configuration and do nothing > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -12,7 +12,7 @@ exports[`multi compiler > should work with one web target configuration and do n
 
 exports[`multi compiler > should work with universal configuration and do nothing > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hello from the browser",
 ]
@@ -22,17 +22,17 @@ exports[`multi compiler > should work with universal configuration and do nothin
 
 exports[`multi compiler > should work with universal configuration when hot and live reloads are enabled, and do hot reload for browser compiler by default when browser entry changed > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hello from the browser",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "[HMR] Cannot apply update. Need to do a full reload!",
   "[HMR] Error: Aborted because ./browser.js is not accepted
 Update propagation: ./browser.js
     <stack>",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hello from the browser",
 ]
@@ -42,17 +42,17 @@ exports[`multi compiler > should work with universal configuration when hot and 
 
 exports[`multi compiler > should work with universal configuration when only hot reload is enabled, and do hot reload for browser compiler when browser entry changed > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hello from the browser",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "[HMR] Cannot apply update. Need to do a full reload!",
   "[HMR] Error: Aborted because ./browser.js is not accepted
 Update propagation: ./browser.js
     <stack>",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hello from the browser",
 ]
@@ -62,22 +62,22 @@ exports[`multi compiler > should work with universal configuration when only hot
 
 exports[`multi compiler > should work with universal configuration when only live reload is enabled, and do live reload for browser compiler when changing browser and server entries > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
 ]
 `;
 
 exports[`multi compiler > should work with universal configuration when only live reload is enabled, and do live reload for browser compiler when changing browser and server entries > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
 ]
 `;
@@ -88,22 +88,22 @@ exports[`multi compiler > should work with universal configuration when only liv
 
 exports[`multi compiler > should work with universal configuration when only live reload is enabled, and do live reload for browser compiler when changing server and browser entries > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
 ]
 `;
 
 exports[`multi compiler > should work with universal configuration when only live reload is enabled, and do live reload for browser compiler when changing server and browser entries > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "Hello from the browser",
 ]
 `;
@@ -114,7 +114,7 @@ exports[`multi compiler > should work with universal configuration when only liv
 
 exports[`multi compiler > should work with web target configurations and do nothing > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "one",
 ]
@@ -122,7 +122,7 @@ exports[`multi compiler > should work with web target configurations and do noth
 
 exports[`multi compiler > should work with web target configurations and do nothing > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "two",
 ]
@@ -134,17 +134,17 @@ exports[`multi compiler > should work with web target configurations and do noth
 
 exports[`multi compiler > should work with web target configurations when hot and live reloads are enabled, and do hot reload by default when changing own entries > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "one",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "[HMR] Cannot apply update. Need to do a full reload!",
   "[HMR] Error: Aborted because ./one.js is not accepted
 Update propagation: ./one.js
     <stack>",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "one",
 ]
@@ -152,17 +152,17 @@ Update propagation: ./one.js
 
 exports[`multi compiler > should work with web target configurations when hot and live reloads are enabled, and do hot reload by default when changing own entries > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "two",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "[HMR] Cannot apply update. Need to do a full reload!",
   "[HMR] Error: Aborted because ./two.js is not accepted
 Update propagation: ./two.js
     <stack>",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "two",
 ]
@@ -174,17 +174,17 @@ exports[`multi compiler > should work with web target configurations when hot an
 
 exports[`multi compiler > should work with web target configurations when only hot reload is enabled, and do hot reload when changing own entries > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "one",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "[HMR] Cannot apply update. Need to do a full reload!",
   "[HMR] Error: Aborted because ./one.js is not accepted
 Update propagation: ./one.js
     <stack>",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "one",
 ]
@@ -192,17 +192,17 @@ Update propagation: ./one.js
 
 exports[`multi compiler > should work with web target configurations when only hot reload is enabled, and do hot reload when changing own entries > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "two",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "[HMR] Cannot apply update. Need to do a full reload!",
   "[HMR] Error: Aborted because ./two.js is not accepted
 Update propagation: ./two.js
     <stack>",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "two",
 ]
@@ -214,22 +214,22 @@ exports[`multi compiler > should work with web target configurations when only h
 
 exports[`multi compiler > should work with web target configurations when only live reload is enabled and do live reload when changing other entries > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "one",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "one",
 ]
 `;
 
 exports[`multi compiler > should work with web target configurations when only live reload is enabled and do live reload when changing other entries > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "two",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "two",
 ]
 `;
@@ -240,22 +240,22 @@ exports[`multi compiler > should work with web target configurations when only l
 
 exports[`multi compiler > should work with web target configurations when only live reload is enabled, and do live reload when changing own entries > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "one",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "one",
 ]
 `;
 
 exports[`multi compiler > should work with web target configurations when only live reload is enabled, and do live reload when changing own entries > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "two",
-  "[webpack-dev-server] App updated. Recompiling...",
-  "[webpack-dev-server] App updated. Reloading...",
-  "[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] App updated. Recompiling...",
+  "[rspack-dev-server] App updated. Reloading...",
+  "[rspack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "two",
 ]
 `;

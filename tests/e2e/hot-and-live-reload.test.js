@@ -17,7 +17,7 @@ const cssFilePath = path.resolve(
   '../fixtures/reload-config/main.css',
 );
 
-const INVALID_MESSAGE = '[webpack-dev-server] App updated. Recompiling...';
+const INVALID_MESSAGE = '[rspack-dev-server] App updated. Recompiling...';
 
 describe('hot and live reload', () => {
   // "sockjs" client cannot add additional headers

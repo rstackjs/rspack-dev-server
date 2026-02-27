@@ -6,7 +6,7 @@ const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').entry;
 
 const HOT_ENABLED_MESSAGE =
-  '[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.';
+  '[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.';
 
 const waitForConsoleLogFinished = async (consoleLogs) => {
   await new Promise((resolve) => {
