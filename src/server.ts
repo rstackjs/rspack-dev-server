@@ -641,7 +641,7 @@ class Server<
 
   shouldLogInfrastructureInfo() {
     const compilerOptions = this.getCompilerOptions();
-    const { level = 'info' } = compilerOptions.infrastructureLogging;
+    const { level = 'info' } = compilerOptions.infrastructureLogging || {};
     return level === 'info' || level === 'log' || level === 'verbose';
   }
 
