@@ -379,16 +379,11 @@ const onSocketMessage = {
     options.progress = value;
   },
   'progress-update': function progressUpdate(data: {
-    pluginName?: string;
     percent: number;
     msg: string;
   }): void {
     if (options.progress) {
-      log.info(
-        `${data.pluginName ? `[${data.pluginName}] ` : ''}${data.percent}% - ${
-          data.msg
-        }.`,
-      );
+      log.info(`${data.percent}% - ${data.msg}.`);
     }
 
     if (isProgressSupported()) {

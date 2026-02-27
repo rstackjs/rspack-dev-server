@@ -1451,32 +1451,31 @@ class Server<
       ? (this.compiler as MultiCompiler).compilers[0].webpack
       : (this.compiler as Compiler).webpack;
 
-    new ProgressPlugin(
-      (percent: number, msg: string, addInfo: string, pluginName: string) => {
-        const percentValue = Math.floor(percent * 100);
-        let msgValue = msg;
+    new ProgressPlugin((percent: number, msg: string) => {
+      const percentValue = Math.floor(percent * 100);
+      let msgValue = msg;
 
-        if (percentValue === 100) {
-          msgValue = 'Compilation completed';
-        }
+      if (percentValue === 100) {
+        msgValue = 'Compilation completed';
+      }
 
-        if (addInfo) {
-          msgValue = `${msgValue} (${addInfo})`;
-        }
+      const payload = {
+        percent: percentValue,
+        msg: msgValue,
+      };
 
-        if (this.webSocketServer) {
-          this.sendMessage(this.webSocketServer.clients, 'progress-update', {
-            percent: percentValue,
-            msg: msgValue,
-            pluginName,
-          });
-        }
+      if (this.webSocketServer) {
+        this.sendMessage(
+          this.webSocketServer.clients,
+          'progress-update',
+          payload,
+        );
+      }
 
-        if (this.server) {
-          this.server.emit('progress-update', { percent, msg, pluginName });
-        }
-      },
-    ).apply(this.compiler as Compiler);
+      if (this.server) {
+        this.server.emit('progress-update', payload);
+      }
+    }).apply(this.compiler as Compiler);
   }
 
   /**
