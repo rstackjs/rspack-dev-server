@@ -76,10 +76,10 @@ describe('bonjour option', () => {
       expect(mockPublish).toHaveBeenCalledTimes(1);
 
       expect(mockPublish).toHaveBeenCalledWith({
-        name: `Webpack Dev Server ${os.hostname()}:${port}`,
+        name: `Rspack Dev Server ${os.hostname()}:${port}`,
         port,
         type: 'http',
-        subtypes: ['webpack'],
+        subtypes: ['rspack'],
       });
 
       expect(mockUnpublishAll).toHaveBeenCalledTimes(0);
@@ -149,10 +149,10 @@ describe('bonjour option', () => {
       expect(mockPublish).toHaveBeenCalledTimes(1);
 
       expect(mockPublish).toHaveBeenCalledWith({
-        name: `Webpack Dev Server ${os.hostname()}:${port}`,
+        name: `Rspack Dev Server ${os.hostname()}:${port}`,
         port,
         type: 'https',
-        subtypes: ['webpack'],
+        subtypes: ['rspack'],
       });
 
       expect(mockUnpublishAll).toHaveBeenCalledTimes(0);
@@ -231,11 +231,11 @@ describe('bonjour option', () => {
       expect(mockPublish).toHaveBeenCalledTimes(1);
 
       expect(mockPublish).toHaveBeenCalledWith({
-        name: `Webpack Dev Server ${os.hostname()}:${port}`,
+        name: `Rspack Dev Server ${os.hostname()}:${port}`,
         port,
         type: 'https',
         protocol: 'udp',
-        subtypes: ['webpack'],
+        subtypes: ['rspack'],
       });
 
       expect(mockUnpublishAll).toHaveBeenCalledTimes(0);
@@ -317,11 +317,11 @@ describe('bonjour option', () => {
       expect(mockPublish).toHaveBeenCalledTimes(1);
 
       expect(mockPublish).toHaveBeenCalledWith({
-        name: `Webpack Dev Server ${os.hostname()}:${port}`,
+        name: `Rspack Dev Server ${os.hostname()}:${port}`,
         port,
         type: 'http',
         protocol: 'udp',
-        subtypes: ['webpack'],
+        subtypes: ['rspack'],
       });
 
       expect(mockUnpublishAll).toHaveBeenCalledTimes(0);

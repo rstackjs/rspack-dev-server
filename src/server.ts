@@ -74,6 +74,8 @@ import type {
   Headers,
 } from './types';
 
+const { styleText } = util;
+
 export interface Configuration<
   A extends BasicApplication = ExpressApplication,
   S extends HTTPServer = HTTPServer,
@@ -186,7 +188,7 @@ class Server<
 
   constructor(options: DevServer, compiler: Compiler | MultiCompiler) {
     this.compiler = compiler;
-    this.logger = this.compiler.getInfrastructureLogger('webpack-dev-server');
+    this.logger = this.compiler.getInfrastructureLogger('rspack-dev-server');
     this.options = options as unknown as Configuration<A, S>;
     this.staticWatchers = [];
     this.listeners = [];
@@ -635,6 +637,12 @@ class Server<
     }
 
     return (this.compiler as Compiler).options;
+  }
+
+  shouldLogInfrastructureInfo() {
+    const compilerOptions = this.getCompilerOptions();
+    const { level = 'info' } = compilerOptions.infrastructureLogging;
+    return level === 'info' || level === 'log' || level === 'verbose';
   }
 
   async normalizeOptions() {
@@ -1577,7 +1585,7 @@ class Server<
           }
 
           this.logger.info(
-            'Gracefully shutting down. To force exit, press ^C again. Please wait...',
+            'Gracefully shutting down. Press ^C again to force exit...',
           );
 
           needForceShutdown = true;
@@ -2400,10 +2408,10 @@ class Server<
 
     this.bonjour = new Bonjour();
     this.bonjour?.publish({
-      name: `Webpack Dev Server ${os.hostname()}:${this.options.port}`,
+      name: `Rspack Dev Server ${os.hostname()}:${this.options.port}`,
       port: this.options.port as number,
       type,
-      subtypes: ['webpack'],
+      subtypes: ['rspack'],
       ...(this.options.bonjour as Partial<BonjourOptions>),
     });
   }
@@ -2419,43 +2427,6 @@ class Server<
   }
 
   async logStatus() {
-    const { cyan, isColorSupported, red } = require('colorette');
-
-    const getColorsOption = (compilerOptions: Compiler['options']): boolean => {
-      let colorsEnabled: boolean;
-
-      if (
-        compilerOptions.stats &&
-        typeof (compilerOptions.stats as unknown as StatsOptions).colors !==
-          'undefined'
-      ) {
-        colorsEnabled = (compilerOptions.stats as unknown as StatsOptions)
-          .colors as boolean;
-      } else {
-        colorsEnabled = isColorSupported as boolean;
-      }
-
-      return colorsEnabled;
-    };
-
-    const colors = {
-      info(useColor: boolean, msg: string): string {
-        if (useColor) {
-          return cyan(msg);
-        }
-
-        return msg;
-      },
-      error(useColor: boolean, msg: string): string {
-        if (useColor) {
-          return red(msg);
-        }
-
-        return msg;
-      },
-    };
-    const useColor = getColorsOption(this.getCompilerOptions());
-
     const server = this.server as S;
 
     if (this.options.ipc) {
@@ -2470,29 +2441,14 @@ class Server<
       const prettyPrintURL = (newHostname: string): string =>
         url.format({ protocol, hostname: newHostname, port, pathname: '/' });
 
-      let host: string | undefined;
       let localhost: string | undefined;
       let loopbackIPv4: string | undefined;
       let loopbackIPv6: string | undefined;
       let networkUrlIPv4: string | undefined;
       let networkUrlIPv6: string | undefined;
 
-      if (this.options.host) {
-        if (this.options.host === 'localhost') {
-          localhost = prettyPrintURL('localhost');
-        } else {
-          let isIP: IPv6 | ipaddr.IPv4 | null | undefined;
-
-          try {
-            isIP = ipaddr.parse(this.options.host) as IPv6 | ipaddr.IPv4;
-          } catch {
-            // Ignore
-          }
-
-          if (!isIP) {
-            host = prettyPrintURL(this.options.host);
-          }
-        }
+      if (this.options.host === 'localhost') {
+        localhost = prettyPrintURL('localhost');
       }
 
       const parsedIP = ipaddr.parse(address);
@@ -2529,40 +2485,27 @@ class Server<
         }
       }
 
-      this.logger.info('Project is running at:');
+      const urlLogs = [];
 
-      if (host) {
-        this.logger.info(`Server: ${colors.info(useColor, host)}`);
-      }
-
-      if (localhost || loopbackIPv4 || loopbackIPv6) {
-        const loopbacks = [];
-
-        if (localhost) {
-          loopbacks.push([colors.info(useColor, localhost)]);
-        }
-
-        if (loopbackIPv4) {
-          loopbacks.push([colors.info(useColor, loopbackIPv4)]);
-        }
-
-        if (loopbackIPv6) {
-          loopbacks.push([colors.info(useColor, loopbackIPv6)]);
-        }
-
-        this.logger.info(`Loopback: ${loopbacks.join(', ')}`);
+      const local = localhost || loopbackIPv4 || loopbackIPv6;
+      if (local) {
+        urlLogs.push(
+          `  ${styleText('white', '➜')}  ${styleText(['white', 'dim'], 'Local:')}    ${styleText('cyan', local)}`,
+        );
       }
 
       if (networkUrlIPv4) {
-        this.logger.info(
-          `On Your Network (IPv4): ${colors.info(useColor, networkUrlIPv4)}`,
+        urlLogs.push(
+          `  ${styleText('white', '➜')}  ${styleText(['white', 'dim'], 'Network:')}  ${styleText('cyan', networkUrlIPv4)}`,
+        );
+      } else if (networkUrlIPv6) {
+        urlLogs.push(
+          `  ${styleText('white', '➜')}  ${styleText(['white', 'dim'], 'Network:')}  ${styleText('cyan', networkUrlIPv6)}`,
         );
       }
 
-      if (networkUrlIPv6) {
-        this.logger.info(
-          `On Your Network (IPv6): ${colors.info(useColor, networkUrlIPv6)}`,
-        );
+      if (urlLogs.length && this.shouldLogInfrastructureInfo()) {
+        console.log(`${urlLogs.join('\n')}\n`);
       }
 
       if ((this.options.open as NormalizedOpen[])?.length > 0) {
@@ -2578,27 +2521,6 @@ class Server<
       }
     }
 
-    if ((this.options.static as NormalizedStatic[])?.length > 0) {
-      this.logger.info(
-        `Content not from webpack is served from '${colors.info(
-          useColor,
-          (this.options.static as NormalizedStatic[])
-            .map((staticOption) => staticOption.directory)
-            .join(', '),
-        )}' directory`,
-      );
-    }
-
-    if (this.options.historyApiFallback) {
-      this.logger.info(
-        `404s will fallback to '${colors.info(
-          useColor,
-          (this.options.historyApiFallback as ConnectHistoryApiFallbackOptions)
-            .index || '/index.html',
-        )}'`,
-      );
-    }
-
     if (this.options.bonjour) {
       const bonjourProtocol =
         (this.options.bonjour as BonjourOptions | undefined)?.type ||
@@ -2607,7 +2529,7 @@ class Server<
           : 'http';
 
       this.logger.info(
-        `Broadcasting "${bonjourProtocol}" with subtype of "webpack" via ZeroConf DNS (Bonjour)`,
+        `Broadcasting "${bonjourProtocol}" with subtype of "rspack" via ZeroConf DNS (Bonjour)`,
       );
     }
   }
