@@ -14,7 +14,6 @@ import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
 import * as ipaddr from 'ipaddr.js';
-import { validate } from 'schema-utils';
 import schema from './options.json';
 import type {
   BasicApplication,
@@ -49,7 +48,6 @@ import type {
   Stats,
   MultiStats,
   DevServer,
-  Schema,
   StatsOptions,
   NetworkInterfaceInfo,
   WebSocketURL,
@@ -188,11 +186,6 @@ class Server<
   stats: Stats | MultiStats | undefined;
 
   constructor(options: DevServer, compiler: Compiler | MultiCompiler) {
-    validate(schema as Schema, options, {
-      name: 'Dev Server',
-      baseDataPath: 'options',
-    });
-
     this.compiler = compiler;
     this.logger = this.compiler.getInfrastructureLogger('webpack-dev-server');
     this.options = options as unknown as Configuration<A, S>;
@@ -204,8 +197,8 @@ class Server<
     this.currentHash = undefined;
   }
 
-  static get schema(): Schema {
-    return schema as Schema;
+  static get schema() {
+    return schema;
   }
 
   static get DEFAULT_STATS(): StatsOptions {
