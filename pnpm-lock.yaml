@@ -175,7 +175,7 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       typescript:
-        specifier: 5.9.3
+        specifier: ^5.9.3
         version: 5.9.3
       wait-for-expect:
         specifier: ^3.0.2
