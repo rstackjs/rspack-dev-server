@@ -122,8 +122,10 @@ const configs = [
     ),
     output: {
       filename: 'sockjs-client/index.js',
-      library: 'SockJS',
-      libraryTarget: 'umd',
+      library: {
+        name: 'SockJS',
+        type: 'umd',
+      },
       globalObject: "(typeof self !== 'undefined' ? self : this)",
     },
   }),

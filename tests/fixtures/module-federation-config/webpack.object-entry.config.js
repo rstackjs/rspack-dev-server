@@ -11,7 +11,7 @@ module.exports = {
   },
   output: {
     path: '/',
-    libraryTarget: 'umd',
+    library: { type: 'umd' },
   },
   infrastructureLogging: {
     level: 'warn',
