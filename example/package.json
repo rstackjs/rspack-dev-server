@@ -1,0 +1,15 @@
+{
+  "name": "example",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rspack dev",
+    "build": "rspack build",
+    "preview": "rspack preview"
+  },
+  "devDependencies": {
+    "@rspack/cli": "2.0.0-beta.4",
+    "@rspack/core": "2.0.0-beta.4",
+    "@rspack/dev-server": "workspace:*"
+  }
+}
