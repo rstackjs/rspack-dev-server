@@ -1459,15 +1459,21 @@ class Server<
         msgValue = 'Compilation completed';
       }
 
+      const payload = {
+        percent: percentValue,
+        msg: msgValue,
+      };
+
       if (this.webSocketServer) {
-        this.sendMessage(this.webSocketServer.clients, 'progress-update', {
-          percent: percentValue,
-          msg: msgValue,
-        });
+        this.sendMessage(
+          this.webSocketServer.clients,
+          'progress-update',
+          payload,
+        );
       }
 
       if (this.server) {
-        this.server.emit('progress-update', { percent, msg });
+        this.server.emit('progress-update', payload);
       }
     }).apply(this.compiler as Compiler);
   }
