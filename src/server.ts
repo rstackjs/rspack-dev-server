@@ -8,11 +8,11 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
+import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
-import * as fs from 'graceful-fs';
 import * as ipaddr from 'ipaddr.js';
 import { validate } from 'schema-utils';
 import schema from './options.json';

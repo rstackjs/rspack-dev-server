@@ -1,6 +1,6 @@
 const https = require('node:https');
 const path = require('node:path');
-const fs = require('graceful-fs');
+const fs = require('node:fs');
 const request = require('supertest');
 const spdy = require('spdy');
 const webpack = require('@rspack/core');
