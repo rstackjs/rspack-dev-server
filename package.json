@@ -117,7 +117,6 @@
     "launch-editor": "^2.6.1",
     "open": "^10.0.3",
     "p-retry": "^6.2.0",
-    "schema-utils": "^4.2.0",
     "selfsigned": "^2.4.1",
     "serve-index": "^1.9.1",
     "sockjs": "^0.3.24",

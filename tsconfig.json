@@ -18,5 +18,5 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src/**/*", "src/options.json"]
+  "include": ["src/**/*"]
 }

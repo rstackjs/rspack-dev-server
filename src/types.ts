@@ -38,8 +38,6 @@ import type {
 } from 'http-proxy-middleware';
 export type { RequestHandler };
 export type { IPv6 } from 'ipaddr.js';
-// biome-ignore lint/suspicious/noExplicitAny: Schema type from schema-utils
-export type Schema = Record<string, any>;
 import type { Options as ServeIndexOptions } from 'serve-index';
 export type { ServeIndexOptions };
 import type { ServeStaticOptions } from 'serve-static';
