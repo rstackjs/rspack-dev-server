@@ -1,6 +1,6 @@
 const path = require('node:path');
 const chokidar = require('chokidar');
-const fs = require('graceful-fs');
+const fs = require('node:fs');
 const webpack = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/watch-files-config/webpack.config');

@@ -13,7 +13,7 @@
 const path = require('node:path');
 const rspack = require('@rspack/core');
 const { merge } = require('webpack-merge');
-const fs = require('graceful-fs');
+const fs = require('node:fs');
 
 const modulesDir = path.resolve(__dirname, '../client/modules');
 if (fs.existsSync(modulesDir)) {
