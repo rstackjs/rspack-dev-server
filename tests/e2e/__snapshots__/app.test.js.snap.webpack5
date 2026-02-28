@@ -2,7 +2,7 @@
 
 exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -30,7 +30,7 @@ exports[`app option > should work using "connect (async)" application and "http"
 
 exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -58,7 +58,7 @@ exports[`app option > should work using "connect" application and "http" server 
 
 exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -86,7 +86,7 @@ exports[`app option > should work using "connect" application and "http2" server
 
 exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -114,7 +114,7 @@ exports[`app option > should work using "connect" application and "https" server
 
 exports[`app option > should work using "connect" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -142,7 +142,7 @@ exports[`app option > should work using "connect" application and "spdy" server 
 
 exports[`app option > should work using "express" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -170,7 +170,7 @@ exports[`app option > should work using "express" application and "http" server 
 
 exports[`app option > should work using "express" application and "https" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -198,7 +198,7 @@ exports[`app option > should work using "express" application and "https" server
 
 exports[`app option > should work using "express" application and "spdy" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -226,7 +226,7 @@ exports[`app option > should work using "express" application and "spdy" server 
 
 exports[`app option > should work using "hono" application and "[object Object]" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -254,7 +254,7 @@ exports[`app option > should work using "hono" application and "[object Object]"
 
 exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -262,7 +262,7 @@ exports[`app option > should work using "hono" application and "custom server" s
 
 exports[`app option > should work using "hono" application and "custom server" server > should handle GET request to index route (/) > console messages 2`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]

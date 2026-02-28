@@ -131,7 +131,7 @@ describe('Built in routes', () => {
         });
 
       const response = await page.goto(
-        `http://127.0.0.1:${port}/webpack-dev-server/`,
+        `http://127.0.0.1:${port}/rspack-dev-server/`,
         {
           waitUntil: 'networkidle0',
         },
@@ -167,7 +167,7 @@ describe('Built in routes', () => {
         });
 
       const response = await page.goto(
-        `http://127.0.0.1:${port}/webpack-dev-server/`,
+        `http://127.0.0.1:${port}/rspack-dev-server/`,
         {
           waitUntil: 'networkidle0',
         },
@@ -277,7 +277,7 @@ describe('Built in routes', () => {
         });
 
       const response = await page.goto(
-        `http://127.0.0.1:${port}/webpack-dev-server/`,
+        `http://127.0.0.1:${port}/rspack-dev-server/`,
         {
           waitUntil: 'networkidle0',
         },
