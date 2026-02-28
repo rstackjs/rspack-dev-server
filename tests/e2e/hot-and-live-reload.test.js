@@ -711,9 +711,9 @@ describe('hot and live reload', () => {
 //       plugins: [...config.plugins, new webpack.HotModuleReplacementPlugin()],
 //     });
 
-//     loggerWarnSpy = rstest.fn();
+//     loggerWarnSpy = rs.fn();
 
-//     getInfrastructureLoggerSpy = rstest
+//     getInfrastructureLoggerSpy = rs
 //       .spyOn(compiler, "getInfrastructureLogger")
 //       .mockImplementation(() => {
 //         return {

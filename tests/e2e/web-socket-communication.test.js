@@ -6,7 +6,7 @@ const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['web-socket-communication'];
 
-rstest.setConfig({ testTimeout: 60_000 });
+rs.setConfig({ testTimeout: 60_000 });
 
 describe('web socket communication', () => {
   const webSocketServers = ['ws', 'sockjs'];
