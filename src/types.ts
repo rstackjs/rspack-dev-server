@@ -16,8 +16,6 @@ export type {
   StatsCompilation,
   StatsOptions,
 } from '@rspack/core';
-import type { Bonjour, Service as BonjourOptions } from 'bonjour-service';
-export type { Bonjour, BonjourOptions };
 import type { FSWatcher, WatchOptions } from 'chokidar';
 export type { FSWatcher, WatchOptions };
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
