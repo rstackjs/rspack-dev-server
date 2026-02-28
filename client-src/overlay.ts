@@ -460,7 +460,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
     // Enable Trusted Types if they are available in the current browser.
     if (window.trustedTypes) {
       overlayTrustedTypesPolicy = window.trustedTypes.createPolicy(
-        trustedTypesPolicyName || 'webpack-dev-server#overlay',
+        trustedTypesPolicyName || 'rspack-dev-server#overlay',
         {
           createHTML: (value: string) => value,
         },
@@ -468,7 +468,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
     }
 
     iframeContainerElement = document.createElement('iframe');
-    iframeContainerElement.id = 'webpack-dev-server-client-overlay';
+    iframeContainerElement.id = 'rspack-dev-server-client-overlay';
     iframeContainerElement.src = 'about:blank';
     applyStyle(iframeContainerElement, iframeStyle);
 
@@ -480,7 +480,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
         iframeContainerElement?.contentDocument as Document
       ).createElement('div');
 
-      contentElement.id = 'webpack-dev-server-client-overlay-div';
+      contentElement.id = 'rspack-dev-server-client-overlay-div';
       applyStyle(contentElement, containerStyle);
 
       headerElement = document.createElement('div');
@@ -590,7 +590,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
           typeElement.setAttribute('data-can-open', 'true');
           typeElement.addEventListener('click', () => {
             fetch(
-              `/webpack-dev-server/open-editor?fileName=${message.moduleIdentifier}`,
+              `/rspack-dev-server/open-editor?fileName=${message.moduleIdentifier}`,
             );
           });
         }

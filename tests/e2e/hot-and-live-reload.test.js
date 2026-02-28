@@ -194,8 +194,8 @@ describe('hot and live reload', () => {
     },
     {
       title:
-        'should work and allow to disable hot module replacement using the "webpack-dev-server-hot=false"',
-      query: '?webpack-dev-server-hot=false',
+        'should work and allow to disable hot module replacement using the "rspack-dev-server-hot=false"',
+      query: '?rspack-dev-server-hot=false',
       options: {
         liveReload: true,
         hot: true,
@@ -203,8 +203,8 @@ describe('hot and live reload', () => {
     },
     {
       title:
-        'should work and allow to disable live reload using the "webpack-dev-server-live-reload=false"',
-      query: '?webpack-dev-server-live-reload=false',
+        'should work and allow to disable live reload using the "rspack-dev-server-live-reload=false"',
+      query: '?rspack-dev-server-live-reload=false',
       options: {
         liveReload: true,
         hot: false,
@@ -212,9 +212,8 @@ describe('hot and live reload', () => {
     },
     {
       title:
-        'should work and allow to disable hot module replacement and live reload using the "webpack-dev-server-hot=false&webpack-dev-server-live-reload=false"',
-      query:
-        '?webpack-dev-server-hot=false&webpack-dev-server-live-reload=false',
+        'should work and allow to disable hot module replacement and live reload using the "rspack-dev-server-hot=false&rspack-dev-server-live-reload=false"',
+      query: '?rspack-dev-server-hot=false&rspack-dev-server-live-reload=false',
       options: {
         liveReload: true,
         hot: true,
@@ -516,11 +515,11 @@ describe('hot and live reload', () => {
 
       const query = mode.query || '';
 
-      if (query.includes('webpack-dev-server-hot=false')) {
+      if (query.includes('rspack-dev-server-hot=false')) {
         waitHot = false;
       }
 
-      if (query.includes('webpack-dev-server-live-reload=false')) {
+      if (query.includes('rspack-dev-server-live-reload=false')) {
         waitLiveReload = false;
       }
 

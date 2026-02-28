@@ -1775,8 +1775,8 @@ class Server<
 
     // Should be after `webpack-dev-middleware`, otherwise other middlewares might rewrite response
     middlewares.push({
-      name: 'webpack-dev-server-sockjs-bundle',
-      path: '/__webpack_dev_server__/sockjs.bundle.js',
+      name: 'rspack-dev-server-sockjs-bundle',
+      path: '/__rspack_dev_server__/sockjs.bundle.js',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
@@ -1818,8 +1818,8 @@ class Server<
     });
 
     middlewares.push({
-      name: 'webpack-dev-server-invalidate',
-      path: '/webpack-dev-server/invalidate',
+      name: 'rspack-dev-server-invalidate',
+      path: '/rspack-dev-server/invalidate',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
@@ -1833,8 +1833,8 @@ class Server<
     });
 
     middlewares.push({
-      name: 'webpack-dev-server-open-editor',
-      path: '/webpack-dev-server/open-editor',
+      name: 'rspack-dev-server-open-editor',
+      path: '/rspack-dev-server/open-editor',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
