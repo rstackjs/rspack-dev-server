@@ -32,18 +32,12 @@ importers:
       '@types/ws':
         specifier: ^8.5.10
         version: 8.5.10
-      ansi-html-community:
-        specifier: ^0.0.8
-        version: 0.0.8
       bonjour-service:
         specifier: ^1.2.1
         version: 1.2.1
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0
-      colorette:
-        specifier: ^2.0.10
-        version: 2.0.20
       compression:
         specifier: ^1.8.1
         version: 1.8.1
@@ -690,11 +684,6 @@ packages:
 
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
-
-  ansi-html-community@0.0.8:
-    resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==}
-    engines: {'0': node >= 0.8.0}
-    hasBin: true
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -2775,8 +2764,6 @@ snapshots:
       fast-uri: 3.0.1
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
-
-  ansi-html-community@0.0.8: {}
 
   ansi-regex@5.0.1: {}
 

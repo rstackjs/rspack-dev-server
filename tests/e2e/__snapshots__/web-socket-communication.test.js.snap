@@ -2,11 +2,11 @@
 
 exports[`web socket communication > should work and close web socket client connection when web socket server closed ("sockjs") > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
-  "[webpack-dev-server] Disconnected!",
-  "[webpack-dev-server] Trying to reconnect...",
+  "[rspack-dev-server] Disconnected!",
+  "[rspack-dev-server] Trying to reconnect...",
 ]
 `;
 
@@ -14,11 +14,11 @@ exports[`web socket communication > should work and close web socket client conn
 
 exports[`web socket communication > should work and close web socket client connection when web socket server closed ("ws") > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
-  "[webpack-dev-server] Disconnected!",
-  "[webpack-dev-server] Trying to reconnect...",
+  "[rspack-dev-server] Disconnected!",
+  "[rspack-dev-server] Trying to reconnect...",
 ]
 `;
 
@@ -26,12 +26,12 @@ exports[`web socket communication > should work and close web socket client conn
 
 exports[`web socket communication > should work and reconnect when the connection is lost ("sockjs") > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
-  "[webpack-dev-server] Disconnected!",
-  "[webpack-dev-server] Trying to reconnect...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] Disconnected!",
+  "[rspack-dev-server] Trying to reconnect...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "Failed to load resource: the server responded with a status of 404 (Not Found)",
   "[HMR] Cannot find update. Need to do a full reload!",
@@ -44,12 +44,12 @@ exports[`web socket communication > should work and reconnect when the connectio
 
 exports[`web socket communication > should work and reconnect when the connection is lost ("ws") > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
-  "[webpack-dev-server] Disconnected!",
-  "[webpack-dev-server] Trying to reconnect...",
-  "[webpack-dev-server] App hot update...",
+  "[rspack-dev-server] Disconnected!",
+  "[rspack-dev-server] Trying to reconnect...",
+  "[rspack-dev-server] App hot update...",
   "[HMR] Checking for updates on the server...",
   "Failed to load resource: the server responded with a status of 404 (Not Found)",
   "[HMR] Cannot find update. Need to do a full reload!",
@@ -62,7 +62,7 @@ exports[`web socket communication > should work and reconnect when the connectio
 
 exports[`web socket communication > should work and terminate client that is not alive ("sockjs") > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -72,7 +72,7 @@ exports[`web socket communication > should work and terminate client that is not
 
 exports[`web socket communication > should work and terminate client that is not alive ("ws") > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]

@@ -130,7 +130,7 @@ const getCurrentScriptSource = (): string => {
   }
 
   // Fail as there was no script to use.
-  throw new Error('[webpack-dev-server] Failed to get current script source.');
+  throw new Error('[rspack-dev-server] Failed to get current script source.');
 };
 
 const parsedResourceQuery = parseURL(__resourceQuery);

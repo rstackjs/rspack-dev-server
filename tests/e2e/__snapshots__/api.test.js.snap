@@ -2,7 +2,7 @@
 
 exports[`API > Invalidate callback > should use the default \`noop\` callback when invalidate is called without any callback > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -14,7 +14,7 @@ exports[`API > Invalidate callback > should use the default \`noop\` callback wh
 
 exports[`API > Invalidate callback > should use the provided \`callback\` function > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -32,7 +32,7 @@ exports[`API > Server.checkHostHeader > should allow URLs with scheme for checki
 
 exports[`API > Server.getFreePort > should retry finding the port for up to defaultPortRetry times (number) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -44,7 +44,7 @@ exports[`API > Server.getFreePort > should retry finding the port for up to defa
 
 exports[`API > Server.getFreePort > should retry finding the port for up to defaultPortRetry times (string) > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -56,7 +56,7 @@ exports[`API > Server.getFreePort > should retry finding the port for up to defa
 
 exports[`API > Server.getFreePort > should retry finding the port when serial ports are busy > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -68,7 +68,7 @@ exports[`API > Server.getFreePort > should retry finding the port when serial po
 
 exports[`API > Server.getFreePort > should return the port when the port is \`null\` > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -80,7 +80,7 @@ exports[`API > Server.getFreePort > should return the port when the port is \`nu
 
 exports[`API > Server.getFreePort > should return the port when the port is undefined > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -94,7 +94,7 @@ exports[`API > Server.getFreePort > should throw the error when the port isn't f
 
 exports[`API > WEBPACK_SERVE environment variable > should be present > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -106,7 +106,7 @@ exports[`API > WEBPACK_SERVE environment variable > should be present > response
 
 exports[`API > latest async API > should work and allow to rerun dev server multiple times > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -117,7 +117,7 @@ exports[`API > latest async API > should work and allow to rerun dev server mult
 exports[`API > latest async API > should work when using configured manually > console messages 1`] = `
 [
   "[HMR] Waiting for update signal from WDS...",
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay disabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading disabled, Progress disabled, Overlay disabled.",
   "Hey.",
 ]
 `;
@@ -126,7 +126,7 @@ exports[`API > latest async API > should work when using configured manually > p
 
 exports[`API > latest async API > should work with async API > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]
@@ -136,7 +136,7 @@ exports[`API > latest async API > should work with async API > page errors 1`] =
 
 exports[`API > latest async API > should work with callback API > console messages 1`] = `
 [
-  "[webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
+  "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
   "Hey.",
 ]

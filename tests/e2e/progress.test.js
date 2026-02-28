@@ -69,7 +69,7 @@ describe('progress', () => {
       }
 
       const progressConsoleMessage = consoleMessages.filter((message) =>
-        /^\[webpack-dev-server\] (\[[a-zA-Z]+\] )?[0-9]{1,3}% - /.test(
+        /^\[rspack-dev-server\] (\[[a-zA-Z]+\] )?[0-9]{1,3}% - /.test(
           message.text(),
         ),
       );

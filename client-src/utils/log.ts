@@ -12,7 +12,7 @@ import type { LoggerOptions } from '../modules/types';
 import logger from '../modules/logger/index';
 import { LogLevel } from '../type';
 
-const name = 'webpack-dev-server';
+const name = 'rspack-dev-server';
 // default level is set on the client side, so it does not need
 // to be set by the CLI or API
 const defaultLevel = 'info';
