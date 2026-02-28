@@ -61,7 +61,7 @@ class SockJSServer extends BaseServer {
         return options.sockjsUrl;
       }
 
-      return '/__webpack_dev_server__/sockjs.bundle.js';
+      return '/__rspack_dev_server__/sockjs.bundle.js';
     };
 
     this.implementation = sockjs.createServer({

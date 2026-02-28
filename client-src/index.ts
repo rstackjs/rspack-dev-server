@@ -269,9 +269,9 @@ const reloadApp = (
   }
 
   const search = self.location.search.toLowerCase();
-  const allowToHot = search.indexOf('webpack-dev-server-hot=false') === -1;
+  const allowToHot = search.indexOf('rspack-dev-server-hot=false') === -1;
   const allowToLiveReload =
-    search.indexOf('webpack-dev-server-live-reload=false') === -1;
+    search.indexOf('rspack-dev-server-live-reload=false') === -1;
 
   if (hot && allowToHot) {
     log.info('App hot update...');

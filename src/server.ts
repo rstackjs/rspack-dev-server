@@ -24,7 +24,6 @@ import type {
   Port,
   DevMiddlewareOptions,
   ConnectHistoryApiFallbackOptions,
-  BonjourOptions,
   WatchFiles,
   Static,
   ServerType,
@@ -42,7 +41,6 @@ import type {
   EXPECTED_ANY,
   RequestHandler,
   Socket,
-  Bonjour,
   WebSocketServerImplementation,
   Stats,
   MultiStats,
@@ -89,7 +87,6 @@ export interface Configuration<
   compress?: boolean;
   allowedHosts?: 'auto' | 'all' | string | string[];
   historyApiFallback?: boolean | ConnectHistoryApiFallbackOptions;
-  bonjour?: boolean | Record<string, never> | BonjourOptions;
   watchFiles?: string | string[] | WatchFiles | Array<string | WatchFiles>;
   static?: boolean | string | Static | Array<string | Static>;
   server?: ServerType<A, S> | ServerConfiguration<A, S>;
@@ -177,7 +174,6 @@ class Server<
   sockets: Socket[];
   currentHash: string | undefined;
   isTlsServer = false;
-  bonjour: Bonjour | undefined;
   webSocketServer: WebSocketServerImplementation | null | undefined;
   middleware:
     | import('webpack-dev-middleware').API<Request, Response>
@@ -799,12 +795,6 @@ class Server<
       options.allowedHosts.includes('all')
     ) {
       options.allowedHosts = 'all';
-    }
-
-    if (typeof options.bonjour === 'undefined') {
-      options.bonjour = false;
-    } else if (typeof options.bonjour === 'boolean') {
-      options.bonjour = options.bonjour ? {} : false;
     }
 
     if (
@@ -1775,8 +1765,8 @@ class Server<
 
     // Should be after `webpack-dev-middleware`, otherwise other middlewares might rewrite response
     middlewares.push({
-      name: 'webpack-dev-server-sockjs-bundle',
-      path: '/__webpack_dev_server__/sockjs.bundle.js',
+      name: 'rspack-dev-server-sockjs-bundle',
+      path: '/__rspack_dev_server__/sockjs.bundle.js',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
@@ -1818,8 +1808,8 @@ class Server<
     });
 
     middlewares.push({
-      name: 'webpack-dev-server-invalidate',
-      path: '/webpack-dev-server/invalidate',
+      name: 'rspack-dev-server-invalidate',
+      path: '/rspack-dev-server/invalidate',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
@@ -1833,8 +1823,8 @@ class Server<
     });
 
     middlewares.push({
-      name: 'webpack-dev-server-open-editor',
-      path: '/webpack-dev-server/open-editor',
+      name: 'rspack-dev-server-open-editor',
+      path: '/rspack-dev-server/open-editor',
       middleware: (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
@@ -2401,31 +2391,6 @@ class Server<
     );
   }
 
-  runBonjour(): void {
-    const { Bonjour } = require('bonjour-service');
-
-    const type = this.isTlsServer ? 'https' : 'http';
-
-    this.bonjour = new Bonjour();
-    this.bonjour?.publish({
-      name: `Rspack Dev Server ${os.hostname()}:${this.options.port}`,
-      port: this.options.port as number,
-      type,
-      subtypes: ['rspack'],
-      ...(this.options.bonjour as Partial<BonjourOptions>),
-    });
-  }
-
-  stopBonjour(callback: () => void = () => {}) {
-    this.bonjour?.unpublishAll(() => {
-      this.bonjour?.destroy();
-
-      if (callback) {
-        callback();
-      }
-    });
-  }
-
   async logStatus() {
     const server = this.server as S;
 
@@ -2519,18 +2484,6 @@ class Server<
 
         await this.openBrowser(openTarget);
       }
-    }
-
-    if (this.options.bonjour) {
-      const bonjourProtocol =
-        (this.options.bonjour as BonjourOptions | undefined)?.type ||
-        this.isTlsServer
-          ? 'https'
-          : 'http';
-
-      this.logger.info(
-        `Broadcasting "${bonjourProtocol}" with subtype of "rspack" via ZeroConf DNS (Bonjour)`,
-      );
     }
   }
 
@@ -2892,10 +2845,6 @@ class Server<
       this.createWebSocketServer();
     }
 
-    if (this.options.bonjour) {
-      this.runBonjour();
-    }
-
     await this.logStatus();
 
     if (typeof this.options.onListening === 'function') {
@@ -2910,14 +2859,6 @@ class Server<
   }
 
   async stop(): Promise<void> {
-    if (this.bonjour) {
-      await new Promise<void>((resolve) => {
-        this.stopBonjour(() => {
-          resolve();
-        });
-      });
-    }
-
     this.webSocketProxies = [];
 
     await Promise.all(this.staticWatchers.map((watcher) => watcher.close()));

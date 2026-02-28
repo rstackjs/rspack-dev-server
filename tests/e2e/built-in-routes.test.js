@@ -41,7 +41,7 @@ describe('Built in routes', () => {
         });
 
       const response = await page.goto(
-        `http://127.0.0.1:${port}/__webpack_dev_server__/sockjs.bundle.js`,
+        `http://127.0.0.1:${port}/__rspack_dev_server__/sockjs.bundle.js`,
         {
           waitUntil: 'networkidle0',
         },
@@ -75,7 +75,7 @@ describe('Built in routes', () => {
         });
 
       const response = await page.goto(
-        `http://127.0.0.1:${port}/__webpack_dev_server__/sockjs.bundle.js`,
+        `http://127.0.0.1:${port}/__rspack_dev_server__/sockjs.bundle.js`,
         {
           waitUntil: 'networkidle0',
         },
@@ -104,7 +104,7 @@ describe('Built in routes', () => {
         });
 
       const response = await page.goto(
-        `http://127.0.0.1:${port}/webpack-dev-server/invalidate`,
+        `http://127.0.0.1:${port}/rspack-dev-server/invalidate`,
         {
           waitUntil: 'networkidle0',
         },

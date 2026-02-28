@@ -28,7 +28,7 @@ exports[`API > Server.checkHostHeader > should allow URLs with scheme for checki
 
 exports[`API > Server.checkHostHeader > should allow URLs with scheme for checking origin when the "option.client.webSocketURL" is object > response status 1`] = `200`;
 
-exports[`API > Server.checkHostHeader > should allow URLs with scheme for checking origin when the "option.client.webSocketURL" is object > web socket URL 1`] = `"ws://test.host:8158/ws"`;
+exports[`API > Server.checkHostHeader > should allow URLs with scheme for checking origin when the "option.client.webSocketURL" is object > web socket URL 1`] = `"ws://test.host:8156/ws"`;
 
 exports[`API > Server.getFreePort > should retry finding the port for up to defaultPortRetry times (number) > console messages 1`] = `
 [
