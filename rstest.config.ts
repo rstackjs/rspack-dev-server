@@ -1,10 +1,7 @@
-import path from 'node:path';
 import { defineConfig } from '@rstest/core';
-import { webpackVersion } from '@rspack/core/package.json';
+import { version } from '@rspack/core/package.json';
 
-const snapshotExtension = `.snap.webpack${webpackVersion[0]}`;
-
-console.log(`Running tests for rspack @${webpackVersion} \n`);
+console.log(`Running tests for rspack @${version} \n`);
 
 export default defineConfig({
   globals: true,
@@ -27,10 +24,4 @@ export default defineConfig({
   hookTimeout: 30000,
   setupFiles: ['./tests/helpers/setup-test.js'],
   reporters: ['default'],
-  resolveSnapshotPath: (testPath) =>
-    path.join(
-      path.dirname(testPath),
-      '__snapshots__',
-      `${path.basename(testPath)}${snapshotExtension}`,
-    ),
 });
