@@ -3,6 +3,7 @@
 *.local
 *.log*
 *.tsbuildinfo
+*.cpuprofile
 
 # Dist
 node_modules
