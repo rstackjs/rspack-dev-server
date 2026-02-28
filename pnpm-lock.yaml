@@ -41,9 +41,6 @@ importers:
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0
-      colorette:
-        specifier: ^2.0.10
-        version: 2.0.20
       compression:
         specifier: ^1.8.1
         version: 1.8.1
