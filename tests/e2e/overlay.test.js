@@ -103,7 +103,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -150,7 +150,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -201,7 +201,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -250,7 +250,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -298,7 +298,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -345,7 +345,7 @@ describe('overlay', () => {
       });
 
       let pageHtml = await page.evaluate(() => document.body.outerHTML);
-      let overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      let overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -357,9 +357,9 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, '`;');
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       pageHtml = await page.evaluate(() => document.body.outerHTML);
 
       const overlayFrame = await overlayHandle.contentFrame();
@@ -382,14 +382,14 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, originalCode);
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay', {
+      await page.waitForSelector('#rspack-dev-server-client-overlay', {
         hidden: true,
       });
 
       await waitForExpect(async () => {
         pageHtml = await page.evaluate(() => document.body.outerHTML);
       });
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -422,7 +422,7 @@ describe('overlay', () => {
       });
 
       let pageHtml = await page.evaluate(() => document.body.outerHTML);
-      let overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      let overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -440,9 +440,9 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, '`;');
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       pageHtml = await page.evaluate(() => document.body.outerHTML);
 
       let overlayFrame = await overlayHandle.contentFrame();
@@ -465,12 +465,12 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, '`;a');
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay', {
+      await page.waitForSelector('#rspack-dev-server-client-overlay', {
         hidden: true,
       });
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       pageHtml = await page.evaluate(() => document.body.outerHTML);
 
       overlayFrame = await overlayHandle.contentFrame();
@@ -491,12 +491,12 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, originalCode);
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay', {
+      await page.waitForSelector('#rspack-dev-server-client-overlay', {
         hidden: true,
       });
 
       pageHtml = await page.evaluate(() => document.body.outerHTML);
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -528,7 +528,7 @@ describe('overlay', () => {
       });
 
       let pageHtml = await page.evaluate(() => document.body.outerHTML);
-      let overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      let overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -546,9 +546,9 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, '`;');
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       pageHtml = await page.evaluate(() => document.body.outerHTML);
 
       const overlayFrame = await overlayHandle.contentFrame();
@@ -571,18 +571,18 @@ describe('overlay', () => {
 
       const frame = await page
         .frames()
-        .find((item) => item.name() === 'webpack-dev-server-client-overlay');
+        .find((item) => item.name() === 'rspack-dev-server-client-overlay');
 
       const buttonHandle = await frame.$('button');
 
       await buttonHandle.click();
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay', {
+      await page.waitForSelector('#rspack-dev-server-client-overlay', {
         hidden: true,
       });
 
       pageHtml = await page.evaluate(() => document.body.outerHTML);
-      overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -626,11 +626,11 @@ describe('overlay', () => {
 
       fs.writeFileSync(pathToFile, '`;');
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
       const frame = page
         .frames()
-        .find((item) => item.name() === 'webpack-dev-server-client-overlay');
+        .find((item) => item.name() === 'rspack-dev-server-client-overlay');
 
       const errorHandle = await frame.$('[data-can-open]');
 
@@ -672,7 +672,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -715,7 +715,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -763,7 +763,7 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
     } finally {
@@ -802,7 +802,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -852,7 +852,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -904,7 +904,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -956,7 +956,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1006,7 +1006,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -1049,7 +1049,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
       expect(
@@ -1098,7 +1098,7 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
     } finally {
@@ -1137,7 +1137,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1187,7 +1187,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1245,7 +1245,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1314,7 +1314,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1375,7 +1375,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       expect(overlayHandle).toBe(null);
       expect(
         await prettier.format(pageHtml, {
@@ -1417,7 +1417,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1469,7 +1469,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1520,7 +1520,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1600,10 +1600,10 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1661,10 +1661,10 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      await page.waitForSelector('#webpack-dev-server-client-overlay');
+      await page.waitForSelector('#rspack-dev-server-client-overlay');
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1716,7 +1716,7 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1767,7 +1767,7 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
     } finally {
@@ -1806,7 +1806,7 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
@@ -1859,7 +1859,7 @@ describe('overlay', () => {
       // Delay for the overlay to appear
       await delay(1000);
 
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
     } finally {
@@ -1903,7 +1903,7 @@ describe('overlay', () => {
       await delay(1000);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#webpack-dev-server-client-overlay');
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
       const overlayHtml = await overlayFrame.evaluate(
         () => document.body.outerHTML,
