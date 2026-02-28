@@ -2033,7 +2033,8 @@ class Server<
             req.url = bypassUrl;
             next();
           } else if (proxyMiddleware) {
-            return proxyMiddleware(req, res, next);
+            proxyMiddleware(req, res, next);
+            return;
           } else {
             next();
           }
