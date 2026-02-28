@@ -1,16 +1,15 @@
 import path from 'node:path';
 import { defineConfig } from '@rstest/core';
-import { version as rspackVersion } from '@rspack/core';
+import { webpackVersion } from '@rspack/core/package.json';
 
-const [webpackVersion] = rspackVersion;
-const snapshotExtension = `.snap.webpack${webpackVersion}`;
+const snapshotExtension = `.snap.webpack${webpackVersion[0]}`;
+
+console.log(`Running tests for rspack @${webpackVersion} \n`);
 
 export default defineConfig({
   globals: true,
   include: ['tests/*.test.ts', 'tests/e2e/*.test.js'],
   exclude: [
-    '**/node_modules/**',
-    '**/dist/**',
     // TODO: check why this test timeout
     '<rootDir>/tests/e2e/host.test.js',
     // TODO: check why this test throw error when run with other tests
@@ -27,7 +26,6 @@ export default defineConfig({
   testTimeout: process.env.CI ? 120000 : 30000,
   hookTimeout: 30000,
   setupFiles: ['./tests/helpers/setup-test.js'],
-  globalSetup: ['./tests/helpers/global-setup-test.js'],
   reporters: ['default'],
   resolveSnapshotPath: (testPath) =>
     path.join(
