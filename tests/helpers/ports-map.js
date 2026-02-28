@@ -19,7 +19,6 @@ const listOfTests = {
   'module-federation': 1,
   'multi-compiler': 1,
   // unit tests
-  bonjour: 1,
   'client-option': 1,
   'compress-option': 1,
   'headers-option': 1,
@@ -50,7 +49,6 @@ const listOfTests = {
   ipc: 1,
   stats: 1,
   'cli-allowed-hosts': 1,
-  'cli-bonjour': 1,
   'cli-client': 1,
   'cli-colors': 1,
   'cli-compress': 1,

@@ -1,5 +1,4 @@
 import type {
-  BonjourOptions,
   ClientConfiguration,
   ConnectHistoryApiFallbackOptions,
   DevServer,
@@ -23,7 +22,6 @@ export interface ResolvedDevServer extends DevServer {
   proxy: Required<DevServer['proxy']>;
   client: ClientConfiguration;
   allowedHosts: 'auto' | string[] | 'all';
-  bonjour: false | Record<string, never> | BonjourOptions;
   compress: boolean;
   historyApiFallback: false | ConnectHistoryApiFallbackOptions;
   server: ServerConfiguration;
