@@ -713,7 +713,7 @@ describe('hot and live reload', () => {
 
 //     loggerWarnSpy = rs.fn();
 
-//     getInfrastructureLoggerSpy = rstest
+//     getInfrastructureLoggerSpy = rs
 //       .spyOn(compiler, "getInfrastructureLogger")
 //       .mockImplementation(() => {
 //         return {

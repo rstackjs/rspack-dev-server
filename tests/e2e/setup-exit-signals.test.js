@@ -43,7 +43,7 @@ describe('setupExitSignals option', () => {
         doExit = true;
       });
 
-      stdinResumeSpy = rstest
+      stdinResumeSpy = rs
         .spyOn(process.stdin, 'resume')
         .mockImplementation(() => {});
 
