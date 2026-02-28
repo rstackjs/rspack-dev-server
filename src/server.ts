@@ -577,11 +577,9 @@ class Server<
       additionalEntries.push(clientHotEntry);
     }
 
-    const webpack = compiler.webpack || require('webpack');
-
     // use a hook to add entries if available
     for (const additionalEntry of additionalEntries) {
-      new webpack.EntryPlugin(compiler.context, additionalEntry, {
+      new compiler.rspack.EntryPlugin(compiler.context, additionalEntry, {
         name: undefined,
       }).apply(compiler);
     }
@@ -1521,9 +1519,9 @@ class Server<
 
         this.addAdditionalEntries(compiler);
 
-        const webpack = compiler.webpack || require('webpack');
+        const { ProvidePlugin, HotModuleReplacementPlugin } = compiler.rspack;
 
-        new webpack.ProvidePlugin({
+        new ProvidePlugin({
           __webpack_dev_server_client__: this.getClientTransport() as
             | string
             | string[],
@@ -1532,8 +1530,7 @@ class Server<
         if (this.options.hot) {
           const HMRPluginExists = compiler.options.plugins.find(
             (plugin) =>
-              plugin &&
-              plugin.constructor === webpack.HotModuleReplacementPlugin,
+              plugin && plugin.constructor === HotModuleReplacementPlugin,
           );
 
           if (HMRPluginExists) {
@@ -1542,7 +1539,7 @@ class Server<
             );
           } else {
             // Apply the HMR plugin
-            const plugin = new webpack.HotModuleReplacementPlugin();
+            const plugin = new HotModuleReplacementPlugin();
 
             plugin.apply(compiler);
           }

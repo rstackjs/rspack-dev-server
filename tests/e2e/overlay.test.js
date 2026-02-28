@@ -69,7 +69,7 @@ let prettierHTML;
 let prettierCSS;
 
 describe('overlay', () => {
-  const mockLaunchEditorCb = rstest.fn();
+  const mockLaunchEditorCb = rs.fn();
   rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
 
   beforeAll(async () => {

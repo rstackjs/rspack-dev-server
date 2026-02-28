@@ -673,7 +673,7 @@ describe('static.directory option', () => {
     beforeEach(async () => {
       // This is a somewhat weird test, but it is important that we mock
       // the PWD here, and test if /other.html in our "fake" PWD really is not requested.
-      rstest.spyOn(process, 'cwd').mockImplementation(() => publicDirectory);
+      rs.spyOn(process, 'cwd').mockImplementation(() => publicDirectory);
 
       compiler = webpack(config);
 

@@ -17,7 +17,7 @@ describe('API', () => {
 
     beforeEach(async () => {
       // this is important - it clears the cache
-      rstest.resetModules();
+      rs.resetModules();
 
       process.env = { ...OLD_ENV };
 
@@ -307,7 +307,7 @@ describe('API', () => {
     });
 
     it('should use the default `noop` callback when invalidate is called without any callback', async () => {
-      const callback = rstest.fn();
+      const callback = rs.fn();
 
       server.invalidate();
       server.middleware.context.callbacks[0] = callback;
@@ -326,7 +326,7 @@ describe('API', () => {
     });
 
     it('should use the provided `callback` function', async () => {
-      const callback = rstest.fn();
+      const callback = rs.fn();
 
       server.invalidate(callback);
 
