@@ -18,13 +18,3 @@ declare interface CommunicationClient {
 declare interface CommunicationClientConstructor {
   new (url: string): CommunicationClient; // Defines a constructor that takes a string and returns a GreeterInstance
 }
-
-declare module 'ansi-html-community' {
-  function ansiHtmlCommunity(str: string): string;
-
-  namespace ansiHtmlCommunity {
-    function setColors(colors: Record<string, string | string[]>): void;
-  }
-
-  export = ansiHtmlCommunity;
-}
