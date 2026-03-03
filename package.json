@@ -109,7 +109,7 @@
     "http-proxy-middleware": "^3.0.5",
     "ipaddr.js": "^2.3.0",
     "launch-editor": "^2.13.1",
-    "open": "^10.2.0",
+    "open": "^11.0.0",
     "p-retry": "^6.2.1",
     "selfsigned": "^2.4.1",
     "serve-index": "^1.9.2",
