@@ -306,7 +306,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work behind proxy, when the "host" option is "local-ip" and the "port" option is "auto" ("${webSocketServer}")`, async () => {
-      process.env.WEBPACK_DEV_SERVER_BASE_PORT = 40000;
+      process.env.RSPACK_DEV_SERVER_BASE_PORT = 40000;
 
       const proxyHost = Server.internalIPSync('v4');
       const proxyPort = port2;
@@ -404,7 +404,7 @@ describe('web socket server URL', () => {
         await browser.close();
         await server.stop();
 
-        process.env.WEBPACK_DEV_SERVER_BASE_PORT = undefined;
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = undefined;
       }
     });
 
@@ -2361,7 +2361,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work when "port" option is "auto" ("${webSocketServer}")`, async () => {
-      process.env.WEBPACK_DEV_SERVER_BASE_PORT = 50000;
+      process.env.RSPACK_DEV_SERVER_BASE_PORT = 50000;
 
       const compiler = rspack(config);
       const devServerOptions = {
@@ -2430,7 +2430,7 @@ describe('web socket server URL', () => {
         await browser.close();
         await server.stop();
 
-        process.env.WEBPACK_DEV_SERVER_BASE_PORT = undefined;
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = undefined;
       }
     });
 

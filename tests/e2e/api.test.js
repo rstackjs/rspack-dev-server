@@ -350,8 +350,8 @@ describe('API', () => {
     let devServerPort;
 
     afterEach(() => {
-      process.env.WEBPACK_DEV_SERVER_BASE_PORT = undefined;
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = undefined;
+      process.env.RSPACK_DEV_SERVER_BASE_PORT = undefined;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = undefined;
 
       return dummyServers
         .reduce(
@@ -372,7 +372,7 @@ describe('API', () => {
     });
 
     function createDummyServers(n) {
-      process.env.WEBPACK_DEV_SERVER_BASE_PORT = 60000;
+      process.env.RSPACK_DEV_SERVER_BASE_PORT = 60000;
 
       return (Array.isArray(n) ? n : [...new Array(n)]).reduce(
         (p, _, i) =>
@@ -400,7 +400,7 @@ describe('API', () => {
     it('should return the port when the port is specified', async () => {
       const retryCount = 1;
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = retryCount;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = retryCount;
 
       const freePort = await Server.getFreePort(9082);
 
@@ -410,7 +410,7 @@ describe('API', () => {
     it('should return the port when the port is `null`', async () => {
       const retryCount = 2;
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = retryCount;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = retryCount;
 
       await createDummyServers(retryCount);
 
@@ -449,7 +449,7 @@ describe('API', () => {
     it('should return the port when the port is undefined', async () => {
       const retryCount = 3;
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = retryCount;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = retryCount;
 
       await createDummyServers(retryCount);
 
@@ -489,7 +489,7 @@ describe('API', () => {
     it('should retry finding the port for up to defaultPortRetry times (number)', async () => {
       const retryCount = 4;
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = retryCount;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = retryCount;
 
       await createDummyServers(retryCount);
 
@@ -528,7 +528,7 @@ describe('API', () => {
     it('should retry finding the port for up to defaultPortRetry times (string)', async () => {
       const retryCount = 5;
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = retryCount;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = retryCount;
 
       await createDummyServers(retryCount);
 
@@ -567,7 +567,7 @@ describe('API', () => {
     it('should retry finding the port when serial ports are busy', async () => {
       const busyPorts = [60000, 60001, 60002, 60003, 60004, 60005];
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = 1000;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = 1000;
 
       await createDummyServers(busyPorts);
 
@@ -611,7 +611,7 @@ describe('API', () => {
         () => () => Promise.reject(new Error('busy')),
       );
 
-      process.env.WEBPACK_DEV_SERVER_PORT_RETRY = 1;
+      process.env.RSPACK_DEV_SERVER_PORT_RETRY = 1;
 
       const { RspackDevServer: Server } = require('@rspack/dev-server');
 
