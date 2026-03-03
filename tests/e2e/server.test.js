@@ -1,7 +1,6 @@
 const https = require('node:https');
 const path = require('node:path');
 const fs = require('node:fs');
-const request = require('supertest');
 const spdy = require('spdy');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
@@ -9,6 +8,7 @@ const config = require('../fixtures/static-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
 const { skipTestOnWindows } = require('../helpers/conditional-test');
 const customHTTP = require('../helpers/custom-http');
+const request = require('../helpers/http-request');
 const normalizeOptions = require('../helpers/normalize-options');
 const port = require('../helpers/ports-map')['server-option'];
 
@@ -1215,12 +1215,11 @@ describe('server option', () => {
       });
     });
 
-    // puppeteer having issues accepting SSL here, throwing error net::ERR_BAD_SSL_CLIENT_AUTH_CERT, hence testing with supertest
+    // puppeteer has issues accepting SSL here, throwing net::ERR_BAD_SSL_CLIENT_AUTH_CERT
     describe('should support the "requestCert" option', () => {
       let compiler;
       let server;
       let createServerSpy;
-      let req;
 
       beforeEach(async () => {
         compiler = rspack(config);
@@ -1255,8 +1254,6 @@ describe('server option', () => {
         );
 
         await server.start();
-
-        req = request(server.app);
       });
 
       afterEach(async () => {
@@ -1272,7 +1269,10 @@ describe('server option', () => {
       });
 
       it('should handle GET request to index route (/)', async () => {
-        const response = await req.get('/');
+        const response = await request({
+          app: server.app,
+          path: '/',
+        });
 
         expect(response.status).toMatchSnapshot('response status');
         expect(response.text).toMatchSnapshot('response text');

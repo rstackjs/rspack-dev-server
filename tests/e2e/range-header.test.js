@@ -1,7 +1,7 @@
-const request = require('supertest');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/static-config/webpack.config');
+const request = require('../helpers/http-request');
 const port = require('../helpers/ports-map')['range-header'];
 
 describe("'Range' header", () => {
@@ -21,7 +21,7 @@ describe("'Range' header", () => {
   });
 
   it('should work with "Range" header using "GET" method', async () => {
-    const response = await request(server.app).get('/main.js');
+    const response = await request({ port, path: '/main.js' });
 
     expect(response.status).toBe(200);
     expect(response.headers['content-type']).toBe(
@@ -30,9 +30,13 @@ describe("'Range' header", () => {
     expect(response.headers['accept-ranges']).toBe('bytes');
 
     const responseContent = response.text;
-    const responseRange = await request(server.app)
-      .get('/main.js')
-      .set('Range', 'bytes=0-499');
+    const responseRange = await request({
+      port,
+      path: '/main.js',
+      headers: {
+        Range: 'bytes=0-499',
+      },
+    });
 
     expect(responseRange.status).toBe(206);
     expect(responseRange.headers['content-type']).toBe(
@@ -45,7 +49,11 @@ describe("'Range' header", () => {
   });
 
   it('should work with "Range" header using "HEAD" method', async () => {
-    const response = await request(server.app).head('/main.js');
+    const response = await request({
+      port,
+      path: '/main.js',
+      method: 'HEAD',
+    });
 
     expect(response.status).toBe(200);
     expect(response.headers['content-type']).toBe(
@@ -53,9 +61,14 @@ describe("'Range' header", () => {
     );
     expect(response.headers['accept-ranges']).toBe('bytes');
 
-    const responseRange = await request(server.app)
-      .head('/main.js')
-      .set('Range', 'bytes=0-499');
+    const responseRange = await request({
+      port,
+      path: '/main.js',
+      method: 'HEAD',
+      headers: {
+        Range: 'bytes=0-499',
+      },
+    });
 
     expect(responseRange.status).toBe(206);
     expect(responseRange.headers['content-type']).toBe(
@@ -66,7 +79,7 @@ describe("'Range' header", () => {
   });
 
   it('should work with unsatisfiable "Range" header using "GET" method', async () => {
-    const response = await request(server.app).get('/main.js');
+    const response = await request({ port, path: '/main.js' });
 
     expect(response.status).toBe(200);
     expect(response.headers['content-type']).toBe(
@@ -74,9 +87,13 @@ describe("'Range' header", () => {
     );
     expect(response.headers['accept-ranges']).toBe('bytes');
 
-    const responseRange = await request(server.app)
-      .get('/main.js')
-      .set('Range', 'bytes=99999999999-');
+    const responseRange = await request({
+      port,
+      path: '/main.js',
+      headers: {
+        Range: 'bytes=99999999999-',
+      },
+    });
 
     expect(responseRange.status).toBe(416);
     expect(responseRange.headers['content-type']).toBe(
@@ -86,7 +103,7 @@ describe("'Range' header", () => {
   });
 
   it('should work with malformed "Range" header using "GET" method', async () => {
-    const response = await request(server.app).get('/main.js');
+    const response = await request({ port, path: '/main.js' });
 
     expect(response.status).toBe(200);
     expect(response.headers['content-type']).toBe(
@@ -95,9 +112,13 @@ describe("'Range' header", () => {
     expect(response.headers['accept-ranges']).toBe('bytes');
 
     const responseContent = response.text;
-    const responseRange = await request(server.app)
-      .get('/main.js')
-      .set('Range', 'bytes');
+    const responseRange = await request({
+      port,
+      path: '/main.js',
+      headers: {
+        Range: 'bytes',
+      },
+    });
 
     expect(responseRange.status).toBe(200);
     expect(responseRange.headers['content-type']).toBe(
