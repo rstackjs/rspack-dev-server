@@ -15,61 +15,61 @@ import * as url from 'node:url';
 import * as util from 'node:util';
 import * as ipaddr from 'ipaddr.js';
 import type {
-  BasicApplication,
-  ExpressApplication,
-  HTTPServer,
-  Response,
-  Request,
-  Host,
-  Port,
-  DevMiddlewareOptions,
-  ConnectHistoryApiFallbackOptions,
-  WatchFiles,
-  Static,
-  ServerType,
-  ServerConfiguration,
-  WebSocketServerConfiguration,
-  ProxyConfigArray,
-  Open,
-  ClientConfiguration,
-  Middleware,
-  DevMiddlewareContext,
-  OverlayMessageOptions,
-  Compiler,
-  MultiCompiler,
-  FSWatcher,
-  EXPECTED_ANY,
-  RequestHandler,
-  Socket,
-  WebSocketServerImplementation,
-  Stats,
-  MultiStats,
-  DevServer,
-  StatsOptions,
-  NetworkInterfaceInfo,
-  WebSocketURL,
-  WatchOptions,
-  NormalizedStatic,
-  ServerOptions,
-  NormalizedOpen,
-  OpenOptions,
-  StatsCompilation,
-  NextFunction,
-  MiddlewareHandler,
-  ProxyConfigArrayItem,
-  ByPass,
-  ServeIndexOptions,
-  WebSocketServer,
-  ClientConnection,
-  IncomingMessage,
-  MiddlewareObject,
-  NextHandleFunction,
-  HandleFunction,
-  SimpleHandleFunction,
-  OpenApp,
   AddressInfo,
-  IPv6,
+  BasicApplication,
+  ByPass,
+  ClientConfiguration,
+  ClientConnection,
+  Compiler,
+  ConnectHistoryApiFallbackOptions,
+  DevMiddlewareContext,
+  DevMiddlewareOptions,
+  DevServer,
+  EXPECTED_ANY,
+  ExpressApplication,
+  FSWatcher,
+  HTTPServer,
+  HandleFunction,
   Headers,
+  Host,
+  IPv6,
+  IncomingMessage,
+  Middleware,
+  MiddlewareHandler,
+  MiddlewareObject,
+  MultiCompiler,
+  MultiStats,
+  NetworkInterfaceInfo,
+  NextFunction,
+  NextHandleFunction,
+  NormalizedOpen,
+  NormalizedStatic,
+  Open,
+  OpenApp,
+  OpenOptions,
+  OverlayMessageOptions,
+  Port,
+  ProxyConfigArray,
+  ProxyConfigArrayItem,
+  Request,
+  RequestHandler,
+  Response,
+  ServeIndexOptions,
+  ServerConfiguration,
+  ServerOptions,
+  ServerType,
+  SimpleHandleFunction,
+  Socket,
+  Static,
+  Stats,
+  StatsCompilation,
+  StatsOptions,
+  WatchFiles,
+  WatchOptions,
+  WebSocketServer,
+  WebSocketServerConfiguration,
+  WebSocketServerImplementation,
+  WebSocketURL,
 } from './types';
 
 const { styleText } = util;
@@ -1344,13 +1344,11 @@ class Server<
       case 'string':
         // could be 'sockjs', 'ws', or a path that should be required
         if (clientTransport === 'sockjs') {
-          clientImplementation = require.resolve(
-            '../client/clients/SockJSClient',
-          );
+          clientImplementation =
+            require.resolve('../client/clients/SockJSClient');
         } else if (clientTransport === 'ws') {
-          clientImplementation = require.resolve(
-            '../client/clients/WebSocketClient',
-          );
+          clientImplementation =
+            require.resolve('../client/clients/WebSocketClient');
         } else {
           try {
             clientImplementation = require.resolve(clientTransport);
@@ -1494,9 +1492,8 @@ class Server<
         }
 
         compiler.options.resolve.alias = {
-          'ansi-html-community': require.resolve(
-            '@rspack/dev-server/client/utils/ansiHTML',
-          ),
+          'ansi-html-community':
+            require.resolve('@rspack/dev-server/client/utils/ansiHTML'),
           ...compiler.options.resolve.alias,
         };
       }
