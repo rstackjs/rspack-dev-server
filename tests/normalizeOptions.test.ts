@@ -104,9 +104,8 @@ describe.skip('normalize options snapshot', () => {
     const compiler = rspack(customConfig);
     const devServerOptions = {
       client: {
-        webSocketTransport: require.resolve(
-          './fixtures/custom-client/CustomSockJSClient',
-        ),
+        webSocketTransport:
+          require.resolve('./fixtures/custom-client/CustomSockJSClient'),
       },
       webSocketServer: 'sockjs',
     };
