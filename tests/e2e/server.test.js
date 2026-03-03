@@ -1,7 +1,6 @@
 const https = require('node:https');
 const path = require('node:path');
 const fs = require('node:fs');
-const spdy = require('spdy');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/static-config/webpack.config');
@@ -198,66 +197,6 @@ describe('server option', () => {
         );
 
         expect(HTTPVersion).not.toEqual('h2');
-
-        expect(response.status()).toMatchSnapshot('response status');
-
-        expect(await response.text()).toMatchSnapshot('response text');
-
-        expect(
-          consoleMessages.map((message) => message.text()),
-        ).toMatchSnapshot('console messages');
-
-        expect(pageErrors).toMatchSnapshot('page errors');
-      });
-    });
-
-    describe('spdy', () => {
-      beforeEach(async () => {
-        compiler = rspack(config);
-
-        server = new Server(
-          {
-            static: {
-              directory: staticDirectory,
-              watch: false,
-            },
-            server: 'spdy',
-            port,
-          },
-          compiler,
-        );
-
-        await server.start();
-
-        ({ page, browser } = await runBrowser());
-
-        pageErrors = [];
-        consoleMessages = [];
-      });
-
-      afterEach(async () => {
-        await browser.close();
-        await server.stop();
-      });
-
-      it('should handle GET request to index route (/)', async () => {
-        page
-          .on('console', (message) => {
-            consoleMessages.push(message);
-          })
-          .on('pageerror', (error) => {
-            pageErrors.push(error);
-          });
-
-        const response = await page.goto(`https://127.0.0.1:${port}/`, {
-          waitUntil: 'networkidle0',
-        });
-
-        const HTTPVersion = await page.evaluate(
-          () => performance.getEntries()[0].nextHopProtocol,
-        );
-
-        expect(HTTPVersion).toEqual('h2');
 
         expect(response.status()).toMatchSnapshot('response status');
 
@@ -1276,87 +1215,6 @@ describe('server option', () => {
 
         expect(response.status).toMatchSnapshot('response status');
         expect(response.text).toMatchSnapshot('response text');
-      });
-    });
-
-    describe('spdy server with options', () => {
-      let compiler;
-      let server;
-      let createServerSpy;
-      let page;
-      let browser;
-      let pageErrors;
-      let consoleMessages;
-
-      beforeEach(async () => {
-        compiler = rspack(config);
-
-        createServerSpy = rs.spyOn(spdy, 'createServer');
-
-        server = new Server(
-          {
-            static: {
-              directory: staticDirectory,
-              watch: false,
-            },
-            server: {
-              type: 'spdy',
-              options: {
-                requestCert: false,
-                ca: [path.join(httpsCertificateDirectory, 'ca.pem')],
-                pfx: [path.join(httpsCertificateDirectory, 'server.pfx')],
-                key: [path.join(httpsCertificateDirectory, 'server.key')],
-                cert: [path.join(httpsCertificateDirectory, 'server.crt')],
-                passphrase: 'webpack-dev-server',
-              },
-            },
-            port,
-          },
-          compiler,
-        );
-
-        await server.start();
-
-        ({ page, browser } = await runBrowser());
-
-        pageErrors = [];
-        consoleMessages = [];
-      });
-
-      afterEach(async () => {
-        createServerSpy.mockRestore();
-
-        await browser.close();
-        await server.stop();
-      });
-
-      it('should handle GET request to index route (/)', async () => {
-        page
-          .on('console', (message) => {
-            consoleMessages.push(message);
-          })
-          .on('pageerror', (error) => {
-            pageErrors.push(error);
-          });
-
-        const response = await page.goto(`https://127.0.0.1:${port}/`, {
-          waitUntil: 'networkidle0',
-        });
-
-        const HTTPVersion = await page.evaluate(
-          () => performance.getEntries()[0].nextHopProtocol,
-        );
-
-        expect(HTTPVersion).toEqual('h2');
-        expect(
-          normalizeOptions(createServerSpy.mock.calls[0][0]),
-        ).toMatchSnapshot('https options');
-        expect(response.status()).toMatchSnapshot('response status');
-        expect(await response.text()).toMatchSnapshot('response text');
-        expect(
-          consoleMessages.map((message) => message.text()),
-        ).toMatchSnapshot('console messages');
-        expect(pageErrors).toMatchSnapshot('page errors');
       });
     });
 

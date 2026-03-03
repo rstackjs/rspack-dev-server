@@ -64,15 +64,7 @@ export type HandleFunction =
   | NextHandleFunction
   | ErrorHandleFunction;
 
-export type ServerOptions = import('https').ServerOptions & {
-  spdy?: {
-    plain?: boolean;
-    ssl?: boolean;
-    'x-forwarded-for'?: string;
-    protocol?: string;
-    protocols?: string[];
-  };
-};
+export type ServerOptions = import('https').ServerOptions;
 
 // type-level helpers, inferred as util types
 export type Request<T extends BasicApplication = ExpressApplication> =
@@ -129,7 +121,6 @@ export type ServerType<
 > =
   | 'http'
   | 'https'
-  | 'spdy'
   | 'http2'
   | string
   | ((serverOptions: ServerOptions, application: A) => S);
