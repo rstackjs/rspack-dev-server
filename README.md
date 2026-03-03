@@ -88,12 +88,12 @@ While it's recommended to run `@rspack/dev-server` via the CLI, you may also cho
 
 ```js
 import { RspackDevServer } from '@rspack/dev-server';
-import rspack from '@rspack/core';
-import rspackConfig from './rspack.config.mjs';
+import { rspack } from '@rspack/core';
+import config from './rspack.config.mjs';
 
-const compiler = rspack(rspackConfig);
+const compiler = rspack(config);
 const devServerOptions = {
-  ...rspackConfig.devServer,
+  ...config.devServer,
   // override
   port: 8888,
 };
