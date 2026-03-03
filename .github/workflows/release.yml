@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24.11.1
+          node-version: 24.14.0
 
       # Update npm to the latest version to enable OIDC
       # Use corepack to install pnpm
