@@ -80,7 +80,7 @@ export default {
 };
 ```
 
-> See [DevServer](https://rspack.rs/config/dev-server) for all configuration options.
+> See [Rspack - devServer](https://rspack.rs/config/dev-server) for all configuration options.
 
 ### With the API
 
@@ -104,8 +104,6 @@ server.startCallback(() => {
   console.log('Successfully started server on http://localhost:8888');
 });
 ```
-
-> Cause `@rspack/dev-server` is based on `webpack-dev-server@5`, you can see the [webpack-dev-server API](https://webpack.js.org/api/webpack-dev-server/) for more methods of the server instance.
 
 ## Credits
 
