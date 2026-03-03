@@ -1,8 +1,8 @@
-const request = require('supertest');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/simple-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
+const request = require('../helpers/http-request');
 const port = require('../helpers/ports-map')['headers-option'];
 
 describe('headers option', () => {
@@ -398,8 +398,6 @@ describe('headers option', () => {
     let browser;
     let pageErrors;
     let consoleMessages;
-    let req;
-
     beforeEach(async () => {
       compiler = rspack(config);
 
@@ -412,8 +410,6 @@ describe('headers option', () => {
       );
 
       await server.start();
-
-      req = request(server.app);
 
       ({ page, browser } = await runBrowser());
 
@@ -448,7 +444,11 @@ describe('headers option', () => {
       );
       expect(pageErrors).toMatchSnapshot('page errors');
 
-      const responseForHead = await req.get('/');
+      const responseForHead = await request({
+        port,
+        path: '/',
+        method: 'HEAD',
+      });
 
       expect(responseForHead.headers['x-foo']).toBe('dev-server headers');
     });
