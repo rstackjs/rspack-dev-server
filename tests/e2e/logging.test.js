@@ -1,6 +1,6 @@
 const path = require('node:path');
 const fs = require('node:fs');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
 const config = require('../fixtures/client-config/webpack.config');
@@ -192,7 +192,7 @@ describe('logging', () => {
       it(`${testCase.title} (${
         webSocketServer.webSocketServer || 'default'
       })`, async () => {
-        const compiler = webpack({ ...config, ...testCase.webpackOptions });
+        const compiler = rspack({ ...config, ...testCase.webpackOptions });
         const devServerOptions = {
           port,
           ...testCase.devServerOptions,

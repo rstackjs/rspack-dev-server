@@ -1,5 +1,5 @@
 const path = require('node:path');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -29,7 +29,7 @@ describe('target', () => {
 
   for (const target of targets) {
     it(`should work using "${target}" target`, async () => {
-      const compiler = webpack({
+      const compiler = rspack({
         ...config,
         target,
         ...(target === false || target === 'es5'
@@ -92,7 +92,7 @@ describe('target', () => {
   }
 
   it('should work using multi compiler mode with `web` and `webworker` targets', async () => {
-    const compiler = webpack(workerConfig);
+    const compiler = rspack(workerConfig);
     const server = new Server({ port }, compiler);
 
     await server.start();
@@ -130,7 +130,7 @@ describe('target', () => {
   });
 
   it('should work using multi compiler mode with `web` and `webworker` targets with `devServer: false`', async () => {
-    const compiler = webpack(workerConfigDevServerFalse);
+    const compiler = rspack(workerConfigDevServerFalse);
     const server = new Server(
       {
         port,

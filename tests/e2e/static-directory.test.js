@@ -1,6 +1,6 @@
 const path = require('node:path');
 const fs = require('node:fs');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const testServer = require('../helpers/test-server');
 const config = require('../fixtures/static-config/webpack.config');
@@ -23,7 +23,7 @@ describe('static.directory option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -143,7 +143,7 @@ describe('static.directory option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -228,7 +228,7 @@ describe('static.directory option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -316,7 +316,7 @@ describe('static.directory option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -403,7 +403,7 @@ describe('static.directory option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -612,7 +612,7 @@ describe('static.directory option', () => {
       cwdSpy = rs
         .spyOn(process, 'cwd')
         .mockImplementation(() => path.resolve(staticDirectory));
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -675,7 +675,7 @@ describe('static.directory option', () => {
       // the PWD here, and test if /other.html in our "fake" PWD really is not requested.
       rs.spyOn(process, 'cwd').mockImplementation(() => publicDirectory);
 
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {

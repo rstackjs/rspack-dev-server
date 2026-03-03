@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/simple-config-other/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -14,7 +14,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -75,7 +75,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -143,7 +143,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -200,7 +200,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack({
+      compiler = rspack({
         ...config,
         devtool: false,
       });
@@ -261,20 +261,16 @@ describe('client option', () => {
     class OverrideServer extends Server {
       // eslint-disable-next-line class-methods-use-this
       getClientEntry() {
-        return require.resolve(
-          '../fixtures/custom-client/CustomClientEntry.js',
-        );
+        return require.resolve('../fixtures/custom-client/CustomClientEntry.js');
       }
       // eslint-disable-next-line class-methods-use-this
       getClientHotEntry() {
-        return require.resolve(
-          '../fixtures/custom-client/CustomClientHotEntry.js',
-        );
+        return require.resolve('../fixtures/custom-client/CustomClientHotEntry.js');
       }
     }
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new OverrideServer(
         {
@@ -327,9 +323,8 @@ describe('client option', () => {
       {
         title: 'as a path ("sockjs")',
         client: {
-          webSocketTransport: require.resolve(
-            '@rspack/dev-server/client/clients/SockJSClient',
-          ),
+          webSocketTransport:
+            require.resolve('@rspack/dev-server/client/clients/SockJSClient'),
         },
         webSocketServer: 'sockjs',
         shouldThrow: false,
@@ -337,9 +332,8 @@ describe('client option', () => {
       {
         title: 'as a path ("ws")',
         client: {
-          webSocketTransport: require.resolve(
-            '@rspack/dev-server/client/clients/WebSocketClient',
-          ),
+          webSocketTransport:
+            require.resolve('@rspack/dev-server/client/clients/WebSocketClient'),
         },
         webSocketServer: 'ws',
         shouldThrow: false,
@@ -367,7 +361,7 @@ describe('client option', () => {
         it(`${data.title} ${
           data.shouldThrow ? 'should throw' : 'should not throw'
         }`, async () => {
-          const compiler = webpack(config);
+          const compiler = rspack(config);
 
           const server = new Server(
             {

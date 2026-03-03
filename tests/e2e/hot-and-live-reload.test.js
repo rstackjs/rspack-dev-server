@@ -1,7 +1,7 @@
 const path = require('node:path');
 const WebSocket = require('ws');
 const SockJS = require('sockjs-client');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const fs = require('node:fs');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
@@ -244,7 +244,7 @@ describe('hot and live reload', () => {
           require.resolve('../fixtures/reload-config/foo.js'),
         ],
         plugins: [
-          new webpack.HotModuleReplacementPlugin(),
+          new rspack.HotModuleReplacementPlugin(),
           new HTMLGeneratorPlugin(),
         ],
       },
@@ -327,7 +327,7 @@ describe('hot and live reload', () => {
 
     it(`${mode.title} (${webSocketServerTitle})`, async () => {
       const webpackOptions = { ...reloadConfig, ...mode.webpackOptions };
-      const compiler = webpack(webpackOptions);
+      const compiler = rspack(webpackOptions);
       const testDevServerOptions = mode.options || {};
       const devServerOptions = { port, ...testDevServerOptions };
 
@@ -577,7 +577,7 @@ describe('hot and live reload', () => {
 //   let consoleMessages;
 
 //   beforeEach(async () => {
-//     compiler = webpack(config);
+//     compiler = rspack(config);
 
 //     ({ page, browser } = await runBrowser());
 
@@ -640,9 +640,9 @@ describe('hot and live reload', () => {
 //   let consoleMessages;
 
 //   beforeEach(async () => {
-//     compiler = webpack({
+//     compiler = rspack({
 //       ...config,
-//       plugins: [...config.plugins, new webpack.HotModuleReplacementPlugin()],
+//       plugins: [...config.plugins, new rspack.HotModuleReplacementPlugin()],
 //     });
 
 //     ({ page, browser } = await runBrowser());
@@ -705,10 +705,10 @@ describe('hot and live reload', () => {
 //   let server;
 
 //   beforeEach(() => {
-//     compiler = webpack({
+//     compiler = rspack({
 //       ...config,
 //       devServer: { hot: false },
-//       plugins: [...config.plugins, new webpack.HotModuleReplacementPlugin()],
+//       plugins: [...config.plugins, new rspack.HotModuleReplacementPlugin()],
 //     });
 
 //     loggerWarnSpy = rs.fn();
@@ -775,7 +775,7 @@ describe('hot and live reload', () => {
 //   let consoleMessages;
 
 //   beforeEach(async () => {
-//     compiler = webpack(multiCompilerConfig);
+//     compiler = rspack(multiCompilerConfig);
 
 //     ({ page, browser } = await runBrowser());
 
@@ -838,7 +838,7 @@ describe('hot and live reload', () => {
 //   let consoleMessages;
 
 //   beforeEach(async () => {
-//     compiler = webpack(config);
+//     compiler = rspack(config);
 
 //     ({ page, browser } = await runBrowser());
 

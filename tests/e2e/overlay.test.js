@@ -1,6 +1,6 @@
 const path = require('node:path');
 const fs = require('node:fs');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const waitForExpect = require('wait-for-expect');
 const config = require('../fixtures/overlay-config/webpack.config');
@@ -81,7 +81,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning for initial compilation', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -128,7 +128,7 @@ describe('overlay', () => {
   });
 
   it('should show an error for initial compilation', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin().apply(compiler);
 
@@ -175,7 +175,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning and error for initial compilation', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
     new WarningPlugin().apply(compiler);
@@ -226,7 +226,7 @@ describe('overlay', () => {
   });
 
   it('should show an ansi formatted error for initial compilation', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin(
       '[0m [90m 18 |[39m           [33mRender[39m [33mansi formatted text[39m[0m',
@@ -275,7 +275,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning and error for initial compilation and protects against xss', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin('<strong>strong</strong>').apply(compiler);
     new ErrorPlugin('<strong>strong</strong>').apply(compiler);
@@ -323,7 +323,7 @@ describe('overlay', () => {
   });
 
   it('should not show initially, then show on an error, then hide on fix', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
     const devServerOptions = {
       port,
     };
@@ -406,7 +406,7 @@ describe('overlay', () => {
   });
 
   it('should not show initially, then show on an error, then show other error, then hide on fix', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
     const devServerOptions = {
       port,
     };
@@ -512,7 +512,7 @@ describe('overlay', () => {
   });
 
   it('should not show initially, then show on an error and allow to close', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
     const devServerOptions = {
       port,
     };
@@ -603,7 +603,7 @@ describe('overlay', () => {
     mockLaunchEditorCb.mockClear();
     const { RspackDevServer: Server } = require('@rspack/dev-server');
 
-    const compiler = webpack(config);
+    const compiler = rspack(config);
     const devServerOptions = {
       port,
     };
@@ -647,7 +647,7 @@ describe('overlay', () => {
   });
 
   it('should not show a warning when "client.overlay" is "false"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -688,7 +688,7 @@ describe('overlay', () => {
   });
 
   it('should not show a warning when "client.overlay.warnings" is "false"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -731,7 +731,7 @@ describe('overlay', () => {
   });
 
   it('should not show warning when it is filtered', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin('My special warning').apply(compiler);
 
@@ -773,7 +773,7 @@ describe('overlay', () => {
   });
 
   it('should show warning when it is not filtered', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin('Unfiltered warning').apply(compiler);
 
@@ -827,7 +827,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning when "client.overlay" is "true"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -877,7 +877,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning when "client.overlay.warnings" is "true"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -929,7 +929,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning when "client.overlay.errors" is "true"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -981,7 +981,7 @@ describe('overlay', () => {
   });
 
   it('should not show an error when "client.overlay" is "false"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1022,7 +1022,7 @@ describe('overlay', () => {
   });
 
   it('should not show an error when "client.overlay.errors" is "false"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1065,7 +1065,7 @@ describe('overlay', () => {
   });
 
   it('should not show error when it is filtered', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin('My special error').apply(compiler);
 
@@ -1108,7 +1108,7 @@ describe('overlay', () => {
   });
 
   it('should show error when it is not filtered', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin('Unfiltered error').apply(compiler);
 
@@ -1162,7 +1162,7 @@ describe('overlay', () => {
   });
 
   it('should show an error when "client.overlay" is "true"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1212,7 +1212,7 @@ describe('overlay', () => {
   });
 
   it('should show overlay when Trusted Types are enabled', async () => {
-    const compiler = webpack(trustedTypesConfig);
+    const compiler = rspack(trustedTypesConfig);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1275,7 +1275,7 @@ describe('overlay', () => {
   });
 
   it('should show overlay when Trusted Types are enabled and the "require-trusted-types-for \'script\'" header was used', async () => {
-    const compiler = webpack(trustedTypesConfig);
+    const compiler = rspack(trustedTypesConfig);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1348,7 +1348,7 @@ describe('overlay', () => {
   });
 
   it('should not show overlay when Trusted Types are enabled, but policy is not allowed', async () => {
-    const compiler = webpack(trustedTypesConfig);
+    const compiler = rspack(trustedTypesConfig);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1390,7 +1390,7 @@ describe('overlay', () => {
   });
 
   it('should show an error when "client.overlay.errors" is "true"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin().apply(compiler);
 
@@ -1442,7 +1442,7 @@ describe('overlay', () => {
   });
 
   it('should show an error when "client.overlay.warnings" is "true"', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -1494,7 +1494,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning and hide them after closing connection', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin().apply(compiler);
 
@@ -1567,7 +1567,7 @@ describe('overlay', () => {
   });
 
   it('should show an error after invalidation', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new ErrorPlugin('Error from compilation', 1).apply(compiler);
 
@@ -1628,7 +1628,7 @@ describe('overlay', () => {
   });
 
   it('should show a warning after invalidation', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     new WarningPlugin('Warning from compilation', 1).apply(compiler);
 
@@ -1689,7 +1689,7 @@ describe('overlay', () => {
   });
 
   it('should show error for uncaught runtime error', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     const server = new Server(
       {
@@ -1735,7 +1735,7 @@ describe('overlay', () => {
   });
 
   it('should not show filtered runtime error', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     const server = new Server(
       {
@@ -1777,7 +1777,7 @@ describe('overlay', () => {
   });
 
   it('should show error for uncaught promise rejection', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     const server = new Server(
       {
@@ -1825,7 +1825,7 @@ describe('overlay', () => {
   });
 
   it('should not show filtered promise rejection', async () => {
-    const compiler = webpack(config);
+    const compiler = rspack(config);
 
     const server = new Server(
       {
@@ -1869,7 +1869,7 @@ describe('overlay', () => {
   });
 
   it('should show overlay when "Content-Security-Policy" is "default-src \'self\'" was used', async () => {
-    const compiler = webpack({ ...config, devtool: false });
+    const compiler = rspack({ ...config, devtool: false });
 
     new ErrorPlugin().apply(compiler);
 

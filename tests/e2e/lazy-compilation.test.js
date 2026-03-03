@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const lazyCompilationSingleEntryConfig = require('../fixtures/lazy-compilation-single-entry/webpack.config');
 const lazyCompilationMultipleEntriesConfig = require('../fixtures/lazy-compilation-multiple-entries/webpack.config');
@@ -9,7 +9,7 @@ describe('lazy compilation', () => {
   // TODO test run can freeze because webpack does not close `eventsource`;
   // uncomment after it is fixed on webpack side
   it.skip('should work with single entry', async () => {
-    const compiler = webpack(lazyCompilationSingleEntryConfig);
+    const compiler = rspack(lazyCompilationSingleEntryConfig);
     const server = new Server({ port }, compiler);
 
     await server.start();
@@ -50,7 +50,7 @@ describe('lazy compilation', () => {
   });
 
   it.skip('should work with multiple entries', async () => {
-    const compiler = webpack(lazyCompilationMultipleEntriesConfig);
+    const compiler = rspack(lazyCompilationMultipleEntriesConfig);
     const server = new Server({ port }, compiler);
 
     await server.start();

@@ -1,15 +1,17 @@
 const request = require('supertest');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/static-config/webpack.config');
 const port = require('../helpers/ports-map')['range-header'];
+const JAVASCRIPT_CONTENT_TYPE_RE =
+  /^(application|text)\/javascript; charset=utf-8$/;
 
 describe("'Range' header", () => {
   let compiler;
   let server;
 
   beforeAll(async () => {
-    compiler = webpack(config);
+    compiler = rspack(config);
 
     server = new Server({ port }, compiler);
 
@@ -24,8 +26,8 @@ describe("'Range' header", () => {
     const response = await request(server.app).get('/main.js');
 
     expect(response.status).toBe(200);
-    expect(response.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(response.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(response.headers['accept-ranges']).toBe('bytes');
 
@@ -35,8 +37,8 @@ describe("'Range' header", () => {
       .set('Range', 'bytes=0-499');
 
     expect(responseRange.status).toBe(206);
-    expect(responseRange.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(responseRange.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(responseRange.headers['content-length']).toBe('500');
     expect(responseRange.headers['content-range']).toMatch(/^bytes 0-499\//);
@@ -48,8 +50,8 @@ describe("'Range' header", () => {
     const response = await request(server.app).head('/main.js');
 
     expect(response.status).toBe(200);
-    expect(response.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(response.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(response.headers['accept-ranges']).toBe('bytes');
 
@@ -58,8 +60,8 @@ describe("'Range' header", () => {
       .set('Range', 'bytes=0-499');
 
     expect(responseRange.status).toBe(206);
-    expect(responseRange.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(responseRange.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(responseRange.headers['content-length']).toBe('500');
     expect(responseRange.headers['content-range']).toMatch(/^bytes 0-499\//);
@@ -69,8 +71,8 @@ describe("'Range' header", () => {
     const response = await request(server.app).get('/main.js');
 
     expect(response.status).toBe(200);
-    expect(response.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(response.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(response.headers['accept-ranges']).toBe('bytes');
 
@@ -89,8 +91,8 @@ describe("'Range' header", () => {
     const response = await request(server.app).get('/main.js');
 
     expect(response.status).toBe(200);
-    expect(response.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(response.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(response.headers['accept-ranges']).toBe('bytes');
 
@@ -100,8 +102,8 @@ describe("'Range' header", () => {
       .set('Range', 'bytes');
 
     expect(responseRange.status).toBe(200);
-    expect(responseRange.headers['content-type']).toBe(
-      'application/javascript; charset=utf-8',
+    expect(responseRange.headers['content-type']).toMatch(
+      JAVASCRIPT_CONTENT_TYPE_RE,
     );
     expect(responseRange.text).toBe(responseContent);
     expect(responseRange.text.length).toBe(responseContent.length);

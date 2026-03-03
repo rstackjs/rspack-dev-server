@@ -1,6 +1,6 @@
 const path = require('node:path');
 const fs = require('node:fs');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const reloadConfig = require('../fixtures/reload-config-2/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -15,7 +15,7 @@ describe('progress', () => {
   it('should work and log progress in a browser console', async () => {
     fs.writeFileSync(cssFilePath, 'body { background-color: rgb(0, 0, 255); }');
 
-    const compiler = webpack(reloadConfig);
+    const compiler = rspack(reloadConfig);
     const devServerOptions = {
       port,
       client: {
