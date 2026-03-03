@@ -15,10 +15,8 @@ const staticDirectory = path.resolve(
 const apps = [
   ['express', () => require('express')(), 'http'],
   ['express', () => require('express')(), 'https'],
-  ['express', () => require('express')(), 'spdy'],
   ['connect', () => require('connect')(), 'http'],
   ['connect', () => require('connect')(), 'https'],
-  ['connect', () => require('connect')(), 'spdy'],
   ['connect', () => require('connect')(), 'http2'],
   ['connect (async)', () => require('connect')(), 'http'],
   [
@@ -157,11 +155,7 @@ describe('app option', () => {
           () => performance.getEntries()[0].nextHopProtocol,
         );
 
-        if (
-          server === 'spdy' ||
-          server === 'http2' ||
-          server.options?.allowHTTP1
-        ) {
+        if (server === 'http2' || server.options?.allowHTTP1) {
           expect(HTTPVersion).toEqual('h2');
         } else {
           expect(HTTPVersion).toEqual('http/1.1');

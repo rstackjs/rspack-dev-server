@@ -893,18 +893,7 @@ class Server<
 
     const serverOptions = options.server.options as ServerOptions;
 
-    if (
-      options.server.type === 'spdy' &&
-      typeof serverOptions.spdy === 'undefined'
-    ) {
-      serverOptions.spdy = { protocols: ['h2', 'http/1.1'] };
-    }
-
-    if (
-      options.server.type === 'https' ||
-      options.server.type === 'http2' ||
-      options.server.type === 'spdy'
-    ) {
+    if (options.server.type === 'https' || options.server.type === 'http2') {
       if (typeof serverOptions.requestCert === 'undefined') {
         serverOptions.requestCert = false;
       }

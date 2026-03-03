@@ -111,7 +111,6 @@
     "selfsigned": "^2.4.1",
     "serve-index": "^1.9.2",
     "sockjs": "^0.3.24",
-    "spdy": "^4.0.2",
     "webpack-dev-middleware": "^7.4.5",
     "ws": "^8.19.0"
   },
