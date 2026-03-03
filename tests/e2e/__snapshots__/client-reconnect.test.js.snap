@@ -21,10 +21,10 @@ exports[`client.reconnect option > specified as number > should try to reconnect
   "[rspack-dev-server] Disconnected!",
   "[rspack-dev-server] Trying to reconnect...",
   "WebSocket connection to 'ws://127.0.0.1:8161/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
-  "[rspack-dev-server] JSHandle@object",
+  "[rspack-dev-server] [object Event]",
   "[rspack-dev-server] Trying to reconnect...",
   "WebSocket connection to 'ws://127.0.0.1:8161/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
-  "[rspack-dev-server] JSHandle@object",
+  "[rspack-dev-server] [object Event]",
 ]
 `;
 
