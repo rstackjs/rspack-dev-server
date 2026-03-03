@@ -318,15 +318,15 @@ class Server<
     const { default: pRetry } = await import('p-retry');
     const getPort = require('./getPort');
     const basePort =
-      typeof process.env.WEBPACK_DEV_SERVER_BASE_PORT !== 'undefined'
-        ? Number.parseInt(process.env.WEBPACK_DEV_SERVER_BASE_PORT, 10)
+      typeof process.env.RSPACK_DEV_SERVER_BASE_PORT !== 'undefined'
+        ? Number.parseInt(process.env.RSPACK_DEV_SERVER_BASE_PORT, 10)
         : 8080;
 
     // Try to find unused port and listen on it for 3 times,
     // if port is not specified in options.
     const defaultPortRetry =
-      typeof process.env.WEBPACK_DEV_SERVER_PORT_RETRY !== 'undefined'
-        ? Number.parseInt(process.env.WEBPACK_DEV_SERVER_PORT_RETRY, 10)
+      typeof process.env.RSPACK_DEV_SERVER_PORT_RETRY !== 'undefined'
+        ? Number.parseInt(process.env.RSPACK_DEV_SERVER_PORT_RETRY, 10)
         : 3;
 
     return pRetry(() => getPort(basePort, host), {

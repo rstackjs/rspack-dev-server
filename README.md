@@ -19,16 +19,16 @@ First of all, install `@rspack/dev-server` and `@rspack/core` by your favorite p
 
 ```bash
 # npm
-$ npm install @rspack/dev-server @rspack/core --save-dev
+$ npm install -D @rspack/dev-server @rspack/core
 
 # yarn
-$ yarn add @rspack/dev-server @rspack/core --dev
+$ yarn add -D @rspack/dev-server @rspack/core
 
 # pnpm
-$ pnpm add @rspack/dev-server @rspack/core --save-dev
+$ pnpm add -D @rspack/dev-server @rspack/core
 
 # bun
-$ bun add @rspack/dev-server @rspack/core -D
+$ bun add -D @rspack/dev-server @rspack/core
 ```
 
 ## Usage
@@ -43,16 +43,16 @@ You can install it in your project by:
 
 ```bash
 # npm
-$ npm install @rspack/cli --save-dev
+$ npm install -D @rspack/cli
 
 # yarn
-$ yarn add @rspack/cli --dev
+$ yarn add -D @rspack/cli
 
 # pnpm
-$ pnpm add @rspack/cli --save-dev
+$ pnpm add -D @rspack/cli
 
 # bun
-$ bun add @rspack/cli -D
+$ bun add -D @rspack/cli
 ```
 
 And then start the development server by:
@@ -72,7 +72,6 @@ While starting the development server, you can specify the configuration by the 
 ```js
 // rspack.config.mjs
 export default {
-  // ...
   devServer: {
     // the configuration of the development server
     port: 8080,
@@ -80,7 +79,7 @@ export default {
 };
 ```
 
-> See [DevServer](https://rspack.rs/config/dev-server) for all configuration options.
+> See [Rspack - devServer](https://rspack.rs/config/dev-server) for all configuration options.
 
 ### With the API
 
@@ -88,12 +87,12 @@ While it's recommended to run `@rspack/dev-server` via the CLI, you may also cho
 
 ```js
 import { RspackDevServer } from '@rspack/dev-server';
-import rspack from '@rspack/core';
-import rspackConfig from './rspack.config.mjs';
+import { rspack } from '@rspack/core';
+import config from './rspack.config.mjs';
 
-const compiler = rspack(rspackConfig);
+const compiler = rspack(config);
 const devServerOptions = {
-  ...rspackConfig.devServer,
+  ...config.devServer,
   // override
   port: 8888,
 };
@@ -104,8 +103,6 @@ server.startCallback(() => {
   console.log('Successfully started server on http://localhost:8888');
 });
 ```
-
-> Cause `@rspack/dev-server` is based on `webpack-dev-server@5`, you can see the [webpack-dev-server API](https://webpack.js.org/api/webpack-dev-server/) for more methods of the server instance.
 
 ## Credits
 

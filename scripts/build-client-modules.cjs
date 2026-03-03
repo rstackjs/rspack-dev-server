@@ -17,7 +17,7 @@ const fs = require('node:fs');
 
 const modulesDir = path.resolve(__dirname, '../client/modules');
 if (fs.existsSync(modulesDir)) {
-  fs.rmdirSync(modulesDir, { recursive: true });
+  fs.rmSync(modulesDir, { recursive: true });
 }
 
 const library = {
