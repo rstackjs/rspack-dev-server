@@ -151,6 +151,9 @@ const encodeOverlaySettings = (
 
 const DEFAULT_ALLOWED_PROTOCOLS = /^(file|.+-extension):/i;
 
+/**
+ * Extracts and normalizes the hostname from a header, removing brackets for IPv6.
+ */
 function parseHostnameFromHeader(header: string): string | null {
   try {
     const parsedUrl = new URL(
