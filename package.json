@@ -116,6 +116,6 @@
     "ws": "^8.19.0"
   },
   "peerDependencies": {
-    "@rspack/core": "*"
+    "@rspack/core": "^2.0.0-0"
   }
 }
