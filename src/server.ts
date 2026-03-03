@@ -17,7 +17,6 @@ import * as ipaddr from 'ipaddr.js';
 import type {
   AddressInfo,
   BasicApplication,
-  ByPass,
   ClientConfiguration,
   ClientConnection,
   Compiler,
@@ -1171,43 +1170,8 @@ class Server<
           return item;
         }
 
-        const getLogLevelForProxy = (
-          level:
-            | 'info'
-            | 'warn'
-            | 'error'
-            | 'debug'
-            | 'silent'
-            | undefined
-            | 'none'
-            | 'log'
-            | 'verbose',
-        ): 'info' | 'warn' | 'error' | 'debug' | 'silent' | undefined => {
-          if (level === 'none') {
-            return 'silent';
-          }
-
-          if (level === 'log') {
-            return 'info';
-          }
-
-          if (level === 'verbose') {
-            return 'debug';
-          }
-
-          return level;
-        };
-
-        if (typeof item.logLevel === 'undefined') {
-          item.logLevel = getLogLevelForProxy(
-            compilerOptions.infrastructureLogging
-              ? compilerOptions.infrastructureLogging.level
-              : 'info',
-          );
-        }
-
-        if (typeof item.logProvider === 'undefined') {
-          item.logProvider = () => this.logger;
+        if (typeof item.logger === 'undefined') {
+          item.logger = this.logger as EXPECTED_ANY;
         }
 
         return item;
@@ -1926,26 +1890,26 @@ class Server<
       const getProxyMiddleware = (
         proxyConfig: ProxyConfigArrayItem,
       ): RequestHandler | undefined => {
-        // It is possible to use the `bypass` method without a `target` or `router`.
-        // However, the proxy middleware has no use in this case, and will fail to instantiate.
-        if (proxyConfig.target) {
-          const context = proxyConfig.context || proxyConfig.path;
+        const { context, ...proxyOptions } = proxyConfig;
+        const pathFilter = proxyOptions.pathFilter ?? context;
 
-          return createProxyMiddleware(context as string, proxyConfig);
+        if (typeof pathFilter !== 'undefined') {
+          proxyOptions.pathFilter = pathFilter;
         }
 
-        if (proxyConfig.router) {
-          return createProxyMiddleware(proxyConfig);
+        if (typeof proxyOptions.logger === 'undefined') {
+          proxyOptions.logger = this.logger as EXPECTED_ANY;
         }
 
-        // TODO improve me after drop `bypass` to always generate error when configuration is bad
-        if (!proxyConfig.bypass) {
-          util.deprecate(
-            () => {},
-            `Invalid proxy configuration:\n\n${JSON.stringify(proxyConfig, null, 2)}\n\nThe use of proxy object notation as proxy routes has been removed.\nPlease use the 'router' or 'context' options. Read more at https://github.com/chimurai/http-proxy-middleware/tree/v2.0.6#http-proxy-middleware-options`,
-            'DEP_WEBPACK_DEV_SERVER_PROXY_ROUTES_ARGUMENT',
-          )();
+        if (proxyOptions.target || proxyOptions.router) {
+          return createProxyMiddleware(proxyOptions);
         }
+
+        util.deprecate(
+          () => {},
+          `Invalid proxy configuration:\n\n${JSON.stringify(proxyConfig, null, 2)}\n\nThe use of proxy object notation as proxy routes has been removed.\nPlease use the 'router' or 'context' options. Read more at https://github.com/chimurai/http-proxy-middleware`,
+          'DEP_WEBPACK_DEV_SERVER_PROXY_ROUTES_ARGUMENT',
+        )();
       };
 
       /**
@@ -2001,36 +1965,11 @@ class Server<
             }
           }
 
-          // - Check if we have a bypass function defined
-          // - In case the bypass function is defined we'll retrieve the
-          // bypassUrl from it otherwise bypassUrl would be null
-          // TODO remove in the next major in favor `context` and `router` options
-          const isByPassFuncDefined = typeof proxyConfig.bypass === 'function';
-          if (isByPassFuncDefined) {
-            util.deprecate(
-              () => {},
-              "Using the 'bypass' option is deprecated. Please use the 'router' or 'context' options. Read more at https://github.com/chimurai/http-proxy-middleware/tree/v2.0.6#http-proxy-middleware-options",
-              'DEP_WEBPACK_DEV_SERVER_PROXY_BYPASS_ARGUMENT',
-            )();
-          }
-          const bypassUrl = isByPassFuncDefined
-            ? await (proxyConfig.bypass as ByPass)(req, res, proxyConfig)
-            : null;
-
-          if (typeof bypassUrl === 'boolean') {
-            // skip the proxy
-            res.statusCode = 404;
-            req.url = '';
-            next();
-          } else if (typeof bypassUrl === 'string') {
-            // byPass to that url
-            req.url = bypassUrl;
-            next();
-          } else if (proxyMiddleware) {
+          if (proxyMiddleware) {
             return proxyMiddleware(req, res, next);
-          } else {
-            next();
           }
+
+          next();
         };
 
         middlewares.push({
