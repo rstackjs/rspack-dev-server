@@ -38,7 +38,7 @@ describe('web socket server URL', () => {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -133,7 +133,7 @@ describe('web socket server URL', () => {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -234,7 +234,7 @@ describe('web socket server URL', () => {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -334,7 +334,7 @@ describe('web socket server URL', () => {
             target: `http://${resolvedHost}:${resolvedPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
