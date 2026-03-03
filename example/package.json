@@ -8,8 +8,8 @@
     "preview": "rspack preview"
   },
   "devDependencies": {
-    "@rspack/cli": "2.0.0-beta.4",
-    "@rspack/core": "2.0.0-beta.4",
+    "@rspack/cli": "2.0.0-canary-20260116",
+    "@rspack/core": "2.0.0-canary-20260116",
     "@rspack/dev-server": "workspace:*"
   }
 }
