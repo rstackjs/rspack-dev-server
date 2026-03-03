@@ -1154,30 +1154,6 @@ class Server<
       options.port = Number(options.port);
     }
 
-    /**
-     * Assume a proxy configuration specified as:
-     * proxy: {
-     *   'context': { options }
-     * }
-     * OR
-     * proxy: {
-     *   'context': 'target'
-     * }
-     */
-    if (typeof options.proxy !== 'undefined') {
-      options.proxy = options.proxy.map((item) => {
-        if (typeof item === 'function') {
-          return item;
-        }
-
-        if (typeof item.logger === 'undefined') {
-          item.logger = this.logger as EXPECTED_ANY;
-        }
-
-        return item;
-      });
-    }
-
     if (typeof options.setupExitSignals === 'undefined') {
       options.setupExitSignals = true;
     }
