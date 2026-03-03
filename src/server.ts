@@ -1344,13 +1344,11 @@ class Server<
       case 'string':
         // could be 'sockjs', 'ws', or a path that should be required
         if (clientTransport === 'sockjs') {
-          clientImplementation = require.resolve(
-            '../client/clients/SockJSClient',
-          );
+          clientImplementation =
+            require.resolve('../client/clients/SockJSClient');
         } else if (clientTransport === 'ws') {
-          clientImplementation = require.resolve(
-            '../client/clients/WebSocketClient',
-          );
+          clientImplementation =
+            require.resolve('../client/clients/WebSocketClient');
         } else {
           try {
             clientImplementation = require.resolve(clientTransport);
@@ -1494,9 +1492,8 @@ class Server<
         }
 
         compiler.options.resolve.alias = {
-          'ansi-html-community': require.resolve(
-            '@rspack/dev-server/client/utils/ansiHTML',
-          ),
+          'ansi-html-community':
+            require.resolve('@rspack/dev-server/client/utils/ansiHTML'),
           ...compiler.options.resolve.alias,
         };
       }

@@ -63,7 +63,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@hono/node-server": "^1.19.9",
-    "@rspack/core": "2.0.0-canary-20260116",
+    "@rspack/core": "2.0.0-beta.4",
     "@rspack/plugin-react-refresh": "1.6.1",
     "@rstest/core": "^0.8.5",
     "@types/compression": "^1.8.1",
