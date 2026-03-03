@@ -74,5 +74,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Prettier
-        run: pnpm run prettier:ci
+      - name: Lint
+        run: |
+          pnpm run prettier:ci
+          pnpm run lint

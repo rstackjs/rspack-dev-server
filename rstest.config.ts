@@ -1,5 +1,5 @@
-import { defineConfig } from '@rstest/core';
 import { version } from '@rspack/core/package.json';
+import { defineConfig } from '@rstest/core';
 
 console.log(`Running tests for rspack @${version} \n`);
 
