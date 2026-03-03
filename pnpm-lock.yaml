@@ -80,7 +80,7 @@ importers:
         version: 1.9.2
       '@hono/node-server':
         specifier: ^1.13.3
-        version: 1.13.8(hono@4.10.3)
+        version: 1.13.8(hono@4.11.10)
       '@rspack/core':
         specifier: 2.0.0-beta.4
         version: 2.0.0-beta.4(@swc/helpers@0.5.18)
@@ -119,7 +119,7 @@ importers:
         version: 7.1.2(@rspack/core@2.0.0-beta.4(@swc/helpers@0.5.18))(webpack@5.94.0)
       hono:
         specifier: ^4.6.8
-        version: 4.10.3
+        version: 4.11.10
       http-proxy:
         specifier: ^1.18.1
         version: 1.18.1
@@ -756,6 +756,7 @@ packages:
   basic-ftp@5.0.5:
     resolution: {integrity: sha512-4Bcg1P8xhUuqcii/S0Z9wiHIrQVPMermM1any+MX5GeGD7faD3/msQUDGLol9wOcz4/jbg/WJnGqoJF6LiBdtg==}
     engines: {node: '>=10.0.0'}
+    deprecated: Security vulnerability fixed in 5.2.0, please upgrade
 
   batch@0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
@@ -1298,8 +1299,8 @@ packages:
     resolution: {integrity: sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==}
     engines: {node: '>=8'}
 
-  hono@4.10.3:
-    resolution: {integrity: sha512-2LOYWUbnhdxdL8MNbNg9XZig6k+cZXm5IjHn2Aviv7honhBMOHb+jxrKIeJRZJRmn+htUCKhaicxwXuUDlchRA==}
+  hono@4.11.10:
+    resolution: {integrity: sha512-kyWP5PAiMooEvGrA9jcD3IXF7ATu8+o7B3KCbPXid5se52NPqnOpM/r9qeW2heMnOekF4kqR1fXJqCYeCLKrZg==}
     engines: {node: '>=16.9.0'}
 
   hpack.js@2.1.6:
@@ -2279,9 +2280,9 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@hono/node-server@1.13.8(hono@4.10.3)':
+  '@hono/node-server@1.13.8(hono@4.11.10)':
     dependencies:
-      hono: 4.10.3
+      hono: 4.11.10
 
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
@@ -3361,7 +3362,7 @@ snapshots:
 
   hexoid@1.0.0: {}
 
-  hono@4.10.3: {}
+  hono@4.11.10: {}
 
   hpack.js@2.1.6:
     dependencies:
