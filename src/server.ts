@@ -1668,9 +1668,8 @@ class Server<
     }
 
     // compress is placed last and uses unshift so that it will be the first middleware used
-    if (this.options.compress && !isHTTP2) {
+    if (this.options.compress) {
       const compression = require('compression');
-
       middlewares.push({ name: 'compression', middleware: compression() });
     }
 
