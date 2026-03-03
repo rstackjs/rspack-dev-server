@@ -1,5 +1,5 @@
 const http = require('node:http');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -70,7 +70,7 @@ describe('host', () => {
 
   for (const host of hosts) {
     it(`should work using "${host}" host and port as number`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = { port };
 
       if (host !== '<not-specified>') {
@@ -134,7 +134,7 @@ describe('host', () => {
     });
 
     it(`should work using "${host}" host and port as string`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = { port: `${port}` };
 
       if (host !== '<not-specified>') {
@@ -198,7 +198,7 @@ describe('host', () => {
     });
 
     it(`should work using "${host}" host and "auto" port`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
 
       process.env.WEBPACK_DEV_SERVER_BASE_PORT = port;
 
@@ -270,7 +270,7 @@ describe('host', () => {
 
   // TODO need test on error
   // it(`should throw an error on invalid host`, async () => {
-  //   const compiler = webpack(config);
+  //   const compiler = rspack(config);
   //   const server = new Server({ port, host: "unknown.unknown" }, compiler);
   //   const runDevServer = async () => {
   //     await server.start();

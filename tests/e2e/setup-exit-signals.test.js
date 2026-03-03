@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/simple-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -21,7 +21,7 @@ describe('setupExitSignals option', () => {
     const signals = ['SIGINT', 'SIGTERM'];
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -39,18 +39,18 @@ describe('setupExitSignals option', () => {
       consoleMessages = [];
       doExit = false;
 
-      exitSpy = rstest.spyOn(process, 'exit').mockImplementation(() => {
+      exitSpy = rs.spyOn(process, 'exit').mockImplementation(() => {
         doExit = true;
       });
 
-      stdinResumeSpy = rstest
+      stdinResumeSpy = rs
         .spyOn(process.stdin, 'resume')
         .mockImplementation(() => {});
 
-      stopCallbackSpy = rstest.spyOn(server, 'stopCallback');
+      stopCallbackSpy = rs.spyOn(server, 'stopCallback');
 
       if (server.compiler.close) {
-        closeCallbackSpy = rstest.spyOn(server.compiler, 'close');
+        closeCallbackSpy = rs.spyOn(server.compiler, 'close');
       }
     });
 

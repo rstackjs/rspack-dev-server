@@ -1,5 +1,5 @@
 const express = require('express');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
@@ -19,7 +19,7 @@ describe('web socket server URL', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: devServerPort,
@@ -38,7 +38,7 @@ describe('web socket server URL', () => {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -114,7 +114,7 @@ describe('web socket server URL', () => {
       const proxyHost = Server.internalIPSync('v4');
       const proxyPort = port1;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: devServerPort,
@@ -133,7 +133,7 @@ describe('web socket server URL', () => {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -210,7 +210,7 @@ describe('web socket server URL', () => {
       const proxyHost = Server.internalIPSync('v4');
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -234,7 +234,7 @@ describe('web socket server URL', () => {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -311,7 +311,7 @@ describe('web socket server URL', () => {
       const proxyHost = Server.internalIPSync('v4');
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: 'auto',
@@ -334,7 +334,7 @@ describe('web socket server URL', () => {
             target: `http://${resolvedHost}:${resolvedPort}`,
             ws: true,
             changeOrigin: true,
-            logLevel: 'warn',
+            logger: console,
           }),
         );
 
@@ -409,7 +409,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.protocol" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -483,7 +483,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.protocol" option using "auto:" value ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -557,7 +557,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.protocol" option using "http:" value and covert to "ws:" ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -631,7 +631,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.host" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -705,7 +705,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.host" option using "0.0.0.0" value ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -778,7 +778,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.port" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -852,7 +852,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.port" option as string ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -926,7 +926,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with "client.webSocketURL.port" and "webSocketServer.options.port" options as string ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer: {
           type: webSocketServer,
@@ -1009,7 +1009,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.port" option using "0" value ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1082,7 +1082,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.pathname" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1156,7 +1156,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with default "/ws" value of the "client.webSocketURL.pathname" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: port1,
@@ -1225,7 +1225,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.username" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1298,7 +1298,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.password" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL:
@@ -1378,7 +1378,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.username" and "client.webSocketURL.password" option ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1453,7 +1453,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the custom web socket server "path" ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer: {
           type: webSocketServer,
@@ -1528,7 +1528,7 @@ describe('web socket server URL', () => {
 
     // Only works for "ws" server
     it(`should work with the custom web socket server "path" using empty value ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer: {
           type: webSocketServer,
@@ -1604,7 +1604,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "path" ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1683,7 +1683,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "path" ending without slash ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1763,7 +1763,7 @@ describe('web socket server URL', () => {
 
     // Only works for "ws" server, "sockjs" adds "/" be default, because need do requests like "/custom-ws/info?t=1624462615772"
     it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "path" ending with slash ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1842,7 +1842,7 @@ describe('web socket server URL', () => {
 
     // Only works for "ws" server
     it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "path" using empty value ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1924,7 +1924,7 @@ describe('web socket server URL', () => {
 
     // Only works for "sockjs" server
     it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "prefix" for compatibility with "sockjs" ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -2005,7 +2005,7 @@ describe('web socket server URL', () => {
 
     it(`should work when "host" option is IPv4 ("${webSocketServer}")`, async () => {
       const hostname = Server.internalIPSync('v4');
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: port1,
@@ -2073,7 +2073,7 @@ describe('web socket server URL', () => {
 
     it(`should work when "host" option is "local-ip" ("${webSocketServer}")`, async () => {
       const hostname = Server.internalIPSync('v4');
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: port1,
@@ -2142,7 +2142,7 @@ describe('web socket server URL', () => {
 
     it(`should work when "host" option is "local-ipv4" ("${webSocketServer}")`, async () => {
       const hostname = Server.internalIPSync('v4');
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: port1,
@@ -2210,7 +2210,7 @@ describe('web socket server URL', () => {
 
     it(`should work with "server: 'https'" option ("${webSocketServer}")`, async () => {
       const hostname = '127.0.0.1';
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: port1,
@@ -2286,7 +2286,7 @@ describe('web socket server URL', () => {
 
     it(`should work with "server: 'spdy'" option ("${webSocketServer}")`, async () => {
       const hostname = '127.0.0.1';
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: port1,
@@ -2363,7 +2363,7 @@ describe('web socket server URL', () => {
     it(`should work when "port" option is "auto" ("${webSocketServer}")`, async () => {
       process.env.WEBPACK_DEV_SERVER_BASE_PORT = 50000;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         port: 'auto',
@@ -2435,7 +2435,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with "client.webSocketURL.*" options ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -2512,7 +2512,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work with the "client.webSocketURL" option as "string" ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: `ws://127.0.0.1:${port1}/ws`,
@@ -2584,7 +2584,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work and throw an error on invalid web socket URL ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: 'unknown://unknown.unknown/unknown',
@@ -2631,7 +2631,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should not work and output disconnect wrong web socket URL ("${webSocketServer}")`, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: 'ws://unknown.unknown/unknown',

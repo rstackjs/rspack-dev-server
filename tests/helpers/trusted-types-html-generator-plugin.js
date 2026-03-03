@@ -39,13 +39,13 @@ module.exports = class HTMLGeneratorPlugin {
     const pluginName = 'html-generator-plugin';
 
     compiler.hooks.thisCompilation.tap(pluginName, (compilation) => {
-      if (compiler.webpack) {
-        const { RawSource } = compiler.webpack.sources;
+      if (compiler.rspack) {
+        const { RawSource } = compiler.rspack.sources;
 
         compilation.hooks.processAssets.tap(
           {
             name: pluginName,
-            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+            stage: compiler.rspack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
           },
           () => {
             const indexSource = new RawSource(HTMLContentForIndex);

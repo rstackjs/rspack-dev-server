@@ -1,11 +1,11 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').stats;
 
-global.console.log = rstest.fn();
+global.console.log = rs.fn();
 
 describe('stats', () => {
   const cases = [
@@ -84,7 +84,7 @@ describe('stats', () => {
     // },
   ];
 
-  if (webpack.version.startsWith('5')) {
+  if (rspack.version.startsWith('5')) {
     cases.push({
       title: 'should work and respect the "ignoreWarnings" option',
       webpackOptions: {
@@ -110,7 +110,7 @@ describe('stats', () => {
 
   for (const testCase of cases) {
     it(testCase.title, async () => {
-      const compiler = webpack({ ...config, ...testCase.webpackOptions });
+      const compiler = rspack({ ...config, ...testCase.webpackOptions });
       const devServerOptions = {
         port,
       };

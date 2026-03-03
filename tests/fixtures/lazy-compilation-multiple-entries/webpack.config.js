@@ -52,13 +52,13 @@ module.exports = {
         const twoFilename = 'test-two.html';
 
         compiler.hooks.thisCompilation.tap(pluginName, (compilation) => {
-          const { RawSource } = compiler.webpack.sources;
+          const { RawSource } = compiler.rspack.sources;
 
           compilation.hooks.processAssets.tap(
             {
               name: pluginName,
               stage:
-                compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+                compiler.rspack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
             },
             () => {
               const oneSource = new RawSource(oneHTMLContent);

@@ -1,5 +1,5 @@
 const path = require('node:path');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/historyapifallback-config/webpack.config');
 const config2 = require('../fixtures/historyapifallback-2-config/webpack.config');
@@ -17,7 +17,7 @@ describe('historyApiFallback option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -78,7 +78,7 @@ describe('historyApiFallback option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -141,7 +141,7 @@ describe('historyApiFallback option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config2);
+      compiler = rspack(config2);
 
       server = new Server(
         {
@@ -239,7 +239,7 @@ describe('historyApiFallback option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config3);
+      compiler = rspack(config3);
 
       server = new Server(
         {
@@ -303,7 +303,7 @@ describe('historyApiFallback option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config2);
+      compiler = rspack(config2);
 
       server = new Server(
         {
@@ -436,9 +436,9 @@ describe('historyApiFallback option', () => {
     let consoleSpy;
 
     beforeEach(async () => {
-      consoleSpy = rstest.spyOn(global.console, 'log');
+      consoleSpy = rs.spyOn(global.console, 'log');
 
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -512,9 +512,9 @@ describe('historyApiFallback option', () => {
     let consoleSpy;
 
     beforeEach(async () => {
-      consoleSpy = rstest.spyOn(global.console, 'log');
+      consoleSpy = rs.spyOn(global.console, 'log');
 
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -587,7 +587,7 @@ describe('historyApiFallback option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config3);
+      compiler = rspack(config3);
 
       server = new Server(
         {

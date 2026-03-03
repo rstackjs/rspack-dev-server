@@ -167,16 +167,12 @@ export interface WebSocketServerImplementation {
   clients: ClientConnection[];
 }
 
-export type ByPass<
-  Req = Request,
-  Res = Response,
-  ProxyConfig = ProxyConfigArrayItem,
-> = (req: Req, res: Res, proxyConfig: ProxyConfig) => void;
-
 export type ProxyConfigArrayItem = {
-  path?: HttpProxyMiddlewareOptionsFilter;
+  /**
+   * Alias for `pathFilter` in `http-proxy-middleware` options.
+   * When both `context` and `pathFilter` are provided, `pathFilter` takes precedence.
+   */
   context?: HttpProxyMiddlewareOptionsFilter;
-  bypass?: ByPass;
 } & HttpProxyMiddlewareOptions;
 
 export type ProxyConfigArray = Array<

@@ -1,5 +1,5 @@
 const path = require('node:path');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -31,7 +31,7 @@ describe('entry', () => {
   );
 
   it('should work with single entry', async () => {
-    const compiler = webpack({ ...config, entry: entryFirst });
+    const compiler = rspack({ ...config, entry: entryFirst });
     const devServerOptions = {
       port,
     };
@@ -68,7 +68,7 @@ describe('entry', () => {
   });
 
   it('should work with single array entry', async () => {
-    const compiler = webpack({ ...config, entry: [entryFirst, entrySecond] });
+    const compiler = rspack({ ...config, entry: [entryFirst, entrySecond] });
     const devServerOptions = {
       port,
     };
@@ -105,7 +105,7 @@ describe('entry', () => {
   });
 
   it('should work with object entry', async () => {
-    const compiler = webpack({
+    const compiler = rspack({
       ...config,
       entry: {
         main: { import: entryFirst },
@@ -147,7 +147,7 @@ describe('entry', () => {
   });
 
   it('should work with dynamic entry', async () => {
-    const compiler = webpack({ ...config, entry: () => entryFirst });
+    const compiler = rspack({ ...config, entry: () => entryFirst });
     const devServerOptions = {
       port,
     };
@@ -184,7 +184,7 @@ describe('entry', () => {
   });
 
   it('should work with dynamic async entry', async () => {
-    const compiler = webpack({
+    const compiler = rspack({
       ...config,
       entry: () => new Promise((resolve) => resolve([entryFirst])),
     });
@@ -224,7 +224,7 @@ describe('entry', () => {
   });
 
   it('should work with multiple entries', async () => {
-    const compiler = webpack({
+    const compiler = rspack({
       ...config,
       entry: {
         foo: entryFirst,
@@ -273,7 +273,7 @@ describe('entry', () => {
   });
 
   it('should work with multiple entries #2', async () => {
-    const compiler = webpack({
+    const compiler = rspack({
       ...config,
       entry: {
         foo: entryFirst,
@@ -322,7 +322,7 @@ describe('entry', () => {
   });
 
   it('should work with multiple entries and "dependOn"', async () => {
-    const compiler = webpack({
+    const compiler = rspack({
       ...config,
       entry: {
         foo: {
@@ -369,12 +369,12 @@ describe('entry', () => {
   });
 
   it('should work with empty', async () => {
-    const compiler = webpack({
+    const compiler = rspack({
       ...config,
       entry: {},
     });
 
-    new webpack.EntryPlugin(compiler.context, entryFirst, {
+    new rspack.EntryPlugin(compiler.context, entryFirst, {
       name: 'main',
     }).apply(compiler);
 

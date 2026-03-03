@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const wdm = require('webpack-dev-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
@@ -98,7 +98,7 @@ describe('app option', () => {
 
     describe(`should work using "${appName}" application and "${typeof server === 'function' ? 'custom server' : server}" server`, () => {
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         devServer = new Server(
           {

@@ -1,6 +1,6 @@
 const path = require('node:path');
 const fs = require('node:fs');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const oneWebTargetConfiguration = require('../fixtures/multi-compiler-one-configuration/webpack.config');
 const twoWebTargetConfiguration = require('../fixtures/multi-compiler-two-configurations/webpack.config');
@@ -10,7 +10,7 @@ const port = require('../helpers/ports-map')['multi-compiler'];
 
 describe('multi compiler', () => {
   it('should work with one web target configuration and do nothing', async () => {
-    const compiler = webpack(oneWebTargetConfiguration);
+    const compiler = rspack(oneWebTargetConfiguration);
     const devServerOptions = {
       port,
     };
@@ -45,7 +45,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with web target configurations and do nothing', async () => {
-    const compiler = webpack(twoWebTargetConfiguration);
+    const compiler = rspack(twoWebTargetConfiguration);
     const devServerOptions = {
       port,
     };
@@ -91,7 +91,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with web target configurations when hot and live reloads are enabled, and do hot reload by default when changing own entries', async () => {
-    const compiler = webpack(twoWebTargetConfiguration);
+    const compiler = rspack(twoWebTargetConfiguration);
     const devServerOptions = {
       port,
       hot: true,
@@ -168,7 +168,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with web target configurations when only hot reload is enabled, and do hot reload when changing own entries', async () => {
-    const compiler = webpack(twoWebTargetConfiguration);
+    const compiler = rspack(twoWebTargetConfiguration);
     const devServerOptions = {
       port,
       hot: true,
@@ -245,7 +245,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with web target configurations when only live reload is enabled, and do live reload when changing own entries', async () => {
-    const compiler = webpack(twoWebTargetConfiguration);
+    const compiler = rspack(twoWebTargetConfiguration);
     const devServerOptions = {
       port,
       hot: false,
@@ -314,7 +314,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with web target configurations when only live reload is enabled and do live reload when changing other entries', async () => {
-    const compiler = webpack(twoWebTargetConfiguration);
+    const compiler = rspack(twoWebTargetConfiguration);
     const devServerOptions = {
       port,
       hot: false,
@@ -383,7 +383,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with universal configuration and do nothing', async () => {
-    const compiler = webpack(universalConfiguration);
+    const compiler = rspack(universalConfiguration);
     const devServerOptions = {
       port,
     };
@@ -429,7 +429,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with universal configuration when hot and live reloads are enabled, and do hot reload for browser compiler by default when browser entry changed', async () => {
-    const compiler = webpack(universalConfiguration);
+    const compiler = rspack(universalConfiguration);
     const devServerOptions = {
       port,
       hot: true,
@@ -507,7 +507,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with universal configuration when only hot reload is enabled, and do hot reload for browser compiler when browser entry changed', async () => {
-    const compiler = webpack(universalConfiguration);
+    const compiler = rspack(universalConfiguration);
     const devServerOptions = {
       port,
       hot: true,
@@ -579,7 +579,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with universal configuration when only live reload is enabled, and do live reload for browser compiler when changing browser and server entries', async () => {
-    const compiler = webpack(universalConfiguration);
+    const compiler = rspack(universalConfiguration);
     const devServerOptions = {
       port,
       hot: false,
@@ -666,7 +666,7 @@ describe('multi compiler', () => {
   });
 
   it('should work with universal configuration when only live reload is enabled, and do live reload for browser compiler when changing server and browser entries', async () => {
-    const compiler = webpack(universalConfiguration);
+    const compiler = rspack(universalConfiguration);
     const devServerOptions = {
       port,
       hot: false,
