@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 
 let server;
@@ -14,7 +14,7 @@ function startFullSetup(config, options, done) {
     options.static = undefined;
   }
 
-  const compiler = webpack(config);
+  const compiler = rspack(config);
 
   server = new Server(options, compiler);
 

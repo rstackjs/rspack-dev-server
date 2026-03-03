@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const multiConfig = require('../fixtures/multi-public-path-config/webpack.config');
@@ -15,7 +15,7 @@ describe('Built in routes', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
       server = new Server({ port }, compiler);
 
       await server.start();
@@ -251,7 +251,7 @@ describe('Built in routes', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(multiConfig);
+      compiler = rspack(multiConfig);
       server = new Server({ port }, compiler);
 
       await server.start();

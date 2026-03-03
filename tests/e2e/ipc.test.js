@@ -2,7 +2,7 @@ const os = require('node:os');
 const net = require('node:net');
 const path = require('node:path');
 const http = require('node:http');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const httpProxy = require('http-proxy');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
@@ -21,7 +21,7 @@ describe('web socket server URL', () => {
       const proxyHost = devServerHost;
       const proxyPort = port1;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         ipc: true,
@@ -123,7 +123,7 @@ describe('web socket server URL', () => {
       const proxyHost = devServerHost;
       const proxyPort = port1;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         ipc,
@@ -239,7 +239,7 @@ describe('web socket server URL', () => {
       const proxyHost = devServerHost;
       const proxyPort = port1;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
         host: devServerHost,

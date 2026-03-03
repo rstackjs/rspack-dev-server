@@ -1,5 +1,5 @@
 const express = require('express');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
@@ -16,7 +16,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -89,7 +89,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -162,7 +162,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -235,7 +235,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -309,7 +309,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -384,7 +384,7 @@ describe('allowed hosts', () => {
       const proxyHost = IPv4;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -458,7 +458,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -535,7 +535,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -612,7 +612,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -690,7 +690,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -768,7 +768,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -846,7 +846,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -924,7 +924,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1005,7 +1005,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1083,7 +1083,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1161,7 +1161,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1239,7 +1239,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1320,7 +1320,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1398,7 +1398,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1480,7 +1480,7 @@ describe('allowed hosts', () => {
       const proxyHost = devServerHost;
       const proxyPort = port2;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         client: {
           webSocketURL: {
@@ -1562,7 +1562,7 @@ describe('allowed hosts', () => {
     let consoleMessages;
 
     beforeEach(() => {
-      compiler = webpack(config);
+      compiler = rspack(config);
       pageErrors = [];
       consoleMessages = [];
     });

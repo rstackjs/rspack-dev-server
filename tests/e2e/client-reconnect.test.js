@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/simple-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -14,7 +14,7 @@ describe('client.reconnect option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server({ port, client: { reconnect: true } }, compiler);
 
@@ -78,7 +78,7 @@ describe('client.reconnect option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server({ port, client: { reconnect: false } }, compiler);
 
@@ -141,7 +141,7 @@ describe('client.reconnect option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server({ port, client: { reconnect: 2 } }, compiler);
 

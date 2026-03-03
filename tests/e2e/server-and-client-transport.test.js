@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const WebsocketServer = require('../../dist/servers/WebsocketServer').default;
 const defaultConfig = require('../fixtures/provide-plugin-default/webpack.config');
@@ -10,7 +10,7 @@ const port = require('../helpers/ports-map')['server-and-client-transport'];
 
 describe('server and client transport', () => {
   it('should use default web socket server ("ws")', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
     };
@@ -46,7 +46,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "ws" web socket server when specify "ws" value', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       webSocketServer: 'ws',
@@ -83,7 +83,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "ws" web socket server when specify "ws" value using object', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       webSocketServer: {
@@ -122,7 +122,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "sockjs" web socket server when specify "sockjs" value', async () => {
-    const compiler = webpack(sockjsConfig);
+    const compiler = rspack(sockjsConfig);
     const devServerOptions = {
       port,
       webSocketServer: 'sockjs',
@@ -159,7 +159,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "sockjs" web socket server when specify "sockjs" value using object', async () => {
-    const compiler = webpack(sockjsConfig);
+    const compiler = rspack(sockjsConfig);
     const devServerOptions = {
       port,
       webSocketServer: {
@@ -198,7 +198,7 @@ describe('server and client transport', () => {
   });
 
   it('should use custom web socket server when specify class', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       client: {
@@ -238,7 +238,7 @@ describe('server and client transport', () => {
   });
 
   it('should use custom web socket server when specify class using object', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       client: {
@@ -280,7 +280,7 @@ describe('server and client transport', () => {
   });
 
   it('should use custom web socket server when specify path to class', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       client: {
@@ -320,7 +320,7 @@ describe('server and client transport', () => {
   });
 
   it('should use custom web socket server when specify path to class using object', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       client: {
@@ -364,7 +364,7 @@ describe('server and client transport', () => {
   it('should throw an error on wrong path', async () => {
     expect.assertions(1);
 
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       webSocketServer: {
@@ -383,7 +383,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "sockjs" transport, when web socket server is not specify', async () => {
-    const compiler = webpack(sockjsConfig);
+    const compiler = rspack(sockjsConfig);
     const devServerOptions = {
       port,
       client: {
@@ -422,7 +422,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "ws" transport, when web socket server is not specify', async () => {
-    const compiler = webpack(wsConfig);
+    const compiler = rspack(wsConfig);
     const devServerOptions = {
       port,
       client: {
@@ -461,7 +461,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "sockjs" transport and "sockjs" web socket server', async () => {
-    const compiler = webpack(sockjsConfig);
+    const compiler = rspack(sockjsConfig);
     const devServerOptions = {
       port,
       client: {
@@ -501,7 +501,7 @@ describe('server and client transport', () => {
   });
 
   it('should use "ws" transport and "ws" web socket server', async () => {
-    const compiler = webpack(wsConfig);
+    const compiler = rspack(wsConfig);
     const devServerOptions = {
       port,
       client: {
@@ -541,7 +541,7 @@ describe('server and client transport', () => {
   });
 
   it('should use custom transport and "sockjs" web socket server', async () => {
-    const compiler = webpack(customConfig);
+    const compiler = rspack(customConfig);
     const devServerOptions = {
       port,
       client: {
@@ -583,7 +583,7 @@ describe('server and client transport', () => {
   });
 
   it('should throw an error on invalid path to server transport', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       webSocketServer: {
@@ -599,7 +599,7 @@ describe('server and client transport', () => {
   });
 
   it('should throw an error on invalid path to client transport', async () => {
-    const compiler = webpack(defaultConfig);
+    const compiler = rspack(defaultConfig);
     const devServerOptions = {
       port,
       client: {

@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/simple-config-other/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -14,7 +14,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -75,7 +75,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -143,7 +143,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -200,7 +200,7 @@ describe('client option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack({
+      compiler = rspack({
         ...config,
         devtool: false,
       });
@@ -274,7 +274,7 @@ describe('client option', () => {
     }
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new OverrideServer(
         {
@@ -367,7 +367,7 @@ describe('client option', () => {
         it(`${data.title} ${
           data.shouldThrow ? 'should throw' : 'should not throw'
         }`, async () => {
-          const compiler = webpack(config);
+          const compiler = rspack(config);
 
           const server = new Server(
             {

@@ -3,7 +3,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const request = require('supertest');
 const spdy = require('spdy');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/static-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -33,7 +33,7 @@ describe('server option', () => {
 
     describe('http', () => {
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         server = new Server(
           {
@@ -93,7 +93,7 @@ describe('server option', () => {
 
     describe('custom-http', () => {
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         server = new Server(
           {
@@ -153,7 +153,7 @@ describe('server option', () => {
 
     describe('https', () => {
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         server = new Server(
           {
@@ -213,7 +213,7 @@ describe('server option', () => {
 
     describe('spdy', () => {
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         server = new Server(
           {
@@ -283,7 +283,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -366,7 +366,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -457,7 +457,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -546,7 +546,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -644,7 +644,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -719,7 +719,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -798,7 +798,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -871,7 +871,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -954,7 +954,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -1045,7 +1045,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -1141,7 +1141,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -1223,7 +1223,7 @@ describe('server option', () => {
       let req;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(https, 'createServer');
 
@@ -1289,7 +1289,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(spdy, 'createServer');
 
@@ -1370,7 +1370,7 @@ describe('server option', () => {
       let consoleMessages;
 
       beforeEach(async () => {
-        compiler = webpack(config);
+        compiler = rspack(config);
 
         createServerSpy = rs.spyOn(customHTTP, 'createServer');
 

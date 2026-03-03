@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -19,7 +19,7 @@ describe('port', () => {
 
   for (const testedPort of ports) {
     it(`should work using "${testedPort}" port `, async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {};
 
       let usedPort;

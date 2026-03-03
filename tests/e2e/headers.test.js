@@ -1,5 +1,5 @@
 const request = require('supertest');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/simple-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -15,7 +15,7 @@ describe('headers option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -74,7 +74,7 @@ describe('headers option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -146,7 +146,7 @@ describe('headers option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -205,7 +205,7 @@ describe('headers option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -266,7 +266,7 @@ describe('headers option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -338,7 +338,7 @@ describe('headers option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -401,7 +401,7 @@ describe('headers option', () => {
     let req;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {

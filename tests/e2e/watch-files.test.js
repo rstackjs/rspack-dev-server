@@ -1,7 +1,7 @@
 const path = require('node:path');
 const chokidar = require('chokidar');
 const fs = require('node:fs');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/watch-files-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -23,7 +23,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -94,7 +94,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -165,7 +165,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -242,7 +242,7 @@ describe('watchFiles option', () => {
         // ignore
       }
 
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -317,7 +317,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -389,7 +389,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -470,7 +470,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -609,7 +609,7 @@ describe('watchFiles option', () => {
         beforeEach(async () => {
           chokidarMock.mockClear();
 
-          compiler = webpack(config);
+          compiler = rspack(config);
 
           server = new Server(
             {

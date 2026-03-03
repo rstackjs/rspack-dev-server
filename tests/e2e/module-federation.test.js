@@ -1,5 +1,5 @@
 const requireFromString = require('require-from-string');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const simpleConfig = require('../fixtures/module-federation-config/webpack.config');
 const objectEntryConfig = require('../fixtures/module-federation-config/webpack.object-entry.config');
@@ -18,7 +18,7 @@ describe('Module federation', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(simpleConfig);
+      compiler = rspack(simpleConfig);
       server = new Server({ port }, compiler);
 
       await server.start();
@@ -76,7 +76,7 @@ describe('Module federation', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(objectEntryConfig);
+      compiler = rspack(objectEntryConfig);
       server = new Server({ port }, compiler);
 
       await server.start();
@@ -166,7 +166,7 @@ describe('Module federation', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(multiConfig);
+      compiler = rspack(multiConfig);
       server = new Server({ port }, compiler);
 
       await server.start();
@@ -224,7 +224,7 @@ describe('Module federation', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(pluginConfig);
+      compiler = rspack(pluginConfig);
       server = new Server({ port }, compiler);
 
       await server.start();

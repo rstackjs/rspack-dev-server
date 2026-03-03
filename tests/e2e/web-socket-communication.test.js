@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const WebsocketServer = require('../../dist/servers/WebsocketServer');
 const config = require('../fixtures/client-config/webpack.config');
@@ -15,7 +15,7 @@ describe('web socket communication', () => {
     it(`should work and close web socket client connection when web socket server closed ("${websocketServer}")`, async () => {
       WebsocketServer.heartbeatInterval = 100;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         port,
         webSocketServer: websocketServer,
@@ -63,7 +63,7 @@ describe('web socket communication', () => {
     it(`should work and terminate client that is not alive ("${websocketServer}")`, async () => {
       WebsocketServer.heartbeatInterval = 100;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         port,
         webSocketServer: websocketServer,
@@ -111,7 +111,7 @@ describe('web socket communication', () => {
     it(`should work and reconnect when the connection is lost ("${websocketServer}")`, async () => {
       WebsocketServer.heartbeatInterval = 100;
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const devServerOptions = {
         port,
         webSocketServer: websocketServer,
@@ -159,7 +159,7 @@ describe('web socket communication', () => {
   it(`should work and do heartbeat using ("ws" web socket server)`, async () => {
     WebsocketServer.heartbeatInterval = 100;
 
-    const compiler = webpack(config);
+    const compiler = rspack(config);
     const devServerOptions = {
       port,
       webSocketServer: 'ws',
