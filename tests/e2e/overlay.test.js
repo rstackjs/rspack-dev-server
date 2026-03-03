@@ -2,7 +2,6 @@ const path = require('node:path');
 const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const waitForExpect = require('wait-for-expect');
 const config = require('../fixtures/overlay-config/webpack.config');
 const trustedTypesConfig = require('../fixtures/overlay-config/trusted-types.webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -386,9 +385,15 @@ describe('overlay', () => {
         hidden: true,
       });
 
-      await waitForExpect(async () => {
-        pageHtml = await page.evaluate(() => document.body.outerHTML);
-      });
+      await expect
+        .poll(
+          async () => {
+            pageHtml = await page.evaluate(() => document.body.outerHTML);
+            return pageHtml;
+          },
+          { timeout: 4500, interval: 50 },
+        )
+        .toBeTypeOf('string');
       overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
@@ -636,9 +641,12 @@ describe('overlay', () => {
 
       await errorHandle.click();
 
-      await waitForExpect(() => {
-        expect(mockLaunchEditorCb).toHaveBeenCalledTimes(1);
-      });
+      await expect
+        .poll(() => mockLaunchEditorCb.mock.calls.length, {
+          timeout: 4500,
+          interval: 50,
+        })
+        .toBe(1);
     } finally {
       fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
