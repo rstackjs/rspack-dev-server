@@ -386,13 +386,10 @@ describe('overlay', () => {
       });
 
       await expect
-        .poll(
-          async () => {
-            pageHtml = await page.evaluate(() => document.body.outerHTML);
-            return pageHtml;
-          },
-          { timeout: 4500, interval: 50 },
-        )
+        .poll(async () => {
+          pageHtml = await page.evaluate(() => document.body.outerHTML);
+          return pageHtml;
+        })
         .toBeTypeOf('string');
       overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
@@ -641,12 +638,7 @@ describe('overlay', () => {
 
       await errorHandle.click();
 
-      await expect
-        .poll(() => mockLaunchEditorCb.mock.calls.length, {
-          timeout: 4500,
-          interval: 50,
-        })
-        .toBe(1);
+      await expect.poll(() => mockLaunchEditorCb.mock.calls.length).toBe(1);
     } finally {
       fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
