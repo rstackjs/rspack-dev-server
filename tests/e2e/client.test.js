@@ -261,15 +261,11 @@ describe('client option', () => {
     class OverrideServer extends Server {
       // eslint-disable-next-line class-methods-use-this
       getClientEntry() {
-        return require.resolve(
-          '../fixtures/custom-client/CustomClientEntry.js',
-        );
+        return require.resolve('../fixtures/custom-client/CustomClientEntry.js');
       }
       // eslint-disable-next-line class-methods-use-this
       getClientHotEntry() {
-        return require.resolve(
-          '../fixtures/custom-client/CustomClientHotEntry.js',
-        );
+        return require.resolve('../fixtures/custom-client/CustomClientHotEntry.js');
       }
     }
 
@@ -327,9 +323,8 @@ describe('client option', () => {
       {
         title: 'as a path ("sockjs")',
         client: {
-          webSocketTransport: require.resolve(
-            '@rspack/dev-server/client/clients/SockJSClient',
-          ),
+          webSocketTransport:
+            require.resolve('@rspack/dev-server/client/clients/SockJSClient'),
         },
         webSocketServer: 'sockjs',
         shouldThrow: false,
@@ -337,9 +332,8 @@ describe('client option', () => {
       {
         title: 'as a path ("ws")',
         client: {
-          webSocketTransport: require.resolve(
-            '@rspack/dev-server/client/clients/WebSocketClient',
-          ),
+          webSocketTransport:
+            require.resolve('@rspack/dev-server/client/clients/WebSocketClient'),
         },
         webSocketServer: 'ws',
         shouldThrow: false,

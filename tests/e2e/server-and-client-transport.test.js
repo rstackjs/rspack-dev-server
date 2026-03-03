@@ -545,9 +545,8 @@ describe('server and client transport', () => {
     const devServerOptions = {
       port,
       client: {
-        webSocketTransport: require.resolve(
-          '../fixtures/custom-client/CustomSockJSClient',
-        ),
+        webSocketTransport:
+          require.resolve('../fixtures/custom-client/CustomSockJSClient'),
       },
       webSocketServer: 'sockjs',
     };
