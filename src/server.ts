@@ -151,6 +151,29 @@ const encodeOverlaySettings = (
 
 const DEFAULT_ALLOWED_PROTOCOLS = /^(file|.+-extension):/i;
 
+/**
+ * Extracts and normalizes the hostname from a header, removing brackets for IPv6.
+ */
+function parseHostnameFromHeader(header: string): string | null {
+  try {
+    const parsedUrl = new URL(
+      // if header doesn't have scheme, add // for parsing.
+      /^(.+:)?\/\//.test(header) ? header : `//${header}`,
+      'http://localhost/',
+    );
+    let { hostname } = parsedUrl;
+
+    // `URL#hostname` keeps IPv6 brackets, but our validation expects bare IPv6.
+    if (hostname.startsWith('[') && hostname.endsWith(']')) {
+      hostname = hostname.slice(1, -1);
+    }
+
+    return hostname;
+  } catch {
+    return null;
+  }
+}
+
 function isMultiCompiler(
   compiler: Compiler | MultiCompiler,
 ): compiler is MultiCompiler {
@@ -2484,15 +2507,7 @@ class Server<
       return true;
     }
 
-    // use the node url-parser to retrieve the hostname from the host-header.
-    // TODO resolve me in the next major release
-    // eslint-disable-next-line n/no-deprecated-api
-    const { hostname } = url.parse(
-      // if header doesn't have scheme, add // for parsing.
-      /^(.+:)?\/\//.test(header) ? header : `//${header}`,
-      false,
-      true,
-    );
+    const hostname = parseHostnameFromHeader(header);
 
     if (hostname === null) {
       return false;
@@ -2506,8 +2521,8 @@ class Server<
     // A note on IPv6 addresses:
     // header will always contain the brackets denoting
     // an IPv6-address in URLs,
-    // these are removed from the hostname in url.parse(),
-    // so we have the pure IPv6-address in hostname.
+    // these are not removed from `URL#hostname`,
+    // so we normalize to a pure IPv6-address when parsing.
     // For convenience, always allow localhost (hostname === 'localhost')
     // and its subdomains (hostname.endsWith(".localhost")).
     // allow hostname of listening address  (hostname === this.options.host)
@@ -2537,9 +2552,7 @@ class Server<
       return true;
     }
 
-    // TODO resolve me in the next major release
-    // eslint-disable-next-line n/no-deprecated-api
-    const origin = url.parse(originHeader, false, true).hostname;
+    const origin = parseHostnameFromHeader(originHeader);
 
     if (origin === null) {
       return false;
@@ -2559,13 +2572,7 @@ class Server<
       return true;
     }
 
-    // eslint-disable-next-line n/no-deprecated-api
-    const host = url.parse(
-      // if hostHeader doesn't have scheme, add // for parsing.
-      /^(.+:)?\/\//.test(hostHeader) ? hostHeader : `//${hostHeader}`,
-      false,
-      true,
-    ).hostname;
+    const host = parseHostnameFromHeader(hostHeader);
 
     if (host === null) {
       return false;
