@@ -27,7 +27,6 @@ jobs:
 
     concurrency:
       group: test-${{ matrix.os }}-v${{ matrix.node }}-${{ github.ref }}
-      cancel-in-progress: true
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -43,7 +42,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-          cache: 'pnpm'
+          package-manager-cache: false
 
       - name: Install Dependencies
         run: pnpm install
@@ -70,7 +69,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 20.20.0
-          cache: 'pnpm'
+          package-manager-cache: false
 
       - name: Install Dependencies
         run: pnpm install
