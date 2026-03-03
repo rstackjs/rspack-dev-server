@@ -200,7 +200,7 @@ describe('host', () => {
     it(`should work using "${host}" host and "auto" port`, async () => {
       const compiler = rspack(config);
 
-      process.env.WEBPACK_DEV_SERVER_BASE_PORT = port;
+      process.env.RSPACK_DEV_SERVER_BASE_PORT = port;
 
       const devServerOptions = { port: 'auto' };
 
@@ -260,7 +260,7 @@ describe('host', () => {
 
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        process.env.WEBPACK_DEV_SERVER_BASE_PORT = undefined;
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = undefined;
 
         await browser.close();
         await server.stop();

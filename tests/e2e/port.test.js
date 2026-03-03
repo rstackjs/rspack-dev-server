@@ -28,10 +28,10 @@ describe('port', () => {
         testedPort === '<not-specified>' ||
         typeof testedPort === 'undefined'
       ) {
-        process.env.WEBPACK_DEV_SERVER_BASE_PORT = port;
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = port;
         usedPort = port;
       } else if (testedPort === 'auto') {
-        process.env.WEBPACK_DEV_SERVER_BASE_PORT = port;
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = port;
         devServerOptions.port = testedPort;
         usedPort = port;
       } else {
@@ -100,7 +100,7 @@ describe('port', () => {
         testedPort === '<not-specified>' ||
         typeof testedPort === 'undefined'
       ) {
-        process.env.WEBPACK_DEV_SERVER_BASE_PORT = undefined;
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = undefined;
       }
     });
   }
