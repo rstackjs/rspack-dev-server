@@ -27,7 +27,6 @@ jobs:
 
     concurrency:
       group: test-${{ matrix.os }}-v${{ matrix.node }}-${{ github.ref }}
-      cancel-in-progress: true
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
