@@ -72,7 +72,6 @@ While starting the development server, you can specify the configuration by the 
 ```js
 // rspack.config.mjs
 export default {
-  // ...
   devServer: {
     // the configuration of the development server
     port: 8080,
