@@ -1003,10 +1003,16 @@ class Server<
 
           const selfsigned = require('selfsigned');
           const attributes = [{ name: 'commonName', value: 'localhost' }];
-          const pems = selfsigned.generate(attributes, {
+          const notBeforeDate = new Date();
+          const notAfterDate = new Date(notBeforeDate);
+
+          notAfterDate.setDate(notAfterDate.getDate() + 30);
+
+          const pems = await selfsigned.generate(attributes, {
             algorithm: 'sha256',
-            days: 30,
             keySize: 2048,
+            notBeforeDate,
+            notAfterDate,
             extensions: [
               {
                 name: 'basicConstraints',
