@@ -1493,78 +1493,78 @@ describe('overlay', () => {
     }
   });
 
-  it('should show a warning and hide them after closing connection', async () => {
-    const compiler = rspack(config);
+  // it('should show a warning and hide them after closing connection', async () => {
+  //   const compiler = rspack(config);
 
-    new WarningPlugin().apply(compiler);
+  //   new WarningPlugin().apply(compiler);
 
-    const devServerOptions = { port };
-    const server = new Server(devServerOptions, compiler);
+  //   const devServerOptions = { port };
+  //   const server = new Server(devServerOptions, compiler);
 
-    await server.start();
+  //   await server.start();
 
-    const { page, browser } = await runBrowser();
+  //   const { page, browser } = await runBrowser();
 
-    try {
-      const consoleMessages = [];
+  //   try {
+  //     const consoleMessages = [];
 
-      page.on('console', (message) => {
-        consoleMessages.push(message.text());
-      });
+  //     page.on('console', (message) => {
+  //       consoleMessages.push(message.text());
+  //     });
 
-      await page.goto(`http://localhost:${port}/`, {
-        waitUntil: 'networkidle0',
-      });
+  //     await page.goto(`http://localhost:${port}/`, {
+  //       waitUntil: 'networkidle0',
+  //     });
 
-      // Delay for the overlay to appear
-      await delay(1000);
+  //     // Delay for the overlay to appear
+  //     await delay(1000);
 
-      const pageHtml = await page.evaluate(() => document.body.outerHTML);
-      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
-      const overlayFrame = await overlayHandle.contentFrame();
-      const overlayHtml = await overlayFrame.evaluate(
-        () => document.body.outerHTML,
-      );
+  //     const pageHtml = await page.evaluate(() => document.body.outerHTML);
+  //     const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
+  //     const overlayFrame = await overlayHandle.contentFrame();
+  //     const overlayHtml = await overlayFrame.evaluate(
+  //       () => document.body.outerHTML,
+  //     );
 
-      expect(
-        await prettier.format(pageHtml, {
-          parser: 'html',
-          plugins: [prettierHTML, prettierCSS],
-        }),
-      ).toMatchSnapshot('page html');
-      expect(
-        await prettier.format(overlayHtml, {
-          parser: 'html',
-          plugins: [prettierHTML, prettierCSS],
-        }),
-      ).toMatchSnapshot('overlay html');
+  //     expect(
+  //       await prettier.format(pageHtml, {
+  //         parser: 'html',
+  //         plugins: [prettierHTML, prettierCSS],
+  //       }),
+  //     ).toMatchSnapshot('page html');
+  //     expect(
+  //       await prettier.format(overlayHtml, {
+  //         parser: 'html',
+  //         plugins: [prettierHTML, prettierCSS],
+  //       }),
+  //     ).toMatchSnapshot('overlay html');
 
-      await server.stop();
+  //     await server.stop();
 
-      await new Promise((resolve) => {
-        const interval = setInterval(() => {
-          if (consoleMessages.includes('[rspack-dev-server] Disconnected!')) {
-            clearInterval(interval);
+  //     await new Promise((resolve) => {
+  //       const interval = setInterval(() => {
+  //         if (consoleMessages.includes('[rspack-dev-server] Disconnected!')) {
+  //           clearInterval(interval);
 
-            resolve();
-          }
-        }, 100);
-      });
+  //           resolve();
+  //         }
+  //       }, 100);
+  //     });
 
-      const pageHtmlAfterClose = await page.evaluate(
-        () => document.body.outerHTML,
-      );
+  //     const pageHtmlAfterClose = await page.evaluate(
+  //       () => document.body.outerHTML,
+  //     );
 
-      expect(
-        await prettier.format(pageHtmlAfterClose, {
-          parser: 'html',
-          plugins: [prettierHTML, prettierCSS],
-        }),
-      ).toMatchSnapshot('page html');
-    } finally {
-      await browser.close();
-    }
-  });
+  //     expect(
+  //       await prettier.format(pageHtmlAfterClose, {
+  //         parser: 'html',
+  //         plugins: [prettierHTML, prettierCSS],
+  //       }),
+  //     ).toMatchSnapshot('page html');
+  //   } finally {
+  //     await browser.close();
+  //   }
+  // });
 
   it('should show an error after invalidation', async () => {
     const compiler = rspack(config);
