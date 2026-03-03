@@ -1,5 +1,5 @@
 const path = require('node:path');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/static-config/webpack.config');
 const port = require('../helpers/ports-map')['static-public-path-option'];
@@ -21,7 +21,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -112,7 +112,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -204,7 +204,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -296,7 +296,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -388,7 +388,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -489,7 +489,7 @@ describe('static.publicPath option', () => {
         .spyOn(process, 'cwd')
         .mockImplementation(() => staticDirectory);
 
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -553,7 +553,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -618,7 +618,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -829,7 +829,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {
@@ -954,7 +954,7 @@ describe('static.publicPath option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       server = new Server(
         {

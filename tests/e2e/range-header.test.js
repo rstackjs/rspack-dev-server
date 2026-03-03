@@ -1,5 +1,5 @@
 const request = require('supertest');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/static-config/webpack.config');
 const port = require('../helpers/ports-map')['range-header'];
@@ -9,7 +9,7 @@ describe("'Range' header", () => {
   let server;
 
   beforeAll(async () => {
-    compiler = webpack(config);
+    compiler = rspack(config);
 
     server = new Server({ port }, compiler);
 

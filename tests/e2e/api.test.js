@@ -1,5 +1,5 @@
 const path = require('node:path');
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -50,7 +50,7 @@ describe('API', () => {
         RspackDevServer: WebpackDevServer,
       } = require('@rspack/dev-server');
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       server = new WebpackDevServer({ port }, compiler);
 
       await server.start();
@@ -73,7 +73,7 @@ describe('API', () => {
 
   describe('latest async API', () => {
     it('should work with async API', async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const server = new Server({ port }, compiler);
 
       await server.start();
@@ -107,7 +107,7 @@ describe('API', () => {
     });
 
     it('should work with callback API', async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const server = new Server({ port }, compiler);
 
       await new Promise((resolve) => {
@@ -149,7 +149,7 @@ describe('API', () => {
     });
 
     it('should catch errors within startCallback', async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const server = new Server(
         { port, static: 'https://absolute-url.com/somewhere' },
         compiler,
@@ -172,14 +172,14 @@ describe('API', () => {
     });
 
     it('should work when using configured manually', async () => {
-      const compiler = webpack({
+      const compiler = rspack({
         ...config,
         entry: [
           '@rspack/core/hot/dev-server.js',
           `@rspack/dev-server/client/index.js?hot=true&live-reload=true"`,
           path.resolve(__dirname, '../fixtures/client-config/foo.js'),
         ],
-        plugins: [...config.plugins, new webpack.HotModuleReplacementPlugin()],
+        plugins: [...config.plugins, new rspack.HotModuleReplacementPlugin()],
       });
       const server = new Server({ port, hot: false, client: false }, compiler);
 
@@ -213,7 +213,7 @@ describe('API', () => {
     });
 
     it('should work and allow to rerun dev server multiple times', async () => {
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const server = new Server({ port }, compiler);
 
       await server.start();
@@ -281,7 +281,7 @@ describe('API', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      compiler = webpack(config);
+      compiler = rspack(config);
 
       ({ page, browser } = await runBrowser());
 
@@ -380,7 +380,7 @@ describe('API', () => {
             () =>
               new Promise((resolve) => {
                 devServerPort = 60000 + i;
-                const compiler = webpack(config);
+                const compiler = rspack(config);
                 const server = new Server(
                   { port: devServerPort, host: '0.0.0.0' },
                   compiler,
@@ -634,7 +634,7 @@ describe('API', () => {
         '[ad42::1de2:54c2:c2fa:1234]:8080',
       ];
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const server = new Server(options, compiler);
 
       for (const test of tests) {
@@ -661,7 +661,7 @@ describe('API', () => {
         origin: 'https://test.host',
       };
 
-      const compiler = webpack(config);
+      const compiler = rspack(config);
       const server = new Server(options, compiler);
 
       await server.start();

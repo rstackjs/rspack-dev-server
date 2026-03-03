@@ -1,4 +1,4 @@
-const webpack = require('@rspack/core');
+const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -9,7 +9,7 @@ describe('web socket server', () => {
   it('should work allow to disable', async () => {
     const devServerPort = port;
 
-    const compiler = webpack(config);
+    const compiler = rspack(config);
     const devServerOptions = {
       webSocketServer: false,
       port: devServerPort,
