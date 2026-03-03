@@ -391,45 +391,9 @@ class Server<
     return path.resolve(dir, 'node_modules/.cache/rspack-dev-server');
   }
 
-  static isWebTarget(compiler: Compiler): boolean {
-    if (compiler.platform?.web) {
-      return compiler.platform.web;
-    }
-
-    // TODO improve for the next major version and keep only `webTargets` to fallback for old versions
-    if (compiler.options.externalsPresets?.web) {
-      return true;
-    }
-
-    if (compiler.options.resolve?.conditionNames?.includes('browser')) {
-      return true;
-    }
-
-    const webTargets: (string | undefined | null)[] = [
-      'web',
-      'webworker',
-      'electron-preload',
-      'electron-renderer',
-      'nwjs',
-      'node-webkit',
-      undefined,
-      null,
-    ];
-
-    if (Array.isArray(compiler.options.target)) {
-      return compiler.options.target.some((r: string | undefined | null) =>
-        webTargets.includes(r),
-      );
-    }
-
-    return webTargets.includes(
-      compiler.options.target as string | undefined | null,
-    );
-  }
-
   addAdditionalEntries(compiler: Compiler) {
     const additionalEntries: string[] = [];
-    const isWebTarget = Server.isWebTarget(compiler);
+    const isWebTarget = Boolean(compiler.platform.web);
 
     // TODO maybe empty client
     if (this.options.client && isWebTarget) {
