@@ -19,16 +19,16 @@ First of all, install `@rspack/dev-server` and `@rspack/core` by your favorite p
 
 ```bash
 # npm
-$ npm install @rspack/dev-server @rspack/core --save-dev
+$ npm install -D @rspack/dev-server @rspack/core
 
 # yarn
-$ yarn add @rspack/dev-server @rspack/core --dev
+$ yarn add -D @rspack/dev-server @rspack/core
 
 # pnpm
-$ pnpm add @rspack/dev-server @rspack/core --save-dev
+$ pnpm add -D @rspack/dev-server @rspack/core
 
 # bun
-$ bun add @rspack/dev-server @rspack/core -D
+$ bun add -D @rspack/dev-server @rspack/core
 ```
 
 ## Usage
@@ -43,16 +43,16 @@ You can install it in your project by:
 
 ```bash
 # npm
-$ npm install @rspack/cli --save-dev
+$ npm install -D @rspack/cli
 
 # yarn
-$ yarn add @rspack/cli --dev
+$ yarn add -D @rspack/cli
 
 # pnpm
-$ pnpm add @rspack/cli --save-dev
+$ pnpm add -D @rspack/cli
 
 # bun
-$ bun add @rspack/cli -D
+$ bun add -D @rspack/cli
 ```
 
 And then start the development server by:
