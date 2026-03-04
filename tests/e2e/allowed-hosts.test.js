@@ -6,7 +6,7 @@ const config = require('../fixtures/client-config/webpack.config');
 const runBrowser = require('../helpers/run-browser');
 const [port1, port2] = require('../helpers/ports-map')['allowed-hosts'];
 
-const webSocketServers = ['ws', 'sockjs'];
+const webSocketServers = ['ws'];
 
 describe('allowed hosts', () => {
   for (const webSocketServer of webSocketServers) {

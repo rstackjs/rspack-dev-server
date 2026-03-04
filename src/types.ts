@@ -134,24 +134,13 @@ export interface ServerConfiguration<
 }
 
 export interface WebSocketServerConfiguration {
-  type?: 'sockjs' | 'ws' | string | (() => WebSocketServerConfiguration);
+  type?: 'ws' | string | (() => WebSocketServerConfiguration);
   options?: Record<string, EXPECTED_ANY>;
 }
 
-export type ClientConnection = (
-  | import('ws').WebSocket
-  | (import('sockjs').Connection & {
-      send: import('ws').WebSocket['send'];
-      terminate: import('ws').WebSocket['terminate'];
-      ping: import('ws').WebSocket['ping'];
-    })
-) & { isAlive?: boolean };
+export type ClientConnection = import('ws').WebSocket & { isAlive?: boolean };
 
-export type WebSocketServer =
-  | import('ws').WebSocketServer
-  | (import('sockjs').Server & {
-      close: import('ws').WebSocketServer['close'];
-    });
+export type WebSocketServer = import('ws').WebSocketServer;
 
 export interface WebSocketServerImplementation {
   implementation: WebSocketServer;
@@ -210,7 +199,7 @@ export interface ClientConfiguration {
       };
   progress?: boolean;
   reconnect?: boolean | number;
-  webSocketTransport?: 'ws' | 'sockjs' | string;
+  webSocketTransport?: 'ws' | string;
   webSocketURL?: string | WebSocketURL;
 }
 

@@ -1,7 +1,6 @@
 import { type RspackOptions, rspack } from '@rspack/core';
 import { type Configuration, RspackDevServer } from '@rspack/dev-server';
 import ReactRefreshPlugin from '@rspack/plugin-react-refresh';
-import customConfig from './fixtures/provide-plugin-custom/webpack.config';
 
 // The aims of use a cutstom value rather than
 // default is to avoid stack overflow trigged
@@ -96,20 +95,6 @@ describe.skip('normalize options snapshot', () => {
       },
     ]);
     const server = new RspackDevServer({}, compiler);
-    await server.start();
-    await server.stop();
-  });
-
-  it('should support custom client transport', async () => {
-    const compiler = rspack(customConfig);
-    const devServerOptions = {
-      client: {
-        webSocketTransport:
-          require.resolve('./fixtures/custom-client/CustomSockJSClient'),
-      },
-      webSocketServer: 'sockjs',
-    };
-    const server = new RspackDevServer(devServerOptions, compiler);
     await server.start();
     await server.stop();
   });
