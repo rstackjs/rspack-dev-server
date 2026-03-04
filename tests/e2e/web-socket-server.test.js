@@ -33,7 +33,7 @@ describe('web socket server', () => {
         });
 
       const webSocketRequests = [];
-      const session = await page.target().createCDPSession();
+      const session = await page.createCDPSession();
 
       session.on('Network.webSocketCreated', (test) => {
         webSocketRequests.push(test);
@@ -45,7 +45,7 @@ describe('web socket server', () => {
         waitForDebuggerOnStart: true,
       });
 
-      sessionSubscribe(session);
+      await sessionSubscribe(session);
 
       await page.goto(`http://127.0.0.1:${port}/`, {
         waitUntil: 'networkidle0',

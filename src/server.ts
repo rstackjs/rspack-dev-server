@@ -90,12 +90,7 @@ export interface Configuration<
   static?: boolean | string | Static | Array<string | Static>;
   server?: ServerType<A, S> | ServerConfiguration<A, S>;
   app?: () => Promise<A>;
-  webSocketServer?:
-    | boolean
-    | 'sockjs'
-    | 'ws'
-    | string
-    | WebSocketServerConfiguration;
+  webSocketServer?: boolean | 'ws' | string | WebSocketServerConfiguration;
   proxy?: ProxyConfigArray;
   open?: boolean | string | Open | Array<string | Open>;
   setupExitSignals?: boolean;
@@ -429,28 +424,17 @@ class Server<
 
         let hostname: string;
 
-        // SockJS is not supported server mode, so `hostname` and `port` can't specified, let's ignore them
-        const isSockJSType = webSocketServer.type === 'sockjs';
         const isWebSocketServerHostDefined =
           typeof webSocketServer.options.host !== 'undefined';
         const isWebSocketServerPortDefined =
           typeof webSocketServer.options.port !== 'undefined';
 
-        if (
-          isSockJSType &&
-          (isWebSocketServerHostDefined || isWebSocketServerPortDefined)
-        ) {
-          this.logger.warn(
-            "SockJS only supports client mode and does not support custom hostname and port options. Please consider using 'ws' if you need to customize these options.",
-          );
-        }
-
         // We are proxying dev server and need to specify custom `hostname`
         if (typeof webSocketURL.hostname !== 'undefined') {
           hostname = webSocketURL.hostname;
         }
-        // Web socket server works on custom `hostname`, only for `ws` because `sock-js` is not support custom `hostname`
-        else if (isWebSocketServerHostDefined && !isSockJSType) {
+        // Web socket server works on custom `hostname`
+        else if (isWebSocketServerHostDefined) {
           hostname = webSocketServer.options.host;
         }
         // The `host` option is specified
@@ -470,8 +454,8 @@ class Server<
         if (typeof webSocketURL.port !== 'undefined') {
           port = webSocketURL.port;
         }
-        // Web socket server works on custom `port`, only for `ws` because `sock-js` is not support custom `port`
-        else if (isWebSocketServerPortDefined && !isSockJSType) {
+        // Web socket server works on custom `port`
+        else if (isWebSocketServerPortDefined) {
           port = webSocketServer.options.port;
         }
         // The `port` option is specified
@@ -499,12 +483,8 @@ class Server<
           pathname = webSocketURL.pathname;
         }
         // Web socket server works on custom `path`
-        else if (
-          typeof webSocketServer.options.prefix !== 'undefined' ||
-          typeof webSocketServer.options.path !== 'undefined'
-        ) {
-          pathname =
-            webSocketServer.options.prefix || webSocketServer.options.path;
+        else if (typeof webSocketServer.options.path !== 'undefined') {
+          pathname = webSocketServer.options.path;
         }
 
         searchParams.set('pathname', pathname);
@@ -1238,9 +1218,7 @@ class Server<
       typeof (this.options.webSocketServer as WebSocketServerConfiguration)
         .type === 'string' &&
       // @ts-expect-error
-      (this.options.webSocketServer.type === 'ws' ||
-        (this.options.webSocketServer as WebSocketServerConfiguration).type ===
-          'sockjs');
+      this.options.webSocketServer.type === 'ws';
 
     let clientTransport: string | undefined;
 
@@ -1264,11 +1242,14 @@ class Server<
 
     switch (typeof clientTransport) {
       case 'string':
-        // could be 'sockjs', 'ws', or a path that should be required
+        // could be 'ws' or a path that should be required
         if (clientTransport === 'sockjs') {
-          clientImplementation =
-            require.resolve('../client/clients/SockJSClient');
-        } else if (clientTransport === 'ws') {
+          throw new Error(
+            "SockJS support has been removed. Please set client.webSocketTransport to 'ws' or provide a custom transport implementation path.",
+          );
+        }
+
+        if (clientTransport === 'ws') {
           clientImplementation =
             require.resolve('../client/clients/WebSocketClient');
         } else {
@@ -1289,7 +1270,7 @@ class Server<
           !isKnownWebSocketServerImplementation
             ? 'When you use custom web socket implementation you must explicitly specify client.webSocketTransport. '
             : ''
-        }client.webSocketTransport must be a string denoting a default implementation (e.g. 'sockjs', 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
+        }client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
       );
     }
 
@@ -1297,23 +1278,24 @@ class Server<
   }
 
   getServerTransport() {
-    let implementation:
-      | typeof import('./servers/SockJSServer')
-      | typeof import('./servers/WebsocketServer')
-      | undefined;
+    let implementation: typeof import('./servers/WebsocketServer') | undefined;
     let implementationFound = true;
 
     switch (
       typeof (this.options.webSocketServer as WebSocketServerConfiguration).type
     ) {
       case 'string':
-        // Could be 'sockjs', in the future 'ws', or a path that should be required
+        // Could be 'ws' or a path that should be required
         if (
           (this.options.webSocketServer as WebSocketServerConfiguration)
             .type === 'sockjs'
         ) {
-          implementation = require('./servers/SockJSServer');
-        } else if (
+          throw new Error(
+            "SockJS support has been removed. Please set webSocketServer to 'ws' or provide a custom WebSocket server implementation.",
+          );
+        }
+
+        if (
           (this.options.webSocketServer as WebSocketServerConfiguration)
             .type === 'ws'
         ) {
@@ -1340,7 +1322,7 @@ class Server<
 
     if (!implementationFound) {
       throw new Error(
-        "webSocketServer (webSocketServer.type) must be a string denoting a default implementation (e.g. 'ws', 'sockjs'), a full path to " +
+        "webSocketServer (webSocketServer.type) must be a string denoting a default implementation (e.g. 'ws'), a full path to " +
           'a JS file which exports a class extending BaseServer (webpack-dev-server/lib/servers/BaseServer.js) ' +
           'via require.resolve(...), or the class itself which extends BaseServer',
       );
@@ -1676,50 +1658,6 @@ class Server<
     middlewares.push({
       name: 'webpack-dev-middleware',
       middleware: this.middleware as MiddlewareHandler,
-    });
-
-    // Should be after `webpack-dev-middleware`, otherwise other middlewares might rewrite response
-    middlewares.push({
-      name: 'rspack-dev-server-sockjs-bundle',
-      path: '/__rspack_dev_server__/sockjs.bundle.js',
-      middleware: (req: Request, res: Response, next: NextFunction) => {
-        if (req.method !== 'GET' && req.method !== 'HEAD') {
-          next();
-          return;
-        }
-
-        const clientPath = path.join(
-          __dirname,
-          '../',
-          'client/modules/sockjs-client/index.js',
-        );
-
-        // Express send Etag and other headers by default, so let's keep them for compatibility reasons
-        if (typeof res.sendFile === 'function') {
-          res.sendFile(clientPath);
-          return;
-        }
-
-        let stats: fs.Stats;
-
-        try {
-          // TODO implement `inputFileSystem.createReadStream` in webpack
-          stats = fs.statSync(clientPath);
-        } catch {
-          next();
-          return;
-        }
-
-        res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-        res.setHeader('Content-Length', stats.size);
-
-        if (req.method === 'HEAD') {
-          res.end();
-          return;
-        }
-
-        fs.createReadStream(clientPath).pipe(res);
-      },
     });
 
     middlewares.push({
@@ -2154,10 +2092,7 @@ class Server<
         const headers =
           typeof request !== 'undefined'
             ? (request.headers as { [key: string]: string | undefined })
-            : typeof (client as unknown as import('sockjs').Connection)
-                  .headers !== 'undefined'
-              ? (client as unknown as import('sockjs').Connection).headers
-              : undefined;
+            : undefined;
 
         if (!headers) {
           this.logger.warn(
@@ -2562,8 +2497,7 @@ class Server<
     params?: EXPECTED_ANY,
   ) {
     for (const client of clients) {
-      // `sockjs` uses `1` to indicate client is ready to accept data
-      // `ws` uses `WebSocket.OPEN`, but it is mean `1` too
+      // `ws` uses `WebSocket.OPEN` to indicate client is ready to accept data
       if (client.readyState === 1) {
         client.send(JSON.stringify({ type, data, params }));
       }

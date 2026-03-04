@@ -24,10 +24,6 @@ try {
 const originalResolveFilename = Module._resolveFilename;
 const moduleAliasMap = new Map([
   [
-    '../client/clients/SockJSClient',
-    path.resolve(process.cwd(), 'client/clients/SockJSClient.js'),
-  ],
-  [
     '../client/clients/WebSocketClient',
     path.resolve(process.cwd(), 'client/clients/WebSocketClient.js'),
   ],

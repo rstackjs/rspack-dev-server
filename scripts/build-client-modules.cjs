@@ -115,20 +115,6 @@ const configs = [
       ),
     ],
   }),
-  merge(baseForModules, {
-    entry: path.resolve(
-      __dirname,
-      '../client-src/modules/sockjs-client/index.ts',
-    ),
-    output: {
-      filename: 'sockjs-client/index.js',
-      library: {
-        name: 'SockJS',
-        type: 'umd',
-      },
-      globalObject: "(typeof self !== 'undefined' ? self : this)",
-    },
-  }),
 ];
 
 const compiler = rspack(configs);

@@ -7,7 +7,7 @@ const runBrowser = require('../helpers/run-browser');
 const sessionSubscribe = require('../helpers/session-subscribe');
 const [port1, port2] = require('../helpers/ports-map')['web-socket-server-url'];
 
-const webSocketServers = ['ws', 'sockjs'];
+const webSocketServers = ['ws'];
 
 describe('web socket server URL', () => {
   for (const webSocketServer of webSocketServers) {
@@ -68,7 +68,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -80,7 +80,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -163,7 +163,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -175,7 +175,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -264,7 +264,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -276,7 +276,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -364,7 +364,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -376,7 +376,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -442,7 +442,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -454,7 +454,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -516,7 +516,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -528,7 +528,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -590,7 +590,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -602,7 +602,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -664,7 +664,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -676,7 +676,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -738,7 +738,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -750,7 +750,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -811,7 +811,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -823,7 +823,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -885,7 +885,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -897,7 +897,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -932,15 +932,14 @@ describe('web socket server URL', () => {
           type: webSocketServer,
           options: {
             host: '0.0.0.0',
-            // "sockjs" doesn't support external server
-            port: webSocketServer === 'sockjs' ? `${port1}` : `${port2}`,
+            port: `${port2}`,
           },
         },
         port: port1,
         host: '0.0.0.0',
         client: {
           webSocketURL: {
-            port: webSocketServer === 'sockjs' ? `${port1}` : `${port2}`,
+            port: `${port2}`,
           },
         },
         allowedHosts: 'all',
@@ -966,7 +965,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -978,7 +977,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -994,9 +993,7 @@ describe('web socket server URL', () => {
         const webSocketRequest = webSocketRequests[0];
 
         expect(webSocketRequest.url).toContain(
-          webSocketServer === 'sockjs'
-            ? `${websocketURLProtocol}://127.0.0.1:${port1}/ws`
-            : `${websocketURLProtocol}://127.0.0.1:${port2}/ws`,
+          `${websocketURLProtocol}://127.0.0.1:${port2}/ws`,
         );
         expect(
           consoleMessages.map((message) => message.text()),
@@ -1042,7 +1039,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1054,7 +1051,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -1115,7 +1112,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1127,7 +1124,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -1184,7 +1181,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1196,7 +1193,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -1258,7 +1255,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1270,7 +1267,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -1335,7 +1332,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1347,7 +1344,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -1362,10 +1359,7 @@ describe('web socket server URL', () => {
         const webSocketRequest = webSocketRequests[0];
 
         expect(webSocketRequest.url).toContain(
-          // "sockjs" has bug with parsing URL
-          webSocketServer === 'ws'
-            ? `${websocketURLProtocol}://foo:chuntaro@127.0.0.1:${port1}/ws`
-            : `${websocketURLProtocol}://127.0.0.1:${port1}/ws`,
+          `${websocketURLProtocol}://foo:chuntaro@127.0.0.1:${port1}/ws`,
         );
         expect(
           consoleMessages.map((message) => message.text()),
@@ -1412,7 +1406,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1424,7 +1418,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -1486,7 +1480,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1498,7 +1492,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/custom-ws\/foo\/bar/.test(request.url())) {
@@ -1561,7 +1555,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1573,7 +1567,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/custom-ws\//.test(request.url())) {
@@ -1642,7 +1636,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1654,7 +1648,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/custom-ws\/foo\/bar/.test(request.url())) {
@@ -1721,7 +1715,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1733,7 +1727,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/custom-ws\//.test(request.url())) {
@@ -1761,7 +1755,6 @@ describe('web socket server URL', () => {
       }
     });
 
-    // Only works for "ws" server, "sockjs" adds "/" be default, because need do requests like "/custom-ws/info?t=1624462615772"
     it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "path" ending with slash ("${webSocketServer}")`, async () => {
       const compiler = rspack(config);
       const devServerOptions = {
@@ -1801,7 +1794,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1813,7 +1806,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/custom-ws\//.test(request.url())) {
@@ -1880,7 +1873,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -1892,7 +1885,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/custom-ws\//.test(request.url())) {
@@ -1911,87 +1904,6 @@ describe('web socket server URL', () => {
           webSocketServer === 'ws'
             ? `${websocketURLProtocol}://127.0.0.1:${port1}`
             : `${websocketURLProtocol}://127.0.0.1:${port1}/custom-ws`,
-        );
-        expect(
-          consoleMessages.map((message) => message.text()),
-        ).toMatchSnapshot('console messages');
-        expect(pageErrors).toMatchSnapshot('page errors');
-      } finally {
-        await browser.close();
-        await server.stop();
-      }
-    });
-
-    // Only works for "sockjs" server
-    it(`should work with the "client.webSocketURL.pathname" option and the custom web socket server "prefix" for compatibility with "sockjs" ("${webSocketServer}")`, async () => {
-      const compiler = rspack(config);
-      const devServerOptions = {
-        client: {
-          webSocketURL: {
-            pathname: '/custom-ws',
-          },
-        },
-        webSocketServer: {
-          type: webSocketServer,
-          options:
-            webSocketServer === 'ws'
-              ? { path: '/custom-ws' }
-              : { prefix: '/custom-ws' },
-        },
-        port: port1,
-        host: '0.0.0.0',
-        allowedHosts: 'all',
-      };
-      const server = new Server(devServerOptions, compiler);
-
-      await server.start();
-
-      const { page, browser } = await runBrowser();
-
-      try {
-        const pageErrors = [];
-        const consoleMessages = [];
-
-        page
-          .on('console', (message) => {
-            consoleMessages.push(message);
-          })
-          .on('pageerror', (error) => {
-            pageErrors.push(error);
-          });
-
-        const webSocketRequests = [];
-
-        if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
-
-          session.on('Network.webSocketCreated', (test) => {
-            webSocketRequests.push(test);
-          });
-
-          await session.send('Target.setAutoAttach', {
-            autoAttach: true,
-            flatten: true,
-            waitForDebuggerOnStart: true,
-          });
-
-          sessionSubscribe(session);
-        } else {
-          page.on('request', (request) => {
-            if (/\/custom-ws/.test(request.url())) {
-              webSocketRequests.push({ url: request.url() });
-            }
-          });
-        }
-
-        await page.goto(`http://127.0.0.1:${port1}/`, {
-          waitUntil: 'networkidle0',
-        });
-
-        const webSocketRequest = webSocketRequests[0];
-
-        expect(webSocketRequest.url).toContain(
-          `${websocketURLProtocol}://127.0.0.1:${port1}/custom-ws`,
         );
         expect(
           consoleMessages.map((message) => message.text()),
@@ -2032,7 +1944,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2044,7 +1956,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -2100,7 +2012,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2112,7 +2024,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -2169,7 +2081,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2181,7 +2093,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -2237,7 +2149,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2249,7 +2161,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -2316,7 +2228,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2328,7 +2240,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -2395,7 +2307,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2407,7 +2319,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -2467,7 +2379,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -2479,7 +2391,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {

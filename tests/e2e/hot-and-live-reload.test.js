@@ -1,6 +1,5 @@
 const path = require('node:path');
 const WebSocket = require('ws');
-const SockJS = require('sockjs-client');
 const { rspack } = require('@rspack/core');
 const fs = require('node:fs');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
@@ -20,7 +19,6 @@ const cssFilePath = path.resolve(
 const INVALID_MESSAGE = '[rspack-dev-server] App updated. Recompiling...';
 
 describe('hot and live reload', () => {
-  // "sockjs" client cannot add additional headers
   const modes = [
     {
       title: 'should work and refresh content using hot module replacement',
@@ -124,70 +122,6 @@ describe('hot and live reload', () => {
         'should work and refresh content using hot module replacement when live reload and hot enabled',
       options: {
         webSocketServer: 'ws',
-        liveReload: true,
-        hot: true,
-      },
-    },
-    // "sockjs" web socket serve
-    {
-      title:
-        'should work and refresh content using hot module replacement when hot enabled',
-      options: {
-        allowedHosts: 'all',
-
-        webSocketServer: 'sockjs',
-        hot: true,
-      },
-    },
-    {
-      title:
-        'should work and refresh content using hot module replacement when live reload enabled',
-      options: {
-        allowedHosts: 'all',
-
-        webSocketServer: 'sockjs',
-        liveReload: true,
-      },
-    },
-    {
-      title: 'should not refresh content when hot and no live reload disabled',
-      options: {
-        allowedHosts: 'all',
-
-        webSocketServer: 'sockjs',
-        hot: false,
-        liveReload: false,
-      },
-    },
-    {
-      title:
-        'should work and refresh content using hot module replacement when live reload disabled and hot enabled',
-      options: {
-        allowedHosts: 'all',
-
-        webSocketServer: 'sockjs',
-        liveReload: false,
-        hot: true,
-      },
-    },
-    {
-      title:
-        'should work and refresh content using live reload when live reload disabled and hot enabled',
-      options: {
-        allowedHosts: 'all',
-
-        webSocketServer: 'sockjs',
-        liveReload: true,
-        hot: false,
-      },
-    },
-    {
-      title:
-        'should work and refresh content using hot module replacement when live reload and hot enabled',
-      options: {
-        allowedHosts: 'all',
-
-        webSocketServer: 'sockjs',
         liveReload: true,
         hot: true,
       },
@@ -345,87 +279,54 @@ describe('hot and live reload', () => {
             ? testDevServerOptions.webSocketServer
             : 'ws';
 
-        if (webSocketTransport === 'ws') {
-          const ws = new WebSocket(
-            `ws://127.0.0.1:${devServerOptions.port}/ws`,
-            {
-              headers: {
-                host: `127.0.0.1:${devServerOptions.port}`,
-                origin: `http://127.0.0.1:${devServerOptions.port}`,
-              },
-            },
+        if (webSocketTransport !== 'ws') {
+          throw new Error(
+            `Unsupported webSocketTransport in test: ${webSocketTransport}`,
           );
+        }
 
-          let opened = false;
-          let received = false;
-          let errored = false;
+        const ws = new WebSocket(`ws://127.0.0.1:${devServerOptions.port}/ws`, {
+          headers: {
+            host: `127.0.0.1:${devServerOptions.port}`,
+            origin: `http://127.0.0.1:${devServerOptions.port}`,
+          },
+        });
 
-          ws.on('error', (error) => {
-            if (!webSocketServerLaunched && /404/.test(error)) {
-              errored = true;
-            } else {
-              errored = true;
-            }
+        let opened = false;
+        let received = false;
+        let errored = false;
+
+        ws.on('error', (error) => {
+          if (!webSocketServerLaunched && /404/.test(error)) {
+            errored = true;
+          } else {
+            errored = true;
+          }
+
+          ws.close();
+        });
+
+        ws.on('open', () => {
+          opened = true;
+        });
+
+        ws.on('message', (data) => {
+          const message = JSON.parse(data.toString());
+
+          if (message.type === 'ok') {
+            received = true;
 
             ws.close();
-          });
+          }
+        });
 
-          ws.on('open', () => {
-            opened = true;
-          });
-
-          ws.on('message', (data) => {
-            const message = JSON.parse(data.toString());
-
-            if (message.type === 'ok') {
-              received = true;
-
-              ws.close();
-            }
-          });
-
-          ws.on('close', () => {
-            if (opened && received && !errored) {
-              resolve();
-            } else if (!webSocketServerLaunched && errored) {
-              resolve();
-            }
-          });
-        } else {
-          const sockjs = new SockJS(
-            `http://127.0.0.1:${devServerOptions.port}/ws`,
-          );
-
-          let opened = false;
-          let received = false;
-          let errored = false;
-
-          sockjs.onerror = () => {
-            errored = true;
-          };
-
-          sockjs.onopen = () => {
-            opened = true;
-          };
-
-          sockjs.onmessage = ({ data }) => {
-            const message = JSON.parse(data.toString());
-
-            if (message.type === 'ok') {
-              received = true;
-
-              sockjs.close();
-            }
-          };
-
-          sockjs.onclose = (event) => {
-            if (opened && received && !errored) {
-              resolve();
-            } else if (event && event.reason === 'Cannot connect to server') {
-              resolve();
-            }
-          };
-        }
+        ws.on('close', () => {
+          if (opened && received && !errored) {
+            resolve();
+          } else if (!webSocketServerLaunched && errored) {
+            resolve();
+          }
+        });
       });
 
       const launched = await runBrowser();

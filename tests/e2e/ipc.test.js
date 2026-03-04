@@ -10,7 +10,7 @@ const runBrowser = require('../helpers/run-browser');
 const sessionSubscribe = require('../helpers/session-subscribe');
 const port1 = require('../helpers/ports-map').ipc;
 
-const webSocketServers = ['ws', 'sockjs'];
+const webSocketServers = ['ws'];
 
 describe('web socket server URL', () => {
   for (const webSocketServer of webSocketServers) {
@@ -71,7 +71,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -83,7 +83,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -173,7 +173,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -185,7 +185,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {
@@ -290,7 +290,7 @@ describe('web socket server URL', () => {
         const webSocketRequests = [];
 
         if (webSocketServer === 'ws') {
-          const session = await page.target().createCDPSession();
+          const session = await page.createCDPSession();
 
           session.on('Network.webSocketCreated', (test) => {
             webSocketRequests.push(test);
@@ -302,7 +302,7 @@ describe('web socket server URL', () => {
             waitForDebuggerOnStart: true,
           });
 
-          sessionSubscribe(session);
+          await sessionSubscribe(session);
         } else {
           page.on('request', (request) => {
             if (/\/ws\//.test(request.url())) {

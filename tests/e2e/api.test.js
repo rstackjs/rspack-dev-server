@@ -681,7 +681,7 @@ describe('API', () => {
           });
 
         const webSocketRequests = [];
-        const session = await page.target().createCDPSession();
+        const session = await page.createCDPSession();
 
         session.on('Network.webSocketCreated', (test) => {
           webSocketRequests.push(test);
@@ -693,7 +693,7 @@ describe('API', () => {
           waitForDebuggerOnStart: true,
         });
 
-        sessionSubscribe(session);
+        await sessionSubscribe(session);
 
         try {
           const response = await page.goto(`http://localhost:${port}/`, {
