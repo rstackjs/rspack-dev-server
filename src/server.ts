@@ -560,26 +560,13 @@ class Server<
         return compilerWithDevServer.options;
       }
 
-      // Configuration with `web` preset
-      const compilerWithWebPreset = (
+      // Compiler for `web` target
+      const compilerWithWebTarget = (
         this.compiler as MultiCompiler
-      ).compilers.find(
-        (config) =>
-          config.options.externalsPresets?.web ||
-          [
-            'web',
-            'webworker',
-            'electron-preload',
-            'electron-renderer',
-            'node-webkit',
+      ).compilers.find((compiler) => Boolean(compiler.platform.web));
 
-            undefined,
-            null,
-          ].includes(config.options.target as string),
-      );
-
-      if (compilerWithWebPreset) {
-        return compilerWithWebPreset.options;
+      if (compilerWithWebTarget) {
+        return compilerWithWebTarget.options;
       }
 
       // Fallback
