@@ -111,7 +111,7 @@ describe('web socket server URL', () => {
     it(`should work behind proxy, when hostnames are different and ports are same ("${webSocketServer}")`, async () => {
       const devServerHost = '127.0.0.1';
       const devServerPort = port1;
-      const proxyHost = Server.internalIPSync('v4');
+      const proxyHost = Server.findIp('v4', false);
       const proxyPort = port1;
 
       const compiler = rspack(config);
@@ -207,7 +207,7 @@ describe('web socket server URL', () => {
     it(`should work behind proxy, when hostnames are different and ports are different ("${webSocketServer}")`, async () => {
       const devServerHost = '127.0.0.1';
       const devServerPort = port1;
-      const proxyHost = Server.internalIPSync('v4');
+      const proxyHost = Server.findIp('v4', false);
       const proxyPort = port2;
 
       const compiler = rspack(config);
@@ -308,7 +308,7 @@ describe('web socket server URL', () => {
     it(`should work behind proxy, when the "host" option is "local-ip" and the "port" option is "auto" ("${webSocketServer}")`, async () => {
       process.env.RSPACK_DEV_SERVER_BASE_PORT = 40000;
 
-      const proxyHost = Server.internalIPSync('v4');
+      const proxyHost = Server.findIp('v4', false);
       const proxyPort = port2;
 
       const compiler = rspack(config);
@@ -1916,7 +1916,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work when "host" option is IPv4 ("${webSocketServer}")`, async () => {
-      const hostname = Server.internalIPSync('v4');
+      const hostname = Server.findIp('v4', false);
       const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
@@ -1984,7 +1984,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work when "host" option is "local-ip" ("${webSocketServer}")`, async () => {
-      const hostname = Server.internalIPSync('v4');
+      const hostname = Server.findIp('v4', false);
       const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,
@@ -2053,7 +2053,7 @@ describe('web socket server URL', () => {
     });
 
     it(`should work when "host" option is "local-ipv4" ("${webSocketServer}")`, async () => {
-      const hostname = Server.internalIPSync('v4');
+      const hostname = Server.findIp('v4', false);
       const compiler = rspack(config);
       const devServerOptions = {
         webSocketServer,

@@ -302,16 +302,6 @@ class Server<
     }
   }
 
-  // TODO remove me in the next major release, we have `findIp`
-  static async internalIP(family: 'v4' | 'v6') {
-    return Server.findIp(family, false);
-  }
-
-  // TODO remove me in the next major release, we have `findIp`
-  static internalIPSync(family: 'v4' | 'v6') {
-    return Server.findIp(family, false);
-  }
-
   static async getHostname(hostname: Host) {
     if (hostname === 'local-ip') {
       return (
