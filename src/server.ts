@@ -926,7 +926,23 @@ class Server<
         if (!certificateExists) {
           this.logger.info('Generating SSL certificate...');
 
-          const selfsigned = require('selfsigned');
+          let selfsigned: typeof import('selfsigned');
+
+          try {
+            selfsigned = require('selfsigned');
+          } catch (error) {
+            if (
+              error instanceof Error &&
+              (error as NodeJS.ErrnoException).code === 'MODULE_NOT_FOUND'
+            ) {
+              throw new Error(
+                'Cannot generate a self-signed certificate because optional peer dependency `selfsigned@^5.0.0` is not installed. Please install it and try again.',
+              );
+            }
+
+            throw error;
+          }
+
           const attributes = [{ name: 'commonName', value: 'localhost' }];
           const notBeforeDate = new Date();
           const notAfterDate = new Date(notBeforeDate);

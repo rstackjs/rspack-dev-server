@@ -55,7 +55,7 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
 
 ### Upgraded Express to v5
 
-`express`` has been updated to v5, see [Introducing Express v5: A New Era for the Node.js Framework](https://expressjs.com/2024/10/15/v5-release.html) for details.
+`express` has been updated to v5, see [Introducing Express v5: A New Era for the Node.js Framework](https://expressjs.com/2024/10/15/v5-release.html) for details.
 
 ### Removed `spdy` support
 
@@ -86,6 +86,23 @@ export default {
     },
   },
 };
+```
+
+### Optional `selfsigned` peer dependency
+
+`selfsigned` is no longer bundled as a direct dependency of `@rspack/dev-server`.
+
+If you use `server.type: "https"` or `"http2"` without providing your own
+`server.options.key` and `server.options.cert`, the dev server needs
+`selfsigned` to generate a local certificate.
+
+Install it in your project when needed:
+
+```bash
+npm i -D selfsigned@^5.0.0
+# or pnpm add -D selfsigned@^5.0.0
+# or yarn add -D selfsigned@^5.0.0
+# or bun add -D selfsigned@^5.0.0
 ```
 
 ### Removed SockJS support (`ws` only)

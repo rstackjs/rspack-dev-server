@@ -83,6 +83,7 @@
     "puppeteer": "^24.37.5",
     "react-refresh": "0.18.0",
     "require-from-string": "^2.0.2",
+    "selfsigned": "^5.5.0",
     "simple-git-hooks": "^2.13.1",
     "style-loader": "^4.0.0",
     "typescript": "^5.9.3",
@@ -104,12 +105,17 @@
     "launch-editor": "^2.13.1",
     "open": "^11.0.0",
     "p-retry": "^7.1.1",
-    "selfsigned": "^5.5.0",
     "serve-index": "^1.9.2",
     "webpack-dev-middleware": "^7.4.5",
     "ws": "^8.19.0"
   },
   "peerDependencies": {
-    "@rspack/core": "^2.0.0-0"
+    "@rspack/core": "^2.0.0-0",
+    "selfsigned": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "selfsigned": {
+      "optional": true
+    }
   }
 }
