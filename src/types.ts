@@ -43,6 +43,9 @@ import type { ServeStaticOptions } from 'serve-static';
 // biome-ignore lint/suspicious/noExplicitAny: expected any
 export type EXPECTED_ANY = any;
 
+/** https://github.com/microsoft/TypeScript/issues/29729 */
+export type LiteralUnion<T extends U, U> = T | (U & Record<never, never>);
+
 export type NextFunction = (err?: EXPECTED_ANY) => void;
 export type SimpleHandleFunction = (
   req: IncomingMessage,
@@ -81,8 +84,11 @@ export type DevMiddlewareContext<
   U extends Response,
 > = import('webpack-dev-middleware').Context<T, U>;
 
-export type Host = 'local-ip' | 'local-ipv4' | 'local-ipv6' | string;
-export type Port = number | string | 'auto';
+export type Host = LiteralUnion<
+  'local-ip' | 'local-ipv4' | 'local-ipv6',
+  string
+>;
+export type Port = number | LiteralUnion<'auto', string>;
 
 export interface WatchFiles {
   paths: string | string[];
@@ -119,10 +125,7 @@ export type ServerType<
   A extends BasicApplication = ExpressApplication,
   S extends import('http').Server = import('http').Server,
 > =
-  | 'http'
-  | 'https'
-  | 'http2'
-  | string
+  | LiteralUnion<'http' | 'https' | 'http2', string>
   | ((serverOptions: ServerOptions, application: A) => S);
 
 export interface ServerConfiguration<
@@ -134,7 +137,7 @@ export interface ServerConfiguration<
 }
 
 export interface WebSocketServerConfiguration {
-  type?: 'ws' | string | (() => WebSocketServerConfiguration);
+  type?: LiteralUnion<'ws', string> | (() => WebSocketServerConfiguration);
   options?: Record<string, EXPECTED_ANY>;
 }
 
@@ -199,7 +202,7 @@ export interface ClientConfiguration {
       };
   progress?: boolean;
   reconnect?: boolean | number;
-  webSocketTransport?: 'ws' | string;
+  webSocketTransport?: LiteralUnion<'ws', string>;
   webSocketURL?: string | WebSocketURL;
 }
 

@@ -33,6 +33,7 @@ import type {
   Host,
   IPv6,
   IncomingMessage,
+  LiteralUnion,
   Middleware,
   MiddlewareHandler,
   MiddlewareObject,
@@ -84,13 +85,16 @@ export interface Configuration<
   liveReload?: boolean;
   devMiddleware?: DevMiddlewareOptions<Request, Response>;
   compress?: boolean;
-  allowedHosts?: 'auto' | 'all' | string | string[];
+  allowedHosts?: LiteralUnion<'auto' | 'all', string> | string[];
   historyApiFallback?: boolean | ConnectHistoryApiFallbackOptions;
   watchFiles?: string | string[] | WatchFiles | Array<string | WatchFiles>;
   static?: boolean | string | Static | Array<string | Static>;
   server?: ServerType<A, S> | ServerConfiguration<A, S>;
   app?: () => Promise<A>;
-  webSocketServer?: boolean | 'ws' | string | WebSocketServerConfiguration;
+  webSocketServer?:
+    | boolean
+    | LiteralUnion<'ws', string>
+    | WebSocketServerConfiguration;
   proxy?: ProxyConfigArray;
   open?: boolean | string | Open | Array<string | Open>;
   setupExitSignals?: boolean;
