@@ -931,9 +931,10 @@ class Server<
           try {
             selfsigned = require('selfsigned');
           } catch (error) {
-            const requireError = error as NodeJS.ErrnoException;
-
-            if (requireError.code === 'MODULE_NOT_FOUND') {
+            if (
+              error instanceof Error &&
+              (error as NodeJS.ErrnoException).code === 'MODULE_NOT_FOUND'
+            ) {
               throw new Error(
                 'Cannot generate a self-signed certificate because optional peer dependency `selfsigned@^5.0.0` is not installed. Please install it and try again.',
               );
