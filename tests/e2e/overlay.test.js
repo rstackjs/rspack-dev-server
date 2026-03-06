@@ -1,12 +1,14 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
-const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/overlay-config/webpack.config');
 const trustedTypesConfig = require('../fixtures/overlay-config/trusted-types.webpack.config');
+const getPort = require('../helpers/get-port');
 const runBrowser = require('../helpers/run-browser');
-const port = require('../helpers/ports-map').overlay;
+const basePort = require('../helpers/ports-map').overlay;
 require('../helpers/normalize');
+
+const { RspackDevServer: Server } = require('@rspack/dev-server');
 
 class ErrorPlugin {
   constructor(message, skipCounter) {
@@ -66,10 +68,12 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let prettier;
 let prettierHTML;
 let prettierCSS;
+let port;
 
 describe('overlay', () => {
-  const mockLaunchEditorCb = rs.fn();
-  rs.doMockRequire('launch-editor', () => mockLaunchEditorCb);
+  beforeEach(async () => {
+    port = await getPort(basePort);
+  });
 
   beforeAll(async () => {
     // Due problems with ESM modules for Node.js@18
@@ -602,9 +606,6 @@ describe('overlay', () => {
   });
 
   it('should open editor when error with file info is clicked', async () => {
-    mockLaunchEditorCb.mockClear();
-    const { RspackDevServer: Server } = require('@rspack/dev-server');
-
     const compiler = rspack(config);
     const devServerOptions = {
       port,
@@ -634,11 +635,15 @@ describe('overlay', () => {
         .frames()
         .find((item) => item.name() === 'rspack-dev-server-client-overlay');
 
-      const errorHandle = await frame.$('[data-can-open]');
+      const openEditorResponsePromise = page.waitForResponse((response) =>
+        response.url().includes('/rspack-dev-server/open-editor?fileName='),
+      );
 
-      await errorHandle.click();
+      await frame.click('[data-can-open]');
 
-      await expect.poll(() => mockLaunchEditorCb.mock.calls.length).toBe(1);
+      const openEditorResponse = await openEditorResponsePromise;
+
+      expect(openEditorResponse.status()).toBe(200);
     } finally {
       fs.writeFileSync(pathToFile, originalCode);
       await browser.close();

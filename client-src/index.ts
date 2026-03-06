@@ -10,7 +10,6 @@
 
 // @ts-expect-error: No type definitions available for '@rspack/core/hot/emitter.js'
 import { emitter as hotEmitter } from '@rspack/core/hot/emitter.js';
-/* Rspack dev server runtime client */
 // @ts-expect-error: No type definitions available for '@rspack/core/hot/log.js'
 import { log as webpackHotLog } from '@rspack/core/hot/log.js';
 import { createOverlay, formatProblem } from './overlay.js';
@@ -19,9 +18,6 @@ import { defineProgressElement, isProgressSupported } from './progress.js';
 import { log, setLogLevel } from './utils/log.js';
 import sendMessage from './utils/sendMessage.js';
 import type { LogLevel } from './type.js';
-
-declare const __resourceQuery: string;
-declare const __webpack_hash__: string;
 
 type OverlayOptions = {
   warnings?: boolean | ((error: Error) => boolean);
@@ -105,7 +101,7 @@ const parseURL = (resourceQuery: string): { [key: string]: string } => {
 
 const status: Status = {
   isUnloading: false,
-  currentHash: __webpack_hash__,
+  currentHash: BUILD_HASH,
 };
 
 const getCurrentScriptSource = (): string => {
@@ -133,7 +129,7 @@ const getCurrentScriptSource = (): string => {
   throw new Error('[rspack-dev-server] Failed to get current script source.');
 };
 
-const parsedResourceQuery = parseURL(__resourceQuery);
+const parsedResourceQuery = parseURL(RESOURCE_QUERY);
 
 const enabledFeatures = {
   'Hot Module Replacement': false,

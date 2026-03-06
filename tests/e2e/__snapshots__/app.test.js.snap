@@ -18,10 +18,10 @@ exports[`app option > should work using "connect (async)" application and "http"
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -46,10 +46,10 @@ exports[`app option > should work using "connect" application and "http" server 
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -74,10 +74,10 @@ exports[`app option > should work using "connect" application and "http2" server
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -102,10 +102,10 @@ exports[`app option > should work using "connect" application and "https" server
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -130,10 +130,10 @@ exports[`app option > should work using "express" application and "http" server 
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -158,10 +158,10 @@ exports[`app option > should work using "express" application and "https" server
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -186,10 +186,10 @@ exports[`app option > should work using "hono" application and "[object Object]"
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -226,10 +226,10 @@ exports[`app option > should work using "hono" application and "custom server" s
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -242,10 +242,10 @@ exports[`app option > should work using "hono" application and "custom server" s
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>

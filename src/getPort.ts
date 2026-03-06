@@ -96,7 +96,10 @@ const getAvailablePort = async (
 /**
  * Get available ports
  */
-async function getPorts(basePort: number, host?: string): Promise<number> {
+export async function getPort(
+  basePort: number,
+  host?: string,
+): Promise<number> {
   if (basePort < minPort || basePort > maxPort) {
     throw new Error(`Port number must lie between ${minPort} and ${maxPort}`);
   }
@@ -130,5 +133,3 @@ async function getPorts(basePort: number, host?: string): Promise<number> {
 
   throw new Error('No available ports found');
 }
-
-module.exports = getPorts;

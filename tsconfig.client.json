@@ -1,16 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "target": "ES5",
-    "outDir": "client",
     "rootDir": "client-src",
-    "composite": false,
-    "sourceMap": false,
-    "declarationMap": false,
-    "declaration": false
+    "outDir": "client"
   },
-  "include": ["client-src/**/*"],
-  "exclude": ["client-src/modules/**/*", "client-src/rspack.config.js"]
+  "include": ["client-src/**/*"]
 }

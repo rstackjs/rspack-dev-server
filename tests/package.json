@@ -1,0 +1,8 @@
+{
+  "name": "tests",
+  "private": true,
+  "type": "commonjs",
+  "devDependencies": {
+    "@rspack/dev-server": "workspace:*"
+  }
+}

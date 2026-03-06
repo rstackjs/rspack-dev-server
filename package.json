@@ -1,18 +1,16 @@
 {
   "name": "@rspack/dev-server",
   "version": "2.0.0-beta.1",
+  "type": "module",
   "license": "MIT",
   "description": "Development server for rspack",
-  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "exports": {
-    ".": {
-      "default": "./dist/index.js"
-    },
+    ".": "./dist/index.js",
     "./getPort": "./getPort.js",
     "./servers/*": "./servers/*.js",
     "./servers/*.js": "./servers/*.js",
@@ -21,11 +19,8 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "pnpm run build:server && pnpm run build:client && pnpm run build:client-modules",
-    "build:server": "tsc -b ./tsconfig.build.json",
-    "build:client": "tsc -b ./tsconfig.client.json",
-    "build:client-modules": "node ./scripts/build-client-modules.cjs",
-    "dev": "tsc -b -w",
+    "build": "rslib",
+    "dev": "rslib -w",
     "lint": "biome check .",
     "lint:write": "biome check . --write",
     "format": "prettier --write .",
@@ -63,6 +58,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@hono/node-server": "^1.19.9",
+    "@rslib/core": "^0.19.6",
     "@rspack/core": "2.0.0-beta.5",
     "@rspack/plugin-react-refresh": "1.6.1",
     "@rstest/core": "^0.8.5",
@@ -87,9 +83,7 @@
     "simple-git-hooks": "^2.13.1",
     "style-loader": "^4.0.0",
     "typescript": "^5.9.3",
-    "webpack": "^5.105.3",
-    "webpack-dev-middleware": "^7.4.5",
-    "webpack-merge": "^6.0.1"
+    "webpack-dev-middleware": "^7.4.5"
   },
   "dependencies": {
     "@types/connect-history-api-fallback": "^1.5.4",

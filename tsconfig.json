@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "target": "ES2021",
     "esModuleInterop": true,
     "declaration": true,
     "isolatedModules": true,
-    "sourceMap": true,
-    "declarationMap": true,
     "composite": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
     "checkJs": true,
     "strict": true,
     "skipLibCheck": true,
@@ -18,5 +15,10 @@
     "outDir": "dist",
     "rootDir": "src"
   },
+  "references": [
+    {
+      "path": "./tsconfig.client.json"
+    }
+  ],
   "include": ["src/**/*"]
 }

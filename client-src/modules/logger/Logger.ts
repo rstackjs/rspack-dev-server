@@ -14,7 +14,7 @@ import {
   type EXPECTED_ANY,
   type LogTypeEnum,
   type TimersMap,
-} from '../types';
+} from '../types.js';
 
 const LOG_SYMBOL = Symbol('webpack logger raw log method');
 const TIMERS_SYMBOL = Symbol('webpack logger times');

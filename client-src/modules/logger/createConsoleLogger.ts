@@ -16,7 +16,7 @@ import {
   type LoggerOptions,
   type LoggingFunction,
   type LogTypeEnum,
-} from '../types';
+} from '../types.js';
 
 const filterToFunction = (
   item: FilterItemTypes,
