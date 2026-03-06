@@ -3,10 +3,10 @@ const HTMLContentForIndex = `
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
@@ -17,10 +17,10 @@ const HTMLContentForAssets = (assetName) => `
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>(${assetName}>)webpack-dev-server is running...</h1>
+    <h1>(${assetName}>)rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src=${assetName}></script>
   </body>
 </html>

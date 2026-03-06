@@ -2,7 +2,7 @@
 
 exports[`overlay > should not show a warning when "client.overlay" is "false" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -10,7 +10,7 @@ exports[`overlay > should not show a warning when "client.overlay" is "false" > 
 
 exports[`overlay > should not show a warning when "client.overlay.warnings" is "false" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -18,7 +18,7 @@ exports[`overlay > should not show a warning when "client.overlay.warnings" is "
 
 exports[`overlay > should not show an error when "client.overlay" is "false" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -26,7 +26,7 @@ exports[`overlay > should not show an error when "client.overlay" is "false" > p
 
 exports[`overlay > should not show an error when "client.overlay.errors" is "false" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -188,7 +188,7 @@ exports[`overlay > should not show initially, then show on an error and allow to
 
 exports[`overlay > should not show initially, then show on an error and allow to close > page html after close 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -196,7 +196,7 @@ exports[`overlay > should not show initially, then show on an error and allow to
 
 exports[`overlay > should not show initially, then show on an error and allow to close > page html initial 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -204,7 +204,7 @@ exports[`overlay > should not show initially, then show on an error and allow to
 
 exports[`overlay > should not show initially, then show on an error and allow to close > page html with error 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -379,7 +379,7 @@ exports[`overlay > should not show initially, then show on an error, then hide o
 
 exports[`overlay > should not show initially, then show on an error, then hide on fix > page html after fix error 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -387,7 +387,7 @@ exports[`overlay > should not show initially, then show on an error, then hide o
 
 exports[`overlay > should not show initially, then show on an error, then hide on fix > page html initial 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -395,7 +395,7 @@ exports[`overlay > should not show initially, then show on an error, then hide o
 
 exports[`overlay > should not show initially, then show on an error, then hide on fix > page html with error 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -724,7 +724,7 @@ exports[`overlay > should not show initially, then show on an error, then show o
 
 exports[`overlay > should not show initially, then show on an error, then show other error, then hide on fix > page html after fix error 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -732,7 +732,7 @@ exports[`overlay > should not show initially, then show on an error, then show o
 
 exports[`overlay > should not show initially, then show on an error, then show other error, then hide on fix > page html initial 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -740,7 +740,7 @@ exports[`overlay > should not show initially, then show on an error, then show o
 
 exports[`overlay > should not show initially, then show on an error, then show other error, then hide on fix > page html with error 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -761,7 +761,7 @@ exports[`overlay > should not show initially, then show on an error, then show o
 
 exports[`overlay > should not show initially, then show on an error, then show other error, then hide on fix > page html with other error 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -782,7 +782,7 @@ exports[`overlay > should not show initially, then show on an error, then show o
 
 exports[`overlay > should not show overlay when Trusted Types are enabled, but policy is not allowed > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -891,7 +891,7 @@ exports[`overlay > should show a warning after invalidation > overlay html 1`] =
 
 exports[`overlay > should show a warning after invalidation > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1189,7 +1189,7 @@ exports[`overlay > should show a warning and error for initial compilation > ove
 
 exports[`overlay > should show a warning and error for initial compilation > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1355,7 +1355,7 @@ exports[`overlay > should show a warning and error for initial compilation and p
 
 exports[`overlay > should show a warning and error for initial compilation and protects against xss > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1477,7 +1477,7 @@ exports[`overlay > should show a warning and hide them after closing connection 
 
 exports[`overlay > should show a warning and hide them after closing connection > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1498,7 +1498,7 @@ exports[`overlay > should show a warning and hide them after closing connection 
 
 exports[`overlay > should show a warning and hide them after closing connection > page html 2`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 </body>
 
@@ -1607,7 +1607,7 @@ exports[`overlay > should show a warning for initial compilation > overlay html 
 
 exports[`overlay > should show a warning for initial compilation > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1729,7 +1729,7 @@ exports[`overlay > should show a warning when "client.overlay" is "true" > overl
 
 exports[`overlay > should show a warning when "client.overlay" is "true" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1851,7 +1851,7 @@ exports[`overlay > should show a warning when "client.overlay.errors" is "true" 
 
 exports[`overlay > should show a warning when "client.overlay.errors" is "true" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -1973,7 +1973,7 @@ exports[`overlay > should show a warning when "client.overlay.warnings" is "true
 
 exports[`overlay > should show a warning when "client.overlay.warnings" is "true" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -2115,7 +2115,7 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
 
 exports[`overlay > should show an ansi formatted error for initial compilation > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -2237,7 +2237,7 @@ exports[`overlay > should show an error after invalidation > overlay html 1`] = 
 
 exports[`overlay > should show an error after invalidation > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -2359,7 +2359,7 @@ exports[`overlay > should show an error for initial compilation > overlay html 1
 
 exports[`overlay > should show an error for initial compilation > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -2481,7 +2481,7 @@ exports[`overlay > should show an error when "client.overlay" is "true" > overla
 
 exports[`overlay > should show an error when "client.overlay" is "true" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -2603,7 +2603,7 @@ exports[`overlay > should show an error when "client.overlay.errors" is "true" >
 
 exports[`overlay > should show an error when "client.overlay.errors" is "true" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -2725,7 +2725,7 @@ exports[`overlay > should show an error when "client.overlay.warnings" is "true"
 
 exports[`overlay > should show an error when "client.overlay.warnings" is "true" > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -3016,7 +3016,7 @@ exports[`overlay > should show error when it is not filtered > overlay html 1`] 
 
 exports[`overlay > should show error when it is not filtered > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -3138,7 +3138,7 @@ exports[`overlay > should show overlay when "Content-Security-Policy" is "defaul
 
 exports[`overlay > should show overlay when "Content-Security-Policy" is "default-src 'self'" was used > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -3260,7 +3260,7 @@ exports[`overlay > should show overlay when Trusted Types are enabled > overlay 
 
 exports[`overlay > should show overlay when Trusted Types are enabled > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -3382,7 +3382,7 @@ exports[`overlay > should show overlay when Trusted Types are enabled and the "r
 
 exports[`overlay > should show overlay when Trusted Types are enabled and the "require-trusted-types-for 'script'" header was used > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe
@@ -3504,7 +3504,7 @@ exports[`overlay > should show warning when it is not filtered > overlay html 1`
 
 exports[`overlay > should show warning when it is not filtered > page html 1`] = `
 <body>
-  <h1>webpack-dev-server is running...</h1>
+  <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
 
   <iframe

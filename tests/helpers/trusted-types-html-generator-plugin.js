@@ -7,10 +7,10 @@ const HTMLContentForIndex = `
       content="require-trusted-types-for 'script'; trusted-types webpack webpack#dev-overlay;"
     />
     <meta charset='UTF-8'>
-    <title>webpack-dev-server</title>
+    <title>rspack-dev-server</title>
   </head>
   <body>
-    <h1>webpack-dev-server is running...</h1>
+    <h1>rspack-dev-server is running...</h1>
     <script type="text/javascript" charset="utf-8" src="/main.js"></script>
   </body>
 </html>
