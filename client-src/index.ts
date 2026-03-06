@@ -10,7 +10,6 @@
 
 // @ts-expect-error: No type definitions available for '@rspack/core/hot/emitter.js'
 import { emitter as hotEmitter } from '@rspack/core/hot/emitter.js';
-/* Rspack dev server runtime client */
 // @ts-expect-error: No type definitions available for '@rspack/core/hot/log.js'
 import { log as webpackHotLog } from '@rspack/core/hot/log.js';
 import { createOverlay, formatProblem } from './overlay.js';

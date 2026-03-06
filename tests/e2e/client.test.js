@@ -109,9 +109,7 @@ describe('client option', () => {
         waitUntil: 'networkidle0',
       });
 
-      expect(await response.text()).toContain(
-        '/* Rspack dev server runtime client */',
-      );
+      expect(await response.text()).toContain('[rspack-dev-server]');
 
       expect(response.status()).toMatchSnapshot('response status');
 
