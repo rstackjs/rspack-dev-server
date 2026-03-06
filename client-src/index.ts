@@ -20,9 +20,6 @@ import { log, setLogLevel } from './utils/log.js';
 import sendMessage from './utils/sendMessage.js';
 import type { LogLevel } from './type.js';
 
-declare const __resourceQuery: string;
-declare const __webpack_hash__: string;
-
 type OverlayOptions = {
   warnings?: boolean | ((error: Error) => boolean);
   errors?: boolean | ((error: Error) => boolean);
@@ -105,7 +102,7 @@ const parseURL = (resourceQuery: string): { [key: string]: string } => {
 
 const status: Status = {
   isUnloading: false,
-  currentHash: __webpack_hash__,
+  currentHash: BUILD_HASH,
 };
 
 const getCurrentScriptSource = (): string => {

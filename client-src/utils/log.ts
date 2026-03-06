@@ -8,9 +8,9 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-import type { LoggerOptions } from '../modules/types';
-import logger from '../modules/logger/index';
-import { LogLevel } from '../type';
+import type { LoggerOptions } from '../modules/types.js';
+import { logger } from '../modules/logger/index.js';
+import type { LogLevel } from '../type.js';
 
 const name = 'rspack-dev-server';
 // default level is set on the client side, so it does not need

@@ -9,6 +9,11 @@ export type LogLevel =
   | 'verbose';
 export type EXPECTED_ANY = any;
 
+declare global {
+  const __resourceQuery: string;
+  const BUILD_HASH: string;
+}
+
 declare interface CommunicationClient {
   onOpen(fn: (...args: unknown[]) => void): void;
   onClose(fn: (...args: unknown[]) => void): void;

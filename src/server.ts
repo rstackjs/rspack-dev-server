@@ -13,7 +13,7 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
-import * as ipaddr from 'ipaddr.js';
+import ipaddr from 'ipaddr.js';
 import type {
   AddressInfo,
   BasicApplication,
@@ -71,8 +71,11 @@ import type {
   WebSocketServerImplementation,
   WebSocketURL,
 } from './types';
+import { createRequire } from 'node:module';
+import { WebsocketServer } from './servers/WebsocketServer';
 
 const { styleText } = util;
+const require = createRequire(import.meta.url);
 
 export interface Configuration<
   A extends BasicApplication = ExpressApplication,
@@ -328,7 +331,7 @@ class Server<
     }
 
     const { default: pRetry } = await import('p-retry');
-    const getPort = require('./getPort');
+    const { getPort } = await import('./getPort');
     const basePort =
       typeof process.env.RSPACK_DEV_SERVER_BASE_PORT !== 'undefined'
         ? Number.parseInt(process.env.RSPACK_DEV_SERVER_BASE_PORT, 10)
@@ -1275,7 +1278,7 @@ class Server<
   }
 
   getServerTransport() {
-    let implementation: typeof import('./servers/WebsocketServer') | undefined;
+    let implementation: unknown;
     let implementationFound = true;
 
     switch (
@@ -1296,7 +1299,7 @@ class Server<
           (this.options.webSocketServer as WebSocketServerConfiguration)
             .type === 'ws'
         ) {
-          implementation = require('./servers/WebsocketServer');
+          implementation = WebsocketServer;
         } else {
           try {
             implementation = require(

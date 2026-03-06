@@ -8,20 +8,20 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-import WebSocket from 'ws';
+import * as Ws from 'ws';
 import type { Server } from '../server';
 import type { ClientConnection, WebSocketServerConfiguration } from '../types';
 import BaseServer from './BaseServer';
 
-class WebsocketServer extends BaseServer {
+export class WebsocketServer extends BaseServer {
   static heartbeatInterval = 1000;
 
-  implementation: WebSocket.Server;
+  implementation: Ws.WebSocketServer;
 
   constructor(server: Server) {
     super(server);
 
-    const options: WebSocket.ServerOptions = {
+    const options: Ws.ServerOptions = {
       ...(this.server.options.webSocketServer as WebSocketServerConfiguration)
         .options,
       clientTracking: false,
@@ -34,7 +34,7 @@ class WebsocketServer extends BaseServer {
       options.noServer = true;
     }
 
-    this.implementation = new WebSocket.Server(options);
+    this.implementation = new Ws.WebSocketServer(options);
 
     (this.server.server as import('http').Server).on(
       'upgrade',
@@ -94,5 +94,3 @@ class WebsocketServer extends BaseServer {
     });
   }
 }
-
-module.exports = WebsocketServer;
