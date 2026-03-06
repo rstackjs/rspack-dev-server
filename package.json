@@ -10,9 +10,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "exports": {
-    ".": {
-      "default": "./dist/index.js"
-    },
+    ".": "./dist/index.js",
     "./getPort": "./getPort.js",
     "./servers/*": "./servers/*.js",
     "./servers/*.js": "./servers/*.js",

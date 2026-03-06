@@ -148,6 +148,12 @@ importers:
         specifier: workspace:*
         version: link:..
 
+  tests:
+    devDependencies:
+      '@rspack/dev-server':
+        specifier: workspace:*
+        version: link:..
+
 packages:
 
   '@ast-grep/napi-darwin-arm64@0.37.0':
