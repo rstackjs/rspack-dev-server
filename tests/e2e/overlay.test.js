@@ -1,8 +1,8 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
-const config = require('../fixtures/overlay-config/webpack.config');
-const trustedTypesConfig = require('../fixtures/overlay-config/trusted-types.webpack.config');
+const config = require('../fixtures/overlay-config/rspack.config');
+const trustedTypesConfig = require('../fixtures/overlay-config/trusted-types.rspack.config');
 const getPort = require('../helpers/get-port');
 const runBrowser = require('../helpers/run-browser');
 const basePort = require('../helpers/ports-map').overlay;
@@ -20,7 +20,7 @@ class ErrorPlugin {
 
   apply(compiler) {
     compiler.hooks.thisCompilation.tap(
-      'errors-webpack-plugin',
+      'errors-rspack-plugin',
       (compilation) => {
         if (
           typeof this.skipCounter !== 'undefined' &&
@@ -46,7 +46,7 @@ class WarningPlugin {
 
   apply(compiler) {
     compiler.hooks.thisCompilation.tap(
-      'warnings-webpack-plugin',
+      'warnings-rspack-plugin',
       (compilation) => {
         if (
           typeof this.skipCounter !== 'undefined' &&
@@ -746,9 +746,7 @@ describe('overlay', () => {
         client: {
           overlay: {
             warnings: (error) => {
-              // error is string in webpack 4
-              const message = typeof error === 'string' ? error : error.message;
-              return !message.includes('My special warning');
+              return !error.message.includes('My special warning');
             },
           },
         },
@@ -1080,10 +1078,7 @@ describe('overlay', () => {
         client: {
           overlay: {
             errors: (error) => {
-              // error is string in webpack 4
-              const message = typeof error === 'string' ? error : error.message;
-
-              return !message.includes('My special error');
+              return !error.message.includes('My special error');
             },
           },
         },
@@ -1225,7 +1220,7 @@ describe('overlay', () => {
       port,
       client: {
         overlay: {
-          trustedTypesPolicyName: 'webpack#dev-overlay',
+          trustedTypesPolicyName: 'rspack#dev-overlay',
         },
       },
     };
@@ -1294,7 +1289,7 @@ describe('overlay', () => {
       ],
       client: {
         overlay: {
-          trustedTypesPolicyName: 'webpack#dev-overlay',
+          trustedTypesPolicyName: 'rspack#dev-overlay',
         },
       },
     };

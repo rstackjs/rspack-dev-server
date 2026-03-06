@@ -2,7 +2,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const reloadConfig = require('../fixtures/reload-config-2/webpack.config');
+const reloadConfig = require('../fixtures/reload-config-2/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').progress;
 

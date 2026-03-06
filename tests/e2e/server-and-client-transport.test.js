@@ -1,8 +1,8 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const WebsocketServer = require('../../src/servers/WebsocketServer').default;
-const defaultConfig = require('../fixtures/provide-plugin-default/webpack.config');
-const wsConfig = require('../fixtures/provide-plugin-ws-config/webpack.config');
+const defaultConfig = require('../fixtures/provide-plugin-default/rspack.config');
+const wsConfig = require('../fixtures/provide-plugin-ws-config/rspack.config');
 const getPort = require('../helpers/get-port');
 const runBrowser = require('../helpers/run-browser');
 const basePort = require('../helpers/ports-map')['server-and-client-transport'];

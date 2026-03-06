@@ -2,9 +2,9 @@ const path = require('node:path');
 const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const oneWebTargetConfiguration = require('../fixtures/multi-compiler-one-configuration/webpack.config');
-const twoWebTargetConfiguration = require('../fixtures/multi-compiler-two-configurations/webpack.config');
-const universalConfiguration = require('../fixtures/universal-compiler-config/webpack.config');
+const oneWebTargetConfiguration = require('../fixtures/multi-compiler-one-configuration/rspack.config');
+const twoWebTargetConfiguration = require('../fixtures/multi-compiler-two-configurations/rspack.config');
+const universalConfiguration = require('../fixtures/universal-compiler-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['multi-compiler'];
 

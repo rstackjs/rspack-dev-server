@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
-const config = require('../fixtures/client-config/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').logging;
 require('../helpers/normalize');
@@ -56,12 +56,12 @@ describe('logging', () => {
     },
     {
       title: 'should work and log warnings by default',
-      webpackOptions: {
+      rspackOptions: {
         plugins: [
           {
             apply(compiler) {
               compiler.hooks.thisCompilation.tap(
-                'warnings-webpack-plugin',
+                'warnings-rspack-plugin',
                 (compilation) => {
                   compilation.warnings.push(
                     new Error('Warning from compilation'),
@@ -76,12 +76,12 @@ describe('logging', () => {
     },
     {
       title: 'should work and log errors by default',
-      webpackOptions: {
+      rspackOptions: {
         plugins: [
           {
             apply(compiler) {
               compiler.hooks.thisCompilation.tap(
-                'warnings-webpack-plugin',
+                'warnings-rspack-plugin',
                 (compilation) => {
                   compilation.errors.push(new Error('Error from compilation'));
                 },
@@ -126,12 +126,12 @@ describe('logging', () => {
     },
     {
       title: 'should work and log only error',
-      webpackOptions: {
+      rspackOptions: {
         plugins: [
           {
             apply(compiler) {
               compiler.hooks.thisCompilation.tap(
-                'warnings-webpack-plugin',
+                'warnings-rspack-plugin',
                 (compilation) => {
                   compilation.warnings.push(
                     new Error('Warning from compilation'),
@@ -152,12 +152,12 @@ describe('logging', () => {
     },
     {
       title: 'should work and log warning and errors',
-      webpackOptions: {
+      rspackOptions: {
         plugins: [
           {
             apply(compiler) {
               compiler.hooks.thisCompilation.tap(
-                'warnings-webpack-plugin',
+                'warnings-rspack-plugin',
                 (compilation) => {
                   compilation.warnings.push(
                     new Error('Warning from compilation'),
@@ -189,7 +189,7 @@ describe('logging', () => {
       it(`${testCase.title} (${
         webSocketServer.webSocketServer || 'default'
       })`, async () => {
-        const compiler = rspack({ ...config, ...testCase.webpackOptions });
+        const compiler = rspack({ ...config, ...testCase.rspackOptions });
         const devServerOptions = {
           port,
           ...testCase.devServerOptions,

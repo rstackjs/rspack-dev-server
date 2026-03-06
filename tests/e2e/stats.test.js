@@ -1,6 +1,6 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/client-config/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
 const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').stats;
@@ -11,37 +11,37 @@ describe('stats', () => {
   const cases = [
     {
       title: 'should work when "stats" is not specified',
-      webpackOptions: {},
+      rspackOptions: {},
     },
     {
       title: 'should work using "{}" value for the "stats" option',
-      webpackOptions: {
+      rspackOptions: {
         stats: {},
       },
     },
     {
       title: 'should work using "undefined" value for the "stats" option',
-      webpackOptions: {
+      rspackOptions: {
         // eslint-disable-next-line no-undefined
         stats: undefined,
       },
     },
     {
       title: 'should work using "false" value for the "stats" option',
-      webpackOptions: {
+      rspackOptions: {
         stats: false,
       },
     },
     {
       title: 'should work using "errors-only" value for the "stats" option',
-      webpackOptions: {
+      rspackOptions: {
         stats: 'errors-only',
       },
     },
     {
       title:
         'should work using "{ assets: false }" value for the "stats" option',
-      webpackOptions: {
+      rspackOptions: {
         stats: {
           assets: false,
         },
@@ -51,7 +51,7 @@ describe('stats', () => {
     // {
     //   title:
     //     'should work using "{ assets: false }" value for the "stats" option',
-    //   webpackOptions: {
+    //   rspackOptions: {
     //     stats: {
     //       colors: {
     //         green: "\u001b[32m",
@@ -63,12 +63,12 @@ describe('stats', () => {
     // {
     //   title:
     //     'should work using "{ warningsFilter: \'test\' }" value for the "stats" option',
-    //   webpackOptions: {
+    //   rspackOptions: {
     //     plugins: [
     //       {
     //         apply(compiler) {
     //           compiler.hooks.thisCompilation.tap(
-    //             "warnings-webpack-plugin",
+    //             "warnings-rspack-plugin",
     //             (compilation) => {
     //               compilation.warnings.push(
     //                 new Error("Warning from compilation"),
@@ -87,12 +87,12 @@ describe('stats', () => {
   if (rspack.version.startsWith('5')) {
     cases.push({
       title: 'should work and respect the "ignoreWarnings" option',
-      webpackOptions: {
+      rspackOptions: {
         plugins: [
           {
             apply(compiler) {
               compiler.hooks.thisCompilation.tap(
-                'warnings-webpack-plugin',
+                'warnings-rspack-plugin',
                 (compilation) => {
                   compilation.warnings.push(
                     new Error('Warning from compilation'),
@@ -110,7 +110,7 @@ describe('stats', () => {
 
   for (const testCase of cases) {
     it(testCase.title, async () => {
-      const compiler = rspack({ ...config, ...testCase.webpackOptions });
+      const compiler = rspack({ ...config, ...testCase.rspackOptions });
       const devServerOptions = {
         port,
       };

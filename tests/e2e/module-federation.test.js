@@ -1,12 +1,12 @@
 const requireFromString = require('require-from-string');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const simpleConfig = require('../fixtures/module-federation-config/webpack.config');
-const objectEntryConfig = require('../fixtures/module-federation-config/webpack.object-entry.config');
-const multiConfig = require('../fixtures/module-federation-config/webpack.multi.config');
+const simpleConfig = require('../fixtures/module-federation-config/rspack.config');
+const objectEntryConfig = require('../fixtures/module-federation-config/rspack.object-entry.config');
+const multiConfig = require('../fixtures/module-federation-config/rspack.multi.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['module-federation'];
-const pluginConfig = require('../fixtures/module-federation-config/webpack.plugin');
+const pluginConfig = require('../fixtures/module-federation-config/rspack.plugin');
 
 describe('Module federation', () => {
   describe('should work with simple multi-entry config', () => {

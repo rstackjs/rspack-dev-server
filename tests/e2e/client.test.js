@@ -1,6 +1,6 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/simple-config-other/webpack.config');
+const config = require('../fixtures/simple-config-other/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['client-option'];
 

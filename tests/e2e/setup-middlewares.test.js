@@ -1,6 +1,6 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/client-config/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['setup-middlewares-option'];
 
@@ -18,7 +18,7 @@ describe('setupMiddlewares option', () => {
       {
         setupMiddlewares: (middlewares, devServer) => {
           if (!devServer) {
-            throw new Error('webpack-dev-server is not defined');
+            throw new Error('rspack-dev-server is not defined');
           }
 
           devServer.app.use('/setup-middleware/some/path', (req, res, next) => {

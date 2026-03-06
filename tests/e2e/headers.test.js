@@ -1,6 +1,6 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/simple-config/webpack.config');
+const config = require('../fixtures/simple-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const request = require('../helpers/http-request');
 const port = require('../helpers/ports-map')['headers-option'];

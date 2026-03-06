@@ -9,7 +9,7 @@ module.exports = {
   entry: './foo.js',
   output: {
     path: '/',
-    trustedTypes: { policyName: 'webpack' },
+    trustedTypes: { policyName: 'rspack' },
   },
   infrastructureLogging: {
     level: 'info',

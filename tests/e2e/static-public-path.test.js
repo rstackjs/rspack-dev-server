@@ -1,7 +1,7 @@
 const path = require('node:path');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/static-config/webpack.config');
+const config = require('../fixtures/static-config/rspack.config');
 const port = require('../helpers/ports-map')['static-public-path-option'];
 const runBrowser = require('../helpers/run-browser');
 

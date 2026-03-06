@@ -1,6 +1,6 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/static-config/webpack.config');
+const config = require('../fixtures/static-config/rspack.config');
 const request = require('../helpers/http-request');
 const port = require('../helpers/ports-map')['range-header'];
 const JAVASCRIPT_CONTENT_TYPE_RE =

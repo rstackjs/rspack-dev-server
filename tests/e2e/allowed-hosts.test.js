@@ -2,7 +2,7 @@ const express = require('express');
 const { rspack } = require('@rspack/core');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/client-config/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const [port1, port2] = require('../helpers/ports-map')['allowed-hosts'];
 
