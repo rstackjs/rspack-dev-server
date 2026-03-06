@@ -2182,7 +2182,9 @@ class Server<
   }
 
   async openBrowser(defaultOpenTarget: string): Promise<void> {
-    const open = (await import('open')).default;
+    const { default: open } = await import(
+      /* webpackChunkName: "open" */ 'open'
+    );
 
     Promise.all(
       (this.options.open as NormalizedOpen[]).map((item) => {
