@@ -33,7 +33,9 @@ export default defineConfig({
           // use define to avoid compile time evaluation of __webpack_hash__
           BUILD_HASH: '__webpack_hash__',
         },
+        tsconfigPath: './tsconfig.client.json',
       },
+      dts: true,
       output: {
         distPath: './client',
       },
