@@ -90,7 +90,7 @@ exports[`API > Server.getFreePort > should return the port when the port is unde
 
 exports[`API > Server.getFreePort > should return the port when the port is undefined > response status 1`] = `200`;
 
-exports[`API > Server.getFreePort > should throw the error when the port isn't found 1`] = `[Error: busy]`;
+exports[`API > Server.getFreePort > should throw the error when the port isn't found 1`] = `[Error: No available ports found]`;
 
 exports[`API > WEBPACK_SERVE environment variable > should be present > console messages 1`] = `
 [
