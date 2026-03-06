@@ -1423,7 +1423,7 @@ class Server<
         const { ProvidePlugin, HotModuleReplacementPlugin } = compiler.rspack;
 
         new ProvidePlugin({
-          __webpack_dev_server_client__: this.getClientTransport() as
+          __rspack_dev_server_client__: this.getClientTransport() as
             | string
             | string[],
         }).apply(compiler);

@@ -17,25 +17,25 @@ import type {
   EXPECTED_ANY,
 } from './type.js';
 
-declare const __webpack_dev_server_client__:
+declare const __rspack_dev_server_client__:
   | CommunicationClientConstructor
   | { default: CommunicationClientConstructor }
   | undefined;
 
 // this WebsocketClient is here as a default fallback, in case the client is not injected
 const Client: CommunicationClientConstructor =
-  typeof __webpack_dev_server_client__ !== 'undefined'
+  typeof __rspack_dev_server_client__ !== 'undefined'
     ? typeof (
-        __webpack_dev_server_client__ as {
+        __rspack_dev_server_client__ as {
           default: CommunicationClientConstructor;
         }
       ).default !== 'undefined'
       ? (
-          __webpack_dev_server_client__ as {
+          __rspack_dev_server_client__ as {
             default: CommunicationClientConstructor;
           }
         ).default
-      : (__webpack_dev_server_client__ as CommunicationClientConstructor)
+      : (__rspack_dev_server_client__ as CommunicationClientConstructor)
     : WebSocketClient;
 
 let retries = 0;
