@@ -32,6 +32,7 @@ export default defineConfig({
         define: {
           // use define to avoid compile time evaluation of __webpack_hash__
           BUILD_HASH: '__webpack_hash__',
+          RESOURCE_QUERY: '__resourceQuery',
         },
         tsconfigPath: './tsconfig.client.json',
       },

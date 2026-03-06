@@ -130,7 +130,7 @@ const getCurrentScriptSource = (): string => {
   throw new Error('[rspack-dev-server] Failed to get current script source.');
 };
 
-const parsedResourceQuery = parseURL(__resourceQuery);
+const parsedResourceQuery = parseURL(RESOURCE_QUERY);
 
 const enabledFeatures = {
   'Hot Module Replacement': false,

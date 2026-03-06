@@ -12,6 +12,7 @@ export type EXPECTED_ANY = any;
 declare global {
   const __resourceQuery: string;
   const BUILD_HASH: string;
+  const RESOURCE_QUERY: string;
 }
 
 declare interface CommunicationClient {
