@@ -4,7 +4,7 @@ const HTMLContentForIndex = `
   <head>
     <meta
       http-equiv="Content-Security-Policy"
-      content="require-trusted-types-for 'script'; trusted-types webpack webpack#dev-overlay;"
+      content="require-trusted-types-for 'script'; trusted-types rspack rspack#dev-overlay;"
     />
     <meta charset='UTF-8'>
     <title>rspack-dev-server</title>
@@ -22,7 +22,7 @@ const HTMLContentForTest = `
   <head>
     <meta
       http-equiv="Content-Security-Policy"
-      content="require-trusted-types-for 'script'; trusted-types webpack webpack#dev-overlay;"
+      content="require-trusted-types-for 'script'; trusted-types rspack rspack#dev-overlay;"
     />
     <meta charset='UTF-8'>
     <title>test</title>

@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const testServer = require('../helpers/test-server');
-const config = require('../fixtures/static-config/webpack.config');
+const config = require('../fixtures/static-config/rspack.config');
 const port = require('../helpers/ports-map')['static-directory-option'];
 const runBrowser = require('../helpers/run-browser');
 

@@ -1,11 +1,11 @@
 const path = require('node:path');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/client-config/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map').target;
-const workerConfig = require('../fixtures/worker-config/webpack.config');
-const workerConfigDevServerFalse = require('../fixtures/worker-config-dev-server-false/webpack.config');
+const workerConfig = require('../fixtures/worker-config/rspack.config');
+const workerConfigDevServerFalse = require('../fixtures/worker-config-dev-server-false/rspack.config');
 
 const sortByTerm = (data, term) =>
   data.sort((a, b) => (a.indexOf(term) < b.indexOf(term) ? -1 : 1));

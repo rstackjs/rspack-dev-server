@@ -4,11 +4,11 @@ const { rspack } = require('@rspack/core');
 const fs = require('node:fs');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const HTMLGeneratorPlugin = require('../helpers/html-generator-plugin');
-const reloadConfig = require('../fixtures/reload-config/webpack.config');
+const reloadConfig = require('../fixtures/reload-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['hot-and-live-reload'];
-const config = require('../fixtures/client-config/webpack.config');
-const multiCompilerConfig = require('../fixtures/multi-compiler-one-configuration/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
+const multiCompilerConfig = require('../fixtures/multi-compiler-one-configuration/rspack.config');
 require('../helpers/normalize');
 
 const cssFilePath = path.resolve(
@@ -155,7 +155,7 @@ describe('hot and live reload', () => {
     },
     {
       title: 'should work with manual client setup',
-      webpackOptions: {
+      rspackOptions: {
         entry: [
           require.resolve('@rspack/dev-server/client/index.js'),
           require.resolve('../fixtures/reload-config/foo.js'),
@@ -171,7 +171,7 @@ describe('hot and live reload', () => {
     {
       title:
         'should work with manual client setup and allow to enable hot module replacement',
-      webpackOptions: {
+      rspackOptions: {
         entry: [
           '@rspack/core/hot/dev-server',
           `${require.resolve('@rspack/dev-server/client/index.js')}?hot=true`,
@@ -191,7 +191,7 @@ describe('hot and live reload', () => {
     {
       title:
         'should work with manual client setup and allow to disable hot module replacement',
-      webpackOptions: {
+      rspackOptions: {
         entry: [
           `${require.resolve('@rspack/dev-server/client/index.js')}?hot=false`,
           require.resolve('../fixtures/reload-config/foo.js'),
@@ -206,7 +206,7 @@ describe('hot and live reload', () => {
     {
       title:
         'should work with manual client setup and allow to enable live reload',
-      webpackOptions: {
+      rspackOptions: {
         entry: [
           `${require.resolve('@rspack/dev-server/client/index.js')}?live-reload=true`,
           require.resolve('../fixtures/reload-config/foo.js'),
@@ -221,7 +221,7 @@ describe('hot and live reload', () => {
     {
       title:
         'should work with manual client setup and allow to disable live reload',
-      webpackOptions: {
+      rspackOptions: {
         entry: [
           `${require.resolve('@rspack/dev-server/client/index.js')}?live-reload=false`,
           require.resolve('../fixtures/reload-config/foo.js'),
@@ -260,8 +260,8 @@ describe('hot and live reload', () => {
       : 'default';
 
     it(`${mode.title} (${webSocketServerTitle})`, async () => {
-      const webpackOptions = { ...reloadConfig, ...mode.webpackOptions };
-      const compiler = rspack(webpackOptions);
+      const rspackOptions = { ...reloadConfig, ...mode.rspackOptions };
+      const compiler = rspack(rspackOptions);
       const testDevServerOptions = mode.options || {};
       const devServerOptions = { port, ...testDevServerOptions };
 
@@ -390,25 +390,23 @@ describe('hot and live reload', () => {
         waitLiveReload = false;
       }
 
-      if (Array.isArray(webpackOptions.entry)) {
-        if (webpackOptions.entry.some((item) => item.includes('hot=true'))) {
+      if (Array.isArray(rspackOptions.entry)) {
+        if (rspackOptions.entry.some((item) => item.includes('hot=true'))) {
           waitHot = true;
         } else if (
-          webpackOptions.entry.some((item) => item.includes('hot=false'))
+          rspackOptions.entry.some((item) => item.includes('hot=false'))
         ) {
           waitHot = false;
         }
       }
 
-      if (Array.isArray(webpackOptions.entry)) {
+      if (Array.isArray(rspackOptions.entry)) {
         if (
-          webpackOptions.entry.some((item) => item.includes('live-reload=true'))
+          rspackOptions.entry.some((item) => item.includes('live-reload=true'))
         ) {
           waitLiveReload = true;
         } else if (
-          webpackOptions.entry.some((item) =>
-            item.includes('live-reload=false'),
-          )
+          rspackOptions.entry.some((item) => item.includes('live-reload=false'))
         ) {
           waitLiveReload = false;
         }

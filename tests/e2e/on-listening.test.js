@@ -1,6 +1,6 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/client-config/webpack.config');
+const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['on-listening-option'];
 

@@ -1,9 +1,9 @@
 const path = require('node:path');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/historyapifallback-config/webpack.config');
-const config2 = require('../fixtures/historyapifallback-2-config/webpack.config');
-const config3 = require('../fixtures/historyapifallback-3-config/webpack.config');
+const config = require('../fixtures/historyapifallback-config/rspack.config');
+const config2 = require('../fixtures/historyapifallback-2-config/rspack.config');
+const config3 = require('../fixtures/historyapifallback-3-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['history-api-fallback-option'];
 

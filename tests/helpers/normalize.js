@@ -6,7 +6,7 @@ const ROOT = path.resolve(__dirname, '../../');
 const CSS_LOADER = path.dirname(require.resolve('css-loader'));
 const RELATIVE_CSS_LOADER = path.relative(
   path.dirname(
-    path.resolve(__dirname, '../fixtures/reload-config/webpack.config'),
+    path.resolve(__dirname, '../fixtures/reload-config/rspack.config'),
   ),
   CSS_LOADER,
 );

@@ -3,7 +3,7 @@ const chokidar = require('chokidar');
 const fs = require('node:fs');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const config = require('../fixtures/watch-files-config/webpack.config');
+const config = require('../fixtures/watch-files-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['watch-files-option'];
 

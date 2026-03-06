@@ -1,7 +1,7 @@
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
-const lazyCompilationSingleEntryConfig = require('../fixtures/lazy-compilation-single-entry/webpack.config');
-const lazyCompilationMultipleEntriesConfig = require('../fixtures/lazy-compilation-multiple-entries/webpack.config');
+const lazyCompilationSingleEntryConfig = require('../fixtures/lazy-compilation-single-entry/rspack.config');
+const lazyCompilationMultipleEntriesConfig = require('../fixtures/lazy-compilation-multiple-entries/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['lazy-compilation'];
 
