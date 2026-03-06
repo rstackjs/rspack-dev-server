@@ -9,11 +9,13 @@
  */
 
 import * as fs from 'node:fs';
+import { createRequire } from 'node:module';
 import * as os from 'node:os';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
 import ipaddr from 'ipaddr.js';
+import { WebsocketServer } from './servers/WebsocketServer';
 import type {
   AddressInfo,
   BasicApplication,
@@ -71,8 +73,6 @@ import type {
   WebSocketServerImplementation,
   WebSocketURL,
 } from './types';
-import { createRequire } from 'node:module';
-import { WebsocketServer } from './servers/WebsocketServer';
 
 const { styleText } = util;
 const require = createRequire(import.meta.url);
