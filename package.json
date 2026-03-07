@@ -12,11 +12,8 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
-    "./getPort": "./getPort.js",
-    "./servers/*": "./servers/*.js",
-    "./servers/*.js": "./servers/*.js",
-    "./client/*": "./client/*.js",
     "./client/*.js": "./client/*.js",
+    "./client/*": "./client/*.js",
     "./package.json": "./package.json"
   },
   "types": "./dist/index.d.ts",
