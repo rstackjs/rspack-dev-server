@@ -12,8 +12,8 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
-    "./client/*": "./client/*.js",
     "./client/*.js": "./client/*.js",
+    "./client/*": "./client/*.js",
     "./package.json": "./package.json"
   },
   "types": "./dist/index.d.ts",
