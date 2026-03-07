@@ -23,9 +23,6 @@ importers:
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0
-      compression:
-        specifier: ^1.8.1
-        version: 1.8.1
       connect-history-api-fallback:
         specifier: ^2.0.0
         version: 2.0.0
@@ -38,9 +35,6 @@ importers:
       ipaddr.js:
         specifier: ^2.3.0
         version: 2.3.0
-      p-retry:
-        specifier: ^7.1.1
-        version: 7.1.1
       serve-index:
         specifier: ^1.9.2
         version: 1.9.2
@@ -87,6 +81,9 @@ importers:
       '@types/trusted-types':
         specifier: ^2.0.7
         version: 2.0.7
+      compression:
+        specifier: ^1.8.1
+        version: 1.8.1
       connect:
         specifier: ^3.7.0
         version: 3.7.0
@@ -111,6 +108,9 @@ importers:
       open:
         specifier: ^11.0.0
         version: 11.0.0
+      p-retry:
+        specifier: ^7.1.1
+        version: 7.1.1
       prettier:
         specifier: 3.8.1
         version: 3.8.1
