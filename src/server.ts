@@ -15,6 +15,7 @@ import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
 import ipaddr from 'ipaddr.js';
+import { getPort } from './getPort';
 import { WebsocketServer } from './servers/WebsocketServer';
 import type {
   AddressInfo,
@@ -330,8 +331,9 @@ class Server<
       return port;
     }
 
-    const { default: pRetry } = await import('p-retry');
-    const { getPort } = await import('./getPort');
+    const { default: pRetry } = await import(
+      /* webpackChunkName: "p-retry" */ 'p-retry'
+    );
     const basePort =
       typeof process.env.RSPACK_DEV_SERVER_BASE_PORT !== 'undefined'
         ? Number.parseInt(process.env.RSPACK_DEV_SERVER_BASE_PORT, 10)
@@ -1457,7 +1459,7 @@ class Server<
 
     this.setupWatchFiles();
     this.setupWatchStaticFiles();
-    this.setupMiddlewares();
+    await this.setupMiddlewares();
 
     if (this.options.setupExitSignals) {
       const signals = ['SIGINT', 'SIGTERM'];
@@ -1577,7 +1579,7 @@ class Server<
     }
   }
 
-  setupMiddlewares(): void {
+  async setupMiddlewares(): Promise<void> {
     let middlewares: Middleware[] = [];
 
     // Register setup host header check for security
@@ -1644,7 +1646,9 @@ class Server<
 
     // compress is placed last and uses unshift so that it will be the first middleware used
     if (this.options.compress) {
-      const compression = require('compression');
+      const { default: compression } = await import(
+        /* webpackChunkName: "compression" */ 'compression'
+      );
       middlewares.push({ name: 'compression', middleware: compression() });
     }
 
