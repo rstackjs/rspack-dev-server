@@ -1678,7 +1678,7 @@ class Server<
     middlewares.push({
       name: 'rspack-dev-server-open-editor',
       path: '/rspack-dev-server/open-editor',
-      middleware: (req: Request, res: Response, next: NextFunction) => {
+      middleware: async (req: Request, res: Response, next: NextFunction) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next();
           return;
@@ -1694,8 +1694,9 @@ class Server<
         const fileName = params.get('fileName');
 
         if (typeof fileName === 'string') {
-          const launchEditor = require('launch-editor');
-
+          const { default: launchEditor } = await import(
+            /* webpackChunkName: "launch-editor" */ 'launch-editor'
+          );
           launchEditor(fileName);
         }
 
