@@ -41,9 +41,6 @@ importers:
       launch-editor:
         specifier: ^2.13.1
         version: 2.13.1
-      open:
-        specifier: ^11.0.0
-        version: 11.0.0
       p-retry:
         specifier: ^7.1.1
         version: 7.1.1
@@ -111,6 +108,9 @@ importers:
       nano-staged:
         specifier: ^0.9.0
         version: 0.9.0
+      open:
+        specifier: ^11.0.0
+        version: 11.0.0
       prettier:
         specifier: 3.8.1
         version: 3.8.1

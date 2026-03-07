@@ -1,14 +1,15 @@
 {
   "name": "@rspack/dev-server",
   "version": "2.0.0-beta.1",
-  "type": "module",
-  "license": "MIT",
   "description": "Development server for rspack",
-  "types": "./dist/index.d.ts",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+  "homepage": "https://rspack.rs",
+  "bugs": "https://github.com/rstackjs/rspack-dev-server/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rstackjs/rspack-dev-server"
   },
+  "license": "MIT",
+  "type": "module",
   "exports": {
     ".": "./dist/index.js",
     "./getPort": "./getPort.js",
@@ -18,16 +19,21 @@
     "./client/*.js": "./client/*.js",
     "./package.json": "./package.json"
   },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "client"
+  ],
   "scripts": {
     "build": "rslib",
+    "bump": "npx bumpp",
     "dev": "rslib -w",
+    "format": "prettier --write .",
     "lint": "biome check .",
     "lint:write": "biome check . --write",
-    "format": "prettier --write .",
     "prettier:ci": "prettier --check .",
-    "test:install": "cross-env ./node_modules/.bin/puppeteer browsers install chrome",
     "test": "pnpm run test:install && pnpm run build && rstest",
-    "bump": "npx bumpp"
+    "test:install": "cross-env ./node_modules/.bin/puppeteer browsers install chrome"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"
@@ -41,19 +47,22 @@
       "biome lint --write --no-errors-on-unmatched"
     ]
   },
-  "files": [
-    "dist",
-    "client"
-  ],
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
-  },
-  "packageManager": "pnpm@10.30.3",
-  "homepage": "https://rspack.rs",
-  "bugs": "https://github.com/rstackjs/rspack-dev-server/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rstackjs/rspack-dev-server"
+  "dependencies": {
+    "@types/connect-history-api-fallback": "^1.5.4",
+    "@types/serve-index": "^1.9.4",
+    "@types/serve-static": "^2.2.0",
+    "@types/ws": "^8.18.1",
+    "chokidar": "^3.6.0",
+    "compression": "^1.8.1",
+    "connect-history-api-fallback": "^2.0.0",
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^3.0.5",
+    "ipaddr.js": "^2.3.0",
+    "launch-editor": "^2.13.1",
+    "p-retry": "^7.1.1",
+    "serve-index": "^1.9.2",
+    "webpack-dev-middleware": "^7.4.5",
+    "ws": "^8.19.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -75,6 +84,7 @@
     "hono": "^4.12.3",
     "http-proxy": "^1.18.1",
     "nano-staged": "^0.9.0",
+    "open": "^11.0.0",
     "prettier": "3.8.1",
     "puppeteer": "^24.37.5",
     "react-refresh": "0.18.0",
@@ -85,24 +95,6 @@
     "typescript": "^5.9.3",
     "webpack-dev-middleware": "^7.4.5"
   },
-  "dependencies": {
-    "@types/connect-history-api-fallback": "^1.5.4",
-    "@types/serve-index": "^1.9.4",
-    "@types/serve-static": "^2.2.0",
-    "@types/ws": "^8.18.1",
-    "chokidar": "^3.6.0",
-    "compression": "^1.8.1",
-    "connect-history-api-fallback": "^2.0.0",
-    "express": "^5.2.1",
-    "http-proxy-middleware": "^3.0.5",
-    "ipaddr.js": "^2.3.0",
-    "launch-editor": "^2.13.1",
-    "open": "^11.0.0",
-    "p-retry": "^7.1.1",
-    "serve-index": "^1.9.2",
-    "webpack-dev-middleware": "^7.4.5",
-    "ws": "^8.19.0"
-  },
   "peerDependencies": {
     "@rspack/core": "^2.0.0-0",
     "selfsigned": "^5.0.0"
@@ -111,5 +103,13 @@
     "selfsigned": {
       "optional": true
     }
+  },
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
