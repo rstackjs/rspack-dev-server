@@ -9,7 +9,6 @@ export default defineConfig({
       output: {
         externals: {
           express: 'commonjs express',
-          'launch-editor': 'commonjs launch-editor',
           'connect-history-api-fallback':
             'commonjs connect-history-api-fallback',
           'webpack-dev-middleware': 'commonjs webpack-dev-middleware',
