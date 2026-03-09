@@ -19,8 +19,8 @@ export type {
 import type { FSWatcher, WatchOptions } from 'chokidar';
 export type { FSWatcher, WatchOptions };
 import type {
-  IncomingMessage as ConnectIncomingMessage,
   Server as ConnectApplication,
+  IncomingMessage as ConnectIncomingMessage,
 } from 'connect';
 export type { ConnectApplication };
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
