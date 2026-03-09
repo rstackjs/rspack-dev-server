@@ -14,7 +14,7 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
 
 `@rspack/dev-server` v2 is designed to work with Rspack v2. Rspack v1 is no longer supported in v2.
 
-## Pure ESM package
+### Pure ESM package
 
 `@rspack/dev-server` is now published as **pure ESM** package.
 

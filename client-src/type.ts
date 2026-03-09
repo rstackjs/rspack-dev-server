@@ -15,12 +15,12 @@ declare global {
   const RESOURCE_QUERY: string;
 }
 
-declare interface CommunicationClient {
+export interface CommunicationClient {
   onOpen(fn: (...args: unknown[]) => void): void;
   onClose(fn: (...args: unknown[]) => void): void;
   onMessage(fn: (...args: unknown[]) => void): void;
 }
 
-declare interface CommunicationClientConstructor {
+export interface CommunicationClientConstructor {
   new (url: string): CommunicationClient; // Defines a constructor that takes a string and returns a GreeterInstance
 }
