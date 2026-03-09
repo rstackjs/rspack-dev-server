@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/connect':
+        specifier: ^3.4.38
+        version: 3.4.38
       '@types/connect-history-api-fallback':
         specifier: ^1.5.4
         version: 1.5.4
@@ -23,12 +26,12 @@ importers:
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0
+      connect:
+        specifier: ^3.7.0
+        version: 3.7.0
       connect-history-api-fallback:
         specifier: ^2.0.0
         version: 2.0.0
-      express:
-        specifier: ^5.2.1
-        version: 5.2.1
       http-proxy-middleware:
         specifier: ^3.0.5
         version: 3.0.5
@@ -38,6 +41,9 @@ importers:
       serve-index:
         specifier: ^1.9.2
         version: 1.9.2
+      serve-static:
+        specifier: ^2.2.1
+        version: 2.2.1
       webpack-dev-middleware:
         specifier: ^7.4.5
         version: 7.4.5(tslib@2.8.1)(webpack@5.105.3)
@@ -66,9 +72,6 @@ importers:
       '@types/compression':
         specifier: ^1.8.1
         version: 1.8.1
-      '@types/express':
-        specifier: 5.0.6
-        version: 5.0.6
       '@types/mime-types':
         specifier: 3.0.1
         version: 3.0.1
@@ -84,15 +87,15 @@ importers:
       compression:
         specifier: ^1.8.1
         version: 1.8.1
-      connect:
-        specifier: ^3.7.0
-        version: 3.7.0
       cross-env:
         specifier: ^10.1.0
         version: 10.1.0
       css-loader:
         specifier: ^7.1.4
         version: 7.1.4(@rspack/core@2.0.0-beta.5(@swc/helpers@0.5.19))(webpack@5.105.3)
+      express:
+        specifier: ^5.2.1
+        version: 5.2.1
       hono:
         specifier: ^4.12.5
         version: 4.12.5

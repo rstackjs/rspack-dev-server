@@ -57,9 +57,25 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
 
 > Refer to the [http-proxy-middleware v3 migration guide](https://github.com/chimurai/http-proxy-middleware/blob/master/MIGRATION.md) for details.
 
-### Upgraded Express to v5
+### Default app now uses `connect`
 
-`express` has been updated to v5, see [Introducing Express v5: A New Era for the Node.js Framework](https://expressjs.com/2024/10/15/v5-release.html) for details.
+When `devServer.app` is omitted, `@rspack/dev-server` now creates a
+`connect` app instead of an Express app.
+
+The dev server only needs a minimal middleware pipeline. Connect provides the same `(req, res, next)` interface as Express while being significantly smaller and having fewer dependencies, making it a better fit for this use case.
+
+If you relied on Express-only APIs on `devServer.app`, such as `app.get()`,
+`app.post()`, or `res.send()`, provide your own Express app explicitly:
+
+```js
+import express from 'express';
+
+export default {
+  devServer: {
+    app: async () => express(),
+  },
+};
+```
 
 ### Removed `spdy` support
 

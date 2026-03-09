@@ -24,13 +24,20 @@ describe('onListening option', () => {
 
           onListeningIsRunning = true;
 
-          devServer.app.get('/listening/some/path', (_, response) => {
-            response.send('listening');
-          });
+          devServer.app.use(
+            '/listening/some/path',
+            (request, response, next) => {
+              if (request.method !== 'GET' && request.method !== 'POST') {
+                next();
+                return;
+              }
 
-          devServer.app.post('/listening/some/path', (_, response) => {
-            response.send('listening POST');
-          });
+              response.setHeader('Content-Type', 'text/html; charset=utf-8');
+              response.end(
+                request.method === 'POST' ? 'listening POST' : 'listening',
+              );
+            },
+          );
         },
         port,
       },
