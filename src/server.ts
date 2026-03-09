@@ -1651,9 +1651,14 @@ class Server<
     // compress is placed last and uses unshift so that it will be the first middleware used
     if (this.options.compress) {
       const { default: compression } = await import(
-        /* webpackChunkName: "compression" */ 'compression'
+        /* webpackChunkName: "compression" */ 'http-compression'
       );
-      middlewares.push({ name: 'compression', middleware: compression() });
+      middlewares.push({
+        name: 'compression',
+        middleware: compression({
+          brotli: false,
+        }),
+      });
     }
 
     if (typeof this.options.headers !== 'undefined') {
