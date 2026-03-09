@@ -57,12 +57,12 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
 
 > Refer to the [http-proxy-middleware v3 migration guide](https://github.com/chimurai/http-proxy-middleware/blob/master/MIGRATION.md) for details.
 
-### Default app now uses `connect`
+### Default app now uses `connect-next`
 
 When `devServer.app` is omitted, `@rspack/dev-server` now creates a
-`connect` app instead of an Express app.
+`connect-next` app instead of an Express app.
 
-The dev server only needs a minimal middleware pipeline. Connect provides the same `(req, res, next)` interface as Express while being significantly smaller and having fewer dependencies, making it a better fit for this use case.
+The dev server only needs a minimal middleware pipeline. [connect-next](https://github.com/rstackjs/connect-next) is an actively maintained fork of Connect that keeps the same `(req, res, next)` middleware interface while staying smaller than Express and having fewer dependencies.
 
 If you relied on Express-only APIs on `devServer.app`, such as `app.get()`,
 `app.post()`, or `res.send()`, provide your own Express app explicitly:

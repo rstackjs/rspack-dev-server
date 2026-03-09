@@ -45,13 +45,12 @@
     ]
   },
   "dependencies": {
-    "@types/connect": "^3.4.38",
     "@types/connect-history-api-fallback": "^1.5.4",
     "@types/serve-index": "^1.9.4",
     "@types/serve-static": "^2.2.0",
     "@types/ws": "^8.18.1",
     "chokidar": "^3.6.0",
-    "connect": "^3.7.0",
+    "connect-next": "^4.0.0",
     "connect-history-api-fallback": "^2.0.0",
     "http-proxy-middleware": "^3.0.5",
     "ipaddr.js": "^2.3.0",
