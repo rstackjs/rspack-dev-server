@@ -1655,9 +1655,7 @@ class Server<
       );
       middlewares.push({
         name: 'compression',
-        middleware: compression({
-          brotli: false,
-        }),
+        middleware: compression(),
       });
     }
 
