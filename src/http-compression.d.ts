@@ -23,7 +23,7 @@ declare module 'http-compression' {
   type Next = (err?: unknown) => void;
 
   type HttpCompressionMiddleware = (
-    req: IncomingMessage & { headers: IncomingHttpHeaders; method?: string },
+    req: IncomingMessage,
     res: ServerResponse,
     next?: Next,
   ) => void;

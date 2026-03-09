@@ -14,6 +14,7 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
+import compression from 'http-compression';
 import ipaddr from 'ipaddr.js';
 import { getPort } from './getPort';
 import { WebsocketServer } from './servers/WebsocketServer';
@@ -1650,9 +1651,6 @@ class Server<
 
     // compress is placed last and uses unshift so that it will be the first middleware used
     if (this.options.compress) {
-      const { default: compression } = await import(
-        /* webpackChunkName: "compression" */ 'http-compression'
-      );
       middlewares.push({
         name: 'compression',
         middleware: compression(),
