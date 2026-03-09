@@ -12,13 +12,16 @@ const staticDirectory = path.resolve(
   '../fixtures/static-config/public',
 );
 
+const createConnectNextApp = () =>
+  import('connect-next').then(({ connect }) => connect());
+
 const apps = [
   ['express', () => require('express')(), 'http'],
   ['express', () => require('express')(), 'https'],
-  ['connect', () => require('connect')(), 'http'],
-  ['connect', () => require('connect')(), 'https'],
-  ['connect', () => require('connect')(), 'http2'],
-  ['connect (async)', () => require('connect')(), 'http'],
+  ['connect-next', createConnectNextApp, 'http'],
+  ['connect-next', createConnectNextApp, 'https'],
+  ['connect-next', createConnectNextApp, 'http2'],
+  ['connect-next (async)', async () => createConnectNextApp(), 'http'],
   [
     'hono',
     () => new (require('hono').Hono)(),

@@ -21,7 +21,7 @@ export type { FSWatcher, WatchOptions };
 import type {
   Server as ConnectApplication,
   IncomingMessage as ConnectIncomingMessage,
-} from 'connect';
+} from 'connect-next';
 export type { ConnectApplication };
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 export type { ConnectHistoryApiFallbackOptions };

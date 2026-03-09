@@ -142,7 +142,10 @@ const memoize = <T>(fn: FunctionReturning<T>): FunctionReturning<T> => {
   };
 };
 
-const getConnect = memoize(() => require('connect'));
+const getConnect = async () => {
+  const { connect } = await import('connect-next');
+  return connect;
+};
 const getServeStatic = memoize(() => require('serve-static'));
 
 const encodeOverlaySettings = (
@@ -1520,7 +1523,7 @@ class Server<
     this.app = (
       typeof this.options.app === 'function'
         ? await this.options.app()
-        : getConnect()()
+        : (await getConnect())()
     ) as A;
   }
 

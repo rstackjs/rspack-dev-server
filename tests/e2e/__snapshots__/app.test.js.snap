@@ -1,6 +1,6 @@
 // Rstest Snapshot v1
 
-exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
+exports[`app option > should work using "connect-next (async)" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -8,11 +8,11 @@ exports[`app option > should work using "connect (async)" application and "http"
 ]
 `;
 
-exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
+exports[`app option > should work using "connect-next (async)" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
+exports[`app option > should work using "connect-next (async)" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option > should work using "connect (async)" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
+exports[`app option > should work using "connect-next (async)" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@ exports[`app option > should work using "connect (async)" application and "http"
 "
 `;
 
-exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
+exports[`app option > should work using "connect-next" application and "http" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -36,11 +36,11 @@ exports[`app option > should work using "connect" application and "http" server 
 ]
 `;
 
-exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
+exports[`app option > should work using "connect-next" application and "http" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
+exports[`app option > should work using "connect-next" application and "http" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option > should work using "connect" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
+exports[`app option > should work using "connect-next" application and "http" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@ exports[`app option > should work using "connect" application and "http" server 
 "
 `;
 
-exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > console messages 1`] = `
+exports[`app option > should work using "connect-next" application and "http2" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -64,11 +64,11 @@ exports[`app option > should work using "connect" application and "http2" server
 ]
 `;
 
-exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
+exports[`app option > should work using "connect-next" application and "http2" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > response status 1`] = `200`;
+exports[`app option > should work using "connect-next" application and "http2" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option > should work using "connect" application and "http2" server > should handle GET request to index route (/) > response text 1`] = `
+exports[`app option > should work using "connect-next" application and "http2" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,7 @@ exports[`app option > should work using "connect" application and "http2" server
 "
 `;
 
-exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > console messages 1`] = `
+exports[`app option > should work using "connect-next" application and "https" server > should handle GET request to index route (/) > console messages 1`] = `
 [
   "[rspack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled.",
   "[HMR] Waiting for update signal from WDS...",
@@ -92,11 +92,11 @@ exports[`app option > should work using "connect" application and "https" server
 ]
 `;
 
-exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
+exports[`app option > should work using "connect-next" application and "https" server > should handle GET request to index route (/) > page errors 1`] = `[]`;
 
-exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > response status 1`] = `200`;
+exports[`app option > should work using "connect-next" application and "https" server > should handle GET request to index route (/) > response status 1`] = `200`;
 
-exports[`app option > should work using "connect" application and "https" server > should handle GET request to index route (/) > response text 1`] = `
+exports[`app option > should work using "connect-next" application and "https" server > should handle GET request to index route (/) > response text 1`] = `
 "
 <!DOCTYPE html>
 <html>

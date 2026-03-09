@@ -8,7 +8,6 @@ export default defineConfig({
       dts: true,
       output: {
         externals: {
-          connect: 'commonjs connect',
           'connect-history-api-fallback':
             'commonjs connect-history-api-fallback',
           'webpack-dev-middleware': 'commonjs webpack-dev-middleware',
