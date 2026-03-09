@@ -8,11 +8,12 @@ export default defineConfig({
       dts: true,
       output: {
         externals: {
-          express: 'commonjs express',
+          connect: 'commonjs connect',
           'connect-history-api-fallback':
             'commonjs connect-history-api-fallback',
           'webpack-dev-middleware': 'commonjs webpack-dev-middleware',
           'http-proxy-middleware': 'commonjs http-proxy-middleware',
+          'serve-static': 'commonjs serve-static',
           'serve-index': 'commonjs serve-index',
           selfsigned: 'commonjs selfsigned',
           compression: 'commonjs compression',

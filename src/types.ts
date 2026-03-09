@@ -18,17 +18,13 @@ export type {
 } from '@rspack/core';
 import type { FSWatcher, WatchOptions } from 'chokidar';
 export type { FSWatcher, WatchOptions };
+import type {
+  IncomingMessage as ConnectIncomingMessage,
+  Server as ConnectApplication,
+} from 'connect';
+export type { ConnectApplication };
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 export type { ConnectHistoryApiFallbackOptions };
-import type {
-  Application as ExpressApplication,
-  ErrorRequestHandler as ExpressErrorRequestHandler,
-  Request as ExpressRequest,
-  RequestHandler as ExpressRequestHandler,
-  Response as ExpressResponse,
-} from 'express';
-
-export type { ExpressApplication };
 import type {
   Options as HttpProxyMiddlewareOptions,
   Filter as HttpProxyMiddlewareOptionsFilter,
@@ -70,10 +66,9 @@ export type HandleFunction =
 export type ServerOptions = import('https').ServerOptions;
 
 // type-level helpers, inferred as util types
-export type Request<T extends BasicApplication = ExpressApplication> =
-  T extends ExpressApplication ? ExpressRequest : IncomingMessage;
-export type Response<T extends BasicApplication = ExpressApplication> =
-  T extends ExpressApplication ? ExpressResponse : ServerResponse;
+export type Request<T extends BasicApplication = ConnectApplication> =
+  T extends ConnectApplication ? ConnectIncomingMessage : IncomingMessage;
+export type Response = ServerResponse;
 
 export type DevMiddlewareOptions<
   T extends Request,
@@ -122,14 +117,14 @@ export interface NormalizedStatic {
 }
 
 export type ServerType<
-  A extends BasicApplication = ExpressApplication,
+  A extends BasicApplication = ConnectApplication,
   S extends import('http').Server = import('http').Server,
 > =
   | LiteralUnion<'http' | 'https' | 'http2', string>
   | ((serverOptions: ServerOptions, application: A) => S);
 
 export interface ServerConfiguration<
-  A extends BasicApplication = ExpressApplication,
+  A extends BasicApplication = ConnectApplication,
   S extends import('http').Server = import('http').Server,
 > {
   type?: ServerType<A, S>;
@@ -210,28 +205,21 @@ export type Headers =
   | Array<{ key: string; value: string }>
   | Record<string, string | string[]>;
 
-export type MiddlewareHandler<T extends BasicApplication = ExpressApplication> =
-  T extends ExpressApplication
-    ? ExpressRequestHandler | ExpressErrorRequestHandler
-    : HandleFunction;
+export type MiddlewareHandler = (...args: EXPECTED_ANY[]) => EXPECTED_ANY;
 
-export interface MiddlewareObject<
-  T extends BasicApplication = ExpressApplication,
-> {
+export interface MiddlewareObject {
   name?: string;
   path?: string;
-  middleware: MiddlewareHandler<T>;
+  middleware: MiddlewareHandler;
 }
 
-export type Middleware<T extends BasicApplication = ExpressApplication> =
-  | MiddlewareObject<T>
-  | MiddlewareHandler<T>;
+export type Middleware = MiddlewareObject | MiddlewareHandler;
 
 export type BasicServer = import('net').Server | import('tls').Server;
 
 export type OverlayMessageOptions = boolean | ((error: Error) => void);
 
-// TypeScript overloads for express-like use
+// TypeScript overloads for connect-like use
 function useFn(fn: NextHandleFunction): BasicApplication;
 function useFn(fn: HandleFunction): BasicApplication;
 function useFn(route: string, fn: NextHandleFunction): BasicApplication;

@@ -28,7 +28,6 @@ import type {
   DevMiddlewareOptions,
   DevServer,
   EXPECTED_ANY,
-  ExpressApplication,
   FSWatcher,
   HTTPServer,
   HandleFunction,
@@ -74,12 +73,13 @@ import type {
   WebSocketServerImplementation,
   WebSocketURL,
 } from './types';
+import type { ConnectApplication } from './types';
 
 const { styleText } = util;
 const require = createRequire(import.meta.url);
 
 export interface Configuration<
-  A extends BasicApplication = ExpressApplication,
+  A extends BasicApplication = ConnectApplication,
   S extends HTTPServer = HTTPServer,
 > {
   ipc?: boolean | string;
@@ -142,7 +142,8 @@ const memoize = <T>(fn: FunctionReturning<T>): FunctionReturning<T> => {
   };
 };
 
-const getExpress = memoize(() => require('express'));
+const getConnect = memoize(() => require('connect'));
+const getServeStatic = memoize(() => require('serve-static'));
 
 const encodeOverlaySettings = (
   setting?: OverlayMessageOptions,
@@ -184,7 +185,7 @@ function isMultiCompiler(
 }
 
 class Server<
-  A extends BasicApplication = ExpressApplication,
+  A extends BasicApplication = ConnectApplication,
   S extends import('http').Server = HTTPServer,
 > {
   compiler: Compiler | MultiCompiler;
@@ -1519,7 +1520,7 @@ class Server<
     this.app = (
       typeof this.options.app === 'function'
         ? await this.options.app()
-        : getExpress()()
+        : getConnect()()
     ) as A;
   }
 
@@ -1901,9 +1902,9 @@ class Server<
       for (const staticOption of staticOptions) {
         for (const publicPath of staticOption.publicPath) {
           middlewares.push({
-            name: 'express-static',
+            name: 'serve-static',
             path: publicPath,
-            middleware: getExpress().static(
+            middleware: getServeStatic()(
               staticOption.directory,
               staticOption.staticOptions,
             ),
@@ -1947,9 +1948,9 @@ class Server<
         for (const staticOption of staticOptions) {
           for (const publicPath of staticOption.publicPath) {
             middlewares.push({
-              name: 'express-static',
+              name: 'serve-static',
               path: publicPath,
-              middleware: getExpress().static(
+              middleware: getServeStatic()(
                 staticOption.directory,
                 staticOption.staticOptions,
               ),
@@ -2021,11 +2022,11 @@ class Server<
 
     for (const i of middlewares) {
       if (i.name === 'webpack-dev-middleware') {
-        const item = i as MiddlewareObject<A> | RequestHandler;
+        const item = i as MiddlewareObject | RequestHandler;
 
-        if (typeof (item as MiddlewareObject<A>).middleware === 'undefined') {
-          (item as MiddlewareObject<A>).middleware =
-            lazyInitDevMiddleware() as unknown as MiddlewareHandler<A>;
+        if (typeof (item as MiddlewareObject).middleware === 'undefined') {
+          (item as MiddlewareObject).middleware =
+            lazyInitDevMiddleware() as unknown as MiddlewareHandler;
         }
       }
     }
