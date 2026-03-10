@@ -58,7 +58,6 @@ import type {
   Request,
   RequestHandler,
   Response,
-  ServeIndexOptions,
   ServerConfiguration,
   ServerOptions,
   ServerType,
@@ -659,7 +658,6 @@ class Server<
           directory: path.join(process.cwd(), 'public'),
           staticOptions: {},
           publicPath: ['/'],
-          serveIndex: { icons: true },
           watch: getWatchOptions(),
         };
       };
@@ -692,22 +690,6 @@ class Server<
                 ? optionsForStatic.publicPath
                 : [optionsForStatic.publicPath]
               : def.publicPath,
-          serveIndex:
-            // Check if 'serveIndex' property is defined in 'optionsForStatic'
-            // If 'serveIndex' is a boolean and true, use default 'serveIndex'
-            // If 'serveIndex' is an object, merge its properties with default 'serveIndex'
-            // If 'serveIndex' is neither a boolean true nor an object, use it as-is
-            // If 'serveIndex' is not defined in 'optionsForStatic', use default 'serveIndex'
-            // eslint-disable-next-line no-nested-ternary
-            typeof optionsForStatic.serveIndex !== 'undefined'
-              ? // eslint-disable-next-line no-nested-ternary
-                typeof optionsForStatic.serveIndex === 'boolean' &&
-                optionsForStatic.serveIndex
-                ? def.serveIndex
-                : typeof optionsForStatic.serveIndex === 'object'
-                  ? { ...def.serveIndex, ...optionsForStatic.serveIndex }
-                  : optionsForStatic.serveIndex
-              : def.serveIndex,
           watch:
             // eslint-disable-next-line no-nested-ternary
             typeof optionsForStatic.watch !== 'undefined'
@@ -1954,32 +1936,6 @@ class Server<
                 staticOption.directory,
                 staticOption.staticOptions,
               ),
-            });
-          }
-        }
-      }
-    }
-
-    if (staticOptions.length > 0) {
-      const serveIndex = require('serve-index');
-
-      for (const staticOption of staticOptions) {
-        for (const publicPath of staticOption.publicPath) {
-          if (staticOption.serveIndex) {
-            middlewares.push({
-              name: 'serve-index',
-              path: publicPath,
-              middleware: (req: Request, res: Response, next: NextFunction) => {
-                // serve-index doesn't fallthrough non-get/head request to next middleware
-                if (req.method !== 'GET' && req.method !== 'HEAD') {
-                  return next();
-                }
-
-                serveIndex(
-                  staticOption.directory,
-                  staticOption.serveIndex as ServeIndexOptions,
-                )(req, res, next);
-              },
             });
           }
         }

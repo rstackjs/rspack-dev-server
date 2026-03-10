@@ -15,14 +15,12 @@ import type {
   Filter as HttpProxyMiddlewareOptionsFilter,
   RequestHandler,
 } from 'http-proxy-middleware';
-import type { Options as ServeIndexOptions } from 'serve-index';
 import type { ServeStaticOptions } from 'serve-static';
 
 export type {
   FSWatcher,
   WatchOptions,
   RequestHandler,
-  ServeIndexOptions,
   BasicServer,
   HTTPServer,
   ServerOptions,
@@ -104,21 +102,13 @@ export interface WatchFiles {
 export interface Static {
   directory?: string;
   publicPath?: string | string[];
-  serveIndex?: boolean | ServeIndexOptions;
   staticOptions?: ServeStaticOptions;
-  watch?:
-    | boolean
-    | (WatchOptions & {
-        aggregateTimeout?: number;
-        ignored?: WatchOptions['ignored'];
-        poll?: number | boolean;
-      });
+  watch?: boolean | NonNullable<WatchFiles['options']>;
 }
 
 export interface NormalizedStatic {
   directory: string;
   publicPath: string[];
-  serveIndex: false | ServeIndexOptions;
   staticOptions: ServeStaticOptions;
   watch: false | WatchOptions;
 }
