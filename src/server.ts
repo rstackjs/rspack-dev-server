@@ -148,6 +148,7 @@ const getConnect = async () => {
   const { connect } = await import('connect-next');
   return connect;
 };
+const getChokidar = memoize(() => import('chokidar'));
 const getServeStatic = memoize(() => require('serve-static'));
 
 const encodeOverlaySettings = (
@@ -604,7 +605,6 @@ class Server<
     const getWatchOptions = (
       watchOptions: WatchOptions & {
         aggregateTimeout?: number;
-        ignored?: WatchOptions['ignored'];
         poll?: number | boolean;
       } = {},
     ): WatchOptions => {
@@ -623,6 +623,7 @@ class Server<
 
         return false;
       };
+
       const getInterval = () => {
         if (typeof watchOptions.interval !== 'undefined') {
           return watchOptions.interval;
@@ -639,8 +640,6 @@ class Server<
 
       const usePolling = getPolling();
       const interval = getInterval();
-      const { poll, ...rest } = watchOptions;
-
       return {
         ignoreInitial: true,
         persistent: true,
@@ -651,9 +650,7 @@ class Server<
         // Respect options from compiler watchOptions
         usePolling,
         interval,
-        ignored: watchOptions.ignored,
-        // TODO: we respect these options for all watch options and allow developers to pass them to chokidar, but chokidar doesn't have these options maybe we need revisit that in future
-        ...rest,
+        ...watchOptions,
       };
     };
     const getStaticItem = (
@@ -1463,8 +1460,8 @@ class Server<
       }
     }
 
-    this.#setupWatchFiles();
-    this.#setupWatchStaticFiles();
+    await this.#setupWatchFiles();
+    await this.#setupWatchStaticFiles();
     await this.#setupMiddlewares();
 
     if (this.options.setupExitSignals) {
@@ -1563,24 +1560,24 @@ class Server<
     );
   }
 
-  #setupWatchStaticFiles(): void {
+  async #setupWatchStaticFiles(): Promise<void> {
     const watchFiles = this.options.static as NormalizedStatic[];
 
     if (watchFiles.length > 0) {
       for (const item of watchFiles) {
         if (item.watch) {
-          this.watchFiles(item.directory, item.watch as WatchOptions);
+          await this.watchFiles(item.directory, item.watch as WatchOptions);
         }
       }
     }
   }
 
-  #setupWatchFiles(): void {
+  async #setupWatchFiles(): Promise<void> {
     const watchFiles = this.options.watchFiles as WatchFiles[];
 
     if (watchFiles.length > 0) {
       for (const item of watchFiles) {
-        this.watchFiles(item.paths, item.options);
+        await this.watchFiles(item.paths, item.options);
       }
     }
   }
@@ -2577,10 +2574,12 @@ class Server<
     }
   }
 
-  watchFiles(watchPath: string | string[], watchOptions?: WatchOptions) {
-    const chokidar = require('chokidar');
-
-    const watcher = chokidar.watch(watchPath, watchOptions);
+  async watchFiles(
+    watchPath: string | string[],
+    watchOptions?: WatchOptions,
+  ): Promise<void> {
+    const { watch } = await getChokidar();
+    const watcher = watch(watchPath, watchOptions);
 
     // disabling refreshing on changing the content
     if (this.options.liveReload) {
