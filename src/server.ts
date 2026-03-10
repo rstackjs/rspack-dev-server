@@ -391,7 +391,7 @@ class Server<
     return path.resolve(dir, 'node_modules/.cache/rspack-dev-server');
   }
 
-  addAdditionalEntries(compiler: Compiler) {
+  #addAdditionalEntries(compiler: Compiler) {
     const additionalEntries: string[] = [];
     const isWebTarget = Boolean(compiler.platform.web);
 
@@ -560,7 +560,7 @@ class Server<
    * @private
    * @returns {Compiler["options"]} compiler options
    */
-  getCompilerOptions() {
+  #getCompilerOptions() {
     if (typeof (this.compiler as MultiCompiler).compilers !== 'undefined') {
       if ((this.compiler as MultiCompiler).compilers.length === 1) {
         return (this.compiler as MultiCompiler).compilers[0].options;
@@ -591,15 +591,15 @@ class Server<
     return (this.compiler as Compiler).options;
   }
 
-  shouldLogInfrastructureInfo() {
-    const compilerOptions = this.getCompilerOptions();
+  #shouldLogInfrastructureInfo() {
+    const compilerOptions = this.#getCompilerOptions();
     const { level = 'info' } = compilerOptions.infrastructureLogging || {};
     return level === 'info' || level === 'log' || level === 'verbose';
   }
 
-  async normalizeOptions() {
+  async #normalizeOptions() {
     const { options } = this;
-    const compilerOptions = this.getCompilerOptions();
+    const compilerOptions = this.#getCompilerOptions();
     const compilerWatchOptions = compilerOptions.watchOptions;
     const getWatchOptions = (
       watchOptions: WatchOptions & {
@@ -1217,7 +1217,7 @@ class Server<
    * @private
    * @returns {string} client transport
    */
-  getClientTransport() {
+  #getClientTransport() {
     let clientImplementation: string | undefined;
     let clientImplementationFound = true;
 
@@ -1285,7 +1285,7 @@ class Server<
     return clientImplementation as string;
   }
 
-  getServerTransport() {
+  #getServerTransport() {
     let implementation: unknown;
     let implementationFound = true;
 
@@ -1352,7 +1352,7 @@ class Server<
     }
   }
 
-  setupProgressPlugin(): void {
+  #setupProgressPlugin(): void {
     const { ProgressPlugin } = (this.compiler as MultiCompiler).compilers
       ? (this.compiler as MultiCompiler).compilers[0].webpack
       : (this.compiler as Compiler).webpack;
@@ -1388,7 +1388,7 @@ class Server<
    * @private
    * @returns {Promise<void>}
    */
-  async initialize() {
+  async #initialize() {
     const compilers = isMultiCompiler(this.compiler)
       ? this.compiler.compilers
       : [this.compiler];
@@ -1411,10 +1411,10 @@ class Server<
       }
     }
 
-    this.setupHooks();
+    this.#setupHooks();
 
-    await this.setupApp();
-    await this.createServer();
+    await this.#setupApp();
+    await this.#createServer();
 
     if (this.options.webSocketServer) {
       const compilers =
@@ -1426,12 +1426,12 @@ class Server<
           continue;
         }
 
-        this.addAdditionalEntries(compiler);
+        this.#addAdditionalEntries(compiler);
 
         const { ProvidePlugin, HotModuleReplacementPlugin } = compiler.rspack;
 
         new ProvidePlugin({
-          __rspack_dev_server_client__: this.getClientTransport() as
+          __rspack_dev_server_client__: this.#getClientTransport() as
             | string
             | string[],
         }).apply(compiler);
@@ -1459,13 +1459,13 @@ class Server<
         this.options.client &&
         (this.options.client as ClientConfiguration).progress
       ) {
-        this.setupProgressPlugin();
+        this.#setupProgressPlugin();
       }
     }
 
-    this.setupWatchFiles();
-    this.setupWatchStaticFiles();
-    await this.setupMiddlewares();
+    this.#setupWatchFiles();
+    this.#setupWatchStaticFiles();
+    await this.#setupMiddlewares();
 
     if (this.options.setupExitSignals) {
       const signals = ['SIGINT', 'SIGTERM'];
@@ -1521,7 +1521,7 @@ class Server<
     }
   }
 
-  async setupApp(): Promise<void> {
+  async #setupApp(): Promise<void> {
     this.app = (
       typeof this.options.app === 'function'
         ? await this.options.app()
@@ -1529,9 +1529,9 @@ class Server<
     ) as A;
   }
 
-  getStats(statsObj: Stats | MultiStats): StatsCompilation {
+  #getStats(statsObj: Stats | MultiStats): StatsCompilation {
     const stats = Server.DEFAULT_STATS;
-    const compilerOptions = this.getCompilerOptions();
+    const compilerOptions = this.#getCompilerOptions();
 
     if (
       compilerOptions.stats &&
@@ -1546,7 +1546,7 @@ class Server<
     return statsObj.toJson(stats);
   }
 
-  setupHooks(): void {
+  #setupHooks(): void {
     this.compiler.hooks.invalid.tap('rspack-dev-server', () => {
       if (this.webSocketServer) {
         this.sendMessage(this.webSocketServer.clients, 'invalid');
@@ -1556,14 +1556,14 @@ class Server<
       'rspack-dev-server',
       (stats: Stats | MultiStats): void => {
         if (this.webSocketServer) {
-          this.sendStats(this.webSocketServer.clients, this.getStats(stats));
+          this.#sendStats(this.webSocketServer.clients, this.#getStats(stats));
         }
         this.stats = stats;
       },
     );
   }
 
-  setupWatchStaticFiles(): void {
+  #setupWatchStaticFiles(): void {
     const watchFiles = this.options.static as NormalizedStatic[];
 
     if (watchFiles.length > 0) {
@@ -1575,7 +1575,7 @@ class Server<
     }
   }
 
-  setupWatchFiles(): void {
+  #setupWatchFiles(): void {
     const watchFiles = this.options.watchFiles as WatchFiles[];
 
     if (watchFiles.length > 0) {
@@ -1585,7 +1585,7 @@ class Server<
     }
   }
 
-  async setupMiddlewares(): Promise<void> {
+  async #setupMiddlewares(): Promise<void> {
     let middlewares: Middleware[] = [];
 
     // Register setup host header check for security
@@ -1661,7 +1661,7 @@ class Server<
     if (typeof this.options.headers !== 'undefined') {
       middlewares.push({
         name: 'set-headers',
-        middleware: this.setHeaders.bind(this),
+        middleware: this.#setHeaders.bind(this),
       });
     }
 
@@ -2056,7 +2056,7 @@ class Server<
    * @private
    * @returns {Promise<void>}
    */
-  async createServer() {
+  async #createServer() {
     const { type, options } = this.options.server as ServerConfiguration<A, S>;
 
     if (typeof type === 'function') {
@@ -2092,8 +2092,8 @@ class Server<
     });
   }
 
-  createWebSocketServer() {
-    this.webSocketServer = new (this.getServerTransport() as EXPECTED_ANY)(
+  #createWebSocketServer() {
+    this.webSocketServer = new (this.#getServerTransport() as EXPECTED_ANY)(
       this,
     );
 
@@ -2115,7 +2115,7 @@ class Server<
           !headers ||
           !this.isValidHost(headers, 'host') ||
           !this.isValidHost(headers, 'origin') ||
-          !this.isSameOrigin(headers)
+          !this.#isSameOrigin(headers)
         ) {
           this.sendMessage([client], 'error', 'Invalid Host/Origin header');
 
@@ -2187,12 +2187,12 @@ class Server<
           return;
         }
 
-        this.sendStats([client], this.getStats(this.stats), true);
+        this.#sendStats([client], this.#getStats(this.stats), true);
       },
     );
   }
 
-  async openBrowser(defaultOpenTarget: string): Promise<void> {
+  async #openBrowser(defaultOpenTarget: string): Promise<void> {
     const { default: open } = await import(
       /* webpackChunkName: "open" */ 'open'
     );
@@ -2229,7 +2229,7 @@ class Server<
     );
   }
 
-  async logStatus() {
+  async #logStatus() {
     const server = this.server as S;
 
     if (this.options.ipc) {
@@ -2307,7 +2307,7 @@ class Server<
         );
       }
 
-      if (urlLogs.length && this.shouldLogInfrastructureInfo()) {
+      if (urlLogs.length && this.#shouldLogInfrastructureInfo()) {
         console.log(`${urlLogs.join('\n')}\n`);
       }
 
@@ -2320,12 +2320,12 @@ class Server<
             : this.options.host,
         );
 
-        await this.openBrowser(openTarget);
+        await this.#openBrowser(openTarget);
       }
     }
   }
 
-  setHeaders(req: Request, res: Response, next: NextFunction) {
+  #setHeaders(req: Request, res: Response, next: NextFunction) {
     let { headers } = this.options;
 
     if (headers) {
@@ -2359,7 +2359,7 @@ class Server<
     next();
   }
 
-  isHostAllowed(value: string): boolean {
+  #isHostAllowed(value: string): boolean {
     const { allowedHosts } = this.options;
 
     // allow user to opt out of this security check, at their own risk
@@ -2431,7 +2431,7 @@ class Server<
       return false;
     }
 
-    if (this.isHostAllowed(hostname)) {
+    if (this.#isHostAllowed(hostname)) {
       return true;
     }
 
@@ -2455,7 +2455,7 @@ class Server<
     return isValidHostname;
   }
 
-  isSameOrigin(headers: Record<string, string | undefined>): boolean {
+  #isSameOrigin(headers: Record<string, string | undefined>): boolean {
     if (this.options.allowedHosts === 'all') {
       return true;
     }
@@ -2476,7 +2476,7 @@ class Server<
       return false;
     }
 
-    if (this.isHostAllowed(origin)) {
+    if (this.#isHostAllowed(origin)) {
       return true;
     }
 
@@ -2496,7 +2496,7 @@ class Server<
       return false;
     }
 
-    if (this.isHostAllowed(host)) {
+    if (this.#isHostAllowed(host)) {
       return true;
     }
 
@@ -2518,7 +2518,7 @@ class Server<
   }
 
   // Send stats to a socket or multiple sockets
-  sendStats(
+  #sendStats(
     clients: ClientConnection[],
     stats: StatsCompilation,
     force?: boolean,
@@ -2605,7 +2605,7 @@ class Server<
   }
 
   async start(): Promise<void> {
-    await this.normalizeOptions();
+    await this.#normalizeOptions();
 
     if (this.options.ipc) {
       await new Promise<void>((resolve, reject) => {
@@ -2643,7 +2643,7 @@ class Server<
       );
     }
 
-    await this.initialize();
+    await this.#initialize();
 
     const listenOptions = this.options.ipc
       ? { path: this.options.ipc }
@@ -2663,10 +2663,10 @@ class Server<
     }
 
     if (this.options.webSocketServer) {
-      this.createWebSocketServer();
+      this.#createWebSocketServer();
     }
 
-    await this.logStatus();
+    await this.#logStatus();
 
     if (typeof this.options.onListening === 'function') {
       this.options.onListening(this);
