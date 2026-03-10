@@ -77,6 +77,48 @@ export default {
 };
 ```
 
+### Updated `chokidar` to v5
+
+`@rspack/dev-server` v2 upgrades the underlying file watcher `chokidar` from v3 to v5.
+
+One important breaking change in `chokidar` v4+ is that [glob patterns are no longer supported](https://github.com/paulmillr/chokidar#upgrading).
+
+If you previously passed glob patterns such as `**/*.js` or `./directory/**/*` to `devServer.watchFiles`, you can watch a directory and filter with `ignored`:
+
+```js
+// Before
+export default {
+  devServer: {
+    watchFiles: '**/*.js',
+  },
+};
+
+// After
+export default {
+  devServer: {
+    watchFiles: {
+      paths: '.',
+      options: {
+        ignored: (path, stats) =>
+          stats?.isFile() && !path.endsWith('.js'),
+      },
+    },
+  },
+};
+```
+
+Or use `node:fs/promises` to expand the glob first:
+
+```js
+import { glob } from 'node:fs/promises';
+
+export default async () => ({
+  devServer: {
+    watchFiles: await Array.fromAsync(glob('**/*.js')),
+  },
+});
+```
+
 ### Removed `spdy` support
 
 - `server.type: "spdy"` is no longer supported.
@@ -107,6 +149,8 @@ export default {
   },
 };
 ```
+
+> `Array.fromAsync()` requires Node.js 22+.
 
 ### Optional `selfsigned` peer dependency
 

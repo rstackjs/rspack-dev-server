@@ -15,7 +15,6 @@ export default defineConfig({
           'serve-static': 'commonjs serve-static',
           'serve-index': 'commonjs serve-index',
           selfsigned: 'commonjs selfsigned',
-          chokidar: 'commonjs chokidar',
         },
       },
     },

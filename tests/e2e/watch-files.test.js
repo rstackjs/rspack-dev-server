@@ -1,6 +1,6 @@
 const path = require('node:path');
-const chokidar = require('chokidar');
 const fs = require('node:fs');
+const { glob } = require('node:fs/promises');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/watch-files-config/rspack.config');
@@ -11,6 +11,16 @@ const watchDir = path.resolve(
   __dirname,
   '../fixtures/watch-files-config/public',
 );
+
+async function collectAsyncIterable(iterable) {
+  const items = [];
+
+  for await (const item of iterable) {
+    items.push(item);
+  }
+
+  return items;
+}
 
 describe('watchFiles option', () => {
   describe('should work with string and path to file', () => {
@@ -155,7 +165,7 @@ describe('watchFiles option', () => {
     });
   });
 
-  describe('should work with string and glob', () => {
+  describe('should work with files resolved from glob', () => {
     const file = path.join(watchDir, 'assets/example.txt');
     let compiler;
     let server;
@@ -165,11 +175,20 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
+      const watchFiles = await collectAsyncIterable(
+        glob(
+          path.posix.join(
+            watchDir.split(path.sep).join(path.posix.sep),
+            '**/*',
+          ),
+        ),
+      );
+
       compiler = rspack(config);
 
       server = new Server(
         {
-          watchFiles: `${watchDir}/**/*`,
+          watchFiles,
           port,
         },
         compiler,
@@ -554,8 +573,6 @@ describe('watchFiles option', () => {
   describe('should work with options', () => {
     const file = path.join(watchDir, 'assets/example.txt');
 
-    const chokidarMock = rs.spyOn(chokidar, 'watch');
-
     const optionCases = [
       {
         poll: true,
@@ -607,8 +624,6 @@ describe('watchFiles option', () => {
         let consoleMessages;
 
         beforeEach(async () => {
-          chokidarMock.mockClear();
-
           compiler = rspack(config);
 
           server = new Server(
@@ -650,7 +665,7 @@ describe('watchFiles option', () => {
           });
 
           // should pass correct options to chokidar config
-          expect(chokidarMock.mock.calls[0][1]).toMatchSnapshot();
+          expect(server.staticWatchers[0].options).toMatchSnapshot();
 
           expect(response.status()).toMatchSnapshot('response status');
 
