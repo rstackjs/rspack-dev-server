@@ -21,6 +21,7 @@ import { WebsocketServer } from './servers/WebsocketServer';
 import type {
   AddressInfo,
   BasicApplication,
+  BasicServer,
   ClientConfiguration,
   ClientConnection,
   Compiler,
@@ -81,7 +82,7 @@ const require = createRequire(import.meta.url);
 
 export interface Configuration<
   A extends BasicApplication = ConnectApplication,
-  S extends HTTPServer = HTTPServer,
+  S extends BasicServer = HTTPServer,
 > {
   ipc?: boolean | string;
   host?: Host;
@@ -190,7 +191,7 @@ function isMultiCompiler(
 
 class Server<
   A extends BasicApplication = ConnectApplication,
-  S extends import('http').Server = HTTPServer,
+  S extends BasicServer = HTTPServer,
 > {
   compiler: Compiler | MultiCompiler;
   logger: ReturnType<Compiler['getInfrastructureLogger']>;
