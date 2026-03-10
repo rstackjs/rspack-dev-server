@@ -647,7 +647,7 @@ class Server<
         ignorePermissionErrors: true,
         // Respect options from compiler watchOptions
         usePolling,
-        interval,
+        ...(interval !== undefined ? { interval } : {}),
         ...rest,
       };
     };
