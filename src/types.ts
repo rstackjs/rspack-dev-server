@@ -97,7 +97,6 @@ export interface WatchFiles {
   paths: string | string[];
   options?: WatchOptions & {
     aggregateTimeout?: number;
-    ignored?: WatchOptions['ignored'];
     poll?: number | boolean;
   };
 }

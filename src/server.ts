@@ -603,10 +603,7 @@ class Server<
     const compilerOptions = this.#getCompilerOptions();
     const compilerWatchOptions = compilerOptions.watchOptions;
     const getWatchOptions = (
-      watchOptions: WatchOptions & {
-        aggregateTimeout?: number;
-        poll?: number | boolean;
-      } = {},
+      watchOptions: WatchFiles['options'] = {},
     ): WatchOptions => {
       const getPolling = () => {
         if (typeof watchOptions.usePolling !== 'undefined') {
@@ -640,6 +637,7 @@ class Server<
 
       const usePolling = getPolling();
       const interval = getInterval();
+      const { poll: _poll, ...rest } = watchOptions;
       return {
         ignoreInitial: true,
         persistent: true,
@@ -650,7 +648,7 @@ class Server<
         // Respect options from compiler watchOptions
         usePolling,
         interval,
-        ...watchOptions,
+        ...rest,
       };
     };
     const getStaticItem = (
