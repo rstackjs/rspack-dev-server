@@ -150,6 +150,8 @@ export default {
 };
 ```
 
+> `Array.fromAsync()` requires Node.js 22+.
+
 ### Optional `selfsigned` peer dependency
 
 `selfsigned` is no longer bundled as a direct dependency of `@rspack/dev-server`.

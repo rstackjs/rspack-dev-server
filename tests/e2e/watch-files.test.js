@@ -12,6 +12,16 @@ const watchDir = path.resolve(
   '../fixtures/watch-files-config/public',
 );
 
+async function collectAsyncIterable(iterable) {
+  const items = [];
+
+  for await (const item of iterable) {
+    items.push(item);
+  }
+
+  return items;
+}
+
 describe('watchFiles option', () => {
   describe('should work with string and path to file', () => {
     const file = path.join(watchDir, 'assets/example.txt');
@@ -165,7 +175,7 @@ describe('watchFiles option', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      const watchFiles = await Array.fromAsync(
+      const watchFiles = await collectAsyncIterable(
         glob(
           path.posix.join(
             watchDir.split(path.sep).join(path.posix.sep),
