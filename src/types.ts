@@ -3,7 +3,34 @@ import type {
   IncomingMessage,
   ServerResponse,
 } from 'node:http';
-export type { HTTPServer, IncomingMessage };
+import type { ServerOptions } from 'node:https';
+import type { FSWatcher, WatchOptions } from 'chokidar';
+import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
+import type {
+  Server as ConnectApplication,
+  IncomingMessage as ConnectIncomingMessage,
+} from 'connect-next';
+import type {
+  Options as HttpProxyMiddlewareOptions,
+  Filter as HttpProxyMiddlewareOptionsFilter,
+  RequestHandler,
+} from 'http-proxy-middleware';
+import type { Options as ServeIndexOptions } from 'serve-index';
+import type { ServeStaticOptions } from 'serve-static';
+
+export type {
+  FSWatcher,
+  WatchOptions,
+  RequestHandler,
+  ServeIndexOptions,
+  BasicServer,
+  HTTPServer,
+  ServerOptions,
+  IncomingMessage,
+  ConnectApplication,
+  ConnectHistoryApiFallbackOptions,
+};
+export type { IPv6 } from 'ipaddr.js';
 export type { Socket } from 'node:net';
 export type { AddressInfo } from 'node:net';
 export type { NetworkInterfaceInfo } from 'node:os';
@@ -16,28 +43,11 @@ export type {
   StatsCompilation,
   StatsOptions,
 } from '@rspack/core';
-import type { FSWatcher, WatchOptions } from 'chokidar';
-export type { FSWatcher, WatchOptions };
-import type {
-  Server as ConnectApplication,
-  IncomingMessage as ConnectIncomingMessage,
-} from 'connect-next';
-export type { ConnectApplication };
-import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
-export type { ConnectHistoryApiFallbackOptions };
-import type {
-  Options as HttpProxyMiddlewareOptions,
-  Filter as HttpProxyMiddlewareOptionsFilter,
-  RequestHandler,
-} from 'http-proxy-middleware';
-export type { RequestHandler };
-export type { IPv6 } from 'ipaddr.js';
-import type { Options as ServeIndexOptions } from 'serve-index';
-export type { ServeIndexOptions };
-import type { ServeStaticOptions } from 'serve-static';
 
 // biome-ignore lint/suspicious/noExplicitAny: expected any
 export type EXPECTED_ANY = any;
+
+type BasicServer = import('node:net').Server | import('node:tls').Server;
 
 /** https://github.com/microsoft/TypeScript/issues/29729 */
 export type LiteralUnion<T extends U, U> = T | (U & Record<never, never>);
@@ -62,8 +72,6 @@ export type HandleFunction =
   | SimpleHandleFunction
   | NextHandleFunction
   | ErrorHandleFunction;
-
-export type ServerOptions = import('https').ServerOptions;
 
 // type-level helpers, inferred as util types
 export type Request<T extends BasicApplication = ConnectApplication> =
@@ -116,16 +124,13 @@ export interface NormalizedStatic {
   watch: false | WatchOptions;
 }
 
-export type ServerType<
-  A extends BasicApplication = ConnectApplication,
-  S extends import('http').Server = import('http').Server,
-> =
+export type ServerType<A extends BasicApplication, S extends BasicServer> =
   | LiteralUnion<'http' | 'https' | 'http2', string>
   | ((serverOptions: ServerOptions, application: A) => S);
 
 export interface ServerConfiguration<
   A extends BasicApplication = ConnectApplication,
-  S extends import('http').Server = import('http').Server,
+  S extends BasicServer = HTTPServer,
 > {
   type?: ServerType<A, S>;
   options?: ServerOptions;
@@ -214,8 +219,6 @@ export interface MiddlewareObject {
 }
 
 export type Middleware = MiddlewareObject | MiddlewareHandler;
-
-export type BasicServer = import('net').Server | import('tls').Server;
 
 export type OverlayMessageOptions = boolean | ((error: Error) => void);
 
