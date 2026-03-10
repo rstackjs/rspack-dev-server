@@ -1,15 +1,15 @@
 import type {
+  Server as HTTPServer,
   IncomingMessage,
   ServerResponse,
-  Server as HTTPServer,
 } from 'node:http';
 import type { ServerOptions } from 'node:https';
 import type { FSWatcher, WatchOptions } from 'chokidar';
+import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
   Server as ConnectApplication,
   IncomingMessage as ConnectIncomingMessage,
 } from 'connect-next';
-import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
   Options as HttpProxyMiddlewareOptions,
   Filter as HttpProxyMiddlewareOptionsFilter,
