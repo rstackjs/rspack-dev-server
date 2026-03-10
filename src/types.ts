@@ -4,7 +4,7 @@ import type {
   ServerResponse,
 } from 'node:http';
 import type { ServerOptions } from 'node:https';
-import type { ChokidarOptions as WatchOptions, FSWatcher } from 'chokidar';
+import type { FSWatcher, ChokidarOptions as WatchOptions } from 'chokidar';
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
   Server as ConnectApplication,
