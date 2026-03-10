@@ -13,7 +13,6 @@ export default defineConfig({
           'webpack-dev-middleware': 'commonjs webpack-dev-middleware',
           'http-proxy-middleware': 'commonjs http-proxy-middleware',
           'serve-static': 'commonjs serve-static',
-          'serve-index': 'commonjs serve-index',
           selfsigned: 'commonjs selfsigned',
         },
       },

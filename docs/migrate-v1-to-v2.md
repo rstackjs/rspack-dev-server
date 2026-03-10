@@ -169,6 +169,44 @@ npm i -D selfsigned@^5.0.0
 # or bun add -D selfsigned@^5.0.0
 ```
 
+### Removed `serve-index` support
+
+`devServer.static.serveIndex` is removed in v2 to reduce third-party dependencies.
+
+If you still need directory listings for a static directory, install [serve-index](https://www.npmjs.com/package/serve-index) and register it with `setupMiddlewares`:
+
+```bash
+npm i -D serve-index
+# or pnpm add -D serve-index
+# or yarn add -D serve-index
+# or bun add -D serve-index
+```
+
+```js
+import path from 'node:path';
+import serveIndex from 'serve-index';
+
+const publicDirectory = path.join(import.meta.dirname, 'public');
+
+export default {
+  devServer: {
+    static: {
+      directory: publicDirectory,
+    },
+    setupMiddlewares: (middlewares) => {
+      middlewares.push({
+        name: 'serve-index',
+        // The same as `static.publicPath`
+        path: '/',
+        middleware: serveIndex(publicDirectory, { icons: true }),
+      });
+
+      return middlewares;
+    },
+  },
+};
+```
+
 ### Removed SockJS support (`ws` only)
 
 In v2, the following SockJS options are no longer available:

@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@types/connect-history-api-fallback": "^1.5.4",
-    "@types/serve-index": "^1.9.4",
     "@types/serve-static": "^2.2.0",
     "@types/ws": "^8.18.1",
     "chokidar": "^5.0.0",
@@ -54,7 +53,6 @@
     "connect-next": "^4.0.0",
     "http-proxy-middleware": "^3.0.5",
     "ipaddr.js": "^2.3.0",
-    "serve-index": "^1.9.2",
     "serve-static": "^2.2.1",
     "webpack-dev-middleware": "^7.4.5",
     "ws": "^8.19.0"
