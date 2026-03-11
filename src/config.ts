@@ -15,7 +15,7 @@ export interface ResolvedDevServer extends DevServer {
   devMiddleware: DevServer['devMiddleware'];
   hot: boolean | 'only';
   host?: string;
-  open: DevServerOpenOptions;
+  open: DevServerOpenOptions[];
   magicHtml: boolean;
   liveReload: boolean;
   webSocketServer: false | WebSocketServerConfiguration;
