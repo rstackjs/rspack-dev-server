@@ -50,7 +50,6 @@ import type {
   NormalizedStatic,
   Open,
   OpenApp,
-  OpenOptions,
   OverlayMessageOptions,
   Port,
   ProxyConfigArray,
@@ -1069,7 +1068,7 @@ class Server<
         ? ([
             {
               target: '<url>',
-              options: defaultOpenOptions as OpenOptions,
+              options: defaultOpenOptions,
             },
           ] as NormalizedOpen[])
         : [];

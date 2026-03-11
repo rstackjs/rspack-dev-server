@@ -16,6 +16,7 @@ import type {
   RequestHandler,
 } from 'http-proxy-middleware';
 import type { ServeStaticOptions } from 'serve-static';
+import type { DevServerOpenOptions } from '@rspack/core';
 
 export type {
   FSWatcher,
@@ -168,7 +169,7 @@ export interface Open {
 
 export interface NormalizedOpen {
   target: string;
-  options: OpenOptions;
+  options: DevServerOpenOptions;
 }
 
 export interface WebSocketURL {
@@ -225,14 +226,4 @@ function useFn(
 
 export type BasicApplication = {
   use: typeof useFn;
-};
-
-// Type definition matching open package's Options type
-// (Cannot import directly from ES module in CommonJS context)
-export type OpenOptions = {
-  readonly wait?: boolean;
-  readonly background?: boolean;
-  readonly newInstance?: boolean;
-  readonly app?: OpenApp | readonly OpenApp[];
-  readonly allowNonzeroExitCode?: boolean;
 };
