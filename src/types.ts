@@ -4,6 +4,7 @@ import type {
   ServerResponse,
 } from 'node:http';
 import type { ServerOptions } from 'node:https';
+import type { DevServerOpenOptions } from '@rspack/core';
 import type { FSWatcher, ChokidarOptions as WatchOptions } from 'chokidar';
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
@@ -16,7 +17,6 @@ import type {
   RequestHandler,
 } from 'http-proxy-middleware';
 import type { ServeStaticOptions } from 'serve-static';
-import type { DevServerOpenOptions } from '@rspack/core';
 
 export type {
   FSWatcher,
