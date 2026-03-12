@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@types/connect-history-api-fallback':
-        specifier: ^1.5.4
-        version: 1.5.4
       '@types/ws':
         specifier: ^8.18.1
         version: 8.18.1
@@ -57,6 +54,9 @@ importers:
       '@rstest/core':
         specifier: ^0.9.2
         version: 0.9.2(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)
+      '@types/connect-history-api-fallback':
+        specifier: ^1.5.4
+        version: 1.5.4
       '@types/mime-types':
         specifier: 3.0.1
         version: 3.0.1
