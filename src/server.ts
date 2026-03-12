@@ -14,7 +14,25 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
+import type { App } from 'open';
 import compression from 'http-compression';
+import type {
+  HandleFunction,
+  NextFunction,
+  NextHandleFunction,
+  SimpleHandleFunction,
+} from 'connect-next';
+import type {
+  DevServerHost,
+  DevServerHeaders,
+  DevServerClient,
+  DevServerStaticItem,
+  DevServerMiddlewareHandler,
+  DevServerWebSocketURL,
+  DevServerProxyConfigArray,
+  DevServerProxyConfigArrayItem,
+  DevServerStatic,
+} from '@rspack/core';
 import ipaddr from 'ipaddr.js';
 import { getPort } from './getPort';
 import { WebsocketServer } from './servers/WebsocketServer';
@@ -22,7 +40,6 @@ import type {
   AddressInfo,
   BasicApplication,
   BasicServer,
-  ClientConfiguration,
   ClientConnection,
   Compiler,
   ConnectHistoryApiFallbackOptions,
@@ -32,37 +49,26 @@ import type {
   EXPECTED_ANY,
   FSWatcher,
   HTTPServer,
-  HandleFunction,
-  Headers,
-  Host,
   IPv6,
   IncomingMessage,
   LiteralUnion,
   Middleware,
-  MiddlewareHandler,
   MiddlewareObject,
   MultiCompiler,
   MultiStats,
   NetworkInterfaceInfo,
-  NextFunction,
-  NextHandleFunction,
   NormalizedOpen,
   NormalizedStatic,
   Open,
-  OpenApp,
   OverlayMessageOptions,
   Port,
-  ProxyConfigArray,
-  ProxyConfigArrayItem,
   Request,
   RequestHandler,
   Response,
   ServerConfiguration,
   ServerOptions,
   ServerType,
-  SimpleHandleFunction,
   Socket,
-  Static,
   Stats,
   StatsCompilation,
   StatsOptions,
@@ -71,7 +77,6 @@ import type {
   WebSocketServer,
   WebSocketServerConfiguration,
   WebSocketServerImplementation,
-  WebSocketURL,
 } from './types';
 import type { ConnectApplication } from './types';
 
@@ -83,7 +88,7 @@ export interface Configuration<
   S extends BasicServer = HTTPServer,
 > {
   ipc?: boolean | string;
-  host?: Host;
+  host?: DevServerHost;
   port?: Port;
   hot?: boolean | 'only';
   liveReload?: boolean;
@@ -92,24 +97,24 @@ export interface Configuration<
   allowedHosts?: LiteralUnion<'auto' | 'all', string> | string[];
   historyApiFallback?: boolean | ConnectHistoryApiFallbackOptions;
   watchFiles?: string | string[] | WatchFiles | Array<string | WatchFiles>;
-  static?: boolean | string | Static | Array<string | Static>;
+  static?: DevServerStatic;
   server?: ServerType<A, S> | ServerConfiguration<A, S>;
   app?: () => Promise<A>;
   webSocketServer?:
     | boolean
     | LiteralUnion<'ws', string>
     | WebSocketServerConfiguration;
-  proxy?: ProxyConfigArray;
+  proxy?: DevServerProxyConfigArray;
   open?: boolean | string | Open | Array<string | Open>;
   setupExitSignals?: boolean;
-  client?: boolean | ClientConfiguration;
+  client?: boolean | DevServerClient;
   headers?:
-    | Headers
+    | DevServerHeaders
     | ((
         req: Request,
         res: Response,
         context: DevMiddlewareContext<Request, Response> | undefined,
-      ) => Headers);
+      ) => DevServerHeaders);
   onListening?: (devServer: Server<A, S>) => void;
   setupMiddlewares?: (
     middlewares: Middleware[],
@@ -315,7 +320,7 @@ class Server<
     }
   }
 
-  static async getHostname(hostname: Host) {
+  static async getHostname(hostname: DevServerHost) {
     if (hostname === 'local-ip') {
       return (
         Server.findIp('v4', false) || Server.findIp('v6', false) || '0.0.0.0'
@@ -399,8 +404,8 @@ class Server<
       let webSocketURLStr = '';
 
       if (this.options.webSocketServer) {
-        const webSocketURL = (this.options.client as ClientConfiguration)
-          .webSocketURL as WebSocketURL;
+        const webSocketURL = (this.options.client as DevServerClient)
+          .webSocketURL as DevServerWebSocketURL;
         const webSocketServer = this.options.webSocketServer as {
           type: WebSocketServerConfiguration['type'];
           options: NonNullable<WebSocketServerConfiguration['options']>;
@@ -493,7 +498,7 @@ class Server<
 
         searchParams.set('pathname', pathname);
 
-        const client = this.options.client as ClientConfiguration;
+        const client = this.options.client as DevServerClient;
 
         if (typeof client.logging !== 'undefined') {
           searchParams.set('logging', client.logging);
@@ -650,7 +655,7 @@ class Server<
       };
     };
     const getStaticItem = (
-      optionsForStatic?: string | Static,
+      optionsForStatic?: string | DevServerStaticItem,
     ): NormalizedStatic => {
       const getDefaultStaticOptions = () => {
         return {
@@ -1209,10 +1214,10 @@ class Server<
 
     if (this.options.client) {
       if (
-        typeof (this.options.client as ClientConfiguration)
-          .webSocketTransport !== 'undefined'
+        typeof (this.options.client as DevServerClient).webSocketTransport !==
+        'undefined'
       ) {
-        clientTransport = (this.options.client as ClientConfiguration)
+        clientTransport = (this.options.client as DevServerClient)
           .webSocketTransport;
       } else if (isKnownWebSocketServerImplementation) {
         clientTransport = (
@@ -1434,7 +1439,7 @@ class Server<
 
       if (
         this.options.client &&
-        (this.options.client as ClientConfiguration).progress
+        (this.options.client as DevServerClient).progress
       ) {
         this.#setupProgressPlugin();
       }
@@ -1644,7 +1649,7 @@ class Server<
 
     middlewares.push({
       name: 'webpack-dev-middleware',
-      middleware: this.middleware as MiddlewareHandler,
+      middleware: this.middleware as DevServerMiddlewareHandler,
     });
 
     middlewares.push({
@@ -1771,7 +1776,7 @@ class Server<
       const { createProxyMiddleware } = require('http-proxy-middleware');
 
       const getProxyMiddleware = (
-        proxyConfig: ProxyConfigArrayItem,
+        proxyConfig: DevServerProxyConfigArrayItem,
       ): RequestHandler | undefined => {
         const { context, ...proxyOptions } = proxyConfig;
         const pathFilter = proxyOptions.pathFilter ?? context;
@@ -1874,7 +1879,7 @@ class Server<
 
       middlewares.push({
         name: 'webpack-dev-middleware',
-        middleware: this.middleware as MiddlewareHandler,
+        middleware: this.middleware as DevServerMiddlewareHandler,
       });
     }
 
@@ -1923,7 +1928,7 @@ class Server<
       // it is able to handle '/index.html' request after redirect
       middlewares.push({
         name: 'webpack-dev-middleware',
-        middleware: this.middleware as MiddlewareHandler,
+        middleware: this.middleware as DevServerMiddlewareHandler,
       });
 
       if (staticOptions.length > 0) {
@@ -1982,7 +1987,7 @@ class Server<
 
         if (typeof (item as MiddlewareObject).middleware === 'undefined') {
           (item as MiddlewareObject).middleware =
-            lazyInitDevMiddleware() as unknown as MiddlewareHandler;
+            lazyInitDevMiddleware() as unknown as DevServerMiddlewareHandler;
         }
       }
     }
@@ -2087,31 +2092,31 @@ class Server<
 
         if (
           this.options.client &&
-          (this.options.client as ClientConfiguration).progress
+          (this.options.client as DevServerClient).progress
         ) {
           this.sendMessage(
             [client],
             'progress',
-            (this.options.client as ClientConfiguration).progress,
+            (this.options.client as DevServerClient).progress,
           );
         }
 
         if (
           this.options.client &&
-          (this.options.client as ClientConfiguration).reconnect
+          (this.options.client as DevServerClient).reconnect
         ) {
           this.sendMessage(
             [client],
             'reconnect',
-            (this.options.client as ClientConfiguration).reconnect,
+            (this.options.client as DevServerClient).reconnect,
           );
         }
 
         if (
           this.options.client &&
-          (this.options.client as ClientConfiguration).overlay
+          (this.options.client as DevServerClient).overlay
         ) {
-          const overlayConfig = (this.options.client as ClientConfiguration)
+          const overlayConfig = (this.options.client as DevServerClient)
             .overlay;
 
           this.sendMessage(
@@ -2163,7 +2168,7 @@ class Server<
         // Type assertion needed: OpenOptions is compatible at runtime but TypeScript can't verify
         // the type match between our type definition and the ES module's type in CommonJS context
         return open(openTarget, item.options as EXPECTED_ANY).catch(() => {
-          const app = item.options.app as OpenApp | undefined;
+          const app = item.options.app as App;
           this.logger.warn(
             `Unable to open "${openTarget}" page${
               app
@@ -2342,12 +2347,12 @@ class Server<
     // Also allow if `client.webSocketURL.hostname` provided
     if (
       this.options.client &&
-      typeof (this.options.client as ClientConfiguration).webSocketURL !==
+      typeof (this.options.client as DevServerClient).webSocketURL !==
         'undefined'
     ) {
       return (
-        ((this.options.client as ClientConfiguration).webSocketURL as
-          | WebSocketURL['hostname']
+        ((this.options.client as DevServerClient).webSocketURL as
+          | DevServerWebSocketURL['hostname']
           | undefined) === value
       );
     }
@@ -2589,10 +2594,12 @@ class Server<
         });
       });
     } else {
-      this.options.host = await Server.getHostname(this.options.host as Host);
+      this.options.host = await Server.getHostname(
+        this.options.host as DevServerHost,
+      );
       this.options.port = await Server.getFreePort(
         this.options.port as string,
-        this.options.host as Host,
+        this.options.host as DevServerHost,
       );
     }
 
