@@ -4,19 +4,21 @@ import type {
   ServerResponse,
 } from 'node:http';
 import type { ServerOptions } from 'node:https';
-import type { DevServerOpenOptions } from '@rspack/core';
+import type {
+  DevServerMiddlewareHandler,
+  DevServerOpenOptions,
+  DevServerStaticItem,
+} from '@rspack/core';
 import type { FSWatcher, ChokidarOptions as WatchOptions } from 'chokidar';
 import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
   Server as ConnectApplication,
   IncomingMessage as ConnectIncomingMessage,
+  ErrorHandleFunction,
+  HandleFunction,
+  NextHandleFunction,
 } from 'connect-next';
-import type {
-  Options as HttpProxyMiddlewareOptions,
-  Filter as HttpProxyMiddlewareOptionsFilter,
-  RequestHandler,
-} from 'http-proxy-middleware';
-import type { ServeStaticOptions } from 'serve-static';
+import type { RequestHandler } from 'http-proxy-middleware';
 
 export type {
   FSWatcher,
@@ -51,27 +53,6 @@ type BasicServer = import('node:net').Server | import('node:tls').Server;
 /** https://github.com/microsoft/TypeScript/issues/29729 */
 export type LiteralUnion<T extends U, U> = T | (U & Record<never, never>);
 
-export type NextFunction = (err?: EXPECTED_ANY) => void;
-export type SimpleHandleFunction = (
-  req: IncomingMessage,
-  res: ServerResponse,
-) => void;
-export type NextHandleFunction = (
-  req: IncomingMessage,
-  res: ServerResponse,
-  next: NextFunction,
-) => void;
-export type ErrorHandleFunction = (
-  err: EXPECTED_ANY,
-  req: IncomingMessage,
-  res: ServerResponse,
-  next: NextFunction,
-) => void;
-export type HandleFunction =
-  | SimpleHandleFunction
-  | NextHandleFunction
-  | ErrorHandleFunction;
-
 // type-level helpers, inferred as util types
 export type Request<T extends BasicApplication = ConnectApplication> =
   T extends ConnectApplication ? ConnectIncomingMessage : IncomingMessage;
@@ -86,10 +67,6 @@ export type DevMiddlewareContext<
   U extends Response,
 > = import('webpack-dev-middleware').Context<T, U>;
 
-export type Host = LiteralUnion<
-  'local-ip' | 'local-ipv4' | 'local-ipv6',
-  string
->;
 export type Port = number | LiteralUnion<'auto', string>;
 
 export interface WatchFiles {
@@ -100,17 +77,10 @@ export interface WatchFiles {
   };
 }
 
-export interface Static {
-  directory?: string;
-  publicPath?: string | string[];
-  staticOptions?: ServeStaticOptions;
-  watch?: boolean | NonNullable<WatchFiles['options']>;
-}
-
 export interface NormalizedStatic {
   directory: string;
   publicPath: string[];
-  staticOptions: ServeStaticOptions;
+  staticOptions: DevServerStaticItem['staticOptions'];
   watch: false | WatchOptions;
 }
 
@@ -140,75 +110,25 @@ export interface WebSocketServerImplementation {
   clients: ClientConnection[];
 }
 
-export type ProxyConfigArrayItem = {
-  /**
-   * Alias for `pathFilter` in `http-proxy-middleware` options.
-   * When both `context` and `pathFilter` are provided, `pathFilter` takes precedence.
-   */
-  context?: HttpProxyMiddlewareOptionsFilter;
-} & HttpProxyMiddlewareOptions;
-
-export type ProxyConfigArray = Array<
-  | ProxyConfigArrayItem
-  | ((
-      req?: Request | undefined,
-      res?: Response | undefined,
-      next?: NextFunction | undefined,
-    ) => ProxyConfigArrayItem)
->;
-
-export interface OpenApp {
-  name?: string;
-  arguments?: string[];
-}
-
-export interface Open {
-  app?: string | string[] | OpenApp;
+export type Open = DevServerOpenOptions & {
   target?: string | string[];
-}
+};
 
 export interface NormalizedOpen {
   target: string;
   options: DevServerOpenOptions;
 }
 
-export interface WebSocketURL {
-  hostname?: string;
-  password?: string;
-  pathname?: string;
-  port?: number | string;
-  protocol?: string;
-  username?: string;
-}
-
-export interface ClientConfiguration {
-  logging?: 'log' | 'info' | 'warn' | 'error' | 'none' | 'verbose';
-  overlay?:
-    | boolean
-    | {
-        warnings?: OverlayMessageOptions;
-        errors?: OverlayMessageOptions;
-        runtimeErrors?: OverlayMessageOptions;
-      };
-  progress?: boolean;
-  reconnect?: boolean | number;
-  webSocketTransport?: LiteralUnion<'ws', string>;
-  webSocketURL?: string | WebSocketURL;
-}
-
-export type Headers =
-  | Array<{ key: string; value: string }>
-  | Record<string, string | string[]>;
-
-export type MiddlewareHandler = (...args: EXPECTED_ANY[]) => EXPECTED_ANY;
-
 export interface MiddlewareObject {
   name?: string;
   path?: string;
-  middleware: MiddlewareHandler;
+  middleware: DevServerMiddlewareHandler | ErrorHandleFunction;
 }
 
-export type Middleware = MiddlewareObject | MiddlewareHandler;
+export type Middleware =
+  | MiddlewareObject
+  | DevServerMiddlewareHandler
+  | ErrorHandleFunction;
 
 export type OverlayMessageOptions = boolean | ((error: Error) => void);
 

@@ -1,6 +1,5 @@
-import type { DevServerOpenOptions } from '@rspack/core';
+import type { DevServerClient, DevServerOpenOptions } from '@rspack/core';
 import type {
-  ClientConfiguration,
   ConnectHistoryApiFallbackOptions,
   DevServer,
   NormalizedStatic,
@@ -20,7 +19,7 @@ export interface ResolvedDevServer extends DevServer {
   liveReload: boolean;
   webSocketServer: false | WebSocketServerConfiguration;
   proxy: Required<DevServer['proxy']>;
-  client: ClientConfiguration;
+  client: DevServerClient;
   allowedHosts: 'auto' | string[] | 'all';
   compress: boolean;
   historyApiFallback: false | ConnectHistoryApiFallbackOptions;
