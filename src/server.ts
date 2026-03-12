@@ -1061,40 +1061,41 @@ class Server<
       return [{ target: normalizedTarget, options: normalizedOptions }];
     };
 
-    if (typeof options.open === 'undefined') {
-      options.open = [];
-    } else if (typeof options.open === 'boolean') {
-      options.open = options.open
-        ? ([
-            {
-              target: '<url>',
-              options: defaultOpenOptions,
-            },
-          ] as NormalizedOpen[])
-        : [];
-    } else if (typeof options.open === 'string') {
-      options.open = [
-        { target: options.open, options: defaultOpenOptions },
-      ] as NormalizedOpen[];
-    } else if (Array.isArray(options.open)) {
-      const result: NormalizedOpen[] = [];
+    let normalizedOpens: NormalizedOpen[] = [];
 
+    if (typeof options.open === 'undefined') {
+      // do nothing
+    } else if (typeof options.open === 'boolean') {
+      if (options.open) {
+        normalizedOpens = [
+          {
+            target: '<url>',
+            options: defaultOpenOptions,
+          },
+        ];
+      }
+    } else if (typeof options.open === 'string') {
+      normalizedOpens = [
+        {
+          target: options.open,
+          options: defaultOpenOptions,
+        },
+      ];
+    } else if (Array.isArray(options.open)) {
       for (const item of options.open) {
         if (typeof item === 'string') {
-          result.push({ target: item, options: defaultOpenOptions });
+          normalizedOpens.push({ target: item, options: defaultOpenOptions });
           // eslint-disable-next-line no-continue
           continue;
         }
 
-        result.push(...getOpenItemsFromObject(item));
+        normalizedOpens.push(...getOpenItemsFromObject(item));
       }
-
-      options.open = result as NormalizedOpen[];
     } else {
-      options.open = [
-        ...getOpenItemsFromObject(options.open),
-      ] as NormalizedOpen[];
+      normalizedOpens = [...getOpenItemsFromObject(options.open)];
     }
+
+    options.open = normalizedOpens;
 
     if (typeof options.port === 'string' && options.port !== 'auto') {
       options.port = Number(options.port);
