@@ -5,12 +5,12 @@ import type {
 } from 'node:http';
 import type { ServerOptions } from 'node:https';
 import type {
+  DevServer,
   DevServerMiddlewareHandler,
   DevServerOpenOptions,
   DevServerStaticItem,
 } from '@rspack/core';
 import type { FSWatcher, ChokidarOptions as WatchOptions } from 'chokidar';
-import type { Options as ConnectHistoryApiFallbackOptions } from 'connect-history-api-fallback';
 import type {
   Server as ConnectApplication,
   IncomingMessage as ConnectIncomingMessage,
@@ -29,7 +29,6 @@ export type {
   ServerOptions,
   IncomingMessage,
   ConnectApplication,
-  ConnectHistoryApiFallbackOptions,
 };
 export type { IPv6 } from 'ipaddr.js';
 export type { Socket } from 'node:net';
@@ -52,6 +51,11 @@ type BasicServer = import('node:net').Server | import('node:tls').Server;
 
 /** https://github.com/microsoft/TypeScript/issues/29729 */
 export type LiteralUnion<T extends U, U> = T | (U & Record<never, never>);
+
+export type ConnectHistoryApiFallbackOptions = Exclude<
+  NonNullable<DevServer['historyApiFallback']>,
+  boolean
+>;
 
 // type-level helpers, inferred as util types
 export type Request<T extends BasicApplication = ConnectApplication> =
