@@ -1,4 +1,4 @@
-import type { DevServerOpenOptions, DevServerClient } from '@rspack/core';
+import type { DevServerClient, DevServerOpenOptions } from '@rspack/core';
 import type {
   ConnectHistoryApiFallbackOptions,
   DevServer,

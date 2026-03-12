@@ -14,26 +14,26 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import * as util from 'node:util';
-import type { App } from 'open';
-import compression from 'http-compression';
+import type {
+  DevServerClient,
+  DevServerHeaders,
+  DevServerHost,
+  DevServerMiddlewareHandler,
+  DevServerProxyConfigArray,
+  DevServerProxyConfigArrayItem,
+  DevServerStatic,
+  DevServerStaticItem,
+  DevServerWebSocketURL,
+} from '@rspack/core';
 import type {
   HandleFunction,
   NextFunction,
   NextHandleFunction,
   SimpleHandleFunction,
 } from 'connect-next';
-import type {
-  DevServerHost,
-  DevServerHeaders,
-  DevServerClient,
-  DevServerStaticItem,
-  DevServerMiddlewareHandler,
-  DevServerWebSocketURL,
-  DevServerProxyConfigArray,
-  DevServerProxyConfigArrayItem,
-  DevServerStatic,
-} from '@rspack/core';
+import compression from 'http-compression';
 import ipaddr from 'ipaddr.js';
+import type { App } from 'open';
 import { getPort } from './getPort';
 import { WebsocketServer } from './servers/WebsocketServer';
 import type {
