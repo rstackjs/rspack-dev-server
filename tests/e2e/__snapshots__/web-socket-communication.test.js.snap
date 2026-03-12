@@ -23,7 +23,7 @@ exports[`web socket communication > should work and reconnect when the connectio
   "[HMR] Checking for updates on the server...",
   "Failed to load resource: the server responded with a status of 404 (Not Found)",
   "[HMR] Cannot find update. Need to do a full reload!",
-  "[HMR] (Probably because of restarting the webpack-dev-server)",
+  "[HMR] (Probably because of restarting the rspack-dev-server)",
   "Failed to load resource: the server responded with a status of 404 (Not Found)",
 ]
 `;
