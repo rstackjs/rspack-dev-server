@@ -1,9 +1,9 @@
+import type { DevServerOpenOptions } from '@rspack/core';
 import type {
   ClientConfiguration,
   ConnectHistoryApiFallbackOptions,
   DevServer,
   NormalizedStatic,
-  Open,
   ServerConfiguration,
   WatchFiles,
   WebSocketServerConfiguration,
@@ -15,7 +15,7 @@ export interface ResolvedDevServer extends DevServer {
   devMiddleware: DevServer['devMiddleware'];
   hot: boolean | 'only';
   host?: string;
-  open: Open[];
+  open: DevServerOpenOptions[];
   magicHtml: boolean;
   liveReload: boolean;
   webSocketServer: false | WebSocketServerConfiguration;
