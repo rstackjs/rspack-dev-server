@@ -107,9 +107,9 @@ server.startCallback(() => {
 
 ## Credits
 
-This plugin is forked from [webpack-dev-server](https://github.com/webpack/webpack-dev-server), and is used to smooth out some differences between rspack and webpack, while also providing rspack-specific new features.
+This repository is forked from [webpack-dev-server](https://github.com/webpack/webpack-dev-server). It adapts the original implementation for the Rspack ecosystem, bridging behavioral differences with webpack while adding Rspack-specific capabilities.
 
-> Thanks to the [webpack-dev-server](https://github.com/webpack/webpack-dev-server) project created by [@sokra](https://github.com/sokra)
+> Thanks to the [webpack-dev-server](https://github.com/webpack/webpack-dev-server) maintainers and its original creator, [@sokra](https://github.com/sokra).
 
 ## License
 
