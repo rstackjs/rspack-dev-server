@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { rspack } = require('@rspack/core');
-const wdm = require('webpack-dev-middleware');
+const { devMiddleware } = require('@rspack/dev-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -31,8 +31,8 @@ const apps = [
       }),
     (_, devServer) => [
       {
-        name: 'webpack-dev-middleware',
-        middleware: wdm.honoWrapper(devServer.compiler),
+        name: '@rspack/dev-middleware',
+        middleware: devMiddleware.honoWrapper(devServer.compiler),
       },
     ],
   ],
@@ -54,8 +54,8 @@ const apps = [
       }),
     (_, devServer) => [
       {
-        name: 'webpack-dev-middleware',
-        middleware: wdm.honoWrapper(devServer.compiler),
+        name: '@rspack/dev-middleware',
+        middleware: devMiddleware.honoWrapper(devServer.compiler),
       },
     ],
   ],
@@ -81,8 +81,8 @@ const apps = [
     },
     (_, devServer) => [
       {
-        name: 'webpack-dev-middleware',
-        middleware: wdm.honoWrapper(devServer.compiler),
+        name: '@rspack/dev-middleware',
+        middleware: devMiddleware.honoWrapper(devServer.compiler),
       },
     ],
   ],

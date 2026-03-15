@@ -36,6 +36,7 @@ import ipaddr from 'ipaddr.js';
 import type { App } from 'open';
 import { getPort } from './getPort';
 import { WebsocketServer } from './servers/WebsocketServer';
+import { devMiddleware } from '@rspack/dev-middleware';
 import type {
   AddressInfo,
   BasicApplication,
@@ -211,7 +212,7 @@ class Server<
   isTlsServer = false;
   webSocketServer: WebSocketServerImplementation | null | undefined;
   middleware:
-    | import('webpack-dev-middleware').API<Request, Response>
+    | import('@rspack/dev-middleware').API<Request, Response>
     | undefined;
   server: S | undefined;
   app: A | undefined;
@@ -1648,7 +1649,7 @@ class Server<
     }
 
     middlewares.push({
-      name: 'webpack-dev-middleware',
+      name: '@rspack/dev-middleware',
       middleware: this.middleware as DevServerMiddlewareHandler,
     });
 
@@ -1878,7 +1879,7 @@ class Server<
       }
 
       middlewares.push({
-        name: 'webpack-dev-middleware',
+        name: '@rspack/dev-middleware',
         middleware: this.middleware as DevServerMiddlewareHandler,
       });
     }
@@ -1927,7 +1928,7 @@ class Server<
       // include our middleware to ensure
       // it is able to handle '/index.html' request after redirect
       middlewares.push({
-        name: 'webpack-dev-middleware',
+        name: '@rspack/dev-middleware',
         middleware: this.middleware as DevServerMiddlewareHandler,
       });
 
@@ -1966,23 +1967,21 @@ class Server<
       middlewares = this.options.setupMiddlewares(middlewares, this);
     }
 
-    // Lazy init webpack dev middleware
+    // Lazy init Rspack dev middleware
     const lazyInitDevMiddleware = () => {
       if (!this.middleware) {
-        const webpackDevMiddleware = require('webpack-dev-middleware');
-
-        // middleware for serving webpack bundle
-        this.middleware = webpackDevMiddleware(
+        // middleware for serving Rspack bundle
+        this.middleware = devMiddleware(
           this.compiler,
           this.options.devMiddleware,
-        ) as import('webpack-dev-middleware').API<Request, Response>;
+        ) as import('@rspack/dev-middleware').API<Request, Response>;
       }
 
       return this.middleware;
     };
 
     for (const i of middlewares) {
-      if (i.name === 'webpack-dev-middleware') {
+      if (i.name === '@rspack/dev-middleware') {
         const item = i as MiddlewareObject | RequestHandler;
 
         if (typeof (item as MiddlewareObject).middleware === 'undefined') {
@@ -2556,7 +2555,7 @@ class Server<
     this.staticWatchers.push(watcher);
   }
 
-  invalidate(callback: import('webpack-dev-middleware').Callback = () => {}) {
+  invalidate(callback: import('@rspack/dev-middleware').Callback = () => {}) {
     if (this.middleware) {
       this.middleware.invalidate(callback);
     }
@@ -2683,7 +2682,7 @@ class Server<
       if (this.middleware) {
         await new Promise<void>((resolve, reject) => {
           (
-            this.middleware as import('webpack-dev-middleware').API<
+            this.middleware as import('@rspack/dev-middleware').API<
               Request,
               Response
             >
