@@ -25,6 +25,7 @@ import type {
   DevServerStaticItem,
   DevServerWebSocketURL,
 } from '@rspack/core';
+import { devMiddleware } from '@rspack/dev-middleware';
 import type {
   HandleFunction,
   NextFunction,
@@ -36,7 +37,6 @@ import ipaddr from 'ipaddr.js';
 import type { App } from 'open';
 import { getPort } from './getPort';
 import { WebsocketServer } from './servers/WebsocketServer';
-import { devMiddleware } from '@rspack/dev-middleware';
 import type {
   AddressInfo,
   BasicApplication,
