@@ -65,11 +65,11 @@ export type Response = ServerResponse;
 export type DevMiddlewareOptions<
   T extends Request,
   U extends Response,
-> = import('webpack-dev-middleware').Options<T, U>;
+> = import('@rspack/dev-middleware').Options<T, U>;
 export type DevMiddlewareContext<
   T extends Request,
   U extends Response,
-> = import('webpack-dev-middleware').Context<T, U>;
+> = import('@rspack/dev-middleware').Context<T, U>;
 
 export type Port = number | LiteralUnion<'auto', string>;
 
