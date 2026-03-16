@@ -11,7 +11,6 @@ export default defineConfig({
           'connect-history-api-fallback':
             'commonjs connect-history-api-fallback',
           'http-proxy-middleware': 'commonjs http-proxy-middleware',
-          'serve-static': 'commonjs serve-static',
           selfsigned: 'commonjs selfsigned',
         },
       },
