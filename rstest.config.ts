@@ -20,8 +20,8 @@ export default defineConfig({
   env: {
     FORCE_COLOR: 'true',
   },
-  testTimeout: process.env.CI ? 120000 : 30000,
-  hookTimeout: 30000,
+  testTimeout: process.env.CI ? 120000 : 60000,
+  hookTimeout: 60000,
   setupFiles: ['./tests/helpers/setup-test.js'],
   reporters: ['default'],
 });

@@ -109,75 +109,9 @@ exports[`overlay > should not show initially, then show on an error and allow to
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            <span style="color: #e36049">×</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            JavaScript parse error: Unterminated template ╭────
-            <span style="opacity: 0.5">1</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            │ \`; ·
-            <span style="color: #7facca"
-              ><span style="font-weight: bold">──</span></span
-            ></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            ╰────
-
-            <span style="color: #c3c2ef"> help: </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            You may need an appropriate loader to handle this file type. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -206,7 +140,6 @@ exports[`overlay > should not show initially, then show on an error and allow to
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -300,75 +233,9 @@ exports[`overlay > should not show initially, then show on an error, then hide o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            <span style="color: #e36049">×</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            JavaScript parse error: Unterminated template ╭────
-            <span style="opacity: 0.5">1</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            │ \`; ·
-            <span style="color: #7facca"
-              ><span style="font-weight: bold">──</span></span
-            ></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            ╰────
-
-            <span style="color: #c3c2ef"> help: </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            You may need an appropriate loader to handle this file type. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -397,7 +264,6 @@ exports[`overlay > should not show initially, then show on an error, then hide o
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -491,75 +357,9 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            <span style="color: #e36049">×</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            JavaScript parse error: Unterminated template ╭────
-            <span style="opacity: 0.5">1</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            │ \`; ·
-            <span style="color: #7facca"
-              ><span style="font-weight: bold">──</span></span
-            ></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            ╰────
-
-            <span style="color: #c3c2ef"> help: </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            You may need an appropriate loader to handle this file type. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -645,75 +445,9 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            <span style="color: #e36049">×</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            JavaScript parse error: Unterminated template ╭────
-            <span style="opacity: 0.5">1</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            │ \`;a ·
-            <span style="color: #7facca"
-              ><span style="font-weight: bold">───</span></span
-            ></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            ╰────
-
-            <span style="color: #c3c2ef"> help: </span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            You may need an appropriate loader to handle this file type. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`;a · ─── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -742,7 +476,6 @@ exports[`overlay > should not show initially, then show on an error, then show o
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -763,7 +496,6 @@ exports[`overlay > should not show initially, then show on an error, then show o
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -863,24 +595,7 @@ exports[`overlay > should show a warning after invalidation > overlay html 1`] =
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -893,7 +608,6 @@ exports[`overlay > should show a warning after invalidation > page html 1`] = `
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -985,24 +699,7 @@ exports[`overlay > should show a warning and error for initial compilation > ove
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
       <div
@@ -1029,24 +726,7 @@ exports[`overlay > should show a warning and error for initial compilation > ove
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
       <div
@@ -1073,24 +753,7 @@ exports[`overlay > should show a warning and error for initial compilation > ove
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
       <div
@@ -1117,24 +780,7 @@ exports[`overlay > should show a warning and error for initial compilation > ove
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
       <div
@@ -1161,24 +807,7 @@ exports[`overlay > should show a warning and error for initial compilation > ove
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -1191,7 +820,6 @@ exports[`overlay > should show a warning and error for initial compilation > pag
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1283,24 +911,7 @@ exports[`overlay > should show a warning and error for initial compilation and p
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            &lt;strong&gt;strong&lt;/strong&gt; </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ &lt;strong&gt;strong&lt;/strong&gt;
         </div>
       </div>
       <div
@@ -1327,24 +938,7 @@ exports[`overlay > should show a warning and error for initial compilation and p
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            &lt;strong&gt;strong&lt;/strong&gt; </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × &lt;strong&gt;strong&lt;/strong&gt;
         </div>
       </div>
     </div>
@@ -1357,7 +951,6 @@ exports[`overlay > should show a warning and error for initial compilation and p
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1449,24 +1042,7 @@ exports[`overlay > should show a warning and hide them after closing connection 
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -1479,7 +1055,6 @@ exports[`overlay > should show a warning and hide them after closing connection 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1579,24 +1154,7 @@ exports[`overlay > should show a warning for initial compilation > overlay html 
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -1609,7 +1167,6 @@ exports[`overlay > should show a warning for initial compilation > page html 1`]
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1701,24 +1258,7 @@ exports[`overlay > should show a warning when "client.overlay" is "true" > overl
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -1731,7 +1271,6 @@ exports[`overlay > should show a warning when "client.overlay" is "true" > page 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1823,24 +1362,7 @@ exports[`overlay > should show a warning when "client.overlay.errors" is "true" 
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -1853,7 +1375,6 @@ exports[`overlay > should show a warning when "client.overlay.errors" is "true" 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1945,24 +1466,7 @@ exports[`overlay > should show a warning when "client.overlay.warnings" is "true
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -1975,7 +1479,6 @@ exports[`overlay > should show a warning when "client.overlay.warnings" is "true
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2067,44 +1570,7 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-          </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            <span style="color: #6d7891"> 18 |</span>
-            <span style="color: #ffd080">Render</span>
-            <span style="color: #ffd080">ansi formatted text</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-          </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × 18 | Render ansi formatted text
         </div>
       </div>
     </div>
@@ -2117,7 +1583,6 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2209,24 +1674,7 @@ exports[`overlay > should show an error after invalidation > overlay html 1`] = 
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation
         </div>
       </div>
     </div>
@@ -2239,7 +1687,6 @@ exports[`overlay > should show an error after invalidation > page html 1`] = `
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2331,24 +1778,7 @@ exports[`overlay > should show an error for initial compilation > overlay html 1
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -2361,7 +1791,6 @@ exports[`overlay > should show an error for initial compilation > page html 1`] 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2453,24 +1882,7 @@ exports[`overlay > should show an error when "client.overlay" is "true" > overla
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -2483,7 +1895,6 @@ exports[`overlay > should show an error when "client.overlay" is "true" > page h
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2575,24 +1986,7 @@ exports[`overlay > should show an error when "client.overlay.errors" is "true" >
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -2605,7 +1999,6 @@ exports[`overlay > should show an error when "client.overlay.errors" is "true" >
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2697,24 +2090,7 @@ exports[`overlay > should show an error when "client.overlay.warnings" is "true"
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Warning from compilation </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Warning from compilation
         </div>
       </div>
     </div>
@@ -2727,7 +2103,6 @@ exports[`overlay > should show an error when "client.overlay.warnings" is "true"
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2988,24 +2363,7 @@ exports[`overlay > should show error when it is not filtered > overlay html 1`] 
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Unfiltered error </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Unfiltered error
         </div>
       </div>
     </div>
@@ -3018,7 +2376,6 @@ exports[`overlay > should show error when it is not filtered > page html 1`] = `
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -3110,24 +2467,7 @@ exports[`overlay > should show overlay when "Content-Security-Policy" is "defaul
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -3140,7 +2480,6 @@ exports[`overlay > should show overlay when "Content-Security-Policy" is "defaul
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -3232,24 +2571,7 @@ exports[`overlay > should show overlay when Trusted Types are enabled > overlay 
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -3262,7 +2584,6 @@ exports[`overlay > should show overlay when Trusted Types are enabled > page htm
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -3354,24 +2675,7 @@ exports[`overlay > should show overlay when Trusted Types are enabled and the "r
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #e36049">×</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Error from compilation. Can't find 'test' module. </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          × Error from compilation. Can't find 'test' module.
         </div>
       </div>
     </div>
@@ -3384,7 +2688,6 @@ exports[`overlay > should show overlay when Trusted Types are enabled and the "r
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -3476,24 +2779,7 @@ exports[`overlay > should show warning when it is not filtered > overlay html 1`
             font-family: Menlo, Consolas, monospace;
           "
         >
-          <span style="color: #ffd080">⚠</span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            Unfiltered warning </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          ></span>
+          ⚠ Unfiltered warning
         </div>
       </div>
     </div>
@@ -3506,7 +2792,6 @@ exports[`overlay > should show warning when it is not filtered > page html 1`] =
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
