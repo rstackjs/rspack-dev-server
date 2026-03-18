@@ -109,19 +109,9 @@ exports[`overlay > should not show initially, then show on an error and allow to
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -150,7 +140,6 @@ exports[`overlay > should not show initially, then show on an error and allow to
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -244,19 +233,9 @@ exports[`overlay > should not show initially, then show on an error, then hide o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -285,7 +264,6 @@ exports[`overlay > should not show initially, then show on an error, then hide o
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -379,19 +357,9 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -477,19 +445,9 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`;a · ───
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`;a · ─── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -518,7 +476,6 @@ exports[`overlay > should not show initially, then show on an error, then show o
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -539,7 +496,6 @@ exports[`overlay > should not show initially, then show on an error, then show o
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -652,7 +608,6 @@ exports[`overlay > should show a warning after invalidation > page html 1`] = `
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -865,7 +820,6 @@ exports[`overlay > should show a warning and error for initial compilation > pag
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -997,7 +951,6 @@ exports[`overlay > should show a warning and error for initial compilation and p
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1102,7 +1055,6 @@ exports[`overlay > should show a warning and hide them after closing connection 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1215,7 +1167,6 @@ exports[`overlay > should show a warning for initial compilation > page html 1`]
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1320,7 +1271,6 @@ exports[`overlay > should show a warning when "client.overlay" is "true" > page 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1425,7 +1375,6 @@ exports[`overlay > should show a warning when "client.overlay.errors" is "true" 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1530,7 +1479,6 @@ exports[`overlay > should show a warning when "client.overlay.warnings" is "true
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1655,7 +1603,6 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1760,7 +1707,6 @@ exports[`overlay > should show an error after invalidation > page html 1`] = `
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1865,7 +1811,6 @@ exports[`overlay > should show an error for initial compilation > page html 1`] 
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -1970,7 +1915,6 @@ exports[`overlay > should show an error when "client.overlay" is "true" > page h
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2075,7 +2019,6 @@ exports[`overlay > should show an error when "client.overlay.errors" is "true" >
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2180,7 +2123,6 @@ exports[`overlay > should show an error when "client.overlay.warnings" is "true"
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2454,7 +2396,6 @@ exports[`overlay > should show error when it is not filtered > page html 1`] = `
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2559,7 +2500,6 @@ exports[`overlay > should show overlay when "Content-Security-Policy" is "defaul
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2664,7 +2604,6 @@ exports[`overlay > should show overlay when Trusted Types are enabled > page htm
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2769,7 +2708,6 @@ exports[`overlay > should show overlay when Trusted Types are enabled and the "r
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
@@ -2874,7 +2812,6 @@ exports[`overlay > should show warning when it is not filtered > page html 1`] =
 <body>
   <h1>rspack-dev-server is running...</h1>
   <script type="text/javascript" charset="utf-8" src="/main.js"></script>
-
   <iframe
     id="rspack-dev-server-client-overlay"
     src="about:blank"
