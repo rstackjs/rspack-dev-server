@@ -109,9 +109,19 @@ exports[`overlay > should not show initially, then show on an error and allow to
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
+          ><span
+            style="
+              font-weight: normal;
+              opacity: 1;
+              color: #transparent;
+              background: #transparent;
+            "
+          >
+            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
+            ╰──── help: You may need an appropriate loader to handle this file
+            type.
+          </span>
         </div>
       </div>
     </div>
@@ -233,9 +243,19 @@ exports[`overlay > should not show initially, then show on an error, then hide o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
+          ><span
+            style="
+              font-weight: normal;
+              opacity: 1;
+              color: #transparent;
+              background: #transparent;
+            "
+          >
+            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
+            ╰──── help: You may need an appropriate loader to handle this file
+            type.
+          </span>
         </div>
       </div>
     </div>
@@ -357,9 +377,19 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
+          ><span
+            style="
+              font-weight: normal;
+              opacity: 1;
+              color: #transparent;
+              background: #transparent;
+            "
+          >
+            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
+            ╰──── help: You may need an appropriate loader to handle this file
+            type.
+          </span>
         </div>
       </div>
     </div>
@@ -445,9 +475,19 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`;a · ─── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
+          ><span
+            style="
+              font-weight: normal;
+              opacity: 1;
+              color: #transparent;
+              background: #transparent;
+            "
+          >
+            × JavaScript parse error: Unterminated template ╭──── 1 │ \`;a · ───
+            ╰──── help: You may need an appropriate loader to handle this file
+            type.
+          </span>
         </div>
       </div>
     </div>

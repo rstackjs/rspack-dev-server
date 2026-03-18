@@ -69,27 +69,11 @@ let prettier;
 let prettierHTML;
 let prettierCSS;
 let port;
-const originalForceColor = process.env.FORCE_COLOR;
-const originalNoColor = process.env.NO_COLOR;
 const overlayFixturePath = path.resolve(
   __dirname,
   '../fixtures/overlay-config/foo.js',
 );
 const overlayFixtureCode = fs.readFileSync(overlayFixturePath);
-
-const restoreColorEnv = () => {
-  if (typeof originalForceColor === 'undefined') {
-    delete process.env.FORCE_COLOR;
-  } else {
-    process.env.FORCE_COLOR = originalForceColor;
-  }
-
-  if (typeof originalNoColor === 'undefined') {
-    delete process.env.NO_COLOR;
-  } else {
-    process.env.NO_COLOR = originalNoColor;
-  }
-};
 
 const formatHtml = (html, normalize) =>
   prettier.format(normalize(html), {
@@ -109,13 +93,10 @@ const formatOverlayHtml = (html) => formatHtml(html, (value) => value);
 describe('overlay', () => {
   beforeEach(async () => {
     port = await getPort(basePort);
-    delete process.env.FORCE_COLOR;
-    process.env.NO_COLOR = '1';
   });
 
   afterEach(() => {
     fs.writeFileSync(overlayFixturePath, overlayFixtureCode);
-    restoreColorEnv();
   });
 
   beforeAll(async () => {
@@ -155,12 +136,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -196,12 +175,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -241,12 +218,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -284,12 +259,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -326,12 +299,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -364,9 +335,9 @@ describe('overlay', () => {
       let overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html initial');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html initial',
+      );
 
       fs.writeFileSync(pathToFile, '`;');
 
@@ -380,12 +351,12 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html with error');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html with error',
+      );
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
 
       fs.writeFileSync(pathToFile, originalCode);
 
@@ -402,9 +373,9 @@ describe('overlay', () => {
       overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html after fix error');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html after fix error',
+      );
     } finally {
       fs.writeFileSync(pathToFile, originalCode);
       await browser.close();
@@ -432,9 +403,9 @@ describe('overlay', () => {
       let overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html initial');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html initial',
+      );
 
       const pathToFile = path.resolve(
         __dirname,
@@ -454,12 +425,12 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html with error');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html with error',
+      );
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
 
       fs.writeFileSync(pathToFile, '`;a');
 
@@ -474,12 +445,12 @@ describe('overlay', () => {
       overlayFrame = await overlayHandle.contentFrame();
       overlayHtml = await overlayFrame.evaluate(() => document.body.outerHTML);
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html with other error');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html with other error',
+      );
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
 
       fs.writeFileSync(pathToFile, originalCode);
 
@@ -491,9 +462,9 @@ describe('overlay', () => {
       overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html after fix error');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html after fix error',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -520,9 +491,9 @@ describe('overlay', () => {
       let overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html initial');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html initial',
+      );
 
       const pathToFile = path.resolve(
         __dirname,
@@ -542,12 +513,12 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html with error');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html with error',
+      );
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
 
       const frame = await page
         .frames()
@@ -565,9 +536,9 @@ describe('overlay', () => {
       overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html after close');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot(
+        'page html after close',
+      );
 
       fs.writeFileSync(pathToFile, originalCode);
     } finally {
@@ -651,9 +622,7 @@ describe('overlay', () => {
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
     } finally {
       await browser.close();
       await server.stop();
@@ -691,9 +660,7 @@ describe('overlay', () => {
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
     } finally {
       await browser.close();
       await server.stop();
@@ -776,12 +743,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -820,12 +785,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -866,12 +829,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -912,12 +873,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -953,9 +912,7 @@ describe('overlay', () => {
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
     } finally {
       await browser.close();
       await server.stop();
@@ -993,9 +950,7 @@ describe('overlay', () => {
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
     } finally {
       await browser.close();
       await server.stop();
@@ -1078,12 +1033,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1122,12 +1075,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1179,12 +1130,10 @@ describe('overlay', () => {
           /requires 'TrustedHTML' assignment/.test(item),
         ),
       ).toHaveLength(0);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1246,12 +1195,10 @@ describe('overlay', () => {
           /requires 'TrustedHTML' assignment/.test(item),
         ),
       ).toHaveLength(0);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1288,9 +1235,7 @@ describe('overlay', () => {
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       expect(overlayHandle).toBe(null);
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
     } finally {
       await browser.close();
       await server.stop();
@@ -1331,12 +1276,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1377,12 +1320,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1422,12 +1363,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
 
       await server.stop();
 
@@ -1445,9 +1384,9 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtmlAfterClose),
-      ).toMatchSnapshot('page html');
+      expect(await formatPageHtml(pageHtmlAfterClose)).toMatchSnapshot(
+        'page html',
+      );
     } finally {
       await browser.close();
     }
@@ -1496,12 +1435,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1551,12 +1488,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1597,9 +1532,9 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1684,9 +1619,9 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();
@@ -1778,12 +1713,10 @@ describe('overlay', () => {
         () => document.body.outerHTML,
       );
 
-      expect(
-        await formatPageHtml(pageHtml),
-      ).toMatchSnapshot('page html');
-      expect(
-        await formatOverlayHtml(overlayHtml),
-      ).toMatchSnapshot('overlay html');
+      expect(await formatPageHtml(pageHtml)).toMatchSnapshot('page html');
+      expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
+        'overlay html',
+      );
     } finally {
       await browser.close();
       await server.stop();

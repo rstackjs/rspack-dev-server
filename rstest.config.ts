@@ -15,8 +15,7 @@ export default defineConfig({
     '<rootDir>/tests/e2e/web-socket-server-url.test.js',
   ],
   pool: {
-    // E2E tests reuse fixed ports and spawn browsers, so serial execution is more stable.
-    maxWorkers: 1,
+    maxWorkers: '80%',
   },
   env: {
     FORCE_COLOR: 'true',
