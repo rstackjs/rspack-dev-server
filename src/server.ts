@@ -129,31 +129,11 @@ if (!process.env.WEBPACK_SERVE) {
   process.env.WEBPACK_SERVE = 'true';
 }
 
-type FunctionReturning<T> = () => T;
-
-const memoize = <T>(fn: FunctionReturning<T>): FunctionReturning<T> => {
-  let cache = false;
-  let result: T | undefined;
-  let fnRef = fn;
-  return () => {
-    if (cache) {
-      return result as T;
-    }
-
-    result = fnRef();
-    cache = true;
-    // Allow to clean up memory for fn and all dependent resources
-    fnRef = undefined as unknown as FunctionReturning<T>;
-    return result as T;
-  };
-};
-
 const getConnect = async () => {
   const { connect } = await import('connect-next');
   return connect;
 };
-const getChokidar = memoize(() => import('chokidar'));
-const getServeStatic = memoize(() => require('serve-static'));
+const getChokidar = () => import('chokidar');
 
 const encodeOverlaySettings = (
   setting?: OverlayMessageOptions,
@@ -1892,10 +1872,10 @@ class Server<
           middlewares.push({
             name: 'serve-static',
             path: publicPath,
-            middleware: getServeStatic()(
+            middleware: (await import('serve-static')).default(
               staticOption.directory,
               staticOption.staticOptions,
-            ),
+            ) as DevServerMiddlewareHandler,
           });
         }
       }
@@ -1938,10 +1918,10 @@ class Server<
             middlewares.push({
               name: 'serve-static',
               path: publicPath,
-              middleware: getServeStatic()(
+              middleware: (await import('serve-static')).default(
                 staticOption.directory,
                 staticOption.staticOptions,
-              ),
+              ) as DevServerMiddlewareHandler,
             });
           }
         }
