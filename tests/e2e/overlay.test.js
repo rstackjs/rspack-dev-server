@@ -88,7 +88,12 @@ const formatPageHtml = (html) =>
     (value) => value.replace(/>\s+</g, '><'),
   );
 
-const formatOverlayHtml = (html) => formatHtml(html, (value) => value);
+const formatOverlayHtml = (html) =>
+  formatHtml(
+    html,
+    // ANSI-rendered spans differ across platforms, but the text content is stable.
+    (value) => value.replace(/<\/?span[^>]*>/g, ''),
+  );
 
 describe('overlay', () => {
   beforeEach(async () => {

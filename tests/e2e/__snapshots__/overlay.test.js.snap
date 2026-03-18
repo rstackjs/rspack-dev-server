@@ -109,19 +109,9 @@ exports[`overlay > should not show initially, then show on an error and allow to
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -243,19 +233,9 @@ exports[`overlay > should not show initially, then show on an error, then hide o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -377,19 +357,9 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`; · ──
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -475,19 +445,9 @@ exports[`overlay > should not show initially, then show on an error, then show o
             font-family: Menlo, Consolas, monospace;
           "
         >
-          × Module parse failed: <span style="opacity: 0.5"> ╰─▶ </span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            × JavaScript parse error: Unterminated template ╭──── 1 │ \`;a · ───
-            ╰──── help: You may need an appropriate loader to handle this file
-            type.
-          </span>
+          × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
+          template ╭──── 1 │ \`;a · ─── ╰──── help: You may need an appropriate
+          loader to handle this file type.
         </div>
       </div>
     </div>
@@ -1610,27 +1570,7 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
             font-family: Menlo, Consolas, monospace;
           "
         >
-          ×
-          <span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-            <span style="color: #6d7891"> 18 |</span>
-            <span style="color: #ffd080">Render</span>
-            <span style="color: #ffd080">ansi formatted text</span></span
-          ><span
-            style="
-              font-weight: normal;
-              opacity: 1;
-              color: #transparent;
-              background: #transparent;
-            "
-          >
-          </span>
+          × 18 | Render ansi formatted text
         </div>
       </div>
     </div>
