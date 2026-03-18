@@ -88,6 +88,22 @@ const formatPageHtml = (html) =>
     (value) => value.replace(/>\s+</g, '><'),
   );
 
+const shouldExpectAnsiHtml = () => {
+  if (process.env.FORCE_COLOR === '0') {
+    return false;
+  }
+
+  if (typeof process.env.FORCE_COLOR !== 'undefined') {
+    return true;
+  }
+
+  if (typeof process.env.NO_COLOR !== 'undefined') {
+    return false;
+  }
+
+  return Boolean(process.stdout.isTTY && process.stdout.hasColors?.());
+};
+
 const formatOverlayHtml = (html) =>
   formatHtml(
     html,
@@ -268,6 +284,43 @@ describe('overlay', () => {
       expect(await formatOverlayHtml(overlayHtml)).toMatchSnapshot(
         'overlay html',
       );
+    } finally {
+      await browser.close();
+      await server.stop();
+    }
+  });
+
+  it('should render ansi html tags only when colors are enabled', async () => {
+    const compiler = rspack(config);
+
+    new ErrorPlugin(
+      '[0m [90m 18 |[39m           [33mRender[39m [33mansi formatted text[39m[0m',
+    ).apply(compiler);
+
+    const devServerOptions = {
+      port,
+    };
+    const server = new Server(devServerOptions, compiler);
+
+    await server.start();
+
+    const { page, browser } = await runBrowser();
+
+    try {
+      await page.goto(`http://localhost:${port}/`, {
+        waitUntil: 'networkidle0',
+      });
+
+      // Delay for the overlay to appear
+      await delay(1000);
+
+      const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
+      const overlayFrame = await overlayHandle.contentFrame();
+      const overlayHtml = await overlayFrame.evaluate(
+        () => document.body.outerHTML,
+      );
+
+      expect(overlayHtml.includes('<span')).toBe(shouldExpectAnsiHtml());
     } finally {
       await browser.close();
       await server.stop();
