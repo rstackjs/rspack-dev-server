@@ -869,7 +869,7 @@ class Server<
 
             try {
               stats = fs.lstatSync(fs.realpathSync(item)).isFile();
-            } catch (error) {
+            } catch {
               // Ignore error
             }
 
@@ -1203,13 +1203,13 @@ class Server<
   #getClientTransport() {
     let clientImplementation: string | undefined;
     let clientImplementationFound = true;
-
-    const isKnownWebSocketServerImplementation =
+    const webSocketServerType =
       this.options.webSocketServer &&
-      typeof (this.options.webSocketServer as WebSocketServerConfiguration)
-        .type === 'string' &&
-      // @ts-expect-error
-      this.options.webSocketServer.type === 'ws';
+      typeof this.options.webSocketServer === 'object'
+        ? this.options.webSocketServer.type
+        : undefined;
+
+    const isKnownWebSocketServerImplementation = webSocketServerType === 'ws';
 
     let clientTransport: string | undefined;
 
@@ -1221,9 +1221,7 @@ class Server<
         clientTransport = (this.options.client as DevServerClient)
           .webSocketTransport;
       } else if (isKnownWebSocketServerImplementation) {
-        clientTransport = (
-          this.options.webSocketServer as WebSocketServerConfiguration
-        ).type as string;
+        clientTransport = webSocketServerType;
       } else {
         clientTransport = 'ws';
       }

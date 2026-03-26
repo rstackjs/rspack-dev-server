@@ -36,15 +36,15 @@ importers:
         specifier: ^8.19.0
         version: 8.19.0
     devDependencies:
-      '@biomejs/biome':
-        specifier: ^1.9.4
-        version: 1.9.4
       '@hono/node-server':
         specifier: ^1.19.11
         version: 1.19.11(hono@4.12.7)
       '@rslib/core':
         specifier: ^0.20.0
         version: 0.20.0(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)(typescript@5.9.3)
+      '@rslint/core':
+        specifier: ^0.3.2
+        version: 0.3.2
       '@rspack/core':
         specifier: 2.0.0-beta.7
         version: 2.0.0-beta.7(@module-federation/runtime-tools@2.1.0)(@swc/helpers@0.5.19)
@@ -218,63 +218,6 @@ packages:
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@1.9.4':
-    resolution: {integrity: sha512-1rkd7G70+o9KkTn5KLmDYXihGoTaIGO9PIIN2ZB7UJxFrWw04CZHPYiMRjYsaDvVV7hP1dYNRLxSANLaBFGpog==}
-    engines: {node: '>=14.21.3'}
-    hasBin: true
-
-  '@biomejs/cli-darwin-arm64@1.9.4':
-    resolution: {integrity: sha512-bFBsPWrNvkdKrNCYeAp+xo2HecOGPAy9WyNyB/jKnnedgzl4W4Hb9ZMzYNbf8dMCGmUdSavlYHiR01QaYR58cw==}
-    engines: {node: '>=14.21.3'}
-    cpu: [arm64]
-    os: [darwin]
-
-  '@biomejs/cli-darwin-x64@1.9.4':
-    resolution: {integrity: sha512-ngYBh/+bEedqkSevPVhLP4QfVPCpb+4BBe2p7Xs32dBgs7rh9nY2AIYUL6BgLw1JVXV8GlpKmb/hNiuIxfPfZg==}
-    engines: {node: '>=14.21.3'}
-    cpu: [x64]
-    os: [darwin]
-
-  '@biomejs/cli-linux-arm64-musl@1.9.4':
-    resolution: {integrity: sha512-v665Ct9WCRjGa8+kTr0CzApU0+XXtRgwmzIf1SeKSGAv+2scAlW6JR5PMFo6FzqqZ64Po79cKODKf3/AAmECqA==}
-    engines: {node: '>=14.21.3'}
-    cpu: [arm64]
-    os: [linux]
-    libc: [musl]
-
-  '@biomejs/cli-linux-arm64@1.9.4':
-    resolution: {integrity: sha512-fJIW0+LYujdjUgJJuwesP4EjIBl/N/TcOX3IvIHJQNsAqvV2CHIogsmA94BPG6jZATS4Hi+xv4SkBBQSt1N4/g==}
-    engines: {node: '>=14.21.3'}
-    cpu: [arm64]
-    os: [linux]
-    libc: [glibc]
-
-  '@biomejs/cli-linux-x64-musl@1.9.4':
-    resolution: {integrity: sha512-gEhi/jSBhZ2m6wjV530Yy8+fNqG8PAinM3oV7CyO+6c3CEh16Eizm21uHVsyVBEB6RIM8JHIl6AGYCv6Q6Q9Tg==}
-    engines: {node: '>=14.21.3'}
-    cpu: [x64]
-    os: [linux]
-    libc: [musl]
-
-  '@biomejs/cli-linux-x64@1.9.4':
-    resolution: {integrity: sha512-lRCJv/Vi3Vlwmbd6K+oQ0KhLHMAysN8lXoCI7XeHlxaajk06u7G+UsFSO01NAs5iYuWKmVZjmiOzJ0OJmGsMwg==}
-    engines: {node: '>=14.21.3'}
-    cpu: [x64]
-    os: [linux]
-    libc: [glibc]
-
-  '@biomejs/cli-win32-arm64@1.9.4':
-    resolution: {integrity: sha512-tlbhLk+WXZmgwoIKwHIHEBZUwxml7bRJgk0X2sPyNR3S93cdRq6XulAZRQJ17FYGGzWne0fgrXBKpl7l4M87Hg==}
-    engines: {node: '>=14.21.3'}
-    cpu: [arm64]
-    os: [win32]
-
-  '@biomejs/cli-win32-x64@1.9.4':
-    resolution: {integrity: sha512-8Y5wMhVIPaWe6jw2H+KlEm4wP/f7EW3810ZLmDlrEEy5KvBsb9ECEfu/kMWD484ijfQ8+nIi0giMgu9g1UAuuA==}
-    engines: {node: '>=14.21.3'}
-    cpu: [x64]
-    os: [win32]
-
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
@@ -399,6 +342,45 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  '@rslint/core@0.3.2':
+    resolution: {integrity: sha512-DH7kD6H+DK323dQq9qEE+lUwvKB9ZiZGrHvcesh9nkvHapNCT3ocQk2MNyB0cSx88WGiCqk2Okv1iIK17NGBGA==}
+    hasBin: true
+    peerDependencies:
+      jiti: ^2.0.0
+    peerDependenciesMeta:
+      jiti:
+        optional: true
+
+  '@rslint/darwin-arm64@0.3.2':
+    resolution: {integrity: sha512-PTMAUAV4/lWls3okHoHj2ZqIpr2ujNZz7jpNtb7+NLI3KSfFY9XP3pHuri5er568FoFezv6IlWXwNH7+X7smrg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@rslint/darwin-x64@0.3.2':
+    resolution: {integrity: sha512-PdUjPKHPrGxMRZ/MhLTru7+eMPrmVdzymnqONqEx/deFHZPKsDdbkmeffA2Z8VZft4znz3ay1VKIBa23tHj7Hg==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rslint/linux-arm64@0.3.2':
+    resolution: {integrity: sha512-QmeD1qAhHOJvbazfsHmOyedtHhpgO0vkrCOoqzvMc7T9h3TQ5khKyHZHMNLu/xtiKiLLZZ0LKTZKMPIezsGKKg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rslint/linux-x64@0.3.2':
+    resolution: {integrity: sha512-dmYdsiHC4viKkcKzVK6e0+iB5jK2ZwcC/XB7+o1CaNbXSXYn7LLkH2FCW0j1gktDGm122r4l/MjnjiymPd50yg==}
+    cpu: [x64]
+    os: [linux]
+
+  '@rslint/win32-arm64@0.3.2':
+    resolution: {integrity: sha512-u68bjnxwYnQln1fnCx68o0tB9uRI2eipxy4MXYEIygt46nLoraK8j31zrY3t+K2qsHXOcxDSWDyJiR61ocHjIw==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@rslint/win32-x64@0.3.2':
+    resolution: {integrity: sha512-RhSlf+qCyao94ZRPXqC1BUr9hp9R2Qg8SxKIiaMWVGgRy/qYLiWtGKB5mYpHcrwgSx7uYOgV0Ux6udtX1QaPaQ==}
+    cpu: [x64]
+    os: [win32]
 
   '@rspack/binding-darwin-arm64@2.0.0-beta.6':
     resolution: {integrity: sha512-FQ8zflthQJJf0cM0vDFnfnXrTOnRvwz886tiafbwu1RO5qmh+pJH+xg1eQaLPnRPqLTlcmnpngyacYFUxw+1AA==}
@@ -1929,41 +1911,6 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
-  '@biomejs/biome@1.9.4':
-    optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 1.9.4
-      '@biomejs/cli-darwin-x64': 1.9.4
-      '@biomejs/cli-linux-arm64': 1.9.4
-      '@biomejs/cli-linux-arm64-musl': 1.9.4
-      '@biomejs/cli-linux-x64': 1.9.4
-      '@biomejs/cli-linux-x64-musl': 1.9.4
-      '@biomejs/cli-win32-arm64': 1.9.4
-      '@biomejs/cli-win32-x64': 1.9.4
-
-  '@biomejs/cli-darwin-arm64@1.9.4':
-    optional: true
-
-  '@biomejs/cli-darwin-x64@1.9.4':
-    optional: true
-
-  '@biomejs/cli-linux-arm64-musl@1.9.4':
-    optional: true
-
-  '@biomejs/cli-linux-arm64@1.9.4':
-    optional: true
-
-  '@biomejs/cli-linux-x64-musl@1.9.4':
-    optional: true
-
-  '@biomejs/cli-linux-x64@1.9.4':
-    optional: true
-
-  '@biomejs/cli-win32-arm64@1.9.4':
-    optional: true
-
-  '@biomejs/cli-win32-x64@1.9.4':
-    optional: true
-
   '@discoveryjs/json-ext@0.5.7': {}
 
   '@emnapi/core@1.6.0':
@@ -2164,6 +2111,33 @@ snapshots:
       - '@module-federation/runtime-tools'
       - '@typescript/native-preview'
       - core-js
+
+  '@rslint/core@0.3.2':
+    optionalDependencies:
+      '@rslint/darwin-arm64': 0.3.2
+      '@rslint/darwin-x64': 0.3.2
+      '@rslint/linux-arm64': 0.3.2
+      '@rslint/linux-x64': 0.3.2
+      '@rslint/win32-arm64': 0.3.2
+      '@rslint/win32-x64': 0.3.2
+
+  '@rslint/darwin-arm64@0.3.2':
+    optional: true
+
+  '@rslint/darwin-x64@0.3.2':
+    optional: true
+
+  '@rslint/linux-arm64@0.3.2':
+    optional: true
+
+  '@rslint/linux-x64@0.3.2':
+    optional: true
+
+  '@rslint/win32-arm64@0.3.2':
+    optional: true
+
+  '@rslint/win32-x64@0.3.2':
+    optional: true
 
   '@rspack/binding-darwin-arm64@2.0.0-beta.6':
     optional: true
