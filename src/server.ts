@@ -1203,31 +1203,11 @@ class Server<
   #getClientTransport() {
     let clientImplementation: string | undefined;
     let clientImplementationFound = true;
-    const webSocketServerType =
-      this.options.webSocketServer &&
-      typeof this.options.webSocketServer === 'object'
-        ? this.options.webSocketServer.type
-        : undefined;
-
-    const isKnownWebSocketServerImplementation = webSocketServerType === 'ws';
-
-    let clientTransport: string | undefined;
-
-    if (this.options.client) {
-      if (
-        typeof (this.options.client as DevServerClient).webSocketTransport !==
-        'undefined'
-      ) {
-        clientTransport = (this.options.client as DevServerClient)
-          .webSocketTransport;
-      } else if (isKnownWebSocketServerImplementation) {
-        clientTransport = webSocketServerType;
-      } else {
-        clientTransport = 'ws';
-      }
-    } else {
-      clientTransport = 'ws';
-    }
+    let clientTransport =
+      typeof this.options.client === 'object' &&
+      this.options.client.webSocketTransport !== 'undefined'
+        ? this.options.client.webSocketTransport
+        : 'ws';
 
     switch (typeof clientTransport) {
       case 'string':
