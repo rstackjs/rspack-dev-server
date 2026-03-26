@@ -1,7 +1,4 @@
-import { version } from '@rspack/core/package.json';
 import { defineConfig } from '@rstest/core';
-
-console.log(`Running tests for rspack @${version} \n`);
 
 export default defineConfig({
   globals: true,

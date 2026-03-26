@@ -869,7 +869,7 @@ class Server<
 
             try {
               stats = fs.lstatSync(fs.realpathSync(item)).isFile();
-            } catch (error) {
+            } catch {
               // Ignore error
             }
 
@@ -1203,33 +1203,12 @@ class Server<
   #getClientTransport() {
     let clientImplementation: string | undefined;
     let clientImplementationFound = true;
-
-    const isKnownWebSocketServerImplementation =
-      this.options.webSocketServer &&
-      typeof (this.options.webSocketServer as WebSocketServerConfiguration)
-        .type === 'string' &&
-      // @ts-expect-error
-      this.options.webSocketServer.type === 'ws';
-
-    let clientTransport: string | undefined;
-
-    if (this.options.client) {
-      if (
-        typeof (this.options.client as DevServerClient).webSocketTransport !==
-        'undefined'
-      ) {
-        clientTransport = (this.options.client as DevServerClient)
-          .webSocketTransport;
-      } else if (isKnownWebSocketServerImplementation) {
-        clientTransport = (
-          this.options.webSocketServer as WebSocketServerConfiguration
-        ).type as string;
-      } else {
-        clientTransport = 'ws';
-      }
-    } else {
-      clientTransport = 'ws';
-    }
+    let clientTransport =
+      typeof this.options.client === 'object' &&
+      this.options.client !== null &&
+      typeof this.options.client.webSocketTransport !== 'undefined'
+        ? this.options.client.webSocketTransport
+        : 'ws';
 
     switch (typeof clientTransport) {
       case 'string':
@@ -1257,11 +1236,7 @@ class Server<
 
     if (!clientImplementationFound) {
       throw new Error(
-        `${
-          !isKnownWebSocketServerImplementation
-            ? 'When you use custom web socket implementation you must explicitly specify client.webSocketTransport. '
-            : ''
-        }client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
+        `client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
       );
     }
 
