@@ -1205,7 +1205,8 @@ class Server<
     let clientImplementationFound = true;
     let clientTransport =
       typeof this.options.client === 'object' &&
-      this.options.client.webSocketTransport !== 'undefined'
+      this.options.client !== null &&
+      typeof this.options.client.webSocketTransport !== 'undefined'
         ? this.options.client.webSocketTransport
         : 'ws';
 
