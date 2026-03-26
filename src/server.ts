@@ -1235,11 +1235,7 @@ class Server<
 
     if (!clientImplementationFound) {
       throw new Error(
-        `${
-          !isKnownWebSocketServerImplementation
-            ? 'When you use custom web socket implementation you must explicitly specify client.webSocketTransport. '
-            : ''
-        }client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
+        `client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
       );
     }
 
