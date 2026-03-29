@@ -76,7 +76,7 @@
     "launch-editor": "^2.13.1",
     "nano-staged": "^0.9.0",
     "open": "^11.0.0",
-    "p-retry": "^7.1.1",
+    "p-retry": "^8.0.0",
     "prettier": "3.8.1",
     "puppeteer": "^24.39.0",
     "react-refresh": "0.18.0",
