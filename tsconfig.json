@@ -11,5 +11,10 @@
     "module": "nodenext",
     "moduleResolution": "nodenext"
   },
+  "references": [
+    {
+      "path": "./tsconfig.client.json"
+    }
+  ],
   "include": ["src"]
 }
