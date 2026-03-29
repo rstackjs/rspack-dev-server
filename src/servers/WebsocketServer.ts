@@ -9,9 +9,12 @@
  */
 
 import * as Ws from 'ws';
-import type { Server } from '../server';
-import type { ClientConnection, WebSocketServerConfiguration } from '../types';
-import BaseServer from './BaseServer';
+import type { Server } from '../server.js';
+import type {
+  ClientConnection,
+  WebSocketServerConfiguration,
+} from '../types.js';
+import BaseServer from './BaseServer.js';
 
 export class WebsocketServer extends BaseServer {
   static heartbeatInterval = 1000;

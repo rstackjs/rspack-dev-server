@@ -84,7 +84,7 @@
     "selfsigned": "^5.5.0",
     "simple-git-hooks": "^2.13.1",
     "style-loader": "^4.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "peerDependencies": {
     "@rspack/core": "^2.0.0-0",
