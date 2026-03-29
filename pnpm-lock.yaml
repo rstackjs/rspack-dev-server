@@ -41,7 +41,7 @@ importers:
         version: 1.19.11(hono@4.12.7)
       '@rslib/core':
         specifier: ^0.20.0
-        version: 0.20.0(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)(typescript@5.9.3)
+        version: 0.20.0(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)(typescript@6.0.2)
       '@rslint/core':
         specifier: ^0.3.3
         version: 0.3.3
@@ -101,7 +101,7 @@ importers:
         version: 3.8.1
       puppeteer:
         specifier: ^24.39.0
-        version: 24.39.0(typescript@5.9.3)
+        version: 24.39.0(typescript@6.0.2)
       react-refresh:
         specifier: 0.18.0
         version: 0.18.0
@@ -118,8 +118,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.105.3)
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: ^6.0.2
+        version: 6.0.2
 
   example:
     devDependencies:
@@ -1760,8 +1760,8 @@ packages:
   typed-query-selector@2.12.1:
     resolution: {integrity: sha512-uzR+FzI8qrUEIu96oaeBJmd9E7CFEiQ3goA5qCVgc4s5llSubcfGHq9yUstZx/k4s9dXHVKsE35YWoFyvEqEHA==}
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2101,12 +2101,12 @@ snapshots:
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
 
-  '@rslib/core@0.20.0(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)(typescript@5.9.3)':
+  '@rslib/core@0.20.0(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)(typescript@6.0.2)':
     dependencies:
       '@rsbuild/core': 2.0.0-beta.8(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)
-      rsbuild-plugin-dts: 0.20.0(@rsbuild/core@2.0.0-beta.8(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0))(typescript@5.9.3)
+      rsbuild-plugin-dts: 0.20.0(@rsbuild/core@2.0.0-beta.8(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0))(typescript@6.0.2)
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
       - '@typescript/native-preview'
@@ -2615,14 +2615,14 @@ snapshots:
   core-js@3.47.0:
     optional: true
 
-  cosmiconfig@9.0.0(typescript@5.9.3):
+  cosmiconfig@9.0.0(typescript@6.0.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
   cross-env@10.1.0:
     dependencies:
@@ -3232,11 +3232,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer@24.39.0(typescript@5.9.3):
+  puppeteer@24.39.0(typescript@6.0.2):
     dependencies:
       '@puppeteer/browsers': 2.13.0
       chromium-bidi: 14.0.0(devtools-protocol@0.0.1581282)
-      cosmiconfig: 9.0.0(typescript@5.9.3)
+      cosmiconfig: 9.0.0(typescript@6.0.2)
       devtools-protocol: 0.0.1581282
       puppeteer-core: 24.39.0
       typed-query-selector: 2.12.1
@@ -3291,12 +3291,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rsbuild-plugin-dts@0.20.0(@rsbuild/core@2.0.0-beta.8(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0))(typescript@5.9.3):
+  rsbuild-plugin-dts@0.20.0(@rsbuild/core@2.0.0-beta.8(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0))(typescript@6.0.2):
     dependencies:
       '@ast-grep/napi': 0.37.0
       '@rsbuild/core': 2.0.0-beta.8(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
   run-applescript@7.0.0: {}
 
@@ -3507,7 +3507,7 @@ snapshots:
 
   typed-query-selector@2.12.1: {}
 
-  typescript@5.9.3: {}
+  typescript@6.0.2: {}
 
   undici-types@7.16.0: {}
 

@@ -8,8 +8,8 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-import type { Server } from '../server';
-import type { ClientConnection } from '../types';
+import type { Server } from '../server.js';
+import type { ClientConnection } from '../types.js';
 
 // base class that users should extend if they are making their own
 // server implementation

@@ -2,7 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "client-src",
-    "outDir": "client"
+    "outDir": "client",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "composite": true
   },
   "include": ["client-src/**/*"]
 }

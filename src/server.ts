@@ -35,8 +35,8 @@ import type {
 import compression from 'http-compression';
 import ipaddr from 'ipaddr.js';
 import type { App } from 'open';
-import { getPort } from './getPort';
-import { WebsocketServer } from './servers/WebsocketServer';
+import { getPort } from './getPort.js';
+import { WebsocketServer } from './servers/WebsocketServer.js';
 import type {
   AddressInfo,
   BasicApplication,
@@ -78,8 +78,8 @@ import type {
   WebSocketServer,
   WebSocketServerConfiguration,
   WebSocketServerImplementation,
-} from './types';
-import type { ConnectApplication } from './types';
+} from './types.js';
+import type { ConnectApplication } from './types.js';
 
 const { styleText } = util;
 const require = createRequire(import.meta.url);
@@ -574,7 +574,7 @@ class Server<
       // Configuration with the `devServer` options
       const compilerWithDevServer = (
         this.compiler as MultiCompiler
-      ).compilers.find((config) => config.options.devServer);
+      ).compilers.find((config: Compiler) => config.options.devServer);
 
       if (compilerWithDevServer) {
         return compilerWithDevServer.options;
@@ -583,7 +583,7 @@ class Server<
       // Compiler for `web` target
       const compilerWithWebTarget = (
         this.compiler as MultiCompiler
-      ).compilers.find((compiler) => Boolean(compiler.platform.web));
+      ).compilers.find((compiler: Compiler) => Boolean(compiler.platform.web));
 
       if (compilerWithWebTarget) {
         return compilerWithWebTarget.options;
@@ -1396,7 +1396,7 @@ class Server<
 
         if (this.options.hot) {
           const HMRPluginExists = compiler.options.plugins.find(
-            (plugin) =>
+            (plugin: EXPECTED_ANY) =>
               plugin && plugin.constructor === HotModuleReplacementPlugin,
           );
 
