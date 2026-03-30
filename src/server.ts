@@ -1840,14 +1840,18 @@ class Server<
     }
 
     const staticOptions = this.options.static as NormalizedStatic[];
+    const useStatic = staticOptions.length > 0;
+    const serveStatic = useStatic
+      ? (await import('serve-static')).default
+      : null;
 
-    if (staticOptions.length > 0) {
+    if (useStatic) {
       for (const staticOption of staticOptions) {
         for (const publicPath of staticOption.publicPath) {
           middlewares.push({
             name: 'serve-static',
             path: publicPath,
-            middleware: (await import('serve-static')).default(
+            middleware: serveStatic(
               staticOption.directory,
               staticOption.staticOptions,
             ) as DevServerMiddlewareHandler,
@@ -1887,13 +1891,13 @@ class Server<
         middleware: this.middleware as DevServerMiddlewareHandler,
       });
 
-      if (staticOptions.length > 0) {
+      if (useStatic) {
         for (const staticOption of staticOptions) {
           for (const publicPath of staticOption.publicPath) {
             middlewares.push({
               name: 'serve-static',
               path: publicPath,
-              middleware: (await import('serve-static')).default(
+              middleware: serveStatic(
                 staticOption.directory,
                 staticOption.staticOptions,
               ) as DevServerMiddlewareHandler,
