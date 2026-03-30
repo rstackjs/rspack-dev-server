@@ -1851,7 +1851,7 @@ class Server<
           middlewares.push({
             name: 'serve-static',
             path: publicPath,
-            middleware: serveStatic(
+            middleware: serveStatic!(
               staticOption.directory,
               staticOption.staticOptions,
             ) as DevServerMiddlewareHandler,
@@ -1897,7 +1897,7 @@ class Server<
             middlewares.push({
               name: 'serve-static',
               path: publicPath,
-              middleware: serveStatic(
+              middleware: serveStatic!(
                 staticOption.directory,
                 staticOption.staticOptions,
               ) as DevServerMiddlewareHandler,
