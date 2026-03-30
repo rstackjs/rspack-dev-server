@@ -44,7 +44,6 @@ export type {
   StatsOptions,
 } from '@rspack/core';
 
-// biome-ignore lint/suspicious/noExplicitAny: expected any
 export type EXPECTED_ANY = any;
 
 type BasicServer = import('node:net').Server | import('node:tls').Server;
@@ -136,18 +135,13 @@ export type Middleware =
 
 export type OverlayMessageOptions = boolean | ((error: Error) => void);
 
-// TypeScript overloads for connect-like use
-function useFn(fn: NextHandleFunction): BasicApplication;
-function useFn(fn: HandleFunction): BasicApplication;
-function useFn(route: string, fn: NextHandleFunction): BasicApplication;
-function useFn(route: string, fn: HandleFunction): BasicApplication;
-function useFn(
-  routeOrFn: string | NextHandleFunction | HandleFunction,
-  fn?: NextHandleFunction | HandleFunction,
-): BasicApplication {
-  return {} as BasicApplication;
-}
+type UseFn = {
+  (fn: NextHandleFunction): BasicApplication;
+  (fn: HandleFunction): BasicApplication;
+  (route: string, fn: NextHandleFunction): BasicApplication;
+  (route: string, fn: HandleFunction): BasicApplication;
+};
 
 export type BasicApplication = {
-  use: typeof useFn;
+  use: UseFn;
 };

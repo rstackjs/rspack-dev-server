@@ -11,7 +11,7 @@
 // The error overlay is inspired (and mostly copied) from Create React App (https://github.com/facebookincubator/create-react-app)
 // They, in turn, got inspired by webpack-hot-middleware (https://github.com/glenjamin/webpack-hot-middleware).
 
-import ansiHTML from './utils/ansiHTML';
+import ansiHTML from './utils/ansiHTML.js';
 
 const getCodePoint = !!String.prototype.codePointAt
   ? (input: string, position: number): number | undefined =>
@@ -422,13 +422,17 @@ type CreateOverlayOptions = {
   catchRuntimeError?: boolean | ((error: Error) => void);
 };
 
+type OverlayTrustedTypePolicy = {
+  createHTML: (value: string) => string;
+};
+
 declare global {
   interface Window {
     trustedTypes?: {
       createPolicy: (
         name: string,
         policy: { createHTML: (value: string) => string },
-      ) => TrustedTypePolicy;
+      ) => OverlayTrustedTypePolicy;
     };
   }
 }
@@ -438,9 +442,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
   let containerElement: HTMLDivElement | null | undefined;
   let headerElement: HTMLDivElement | null | undefined;
   let onLoadQueue: ((element: HTMLDivElement) => void)[] = [];
-  let overlayTrustedTypesPolicy:
-    | Omit<TrustedTypePolicy, 'createScript' | 'createScriptURL'>
-    | undefined;
+  let overlayTrustedTypesPolicy: OverlayTrustedTypePolicy | undefined;
 
   type CSSStyleDeclarationKeys = Extract<keyof CSSStyleDeclaration, 'string'>;
 
@@ -645,8 +647,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
       const errorObject =
         error instanceof Error
           ? error
-          : // @ts-expect-error error options
-            new Error(error || fallbackMessage, { cause: error });
+          : new Error(error || fallbackMessage, { cause: error });
 
       const shouldDisplay =
         typeof options.catchRuntimeError === 'function'

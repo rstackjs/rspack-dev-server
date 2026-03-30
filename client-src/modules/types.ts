@@ -1,6 +1,5 @@
 import type { FilterTypes } from '@rspack/core';
 
-// biome-ignore lint/suspicious/noExplicitAny: expected any
 export type EXPECTED_ANY = any;
 
 export type FilterFunction = (item: string) => boolean;

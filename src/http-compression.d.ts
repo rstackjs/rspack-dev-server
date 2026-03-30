@@ -2,7 +2,6 @@ declare module 'http-compression' {
   import type {
     BrotliOptions,
     GzipOptions,
-    IncomingHttpHeaders,
     IncomingMessage,
     ServerResponse,
   } from 'node:http';

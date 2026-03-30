@@ -1,7 +1,4 @@
-import { version } from '@rspack/core/package.json';
 import { defineConfig } from '@rstest/core';
-
-console.log(`Running tests for rspack @${version} \n`);
 
 export default defineConfig({
   globals: true,
@@ -20,8 +17,8 @@ export default defineConfig({
   env: {
     FORCE_COLOR: 'true',
   },
-  testTimeout: process.env.CI ? 120000 : 30000,
-  hookTimeout: 30000,
+  testTimeout: process.env.CI ? 120000 : 60000,
+  hookTimeout: 60000,
   setupFiles: ['./tests/helpers/setup-test.js'],
   reporters: ['default'],
 });

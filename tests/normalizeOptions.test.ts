@@ -133,7 +133,6 @@ async function getAdditionEntries(
   const entries = compiler.__internal__builtinPlugins
     .filter((p) => p.name === 'EntryPlugin')
     .map((p) => p.options)
-    // biome-ignore lint/suspicious/noExplicitAny: _
     .reduce<Record<string, any>>((acc: any, cur: any) => {
       const name = cur.options.name;
       const request = cur.entry;

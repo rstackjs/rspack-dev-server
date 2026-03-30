@@ -6,7 +6,7 @@ import type {
   ServerConfiguration,
   WatchFiles,
   WebSocketServerConfiguration,
-} from './types';
+} from './types.js';
 
 export interface ResolvedDevServer extends DevServer {
   port: number | string;

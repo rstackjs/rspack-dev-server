@@ -16,17 +16,16 @@ jobs:
     permissions:
       contents: read
 
-    name: Test - ${{ matrix.os }} - Node v${{ matrix.node }})
+    name: Test - ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node: [20.x]
 
     runs-on: ${{ matrix.os }}
 
     concurrency:
-      group: test-${{ matrix.os }}-v${{ matrix.node }}-${{ github.ref }}
+      group: test-${{ matrix.os }}-${{ github.ref }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -41,7 +40,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 22.22.2
           package-manager-cache: false
 
       - name: Install Dependencies
@@ -68,7 +67,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
-          node-version: 20.20.1
+          node-version: 22.22.2
           package-manager-cache: false
 
       - name: Install Dependencies

@@ -35,8 +35,8 @@ import type {
 import compression from 'http-compression';
 import ipaddr from 'ipaddr.js';
 import type { App } from 'open';
-import { getPort } from './getPort';
-import { WebsocketServer } from './servers/WebsocketServer';
+import { getPort } from './getPort.js';
+import { WebsocketServer } from './servers/WebsocketServer.js';
 import type {
   AddressInfo,
   BasicApplication,
@@ -78,8 +78,8 @@ import type {
   WebSocketServer,
   WebSocketServerConfiguration,
   WebSocketServerImplementation,
-} from './types';
-import type { ConnectApplication } from './types';
+} from './types.js';
+import type { ConnectApplication } from './types.js';
 
 const { styleText } = util;
 const require = createRequire(import.meta.url);
@@ -554,7 +554,7 @@ class Server<
       // Configuration with the `devServer` options
       const compilerWithDevServer = (
         this.compiler as MultiCompiler
-      ).compilers.find((config) => config.options.devServer);
+      ).compilers.find((config: Compiler) => config.options.devServer);
 
       if (compilerWithDevServer) {
         return compilerWithDevServer.options;
@@ -563,7 +563,7 @@ class Server<
       // Compiler for `web` target
       const compilerWithWebTarget = (
         this.compiler as MultiCompiler
-      ).compilers.find((compiler) => Boolean(compiler.platform.web));
+      ).compilers.find((compiler: Compiler) => Boolean(compiler.platform.web));
 
       if (compilerWithWebTarget) {
         return compilerWithWebTarget.options;
@@ -849,7 +849,7 @@ class Server<
 
             try {
               stats = fs.lstatSync(fs.realpathSync(item)).isFile();
-            } catch (error) {
+            } catch {
               // Ignore error
             }
 
@@ -1183,33 +1183,12 @@ class Server<
   #getClientTransport() {
     let clientImplementation: string | undefined;
     let clientImplementationFound = true;
-
-    const isKnownWebSocketServerImplementation =
-      this.options.webSocketServer &&
-      typeof (this.options.webSocketServer as WebSocketServerConfiguration)
-        .type === 'string' &&
-      // @ts-expect-error
-      this.options.webSocketServer.type === 'ws';
-
-    let clientTransport: string | undefined;
-
-    if (this.options.client) {
-      if (
-        typeof (this.options.client as DevServerClient).webSocketTransport !==
-        'undefined'
-      ) {
-        clientTransport = (this.options.client as DevServerClient)
-          .webSocketTransport;
-      } else if (isKnownWebSocketServerImplementation) {
-        clientTransport = (
-          this.options.webSocketServer as WebSocketServerConfiguration
-        ).type as string;
-      } else {
-        clientTransport = 'ws';
-      }
-    } else {
-      clientTransport = 'ws';
-    }
+    let clientTransport =
+      typeof this.options.client === 'object' &&
+      this.options.client !== null &&
+      typeof this.options.client.webSocketTransport !== 'undefined'
+        ? this.options.client.webSocketTransport
+        : 'ws';
 
     switch (typeof clientTransport) {
       case 'string':
@@ -1237,11 +1216,7 @@ class Server<
 
     if (!clientImplementationFound) {
       throw new Error(
-        `${
-          !isKnownWebSocketServerImplementation
-            ? 'When you use custom web socket implementation you must explicitly specify client.webSocketTransport. '
-            : ''
-        }client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
+        `client.webSocketTransport must be a string denoting a default implementation (e.g. 'ws') or a full path to a JS file via require.resolve(...) which exports a class `,
       );
     }
 
@@ -1401,7 +1376,7 @@ class Server<
 
         if (this.options.hot) {
           const HMRPluginExists = compiler.options.plugins.find(
-            (plugin) =>
+            (plugin: EXPECTED_ANY) =>
               plugin && plugin.constructor === HotModuleReplacementPlugin,
           );
 
