@@ -35,6 +35,7 @@ import type {
 import compression from 'http-compression';
 import ipaddr from 'ipaddr.js';
 import type { App } from 'open';
+import type { IPv6 } from 'ipaddr.js';
 import { getPort } from './getPort.js';
 import { WebsocketServer } from './servers/WebsocketServer.js';
 import type {
@@ -50,7 +51,6 @@ import type {
   EXPECTED_ANY,
   FSWatcher,
   HTTPServer,
-  IPv6,
   IncomingMessage,
   LiteralUnion,
   Middleware,
