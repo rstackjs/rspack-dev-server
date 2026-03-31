@@ -125,8 +125,8 @@ export interface Configuration<
 
 // Define BasicApplication and Server as ambient, or import them
 
-if (!process.env.WEBPACK_SERVE) {
-  process.env.WEBPACK_SERVE = 'true';
+if (!process.env.RSPACK_SERVE) {
+  process.env.RSPACK_SERVE = 'true';
 }
 
 const getConnect = async () => {
