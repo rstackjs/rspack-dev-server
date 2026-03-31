@@ -57,7 +57,7 @@
     "@hono/node-server": "^1.19.12",
     "@rslib/core": "^0.20.2",
     "@rslint/core": "^0.3.3",
-    "@rspack/core": "2.0.0-beta.7",
+    "@rspack/core": "2.0.0-rc.0",
     "@rspack/plugin-react-refresh": "1.6.1",
     "@rstest/core": "^0.9.5",
     "@types/mime-types": "3.0.1",
