@@ -3,10 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": false,
-    "rootDir": "../",
-    "paths": {
-      "@rspack/dev-server": ["../"]
-    }
+    "rootDir": "../"
   },
   "include": ["../src", "../tests", "../client-src"],
   "references": []

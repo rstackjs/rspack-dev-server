@@ -52,7 +52,6 @@
     "connect-next": "^4.0.0",
     "http-proxy-middleware": "^3.0.5",
     "ipaddr.js": "^2.3.0",
-    "serve-static": "^2.2.1",
     "ws": "^8.20.0"
   },
   "devDependencies": {
@@ -82,6 +81,7 @@
     "react-refresh": "0.18.0",
     "require-from-string": "^2.0.2",
     "selfsigned": "^5.5.0",
+    "serve-static": "^2.2.1",
     "simple-git-hooks": "^2.13.1",
     "style-loader": "^4.0.0",
     "typescript": "^6.0.2"

@@ -129,31 +129,11 @@ if (!process.env.WEBPACK_SERVE) {
   process.env.WEBPACK_SERVE = 'true';
 }
 
-type FunctionReturning<T> = () => T;
-
-const memoize = <T>(fn: FunctionReturning<T>): FunctionReturning<T> => {
-  let cache = false;
-  let result: T | undefined;
-  let fnRef = fn;
-  return () => {
-    if (cache) {
-      return result as T;
-    }
-
-    result = fnRef();
-    cache = true;
-    // Allow to clean up memory for fn and all dependent resources
-    fnRef = undefined as unknown as FunctionReturning<T>;
-    return result as T;
-  };
-};
-
 const getConnect = async () => {
   const { connect } = await import('connect-next');
   return connect;
 };
-const getChokidar = memoize(() => import('chokidar'));
-const getServeStatic = memoize(() => require('serve-static'));
+const getChokidar = () => import('chokidar');
 
 const encodeOverlaySettings = (
   setting?: OverlayMessageOptions,
@@ -1860,17 +1840,21 @@ class Server<
     }
 
     const staticOptions = this.options.static as NormalizedStatic[];
+    const useStatic = staticOptions.length > 0;
+    const serveStatic = useStatic
+      ? (await import('serve-static')).default
+      : null;
 
-    if (staticOptions.length > 0) {
+    if (useStatic) {
       for (const staticOption of staticOptions) {
         for (const publicPath of staticOption.publicPath) {
           middlewares.push({
             name: 'serve-static',
             path: publicPath,
-            middleware: getServeStatic()(
+            middleware: serveStatic!(
               staticOption.directory,
               staticOption.staticOptions,
-            ),
+            ) as DevServerMiddlewareHandler,
           });
         }
       }
@@ -1907,16 +1891,16 @@ class Server<
         middleware: this.middleware as DevServerMiddlewareHandler,
       });
 
-      if (staticOptions.length > 0) {
+      if (useStatic) {
         for (const staticOption of staticOptions) {
           for (const publicPath of staticOption.publicPath) {
             middlewares.push({
               name: 'serve-static',
               path: publicPath,
-              middleware: getServeStatic()(
+              middleware: serveStatic!(
                 staticOption.directory,
                 staticOption.staticOptions,
-              ),
+              ) as DevServerMiddlewareHandler,
             });
           }
         }

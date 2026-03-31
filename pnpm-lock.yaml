@@ -29,9 +29,6 @@ importers:
       ipaddr.js:
         specifier: ^2.3.0
         version: 2.3.0
-      serve-static:
-        specifier: ^2.2.1
-        version: 2.2.1
       ws:
         specifier: ^8.20.0
         version: 8.20.0
@@ -111,6 +108,9 @@ importers:
       selfsigned:
         specifier: ^5.5.0
         version: 5.5.0
+      serve-static:
+        specifier: ^2.2.1
+        version: 2.2.1
       simple-git-hooks:
         specifier: ^2.13.1
         version: 2.13.1
