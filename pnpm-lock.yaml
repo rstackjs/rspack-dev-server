@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@rspack/dev-middleware':
-        specifier: 2.0.0-beta.2
-        version: 2.0.0-beta.2(@rspack/core@2.0.0-beta.7(@module-federation/runtime-tools@2.1.0)(@swc/helpers@0.5.19))
+        specifier: ^2.0.0
+        version: 2.0.0(@rspack/core@2.0.0-beta.7(@module-federation/runtime-tools@2.1.0)(@swc/helpers@0.5.19))
       '@types/ws':
         specifier: ^8.18.1
         version: 8.18.1
@@ -618,8 +618,8 @@ packages:
       '@swc/helpers':
         optional: true
 
-  '@rspack/dev-middleware@2.0.0-beta.2':
-    resolution: {integrity: sha512-cbCcloAUYrb65LPd0HLhMKOWKasEM1rGXb4P9aonQcoODC9ThTdzUuZhXEwlGrinBDcMmOzEk9TYfTg9PDUevw==}
+  '@rspack/dev-middleware@2.0.0':
+    resolution: {integrity: sha512-XYyUgvdNV6Fiom6fYNibvLtg9EbqMvgdpnx2CaO4RacDe0yEIYJgAFAdKjWoqKH+3GhPTRI1xqjtR2XlssBThw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@rspack/core': ^2.0.0-0
@@ -2435,7 +2435,7 @@ snapshots:
       '@module-federation/runtime-tools': 2.1.0
       '@swc/helpers': 0.5.20
 
-  '@rspack/dev-middleware@2.0.0-beta.2(@rspack/core@2.0.0-beta.7(@module-federation/runtime-tools@2.1.0)(@swc/helpers@0.5.19))':
+  '@rspack/dev-middleware@2.0.0(@rspack/core@2.0.0-beta.7(@module-federation/runtime-tools@2.1.0)(@swc/helpers@0.5.19))':
     optionalDependencies:
       '@rspack/core': 2.0.0-beta.7(@module-federation/runtime-tools@2.1.0)(@swc/helpers@0.5.19)
 
