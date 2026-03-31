@@ -26,9 +26,6 @@ importers:
       http-proxy-middleware:
         specifier: ^3.0.5
         version: 3.0.5
-      ipaddr.js:
-        specifier: ^2.3.0
-        version: 2.3.0
       ws:
         specifier: ^8.20.0
         version: 8.20.0
@@ -81,6 +78,9 @@ importers:
       http-proxy:
         specifier: ^1.18.1
         version: 1.18.1(debug@4.4.3)
+      ipaddr.js:
+        specifier: ^2.3.0
+        version: 2.3.0
       launch-editor:
         specifier: ^2.13.2
         version: 2.13.2

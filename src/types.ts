@@ -30,7 +30,6 @@ export type {
   IncomingMessage,
   ConnectApplication,
 };
-export type { IPv6 } from 'ipaddr.js';
 export type { Socket } from 'node:net';
 export type { AddressInfo } from 'node:net';
 export type { NetworkInterfaceInfo } from 'node:os';
