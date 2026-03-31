@@ -255,6 +255,7 @@ If your setup still uses the legacy names, you can update them as follows:
 - Environment variables
   - `WEBPACK_DEV_SERVER_BASE_PORT` -> `RSPACK_DEV_SERVER_BASE_PORT`
   - `WEBPACK_DEV_SERVER_PORT_RETRY` -> `RSPACK_DEV_SERVER_PORT_RETRY`
+  - `WEBPACK_SERVE` -> `RSPACK_SERVE`
 - URL query flags
   - `webpack-dev-server-hot=false` -> `rspack-dev-server-hot=false`
   - `webpack-dev-server-live-reload=false` -> `rspack-dev-server-live-reload=false`

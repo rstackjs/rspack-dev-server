@@ -7,7 +7,7 @@ const sessionSubscribe = require('../helpers/session-subscribe');
 const port = require('../helpers/ports-map').api;
 
 describe('API', () => {
-  describe('WEBPACK_SERVE environment variable', () => {
+  describe('RSPACK_SERVE environment variable', () => {
     const OLD_ENV = process.env;
     let server;
     let page;
@@ -46,7 +46,7 @@ describe('API', () => {
 
       await server.start();
 
-      expect(process.env.WEBPACK_SERVE).toBe('true');
+      expect(process.env.RSPACK_SERVE).toBe('true');
 
       const response = await page.goto(`http://127.0.0.1:${port}/`, {
         waitUntil: 'networkidle0',
