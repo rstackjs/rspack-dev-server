@@ -45,6 +45,6 @@ jobs:
       - name: Publish
         uses: JS-DevTools/npm-publish@0fd2f4369c5d6bcfcde6091a7c527d810b9b5c3f # v4
         with:
-          # TODO: remove beta tag before release stable
-          tag: beta
+          # TODO: remove rc tag before release stable
+          tag: rc
           token: empty
