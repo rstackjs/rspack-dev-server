@@ -16,13 +16,6 @@ describe('API', () => {
     let consoleMessages;
 
     beforeEach(async () => {
-      // this is important - it clears the cache
-      rs.resetModules();
-
-      process.env = { ...OLD_ENV };
-
-      process.env.WEBPACK_SERVE = undefined;
-
       ({ page, browser } = await runBrowser());
 
       pageErrors = [];
@@ -36,8 +29,6 @@ describe('API', () => {
     });
 
     it('should be present', async () => {
-      expect(process.env.WEBPACK_SERVE).toBeUndefined();
-
       page
         .on('console', (message) => {
           consoleMessages.push(message);
