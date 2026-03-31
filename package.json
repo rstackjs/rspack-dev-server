@@ -45,7 +45,7 @@
     ]
   },
   "dependencies": {
-    "@rspack/dev-middleware": "2.0.0-beta.2",
+    "@rspack/dev-middleware": "^2.0.0",
     "@types/ws": "^8.18.1",
     "chokidar": "^5.0.0",
     "connect-history-api-fallback": "^2.0.0",
