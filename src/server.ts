@@ -25,6 +25,7 @@ import type {
   DevServerStaticItem,
   DevServerWebSocketURL,
 } from '@rspack/core';
+import type { RequestHandler } from 'http-proxy-middleware';
 import { devMiddleware } from '@rspack/dev-middleware';
 import type {
   HandleFunction,
@@ -64,7 +65,6 @@ import type {
   OverlayMessageOptions,
   Port,
   Request,
-  RequestHandler,
   Response,
   ServerConfiguration,
   ServerOptions,
@@ -186,7 +186,7 @@ class Server<
     name: string | symbol;
     listener: (...args: EXPECTED_ANY[]) => void;
   }[];
-  webSocketProxies: RequestHandler[];
+  webSocketProxies: NextHandleFunction[];
   sockets: Socket[];
   currentHash: string | undefined;
   isTlsServer = false;
@@ -1445,14 +1445,14 @@ class Server<
 
     // Proxy WebSocket without the initial http request
     // https://github.com/chimurai/http-proxy-middleware#external-websocket-upgrade
-    const webSocketProxies = this.webSocketProxies as RequestHandler[];
+    const webSocketProxies = this.webSocketProxies as NextHandleFunction[];
 
     for (const webSocketProxy of webSocketProxies) {
       (this.server as S).on(
         'upgrade',
         (
-          webSocketProxy as RequestHandler & {
-            upgrade: NonNullable<RequestHandler['upgrade']>;
+          webSocketProxy as NextHandleFunction & {
+            upgrade: RequestHandler['upgrade'];
           }
         ).upgrade,
       );
@@ -1729,11 +1729,13 @@ class Server<
     });
 
     if (this.options.proxy) {
-      const { createProxyMiddleware } = require('http-proxy-middleware');
+      const { createProxyMiddleware } = await import(
+        /* webpackChunkName: "http-proxy-middleware" */ 'http-proxy-middleware'
+      );
 
       const getProxyMiddleware = (
         proxyConfig: DevServerProxyConfigArrayItem,
-      ): RequestHandler | undefined => {
+      ): NextHandleFunction | undefined => {
         const { context, ...proxyOptions } = proxyConfig;
         const pathFilter = proxyOptions.pathFilter ?? context;
 
@@ -1746,7 +1748,9 @@ class Server<
         }
 
         if (proxyOptions.target || proxyOptions.router) {
-          return createProxyMiddleware(proxyOptions);
+          return createProxyMiddleware(
+            proxyOptions as Parameters<typeof createProxyMiddleware>[0],
+          );
         }
 
         util.deprecate(
@@ -1774,7 +1778,7 @@ class Server<
        * ]
        */
       for (const proxyConfigOrCallback of this.options.proxy) {
-        let proxyMiddleware: RequestHandler | undefined;
+        let proxyMiddleware: NextHandleFunction | undefined;
 
         let proxyConfig =
           typeof proxyConfigOrCallback === 'function'
@@ -1941,7 +1945,7 @@ class Server<
 
     for (const i of middlewares) {
       if (i.name === '@rspack/dev-middleware') {
-        const item = i as MiddlewareObject | RequestHandler;
+        const item = i as MiddlewareObject | NextHandleFunction;
 
         if (typeof (item as MiddlewareObject).middleware === 'undefined') {
           (item as MiddlewareObject).middleware =

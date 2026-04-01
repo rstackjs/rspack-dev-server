@@ -18,12 +18,10 @@ import type {
   HandleFunction,
   NextHandleFunction,
 } from 'connect-next';
-import type { RequestHandler } from 'http-proxy-middleware';
 
 export type {
   FSWatcher,
   WatchOptions,
-  RequestHandler,
   BasicServer,
   HTTPServer,
   ServerOptions,
