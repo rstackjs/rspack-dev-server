@@ -18,8 +18,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       connect-next:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.1
+        version: 4.0.1
       ws:
         specifier: ^8.20.0
         version: 8.20.0
@@ -1046,8 +1046,8 @@ packages:
     resolution: {integrity: sha512-U73+6lQFmfiNPrYbXqr6kZ1i1wiRqXnp2nhMsINseWXO8lDau0LGEffJ8kQi4EjLZympVgRdvqjAgiZ1tgzDDA==}
     engines: {node: '>=0.8'}
 
-  connect-next@4.0.0:
-    resolution: {integrity: sha512-Kg/Ysjd0dsJ9Mw8oKCRfuCVc7BYSU6GSLNoOmwKd5S05bWsuIR/pjCZf/RaE5RiuRChGqW3nP2Z5YdwHhDfbKw==}
+  connect-next@4.0.1:
+    resolution: {integrity: sha512-nkHJWto78sXAooScrgvRt9E9omtwHBUTjCWRgxe3NbwNVC9cW4Lu0il0m2O867pgzJV66YXi2tXtSPtZy3Zmeg==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
   content-disposition@1.0.1:
@@ -2957,13 +2957,7 @@ snapshots:
 
   connect-history-api-fallback@2.0.0: {}
 
-  connect-next@4.0.0:
-    dependencies:
-      debug: 4.4.3
-      finalhandler: 2.1.1
-      parseurl: 1.3.3
-    transitivePeerDependencies:
-      - supports-color
+  connect-next@4.0.1: {}
 
   content-disposition@1.0.1: {}
 
