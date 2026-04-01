@@ -48,13 +48,13 @@
     "@rspack/dev-middleware": "^2.0.0",
     "@types/ws": "^8.18.1",
     "chokidar": "^5.0.0",
-    "connect-next": "^4.0.0",
+    "connect-next": "^4.0.1",
     "ws": "^8.20.0"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.12",
     "@rslib/core": "^0.20.2",
-    "@rslint/core": "^0.3.3",
+    "@rslint/core": "^0.3.4",
     "@rspack/core": "2.0.0-rc.0",
     "@rspack/plugin-react-refresh": "1.6.1",
     "@rstest/core": "^0.9.5",
