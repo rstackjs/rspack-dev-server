@@ -4,6 +4,7 @@ const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const sessionSubscribe = require('../helpers/session-subscribe');
+const { getRandomPorts } = require('../helpers/get-random-port');
 const port = require('../helpers/ports-map').api;
 
 describe('API', () => {
@@ -337,12 +338,19 @@ describe('API', () => {
   });
 
   describe('Server.getFreePort', () => {
+    let basePort;
+    let reservedPorts;
     let dummyServers = [];
     let devServerPort;
 
+    beforeEach(async () => {
+      reservedPorts = await getRandomPorts(8, '0.0.0.0');
+      [basePort] = reservedPorts;
+    });
+
     afterEach(() => {
-      process.env.RSPACK_DEV_SERVER_BASE_PORT = undefined;
-      process.env.RSPACK_DEV_SERVER_PORT_RETRY = undefined;
+      delete process.env.RSPACK_DEV_SERVER_BASE_PORT;
+      delete process.env.RSPACK_DEV_SERVER_PORT_RETRY;
 
       return dummyServers
         .reduce(
@@ -363,14 +371,14 @@ describe('API', () => {
     });
 
     function createDummyServers(n) {
-      process.env.RSPACK_DEV_SERVER_BASE_PORT = 60000;
+      process.env.RSPACK_DEV_SERVER_BASE_PORT = `${basePort}`;
 
       return (Array.isArray(n) ? n : [...new Array(n)]).reduce(
         (p, _, i) =>
           p.then(
             () =>
               new Promise((resolve) => {
-                devServerPort = 60000 + i;
+                devServerPort = basePort + i;
                 const compiler = rspack(config);
                 const server = new Server(
                   { port: devServerPort, host: '0.0.0.0' },
@@ -407,7 +415,7 @@ describe('API', () => {
 
       const freePort = await Server.getFreePort(null);
 
-      expect(freePort).toEqual(60000 + retryCount);
+      expect(freePort).toEqual(basePort + retryCount);
 
       const { page, browser } = await runBrowser();
 
@@ -447,7 +455,7 @@ describe('API', () => {
       // eslint-disable-next-line no-undefined
       const freePort = await Server.getFreePort(undefined);
 
-      expect(freePort).toEqual(60000 + retryCount);
+      expect(freePort).toEqual(basePort + retryCount);
 
       const { page, browser } = await runBrowser();
 
@@ -486,7 +494,7 @@ describe('API', () => {
 
       const freePort = await Server.getFreePort();
 
-      expect(freePort).toEqual(60000 + retryCount);
+      expect(freePort).toEqual(basePort + retryCount);
 
       const { page, browser } = await runBrowser();
 
@@ -525,7 +533,7 @@ describe('API', () => {
 
       const freePort = await Server.getFreePort();
 
-      expect(freePort).toEqual(60000 + retryCount);
+      expect(freePort).toEqual(basePort + retryCount);
 
       const { page, browser } = await runBrowser();
 
@@ -556,7 +564,7 @@ describe('API', () => {
     });
 
     it('should retry finding the port when serial ports are busy', async () => {
-      const busyPorts = [60000, 60001, 60002, 60003, 60004, 60005];
+      const busyPorts = reservedPorts.slice(0, 6);
 
       process.env.RSPACK_DEV_SERVER_PORT_RETRY = 1000;
 
@@ -564,7 +572,7 @@ describe('API', () => {
 
       const freePort = await Server.getFreePort();
 
-      expect(freePort).toBeGreaterThan(60005);
+      expect(freePort).toBeGreaterThan(busyPorts[busyPorts.length - 1]);
 
       const { page, browser } = await runBrowser();
 
