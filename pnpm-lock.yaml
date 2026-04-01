@@ -17,9 +17,6 @@ importers:
       chokidar:
         specifier: ^5.0.0
         version: 5.0.0
-      connect-history-api-fallback:
-        specifier: ^2.0.0
-        version: 2.0.0
       connect-next:
         specifier: ^4.0.0
         version: 4.0.0
@@ -45,6 +42,9 @@ importers:
       '@rstest/core':
         specifier: ^0.9.5
         version: 0.9.5(@module-federation/runtime-tools@2.1.0)(core-js@3.47.0)
+      '@types/connect-history-api-fallback':
+        specifier: ^1.5.4
+        version: 1.5.4
       '@types/mime-types':
         specifier: 3.0.1
         version: 3.0.1
@@ -57,6 +57,9 @@ importers:
       '@types/trusted-types':
         specifier: ^2.0.7
         version: 2.0.7
+      connect-history-api-fallback:
+        specifier: ^2.0.0
+        version: 2.0.0
       cross-env:
         specifier: ^10.1.0
         version: 10.1.0
@@ -738,6 +741,9 @@ packages:
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
+  '@types/connect-history-api-fallback@1.5.4':
+    resolution: {integrity: sha512-n6Cr2xS1h4uAulPRdlw6Jl6s1oG8KrVilPN2yUITEs+K48EzMJJ3W1xy8K5eWuFvjp3R74AOIGSmp2UfBJ8HFw==}
+
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
@@ -749,6 +755,9 @@ packages:
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
+
+  '@types/express-serve-static-core@5.1.1':
+    resolution: {integrity: sha512-v4zIMr/cX7/d2BpAEX3KNKL/JrT1s43s96lLvvdTmza1oEvDudCqK9aF/djc/SWgy8Yh0h30TZx5VpzqFCxk5A==}
 
   '@types/http-errors@2.0.4':
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
@@ -764,6 +773,15 @@ packages:
 
   '@types/node@24.12.0':
     resolution: {integrity: sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ==}
+
+  '@types/qs@6.15.0':
+    resolution: {integrity: sha512-JawvT8iBVWpzTrz3EGw9BTQFg3BQNmwERdKE22vlTxawwtbyUSlMppvZYKLZzB5zgACXdXxbD3m1bXaMqP/9ow==}
+
+  '@types/range-parser@1.2.7':
+    resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
+
+  '@types/send@1.2.1':
+    resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
 
   '@types/serve-static@2.2.0':
     resolution: {integrity: sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==}
@@ -2609,6 +2627,11 @@ snapshots:
       '@types/deep-eql': 4.0.2
       assertion-error: 2.0.1
 
+  '@types/connect-history-api-fallback@1.5.4':
+    dependencies:
+      '@types/express-serve-static-core': 5.1.1
+      '@types/node': 24.12.0
+
   '@types/deep-eql@4.0.2': {}
 
   '@types/eslint-scope@3.7.7':
@@ -2623,6 +2646,13 @@ snapshots:
 
   '@types/estree@1.0.8': {}
 
+  '@types/express-serve-static-core@5.1.1':
+    dependencies:
+      '@types/node': 24.12.0
+      '@types/qs': 6.15.0
+      '@types/range-parser': 1.2.7
+      '@types/send': 1.2.1
+
   '@types/http-errors@2.0.4': {}
 
   '@types/http-proxy@1.17.17':
@@ -2636,6 +2666,14 @@ snapshots:
   '@types/node@24.12.0':
     dependencies:
       undici-types: 7.16.0
+
+  '@types/qs@6.15.0': {}
+
+  '@types/range-parser@1.2.7': {}
+
+  '@types/send@1.2.1':
+    dependencies:
+      '@types/node': 24.12.0
 
   '@types/serve-static@2.2.0':
     dependencies:
