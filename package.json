@@ -50,7 +50,6 @@
     "chokidar": "^5.0.0",
     "connect-history-api-fallback": "^2.0.0",
     "connect-next": "^4.0.0",
-    "http-proxy-middleware": "^3.0.5",
     "ws": "^8.20.0"
   },
   "devDependencies": {
@@ -71,6 +70,7 @@
     "hono": "^4.12.9",
     "http-compression": "^1.1.2",
     "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^3.0.5",
     "ipaddr.js": "^2.3.0",
     "launch-editor": "^2.13.2",
     "nano-staged": "^0.9.0",

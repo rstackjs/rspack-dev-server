@@ -10,7 +10,6 @@ export default defineConfig({
         externals: {
           'connect-history-api-fallback':
             'commonjs connect-history-api-fallback',
-          'http-proxy-middleware': 'commonjs http-proxy-middleware',
           selfsigned: 'commonjs selfsigned',
         },
       },
