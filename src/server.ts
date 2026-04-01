@@ -1865,7 +1865,9 @@ class Server<
     }
 
     if (this.options.historyApiFallback) {
-      const connectHistoryApiFallback = require('connect-history-api-fallback');
+      const { default: connectHistoryApiFallback } = await import(
+        /* webpackChunkName: "connect-history-api-fallback" */ 'connect-history-api-fallback'
+      );
 
       const { historyApiFallback } = this.options;
 
@@ -1885,7 +1887,7 @@ class Server<
         name: 'connect-history-api-fallback',
         middleware: connectHistoryApiFallback(
           historyApiFallback as ConnectHistoryApiFallbackOptions,
-        ),
+        ) as DevServerMiddlewareHandler,
       });
 
       // include our middleware to ensure

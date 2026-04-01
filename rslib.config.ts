@@ -8,8 +8,6 @@ export default defineConfig({
       dts: true,
       output: {
         externals: {
-          'connect-history-api-fallback':
-            'commonjs connect-history-api-fallback',
           selfsigned: 'commonjs selfsigned',
         },
       },
