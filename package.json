@@ -54,7 +54,7 @@
   "devDependencies": {
     "@hono/node-server": "^1.19.12",
     "@rslib/core": "^0.20.2",
-    "@rslint/core": "^0.3.3",
+    "@rslint/core": "^0.3.4",
     "@rspack/core": "2.0.0-rc.0",
     "@rspack/plugin-react-refresh": "1.6.1",
     "@rstest/core": "^0.9.5",
