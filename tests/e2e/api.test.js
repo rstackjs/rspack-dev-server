@@ -1,10 +1,14 @@
 const path = require('node:path');
+const net = require('node:net');
 const { rspack } = require('@rspack/core');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const sessionSubscribe = require('../helpers/session-subscribe');
-const { getRandomPorts } = require('../helpers/get-random-port');
+const {
+  getRandomPorts,
+  releaseRandomPorts,
+} = require('../helpers/get-random-port');
 const port = require('../helpers/ports-map').api;
 
 describe('API', () => {
@@ -339,7 +343,7 @@ describe('API', () => {
 
   describe('Server.getFreePort', () => {
     let basePort;
-    let reservedPorts;
+    let reservedPorts = [];
     let dummyServers = [];
     let devServerPort;
 
@@ -367,6 +371,8 @@ describe('API', () => {
         )
         .then(() => {
           dummyServers = [];
+          releaseRandomPorts(reservedPorts);
+          reservedPorts = [];
         });
     });
 
@@ -605,16 +611,50 @@ describe('API', () => {
     });
 
     it("should throw the error when the port isn't found", async () => {
-      rs.doMockRequire(
-        '../../dist/getPort',
-        () => () => Promise.reject(new Error('busy')),
-      );
+      const busyServers = [];
+      const busyPorts = [65534, 65535];
 
-      process.env.RSPACK_DEV_SERVER_PORT_RETRY = 1;
+      try {
+        await Promise.all(
+          busyPorts.map(
+            (busyPort) =>
+              new Promise((resolve, reject) => {
+                const server = net.createServer();
 
-      const { RspackDevServer: Server } = require('@rspack/dev-server');
+                server.unref();
+                server.on('error', reject);
+                server.listen(busyPort, '0.0.0.0', () => {
+                  busyServers.push(server);
+                  resolve();
+                });
+              }),
+          ),
+        );
 
-      await expect(Server.getFreePort()).rejects.toThrowErrorMatchingSnapshot();
+        process.env.RSPACK_DEV_SERVER_BASE_PORT = '65534';
+        process.env.RSPACK_DEV_SERVER_PORT_RETRY = 0;
+
+        await expect(
+          Server.getFreePort(),
+        ).rejects.toThrowErrorMatchingSnapshot();
+      } finally {
+        await Promise.all(
+          busyServers.map(
+            (server) =>
+              new Promise((resolve, reject) => {
+                server.close((error) => {
+                  if (error) {
+                    reject(error);
+
+                    return;
+                  }
+
+                  resolve();
+                });
+              }),
+          ),
+        );
+      }
     });
   });
 
