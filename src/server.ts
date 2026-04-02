@@ -133,7 +133,7 @@ const getConnect = async () => {
   const { connect } = await import('connect-next');
   return connect;
 };
-const getChokidar = () => import('chokidar');
+const getChokidar = () => import(/* webpackChunkName: "chokidar" */ 'chokidar');
 
 const encodeOverlaySettings = (
   setting?: OverlayMessageOptions,
