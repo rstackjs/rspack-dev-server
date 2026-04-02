@@ -1,9 +1,12 @@
-const HTMLContentForIndex = `
+const HTMLContentForIndex = (styleTags = '') => {
+  const headStyleTags = styleTags ? `\n    ${styleTags}` : '';
+
+  return `
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>rspack-dev-server</title>
+    <title>rspack-dev-server</title>${headStyleTags}
   </head>
   <body>
     <h1>rspack-dev-server is running...</h1>
@@ -11,6 +14,7 @@ const HTMLContentForIndex = `
   </body>
 </html>
 `;
+};
 
 const HTMLContentForAssets = (assetName) => `
 <!DOCTYPE html>
@@ -53,9 +57,13 @@ module.exports = class HTMLGeneratorPlugin {
           stage: compiler.rspack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
         },
         () => {
-          const indexSource = new RawSource(HTMLContentForIndex);
           const testSource = new RawSource(HTMLContentForTest);
           const assets = compilation.getAssets();
+          const styleTags = assets
+            .filter((asset) => asset.name.endsWith('.css'))
+            .map((asset) => `<link rel="stylesheet" href="/${asset.name}" />`)
+            .join('\n    ');
+          const indexSource = new RawSource(HTMLContentForIndex(styleTags));
 
           compilation.emitAsset('index.html', indexSource);
           compilation.emitAsset('test.html', testSource);
