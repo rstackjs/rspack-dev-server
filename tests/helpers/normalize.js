@@ -3,13 +3,6 @@ const path = require('node:path');
 const CURRENT_CWD = process.cwd();
 const ROOT = path.resolve(__dirname, '../../');
 
-const CSS_LOADER = path.dirname(require.resolve('css-loader'));
-const RELATIVE_CSS_LOADER = path.relative(
-  path.dirname(
-    path.resolve(__dirname, '../fixtures/reload-config/rspack.config'),
-  ),
-  CSS_LOADER,
-);
 const RSPACK = path.dirname(require.resolve('@rspack/core/package.json'));
 
 const normalize = (str) => {
@@ -18,18 +11,6 @@ const normalize = (str) => {
   normalizedStr = normalizedStr
     .split(RSPACK.replace(/(\\)+/g, '/'))
     .join('<rspack>');
-
-  normalizedStr = normalizedStr
-    .split(CSS_LOADER.replace(/(\\)+/g, '/'))
-    .join('<cssloader>');
-
-  normalizedStr = normalizedStr
-    .split(RELATIVE_CSS_LOADER.replace(/(\\)+/g, '/'))
-    .join('<cssloader>');
-
-  normalizedStr = normalizedStr
-    .split(RELATIVE_CSS_LOADER.replace(/(\\)+/g, '/'))
-    .join('<cssloader>');
 
   normalizedStr = normalizedStr
     .split(ROOT.replace(/(\\)+/g, '/'))
