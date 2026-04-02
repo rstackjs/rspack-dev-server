@@ -29,8 +29,9 @@
     "lint": "rslint",
     "lint:write": "rslint --fix",
     "prettier:ci": "prettier --check .",
-    "test": "pnpm run test:install && pnpm run build && rstest",
-    "test:install": "cross-env ./node_modules/.bin/puppeteer browsers install chrome"
+    "test": "pnpm run test:install && pnpm run test:type && rstest",
+    "test:install": "cross-env ./node_modules/.bin/puppeteer browsers install chrome",
+    "test:type": "pnpm run build && pnpm --dir tests run type-check"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"
