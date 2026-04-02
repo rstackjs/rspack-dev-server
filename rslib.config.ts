@@ -5,7 +5,18 @@ export default defineConfig({
     {
       id: 'server',
       syntax: 'es2023',
-      dts: true,
+      dts: {
+        bundle: {
+          bundledPackages: ['chokidar', 'readdirp', 'connect-next', 'ws'],
+        },
+      },
+      source: {
+        define: {
+          // `ws` internal env vars
+          'process.env.WS_NO_BUFFER_UTIL': true,
+          'process.env.WS_NO_UTF_8_VALIDATE': true,
+        },
+      },
       output: {
         externals: {
           selfsigned: 'commonjs selfsigned',
