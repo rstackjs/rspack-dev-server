@@ -1,10 +1,12 @@
-const HTMLContentForIndex = (styleTags = '') => `
+const HTMLContentForIndex = (styleTags = '') => {
+  const headStyleTags = styleTags ? `\n    ${styleTags}` : '';
+
+  return `
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset='UTF-8'>
-    <title>rspack-dev-server</title>
-    ${styleTags}
+    <title>rspack-dev-server</title>${headStyleTags}
   </head>
   <body>
     <h1>rspack-dev-server is running...</h1>
@@ -12,6 +14,7 @@ const HTMLContentForIndex = (styleTags = '') => `
   </body>
 </html>
 `;
+};
 
 const HTMLContentForAssets = (assetName) => `
 <!DOCTYPE html>
