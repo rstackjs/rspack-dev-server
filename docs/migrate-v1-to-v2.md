@@ -18,9 +18,9 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
 
 `@rspack/dev-server` is now published as **pure ESM** package.
 
-### Upgraded `http-proxy-middleware` to v3
+### Upgraded `http-proxy-middleware` to v4
 
-`http-proxy-middleware` has been updated to v3, which has some breaking changes:
+`http-proxy-middleware` has been updated to v4, which has some breaking changes:
 
 - `proxy[].path` is removed. Use `pathFilter` (or `context`) instead.
 
@@ -55,7 +55,7 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
   - When `bypass` was used and that function returned a boolean, it would automatically result in a 404 request. This can’t be achieved in a similar way now, or, if it returned a string, you can do what was done in the example above.
   - `bypass` also allowed sending data; this can no longer be done. If you really need to do it, you’d have to create a new route in the proxy that sends the same data, or alternatively create a new route on the main server and, following the example above, send the data you wanted.
 
-> Refer to the [http-proxy-middleware v3 migration guide](https://github.com/chimurai/http-proxy-middleware/blob/master/MIGRATION.md) for details.
+> Refer to the [http-proxy-middleware v3 breaking changes](https://github.com/chimurai/http-proxy-middleware/blob/master/MIGRATION.md#v3-breaking-changes) for details.
 
 ### Default app now uses `connect-next`
 
