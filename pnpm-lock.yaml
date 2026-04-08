@@ -14,7 +14,7 @@ importers:
     devDependencies:
       '@hono/node-server':
         specifier: ^1.19.12
-        version: 1.19.12(hono@4.12.10)
+        version: 1.19.12(hono@4.12.12)
       '@microsoft/api-extractor':
         specifier: ^7.58.1
         version: 7.58.1(@types/node@24.12.2)
@@ -68,7 +68,7 @@ importers:
         version: 5.2.1
       hono:
         specifier: ^4.12.10
-        version: 4.12.10
+        version: 4.12.12
       http-compression:
         specifier: ^1.1.2
         version: 1.1.2
@@ -1071,8 +1071,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono@4.12.10:
-    resolution: {integrity: sha512-mx/p18PLy5og9ufies2GOSUqep98Td9q4i/EF6X7yJgAiIopxqdfIO3jbqsi3jRgTgw88jMDEzVKi+V2EF+27w==}
+  hono@4.12.12:
+    resolution: {integrity: sha512-p1JfQMKaceuCbpJKAPKVqyqviZdS0eUxH9v82oWo1kb9xjQ5wA6iP3FNVAPDFlz5/p7d45lO+BpSk1tuSZMF4Q==}
     engines: {node: '>=16.9.0'}
 
   html-entities@2.6.0:
@@ -1740,9 +1740,9 @@ snapshots:
 
   '@epic-web/invariant@1.0.0': {}
 
-  '@hono/node-server@1.19.12(hono@4.12.10)':
+  '@hono/node-server@1.19.12(hono@4.12.12)':
     dependencies:
-      hono: 4.12.10
+      hono: 4.12.12
 
   '@microsoft/api-extractor-model@7.33.5(@types/node@24.12.2)':
     dependencies:
@@ -2635,7 +2635,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono@4.12.10: {}
+  hono@4.12.12: {}
 
   html-entities@2.6.0: {}
 
