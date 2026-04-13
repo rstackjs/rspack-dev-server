@@ -16,23 +16,17 @@ import {
   type TimersMap,
 } from '../types.js';
 
-const LOG_SYMBOL = Symbol('webpack logger raw log method');
-const TIMERS_SYMBOL = Symbol('webpack logger times');
-const TIMERS_AGGREGATES_SYMBOL = Symbol('webpack logger aggregated times');
+const LOG_SYMBOL = Symbol('rspack logger raw log method');
+const TIMERS_SYMBOL = Symbol('rspack logger times');
+const TIMERS_AGGREGATES_SYMBOL = Symbol('rspack logger aggregated times');
 
-class WebpackLogger {
+class RspackLogger {
   private [LOG_SYMBOL]: (type: LogTypeEnum, args?: Args) => void;
   private [TIMERS_SYMBOL]: TimersMap = new Map();
   private [TIMERS_AGGREGATES_SYMBOL]: TimersMap = new Map();
-  // @ts-ignore
-  private getChildLogger: (name: string | (() => string)) => WebpackLogger;
 
-  constructor(
-    log: (type: LogTypeEnum, args?: Args) => void,
-    getChildLogger: (name: string | (() => string)) => WebpackLogger,
-  ) {
+  constructor(log: (type: LogTypeEnum, args?: Args) => void) {
     this[LOG_SYMBOL] = log;
-    this.getChildLogger = getChildLogger;
   }
 
   error(...args: Args) {
@@ -101,7 +95,7 @@ class WebpackLogger {
   timeLog(label?: string) {
     const prev = this[TIMERS_SYMBOL] && this[TIMERS_SYMBOL].get(label);
     if (!prev) {
-      throw new Error(`No such label '${label}' for WebpackLogger.timeLog()`);
+      throw new Error(`No such label '${label}' for RspackLogger.timeLog()`);
     }
     const time = process.hrtime(prev);
     this[LOG_SYMBOL](LogType.time, [label, ...time]);
@@ -110,7 +104,7 @@ class WebpackLogger {
   timeEnd(label?: string) {
     const prev = this[TIMERS_SYMBOL] && this[TIMERS_SYMBOL].get(label);
     if (!prev) {
-      throw new Error(`No such label '${label}' for WebpackLogger.timeEnd()`);
+      throw new Error(`No such label '${label}' for RspackLogger.timeEnd()`);
     }
     const time = process.hrtime(prev);
     /** @type {TimersMap} */
@@ -122,7 +116,7 @@ class WebpackLogger {
     const prev = this[TIMERS_SYMBOL] && this[TIMERS_SYMBOL].get(label);
     if (!prev) {
       throw new Error(
-        `No such label '${label}' for WebpackLogger.timeAggregate()`,
+        `No such label '${label}' for RspackLogger.timeAggregate()`,
       );
     }
     const time = process.hrtime(prev);
@@ -151,4 +145,4 @@ class WebpackLogger {
   }
 }
 
-export { WebpackLogger as Logger };
+export { RspackLogger as Logger };

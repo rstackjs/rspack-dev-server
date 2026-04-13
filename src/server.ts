@@ -1183,7 +1183,7 @@ class Server<
   #getClientTransport() {
     let clientImplementation: string | undefined;
     let clientImplementationFound = true;
-    let clientTransport =
+    const clientTransport =
       typeof this.options.client === 'object' &&
       this.options.client !== null &&
       typeof this.options.client.webSocketTransport !== 'undefined'

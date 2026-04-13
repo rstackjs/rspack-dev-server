@@ -8,10 +8,8 @@
  * https://github.com/webpack/webpack-dev-server/blob/main/LICENSE
  */
 
-// @ts-expect-error: No type definitions available for '@rspack/core/hot/emitter.js'
 import { emitter as hotEmitter } from '@rspack/core/hot/emitter.js';
-// @ts-expect-error: No type definitions available for '@rspack/core/hot/log.js'
-import { log as webpackHotLog } from '@rspack/core/hot/log.js';
+import { log as rspackHotLog } from '@rspack/core/hot/log.js';
 import { createOverlay, formatProblem } from './overlay.js';
 import socket from './socket.js';
 import { defineProgressElement, isProgressSupported } from './progress.js';
@@ -191,7 +189,7 @@ if (typeof parsedResourceQuery.reconnect !== 'undefined') {
 
 const setAllLogLevel = (level: LogLevel): void => {
   // This is needed because the HMR logger operate separately from dev server logger
-  webpackHotLog.setLogLevel(
+  rspackHotLog.setLogLevel(
     level === 'verbose' || level === 'log' ? 'info' : (level as LogLevel),
   );
   setLogLevel(level);
