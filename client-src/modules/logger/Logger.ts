@@ -24,15 +24,9 @@ class WebpackLogger {
   private [LOG_SYMBOL]: (type: LogTypeEnum, args?: Args) => void;
   private [TIMERS_SYMBOL]: TimersMap = new Map();
   private [TIMERS_AGGREGATES_SYMBOL]: TimersMap = new Map();
-  // @ts-ignore
-  private getChildLogger: (name: string | (() => string)) => WebpackLogger;
 
-  constructor(
-    log: (type: LogTypeEnum, args?: Args) => void,
-    getChildLogger: (name: string | (() => string)) => WebpackLogger,
-  ) {
+  constructor(log: (type: LogTypeEnum, args?: Args) => void) {
     this[LOG_SYMBOL] = log;
-    this.getChildLogger = getChildLogger;
   }
 
   error(...args: Args) {

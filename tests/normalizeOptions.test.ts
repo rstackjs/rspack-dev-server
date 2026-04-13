@@ -112,7 +112,6 @@ async function match(config: RspackOptions) {
   );
   await server.start();
   // it will break ci
-  //@ts-ignore
   server.options.port = undefined;
   expect(server.options).toMatchSnapshot();
   await server.stop();
@@ -146,8 +145,7 @@ async function getAdditionEntries(
   // some hack for snapshot
   const value = Object.fromEntries(
     Object.entries(entries).map(([key, item]) => {
-      // @ts-expect-error
-      const replaced = item.import?.map((entry) => {
+      const replaced = (item as { import?: string[] }).import?.map((entry) => {
         const array = entry
           .replace(/\\/g, '/')
           .replace(/port=\d+/g, '')

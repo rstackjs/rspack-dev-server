@@ -15,10 +15,12 @@ import type { LoggerOptions } from '../types.js';
 /**
  * Client stub for tapable SyncBailHook
  */
-function SyncBailHook() {
-  return {
-    call() {},
-  };
+class SyncBailHook {
+  constructor(_args?: string[]) {}
+
+  call(_origin?: string, _type?: string, _args?: unknown) {
+    return undefined;
+  }
 }
 
 const currentDefaultLoggerOptions = {
@@ -35,17 +37,13 @@ const configureDefaultLogger = (options: LoggerOptions): void => {
 };
 
 const getLogger = (name: string): Logger =>
-  new Logger(
-    (type, args) => {
-      if (hooks.log.call(name, type, args) === undefined) {
-        currentDefaultLogger(name, type, args);
-      }
-    },
-    (childName) => getLogger(`${name}/${childName}`),
-  );
+  new Logger((type, args) => {
+    if (hooks.log.call(name, type, args) === undefined) {
+      currentDefaultLogger(name, type, args);
+    }
+  });
 
 const hooks = {
-  // @ts-ignore
   log: new SyncBailHook(['origin', 'type', 'args']),
 };
 

@@ -138,8 +138,7 @@ export default function ansiHTML(text: string) {
   const ansiCodes: string[] = [];
   // Replace with markup.
   let ret = text.replace(
-    //@ts-ignore TS1487 error
-    /\033\[(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?m/g,
+    /\x1b\[(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?m/g,
     (m) => {
       const match = m.match(/(;?\d+)/g)?.map(normalizeSeq) as unknown as Match;
       Object.defineProperty(match, 'advance', {
