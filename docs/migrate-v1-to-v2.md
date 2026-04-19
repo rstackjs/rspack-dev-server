@@ -18,9 +18,9 @@ The minimum supported Node.js version is now `^20.19.0 || >=22.12.0`.
 
 `@rspack/dev-server` is now published as **pure ESM** package.
 
-### Upgraded `http-proxy-middleware` to v3
+### Upgraded `http-proxy-middleware` to v4
 
-`http-proxy-middleware` has been updated to v3, which has some breaking changes:
+`http-proxy-middleware` has been updated from v2 to v4, with several breaking changes introduced since v3:
 
 - `proxy[].path` is removed. Use `pathFilter` (or `context`) instead.
 
