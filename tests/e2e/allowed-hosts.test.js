@@ -1,6 +1,9 @@
 const express = require('express');
 const { rspack } = require('@rspack/core');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const {
+  createProxyMiddleware,
+  proxyEventsPlugin,
+} = require('http-proxy-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
@@ -327,14 +330,30 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        const hostHeader = `[${devServerHost}]:${devServerPort}`;
+        const setProxyHost = (proxyReq) => {
+          proxyReq.setHeader('host', hostHeader);
+        };
 
         app.use(
           '/',
           createProxyMiddleware({
-            target: `http://[${devServerHost}]:${devServerPort}`,
+            // http-proxy-middleware v4 fails on IPv6 string targets like
+            // "http://[::1]:port". Use a structured target, then restore the
+            // correct Host header for both HTTP and WS requests.
+            target: {
+              protocol: 'http:',
+              hostname: devServerHost,
+              port: devServerPort,
+            },
             ws: true,
             changeOrigin: true,
-            logger: console,
+            ejectPlugins: true,
+            plugins: [proxyEventsPlugin],
+            on: {
+              proxyReq: setProxyHost,
+              proxyReqWs: setProxyHost,
+            },
           }),
         );
 
