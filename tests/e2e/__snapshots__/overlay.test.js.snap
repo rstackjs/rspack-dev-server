@@ -77,7 +77,10 @@ exports[`overlay > should not show initially, then show on an error and allow to
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -148,7 +151,10 @@ exports[`overlay > should not show initially, then show on an error and allow to
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -201,7 +207,10 @@ exports[`overlay > should not show initially, then show on an error, then hide o
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -272,7 +281,10 @@ exports[`overlay > should not show initially, then show on an error, then hide o
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -325,7 +337,10 @@ exports[`overlay > should not show initially, then show on an error, then show o
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -413,7 +428,10 @@ exports[`overlay > should not show initially, then show on an error, then show o
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -484,7 +502,10 @@ exports[`overlay > should not show initially, then show on an error, then show o
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -504,7 +525,10 @@ exports[`overlay > should not show initially, then show on an error, then show o
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -565,7 +589,10 @@ exports[`overlay > should show a warning after invalidation > overlay html 1`] =
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -616,7 +643,10 @@ exports[`overlay > should show a warning after invalidation > page html 1`] = `
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -669,7 +699,10 @@ exports[`overlay > should show a warning and error for initial compilation > ove
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -828,7 +861,10 @@ exports[`overlay > should show a warning and error for initial compilation > pag
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -881,7 +917,10 @@ exports[`overlay > should show a warning and error for initial compilation and p
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -959,7 +998,10 @@ exports[`overlay > should show a warning and error for initial compilation and p
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1012,7 +1054,10 @@ exports[`overlay > should show a warning and hide them after closing connection 
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1063,7 +1108,10 @@ exports[`overlay > should show a warning and hide them after closing connection 
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1124,7 +1172,10 @@ exports[`overlay > should show a warning for initial compilation > overlay html 
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1175,7 +1226,10 @@ exports[`overlay > should show a warning for initial compilation > page html 1`]
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1228,7 +1282,10 @@ exports[`overlay > should show a warning when "client.overlay" is "true" > overl
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1279,7 +1336,10 @@ exports[`overlay > should show a warning when "client.overlay" is "true" > page 
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1332,7 +1392,10 @@ exports[`overlay > should show a warning when "client.overlay.errors" is "true" 
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1383,7 +1446,10 @@ exports[`overlay > should show a warning when "client.overlay.errors" is "true" 
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1436,7 +1502,10 @@ exports[`overlay > should show a warning when "client.overlay.warnings" is "true
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1487,7 +1556,10 @@ exports[`overlay > should show a warning when "client.overlay.warnings" is "true
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1540,7 +1612,10 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1591,7 +1666,10 @@ exports[`overlay > should show an ansi formatted error for initial compilation >
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1644,7 +1722,10 @@ exports[`overlay > should show an error after invalidation > overlay html 1`] = 
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1695,7 +1776,10 @@ exports[`overlay > should show an error after invalidation > page html 1`] = `
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1748,7 +1832,10 @@ exports[`overlay > should show an error for initial compilation > overlay html 1
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1799,7 +1886,10 @@ exports[`overlay > should show an error for initial compilation > page html 1`] 
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1852,7 +1942,10 @@ exports[`overlay > should show an error when "client.overlay" is "true" > overla
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -1903,7 +1996,10 @@ exports[`overlay > should show an error when "client.overlay" is "true" > page h
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -1956,7 +2052,10 @@ exports[`overlay > should show an error when "client.overlay.errors" is "true" >
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2007,7 +2106,10 @@ exports[`overlay > should show an error when "client.overlay.errors" is "true" >
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -2060,7 +2162,10 @@ exports[`overlay > should show an error when "client.overlay.warnings" is "true"
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2111,7 +2216,10 @@ exports[`overlay > should show an error when "client.overlay.warnings" is "true"
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -2164,7 +2272,10 @@ exports[`overlay > should show error for uncaught promise rejection > overlay ht
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2248,7 +2359,10 @@ exports[`overlay > should show error for uncaught runtime error > overlay html 1
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2333,7 +2447,10 @@ exports[`overlay > should show error when it is not filtered > overlay html 1`] 
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2384,7 +2501,10 @@ exports[`overlay > should show error when it is not filtered > page html 1`] = `
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -2437,7 +2557,10 @@ exports[`overlay > should show overlay when "Content-Security-Policy" is "defaul
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2488,7 +2611,10 @@ exports[`overlay > should show overlay when "Content-Security-Policy" is "defaul
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -2541,7 +2667,10 @@ exports[`overlay > should show overlay when Trusted Types are enabled > overlay 
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2592,7 +2721,10 @@ exports[`overlay > should show overlay when Trusted Types are enabled > page htm
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -2645,7 +2777,10 @@ exports[`overlay > should show overlay when Trusted Types are enabled and the "r
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2696,7 +2831,10 @@ exports[`overlay > should show overlay when Trusted Types are enabled and the "r
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
@@ -2749,7 +2887,10 @@ exports[`overlay > should show warning when it is not filtered > overlay html 1`
         right: 0px;
         top: 0px;
         background-color: transparent;
-        border: none;
+        border-width: medium;
+        border-style: none;
+        border-color: currentcolor;
+        border-image: initial;
       "
     >
       ×
@@ -2800,7 +2941,10 @@ exports[`overlay > should show warning when it is not filtered > page html 1`] =
       inset: 0px;
       width: 100vw;
       height: 100vh;
-      border: none;
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: initial;
       z-index: 2147483647;
     "
   ></iframe>
