@@ -194,7 +194,9 @@ export default function ansiHTML(text: string) {
 
   // Make sure tags are closed.
   const l = ansiCodes.length;
-  l > 0 && (ret += Array(l + 1).join('</span>'));
+  if (l > 0) {
+    ret += Array(l + 1).join('</span>');
+  }
 
   return ret;
 }

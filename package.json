@@ -52,7 +52,7 @@
     "@hono/node-server": "^1.19.14",
     "@microsoft/api-extractor": "^7.58.2",
     "@rslib/core": "^0.21.1",
-    "@rslint/core": "^0.4.2",
+    "@rslint/core": "^0.5.0",
     "@rspack/core": "2.0.0-rc.0",
     "@rspack/plugin-react-refresh": "1.6.2",
     "@rstest/core": "^0.9.7",
