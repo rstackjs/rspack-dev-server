@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
-          node-version: 24.14.1
+          node-version: 24.15.0
           package-manager-cache: false
 
       # Update npm to the latest version to enable OIDC
