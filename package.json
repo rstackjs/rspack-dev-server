@@ -54,7 +54,7 @@
     "@rslib/core": "^0.21.3",
     "@rslint/core": "^0.5.0",
     "@rspack/core": "2.0.0-rc.0",
-    "@rspack/plugin-react-refresh": "1.6.2",
+    "@rspack/plugin-react-refresh": "2.0.0",
     "@rstest/core": "^0.9.9",
     "@types/connect-history-api-fallback": "^1.5.4",
     "@types/mime-types": "3.0.1",
