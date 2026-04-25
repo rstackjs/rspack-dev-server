@@ -7,7 +7,13 @@ export default defineConfig({
       syntax: 'es2023',
       dts: {
         bundle: {
-          bundledPackages: ['chokidar', 'readdirp', 'connect-next', 'ws'],
+          bundledPackages: [
+            'chokidar',
+            'readdirp',
+            'connect-next',
+            'ws',
+            '@types/ws',
+          ],
         },
       },
       source: {
