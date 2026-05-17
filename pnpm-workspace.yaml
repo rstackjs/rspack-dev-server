@@ -2,3 +2,7 @@ packages:
   - '.'
   - 'tests'
   - 'example'
+
+allowBuilds:
+  puppeteer: false
+  simple-git-hooks: false
