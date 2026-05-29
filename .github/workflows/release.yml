@@ -33,5 +33,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
+      - name: Build Packages
+        run: pnpm build
+
       - name: Publish
         run: pnpm stage publish --no-git-checks
