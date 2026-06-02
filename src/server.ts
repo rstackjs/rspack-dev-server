@@ -1568,26 +1568,6 @@ class Server<
       },
     });
 
-    const isHTTP2 =
-      (this.options.server as ServerConfiguration<A, S>).type === 'http2';
-
-    if (isHTTP2) {
-      // TODO patch for https://github.com/pillarjs/finalhandler/pull/45, need remove then will be resolved
-      middlewares.push({
-        name: 'http2-status-message-patch',
-        middleware: (_req: Request, res: Response, next: NextFunction) => {
-          Object.defineProperty(res, 'statusMessage', {
-            get() {
-              return '';
-            },
-            set() {},
-          });
-
-          next();
-        },
-      });
-    }
-
     // compress is placed last and uses unshift so that it will be the first middleware used
     if (this.options.compress) {
       middlewares.push({
