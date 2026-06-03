@@ -1,5 +1,8 @@
 name: Test
 
+env:
+  PUPPETEER_SKIP_DOWNLOAD: true
+
 # Controls when the action will run.
 on:
   # Triggers the workflow on pull request events but only for the main branch
@@ -20,9 +23,16 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            puppeteer-executable-path: /usr/bin/google-chrome
+          - os: windows-latest
+            puppeteer-executable-path: 'C:\Program Files\Google\Chrome\Application\chrome.exe'
 
     runs-on: ${{ matrix.os }}
+
+    env:
+      PUPPETEER_EXECUTABLE_PATH: ${{ matrix.puppeteer-executable-path }}
 
     concurrency:
       group: test-${{ matrix.os }}-${{ github.ref }}

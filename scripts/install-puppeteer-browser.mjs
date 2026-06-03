@@ -10,6 +10,20 @@ const require = createRequire(import.meta.url);
 const cliPath = require.resolve('puppeteer/lib/cjs/puppeteer/node/cli.js');
 const chromeVersion = puppeteer.PUPPETEER_REVISIONS.chrome;
 
+const configuredExecutablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+
+if (configuredExecutablePath) {
+  if (!existsSync(configuredExecutablePath)) {
+    console.error(
+      `Configured Puppeteer Chrome executable was not found: ${configuredExecutablePath}`,
+    );
+    process.exit(1);
+  }
+
+  console.log(`Puppeteer Chrome executable: ${configuredExecutablePath}`);
+  process.exit(0);
+}
+
 const getChromeBuildDirectory = (executablePath) => {
   const parts = executablePath.split(path.sep);
   const chromeIndex = parts.findIndex(
@@ -40,20 +54,18 @@ const ensureCleanChromeCache = async () => {
   return executablePath;
 };
 
-const expectedExecutablePath = await ensureCleanChromeCache();
+await ensureCleanChromeCache();
 
-if (!existsSync(expectedExecutablePath)) {
-  const result = spawnSync(
-    process.execPath,
-    [cliPath, 'browsers', 'install', 'chrome'],
-    {
-      stdio: 'inherit',
-    },
-  );
+const result = spawnSync(
+  process.execPath,
+  [cliPath, 'browsers', 'install', 'chrome'],
+  {
+    stdio: 'inherit',
+  },
+);
 
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
-  }
+if (result.status !== 0) {
+  process.exit(result.status ?? 1);
 }
 
 const executablePath = puppeteer.executablePath();
