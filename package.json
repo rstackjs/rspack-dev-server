@@ -30,7 +30,7 @@
     "lint:write": "rslint --fix",
     "prettier:ci": "prettier --check .",
     "test": "pnpm run test:install && pnpm run test:type && rstest",
-    "test:install": "cross-env ./node_modules/.bin/puppeteer browsers install chrome",
+    "test:install": "node scripts/install-puppeteer-browser.mjs",
     "test:type": "pnpm run build && pnpm --dir tests run type-check"
   },
   "simple-git-hooks": {
@@ -46,16 +46,16 @@
     ]
   },
   "dependencies": {
-    "@rspack/dev-middleware": "^2.0.1"
+    "@rspack/dev-middleware": "^2.0.2"
   },
   "devDependencies": {
-    "@hono/node-server": "^2.0.3",
+    "@hono/node-server": "^2.0.4",
     "@microsoft/api-extractor": "^7.58.7",
-    "@rslib/core": "^0.21.5",
+    "@rslib/core": "^0.22.0",
     "@rslint/core": "^0.5.3",
     "@rspack/core": "2.0.0-rc.0",
-    "@rspack/plugin-react-refresh": "2.0.0",
-    "@rstest/core": "^0.10.2",
+    "@rspack/plugin-react-refresh": "2.0.1",
+    "@rstest/core": "^0.10.3",
     "@types/connect-history-api-fallback": "^1.5.4",
     "@types/mime-types": "3.0.1",
     "@types/node": "^24.12.4",
@@ -64,15 +64,15 @@
     "@types/ws": "8.18.1",
     "chokidar": "^5.0.0",
     "connect-history-api-fallback": "^2.0.0",
-    "connect-next": "^4.0.1",
+    "connect-next": "^4.0.2",
     "cross-env": "^10.1.0",
     "express": "^5.2.1",
-    "hono": "^4.12.22",
+    "hono": "^4.12.23",
     "http-compression": "^1.1.3",
     "http-proxy": "^1.18.1",
     "http-proxy-middleware": "4.0.0",
     "ipaddr.js": "^2.4.0",
-    "launch-editor": "^2.13.2",
+    "launch-editor": "^2.14.1",
     "nano-staged": "^1.0.2",
     "open": "^11.0.0",
     "p-retry": "^7.1.1",
@@ -95,7 +95,7 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@11.3.0",
+  "packageManager": "pnpm@11.5.1",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
