@@ -4,14 +4,18 @@ import { rm } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-import puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer';
 
 const require = createRequire(import.meta.url);
 const cliPath = require.resolve('puppeteer/lib/cjs/puppeteer/node/cli.js');
+const chromeVersion = puppeteer.PUPPETEER_REVISIONS.chrome;
 
 const getChromeBuildDirectory = (executablePath) => {
   const parts = executablePath.split(path.sep);
-  const chromeIndex = parts.lastIndexOf('chrome');
+  const chromeIndex = parts.findIndex(
+    (part, index) =>
+      part === 'chrome' && parts[index + 1]?.endsWith(`-${chromeVersion}`),
+  );
 
   if (chromeIndex === -1 || chromeIndex + 1 >= parts.length) {
     return null;
