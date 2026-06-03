@@ -4,5 +4,5 @@ packages:
   - 'example'
 
 allowBuilds:
-  puppeteer: false
+  puppeteer: true
   simple-git-hooks: false
