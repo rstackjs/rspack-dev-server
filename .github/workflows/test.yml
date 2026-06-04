@@ -54,6 +54,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: true
 
     steps:
       - name: Checkout
