@@ -1,5 +1,8 @@
 name: Test
 
+env:
+  PUPPETEER_SKIP_DOWNLOAD: true
+
 # Controls when the action will run.
 on:
   # Triggers the workflow on pull request events but only for the main branch
@@ -20,9 +23,16 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            puppeteer-executable-path: /usr/bin/google-chrome
+          - os: windows-latest
+            puppeteer-executable-path: 'C:\Program Files\Google\Chrome\Application\chrome.exe'
 
     runs-on: ${{ matrix.os }}
+
+    env:
+      PUPPETEER_EXECUTABLE_PATH: ${{ matrix.puppeteer-executable-path }}
 
     concurrency:
       group: test-${{ matrix.os }}-${{ github.ref }}
@@ -45,12 +55,10 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
-        env:
-          PUPPETEER_CHROME_HEADLESS_SHELL_SKIP_DOWNLOAD: true
         run: pnpm install
 
       - name: Run Test
-        run: pnpm run test:type && pnpm exec rstest --pool.maxWorkers=2
+        run: pnpm run test
 
   check:
     name: Check
@@ -74,8 +82,6 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
         run: pnpm install
 
       - name: Lint
