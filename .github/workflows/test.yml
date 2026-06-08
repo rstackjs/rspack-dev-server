@@ -44,7 +44,12 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
         run: pnpm install
+
+      - name: Install Chrome
+        run: pnpm exec puppeteer browsers install chrome
 
       - name: Run Test
         run: pnpm run test
@@ -54,8 +59,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    env:
-      PUPPETEER_SKIP_DOWNLOAD: true
 
     steps:
       - name: Checkout
@@ -73,6 +76,8 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
         run: pnpm install
 
       - name: Lint
