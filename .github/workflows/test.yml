@@ -46,14 +46,8 @@ jobs:
 
       - name: Install Dependencies
         env:
-          PUPPETEER_SKIP_DOWNLOAD: true
+          PUPPETEER_CHROME_HEADLESS_SHELL_SKIP_DOWNLOAD: true
         run: pnpm install
-
-      - name: Install Chrome
-        run: pnpm exec puppeteer browsers install chrome
-
-      - name: Verify Chrome
-        run: node -e "const fs = require('node:fs'); const puppeteer = require('puppeteer'); const executablePath = puppeteer.executablePath(); fs.accessSync(executablePath); console.log(executablePath);"
 
       - name: Run Test
         run: pnpm run test:type && pnpm exec rstest --pool.maxWorkers=2
