@@ -51,8 +51,11 @@ jobs:
       - name: Install Chrome
         run: pnpm exec puppeteer browsers install chrome
 
+      - name: Verify Chrome
+        run: node -e "const fs = require('node:fs'); const puppeteer = require('puppeteer'); const executablePath = puppeteer.executablePath(); fs.accessSync(executablePath); console.log(executablePath);"
+
       - name: Run Test
-        run: pnpm run test
+        run: pnpm run test:type && pnpm exec rstest --pool.maxWorkers=2
 
   check:
     name: Check
