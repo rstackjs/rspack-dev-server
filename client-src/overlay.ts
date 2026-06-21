@@ -13,14 +13,15 @@
 
 import ansiHTML from './utils/ansiHTML.js';
 
-const getCodePoint = !!String.prototype.codePointAt
-  ? (input: string, position: number): number | undefined =>
-      input.codePointAt(position)
-  : (input: string, position: number): number | undefined =>
-      (input.charCodeAt(position) - 0xd800) * 0x400 +
-      input.charCodeAt(position + 1) -
-      0xdc00 +
-      0x10000;
+const getCodePoint =
+  typeof String.prototype.codePointAt === 'function'
+    ? (input: string, position: number): number | undefined =>
+        input.codePointAt(position)
+    : (input: string, position: number): number | undefined =>
+        (input.charCodeAt(position) - 0xd800) * 0x400 +
+        input.charCodeAt(position + 1) -
+        0xdc00 +
+        0x10000;
 
 const replaceUsingRegExp = (
   macroText: string,

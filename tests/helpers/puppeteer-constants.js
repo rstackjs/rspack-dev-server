@@ -33,6 +33,7 @@ module.exports = {
     '--enable-tcp-fast-open',
     '--enable-webgl',
     '--hide-scrollbars',
+    '--ignore-certificate-errors',
     '--ignore-gpu-blacklist',
     '--media-cache-size=33554432',
     '--metrics-recording-only',

@@ -19,8 +19,16 @@ type Match = {
 } & Array<string>;
 
 // Reference to https://github.com/sindresorhus/ansi-regex
-const _regANSI =
-  /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/;
+const ESC = String.fromCharCode(27);
+const CSI = String.fromCharCode(155);
+
+const _regANSI = new RegExp(
+  `(?:(?:${ESC}\\[)|${CSI})(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|${ESC}[A-M]`,
+);
+const _regANSIColors = new RegExp(
+  `${ESC}\\[(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?m`,
+  'g',
+);
 
 const _defColors: Record<string, string | Array<string>> = {
   reset: ['fff', '000'], // [FOREGROUND_COLOR, BACKGROUND_COLOR]
@@ -137,60 +145,56 @@ export default function ansiHTML(text: string) {
   // Cache opened sequence.
   const ansiCodes: string[] = [];
   // Replace with markup.
-  let ret = text.replace(
-    /\x1b\[(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?m/g,
-    (m) => {
-      const match = m.match(/(;?\d+)/g)?.map(normalizeSeq) as unknown as Match;
-      Object.defineProperty(match, 'advance', {
-        value: function (count: number) {
-          this.splice(0, count);
-        },
-      });
-      let rep = '';
-      let seq: string;
-      while ((seq = match[0])) {
-        match.advance(1);
-        rep += applySeq(seq);
-      }
-      return rep;
+  let ret = text.replace(_regANSIColors, (m) => {
+    const match = m.match(/(;?\d+)/g)?.map(normalizeSeq) as unknown as Match;
+    Object.defineProperty(match, 'advance', {
+      value: function (count: number) {
+        this.splice(0, count);
+      },
+    });
+    let rep = '';
+    let seq: string;
+    while ((seq = match[0])) {
+      match.advance(1);
+      rep += applySeq(seq);
+    }
+    return rep;
 
-      function applySeq(seq: string) {
-        let other = _openTags[seq];
-        if (
-          other &&
-          (other =
-            typeof other === 'function' ? (other(match) as string) : other)
-        ) {
-          // If reset signal is encountered, we have to reset everything.
-          let ret = '';
-          if (seq === '0') {
-            ret += (
-              _closeTags[seq] as (ansiCodes: Option<Array<string>>) => string
-            )(ansiCodes);
-          }
-          // If current sequence has been opened, close it.
-          if (ansiCodes.indexOf(seq) !== -1) {
-            ansiCodes.pop();
-            return '</span>';
-          }
-          // Open tag.
-          ansiCodes.push(seq);
-          return ret + (other[0] === '<' ? other : `<span style="${other};">`);
+    function applySeq(seq: string) {
+      let other = _openTags[seq];
+      if (
+        other &&
+        (other = typeof other === 'function' ? (other(match) as string) : other)
+      ) {
+        // If reset signal is encountered, we have to reset everything.
+        let ret = '';
+        if (seq === '0') {
+          ret += (
+            _closeTags[seq] as (ansiCodes: Option<Array<string>>) => string
+          )(ansiCodes);
         }
-
-        const ct = _closeTags[seq];
-        if (typeof ct === 'function') {
-          return ct(ansiCodes);
-        }
-        if (ct) {
-          // Pop sequence
+        // If current sequence has been opened, close it.
+        if (ansiCodes.indexOf(seq) !== -1) {
           ansiCodes.pop();
-          return ct;
+          return '</span>';
         }
-        return '';
+        // Open tag.
+        ansiCodes.push(seq);
+        return ret + (other[0] === '<' ? other : `<span style="${other};">`);
       }
-    },
-  );
+
+      const ct = _closeTags[seq];
+      if (typeof ct === 'function') {
+        return ct(ansiCodes);
+      }
+      if (ct) {
+        // Pop sequence
+        ansiCodes.pop();
+        return ct;
+      }
+      return '';
+    }
+  });
 
   // Make sure tags are closed.
   const l = ansiCodes.length;
@@ -211,7 +215,9 @@ ansiHTML.setColors = (colors: typeof _defColors) => {
 
   const _finalColors: typeof _defColors = {};
   for (const key in _defColors) {
-    let hex = colors.hasOwnProperty(key) ? colors[key] : null;
+    let hex = Object.prototype.hasOwnProperty.call(colors, key)
+      ? colors[key]
+      : null;
     if (!hex) {
       _finalColors[key] = _defColors[key];
       continue;
