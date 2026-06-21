@@ -116,7 +116,7 @@ describe('web socket server URL', () => {
     it(`should work with the "ipc" option using "string" value ("${webSocketServer}")`, async () => {
       const isWindows = process.platform === 'win32';
       const pipePrefix = isWindows ? '\\\\.\\pipe\\' : os.tmpdir();
-      const pipeName = `webpack-dev-server.${process.pid}-1.sock`;
+      const pipeName = `rspack-dev-server.${process.pid}-1.sock`;
       const ipc = path.join(pipePrefix, pipeName);
 
       const devServerHost = '127.0.0.1';
@@ -220,7 +220,7 @@ describe('web socket server URL', () => {
       const isWindows = process.platform === 'win32';
       const localRelative = path.relative(process.cwd(), `${os.tmpdir()}/`);
       const pipePrefix = isWindows ? '\\\\.\\pipe\\' : localRelative;
-      const pipeName = `webpack-dev-server.${process.pid}-2.sock`;
+      const pipeName = `rspack-dev-server.${process.pid}-2.sock`;
       const ipc = path.join(pipePrefix, pipeName);
 
       const ipcServer = await new Promise((resolve, reject) => {

@@ -1008,7 +1008,7 @@ class Server<
     if (typeof options.ipc === 'boolean') {
       const isWindows = process.platform === 'win32';
       const pipePrefix = isWindows ? '\\\\.\\pipe\\' : os.tmpdir();
-      const pipeName = 'webpack-dev-server.sock';
+      const pipeName = 'rspack-dev-server.sock';
 
       options.ipc = path.join(pipePrefix, pipeName);
     }
