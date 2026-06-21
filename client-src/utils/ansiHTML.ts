@@ -20,6 +20,7 @@ type Match = {
 
 // Reference to https://github.com/sindresorhus/ansi-regex
 const _regANSI =
+  // eslint-disable-next-line no-control-regex
   /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/;
 
 const _defColors: Record<string, string | Array<string>> = {
@@ -138,6 +139,7 @@ export default function ansiHTML(text: string) {
   const ansiCodes: string[] = [];
   // Replace with markup.
   let ret = text.replace(
+    // eslint-disable-next-line no-control-regex
     /\x1b\[(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?m/g,
     (m) => {
       const match = m.match(/(;?\d+)/g)?.map(normalizeSeq) as unknown as Match;
@@ -211,7 +213,9 @@ ansiHTML.setColors = (colors: typeof _defColors) => {
 
   const _finalColors: typeof _defColors = {};
   for (const key in _defColors) {
-    let hex = colors.hasOwnProperty(key) ? colors[key] : null;
+    let hex = Object.prototype.hasOwnProperty.call(colors, key)
+      ? colors[key]
+      : null;
     if (!hex) {
       _finalColors[key] = _defColors[key];
       continue;
