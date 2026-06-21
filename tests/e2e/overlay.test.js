@@ -65,8 +65,9 @@ class WarningPlugin {
   }
 }
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const OVERLAY_SETTLE_DELAY = 250;
+const OVERLAY_SELECTOR = '#rspack-dev-server-client-overlay';
+const OVERLAY_TIMEOUT = 5000;
+const OVERLAY_ABSENCE_TIMEOUT = 500;
 
 let prettier;
 let prettierHTML;
@@ -114,6 +115,23 @@ const formatOverlayHtml = (html) =>
     // ANSI-rendered spans differ across platforms, but the text content is stable.
     (value) => value.replace(/<\/?span[^>]*>/g, ''),
   );
+
+const waitForOverlay = (page) =>
+  page.waitForSelector(OVERLAY_SELECTOR, { timeout: OVERLAY_TIMEOUT });
+
+const expectNoOverlay = async (page) => {
+  const overlayHandle = await page
+    .waitForSelector(OVERLAY_SELECTOR, { timeout: OVERLAY_ABSENCE_TIMEOUT })
+    .catch((error) => {
+      if (error.name === 'TimeoutError') {
+        return null;
+      }
+
+      throw error;
+    });
+
+  expect(overlayHandle).toBe(null);
+};
 
 const runBrowser = async () => {
   const context = await sharedBrowser.createBrowserContext();
@@ -168,8 +186,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -207,8 +224,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -250,8 +266,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -291,8 +306,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -332,8 +346,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
@@ -368,8 +381,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -694,8 +706,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -732,8 +743,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -774,8 +784,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
@@ -812,8 +821,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -854,8 +862,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -898,8 +905,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -942,8 +948,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -984,8 +989,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1022,8 +1026,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1064,8 +1067,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
@@ -1102,8 +1104,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1144,8 +1145,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1194,8 +1194,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1255,8 +1254,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1308,8 +1306,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1345,8 +1342,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1389,8 +1385,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1432,8 +1427,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1502,10 +1496,7 @@ describe('overlay', () => {
         });
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
-
-      await page.waitForSelector('#rspack-dev-server-client-overlay');
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1555,10 +1546,7 @@ describe('overlay', () => {
         });
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
-
-      await page.waitForSelector('#rspack-dev-server-client-overlay');
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
@@ -1602,8 +1590,7 @@ describe('overlay', () => {
       })();`,
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
@@ -1650,8 +1637,7 @@ describe('overlay', () => {
       })();`,
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
@@ -1689,8 +1675,7 @@ describe('overlay', () => {
       })();`,
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
       const overlayFrame = await overlayHandle.contentFrame();
@@ -1739,8 +1724,7 @@ describe('overlay', () => {
       })();`,
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await expectNoOverlay(page);
 
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
 
@@ -1782,8 +1766,7 @@ describe('overlay', () => {
         waitUntil: 'networkidle0',
       });
 
-      // Delay for the overlay to appear
-      await delay(OVERLAY_SETTLE_DELAY);
+      await waitForOverlay(page);
 
       const pageHtml = await page.evaluate(() => document.body.outerHTML);
       const overlayHandle = await page.$('#rspack-dev-server-client-overlay');
