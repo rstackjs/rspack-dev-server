@@ -13,7 +13,8 @@
 
 import ansiHTML from './utils/ansiHTML.js';
 
-const getCodePoint = !!String.prototype.codePointAt
+const hasCodePointAt = typeof String.prototype.codePointAt === 'function';
+const getCodePoint = hasCodePointAt
   ? (input: string, position: number): number | undefined =>
       input.codePointAt(position)
   : (input: string, position: number): number | undefined =>
