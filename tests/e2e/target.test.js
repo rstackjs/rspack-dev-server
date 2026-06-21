@@ -7,8 +7,32 @@ const port = require('../helpers/ports-map').target;
 const workerConfig = require('../fixtures/worker-config/rspack.config');
 const workerConfigDevServerFalse = require('../fixtures/worker-config-dev-server-false/rspack.config');
 
+const workerConsoleMessages = [
+  "Worker said: I'm working before postMessage",
+  'Worker said: Message sent: message',
+];
+
 const sortByTerm = (data, term) =>
-  data.sort((a, b) => (a.indexOf(term) < b.indexOf(term) ? -1 : 1));
+  data.sort((a, b) => {
+    const aHasTerm = a.includes(term);
+    const bHasTerm = b.includes(term);
+
+    if (aHasTerm === bHasTerm) {
+      return 0;
+    }
+
+    return aHasTerm ? 1 : -1;
+  });
+
+const waitForWorkerConsoleMessages = async (consoleMessages) => {
+  await expect
+    .poll(() =>
+      consoleMessages
+        .map((message) => message.text())
+        .filter((message) => message.startsWith('Worker said:')),
+    )
+    .toEqual(workerConsoleMessages);
+};
 
 describe('target', () => {
   const targets = [
@@ -115,6 +139,8 @@ describe('target', () => {
         waitUntil: 'networkidle0',
       });
 
+      await waitForWorkerConsoleMessages(consoleMessages);
+
       expect(
         sortByTerm(
           consoleMessages.map((message) => message.text()),
@@ -163,6 +189,8 @@ describe('target', () => {
       await page.goto(`http://127.0.0.1:${port}/`, {
         waitUntil: 'networkidle0',
       });
+
+      await waitForWorkerConsoleMessages(consoleMessages);
 
       expect(
         sortByTerm(
