@@ -65,7 +65,8 @@ class WarningPlugin {
   }
 }
 
-const OVERLAY_SELECTOR = '#rspack-dev-server-client-overlay';
+const OVERLAY_IFRAME_SELECTOR = '#rspack-dev-server-client-overlay';
+const OVERLAY_CONTENT_SELECTOR = '#rspack-dev-server-client-overlay-div';
 const OVERLAY_TIMEOUT = 5000;
 const OVERLAY_ABSENCE_TIMEOUT = 500;
 
@@ -116,12 +117,27 @@ const formatOverlayHtml = (html) =>
     (value) => value.replace(/<\/?span[^>]*>/g, ''),
   );
 
-const waitForOverlay = (page) =>
-  page.waitForSelector(OVERLAY_SELECTOR, { timeout: OVERLAY_TIMEOUT });
+const waitForOverlay = async (page) => {
+  const overlayHandle = await page.waitForSelector(OVERLAY_IFRAME_SELECTOR, {
+    timeout: OVERLAY_TIMEOUT,
+  });
+
+  await page.waitForFunction(
+    (iframe, contentSelector) =>
+      iframe.contentDocument?.querySelector(contentSelector),
+    { timeout: OVERLAY_TIMEOUT },
+    overlayHandle,
+    OVERLAY_CONTENT_SELECTOR,
+  );
+
+  return overlayHandle;
+};
 
 const expectNoOverlay = async (page) => {
   const overlayHandle = await page
-    .waitForSelector(OVERLAY_SELECTOR, { timeout: OVERLAY_ABSENCE_TIMEOUT })
+    .waitForSelector(OVERLAY_IFRAME_SELECTOR, {
+      timeout: OVERLAY_ABSENCE_TIMEOUT,
+    })
     .catch((error) => {
       if (error.name === 'TimeoutError') {
         return null;
