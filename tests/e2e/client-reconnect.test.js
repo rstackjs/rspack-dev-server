@@ -4,6 +4,72 @@ const config = require('../fixtures/simple-config/rspack.config');
 const runBrowser = require('../helpers/run-browser');
 const port = require('../helpers/ports-map')['client-reconnect-option'];
 
+const DISCONNECTED_MESSAGE = 'Disconnected!';
+const RECONNECT_MESSAGE = 'Trying to reconnect...';
+const FAST_RECONNECT_DELAY = 100;
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const waitForMessages = async (
+  consoleMessages,
+  predicate,
+  errorMessage,
+  timeout = 10000,
+) => {
+  const startedAt = Date.now();
+
+  while (Date.now() - startedAt < timeout) {
+    const texts = consoleMessages.map((message) => message.text());
+
+    if (predicate(texts)) {
+      return;
+    }
+
+    await delay(50);
+  }
+
+  throw new Error(errorMessage);
+};
+
+const waitForReconnectMessages = (consoleMessages, expectedCount) =>
+  waitForMessages(
+    consoleMessages,
+    (texts) =>
+      texts.filter((text) => text.includes(RECONNECT_MESSAGE)).length >=
+      expectedCount,
+    `Expected ${expectedCount} reconnect messages.`,
+    15000,
+  );
+
+const waitForDisconnectMessage = (consoleMessages) =>
+  waitForMessages(
+    consoleMessages,
+    (texts) => texts.some((text) => text.includes(DISCONNECTED_MESSAGE)),
+    `Expected "${DISCONNECTED_MESSAGE}" message.`,
+  );
+
+const waitForConsoleMessages = (consoleMessages, expectedCount) =>
+  waitForMessages(
+    consoleMessages,
+    (texts) => texts.length >= expectedCount,
+    `Expected ${expectedCount} console messages.`,
+  );
+
+const useFastPageReconnectTimers = async (page) => {
+  await page.evaluateOnNewDocument((fastReconnectDelay) => {
+    const originalSetTimeout = window.setTimeout.bind(window);
+
+    window.setTimeout = (handler, timeout, ...args) =>
+      originalSetTimeout(
+        handler,
+        typeof timeout === 'number' && timeout >= 1000
+          ? fastReconnectDelay
+          : timeout,
+        ...args,
+      );
+  }, FAST_RECONNECT_DELAY);
+};
+
 describe('client.reconnect option', () => {
   describe('specified as true', () => {
     let compiler;
@@ -21,6 +87,7 @@ describe('client.reconnect option', () => {
       await server.start();
 
       ({ page, browser } = await runBrowser());
+      await useFastPageReconnectTimers(page);
 
       pageErrors = [];
       consoleMessages = [];
@@ -49,21 +116,7 @@ describe('client.reconnect option', () => {
         await server.stop();
       }
 
-      let interval;
-
-      await new Promise((resolve) => {
-        interval = setInterval(() => {
-          const retryingMessages = consoleMessages.filter((message) =>
-            message.text().includes('Trying to reconnect...'),
-          );
-
-          if (retryingMessages.length >= 5) {
-            clearInterval(interval);
-
-            resolve();
-          }
-        }, 1000);
-      });
+      await waitForReconnectMessages(consoleMessages, 5);
 
       expect(pageErrors).toMatchSnapshot('page errors');
     });
@@ -85,6 +138,7 @@ describe('client.reconnect option', () => {
       await server.start();
 
       ({ page, browser } = await runBrowser());
+      await useFastPageReconnectTimers(page);
 
       pageErrors = [];
       consoleMessages = [];
@@ -113,16 +167,7 @@ describe('client.reconnect option', () => {
         await server.stop();
       }
 
-      // Can't wait to check for unlimited times so wait only for couple retries
-      await new Promise((resolve) =>
-        setTimeout(
-          () => {
-            resolve();
-          },
-          // eslint-disable-next-line no-restricted-properties
-          1000 * 2 ** 3,
-        ),
-      );
+      await waitForDisconnectMessage(consoleMessages);
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
         'console messages',
@@ -148,6 +193,7 @@ describe('client.reconnect option', () => {
       await server.start();
 
       ({ page, browser } = await runBrowser());
+      await useFastPageReconnectTimers(page);
 
       pageErrors = [];
       consoleMessages = [];
@@ -176,16 +222,8 @@ describe('client.reconnect option', () => {
         await server.stop();
       }
 
-      // Can't wait to check for unlimited times so wait only for couple retries
-      await new Promise((resolve) =>
-        setTimeout(
-          () => {
-            resolve();
-          },
-          // eslint-disable-next-line no-restricted-properties
-          1000 * 2 ** 3,
-        ),
-      );
+      await waitForReconnectMessages(consoleMessages, 2);
+      await waitForConsoleMessages(consoleMessages, 10);
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
         'console messages',
