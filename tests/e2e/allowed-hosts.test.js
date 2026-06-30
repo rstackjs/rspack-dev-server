@@ -1,15 +1,32 @@
 const express = require('express');
 const { rspack } = require('@rspack/core');
-const {
-  createProxyMiddleware,
-  proxyEventsPlugin,
-} = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const { RspackDevServer: Server } = require('@rspack/dev-server');
 const config = require('../fixtures/client-config/rspack.config');
+const {
+  closeProxyServer,
+  listenProxyServer,
+  trackProxySocket,
+} = require('../helpers/proxy-server');
 const runBrowser = require('../helpers/run-browser');
 const [port1, port2] = require('../helpers/ports-map')['allowed-hosts'];
 
 const webSocketServers = ['ws'];
+
+function createTrackedProxyMiddleware(getProxy, options) {
+  const { on, ...rest } = options;
+
+  return createProxyMiddleware({
+    ...rest,
+    on: {
+      ...on,
+      open: (proxySocket) => {
+        on?.open?.(proxySocket);
+        trackProxySocket(getProxy(), proxySocket);
+      },
+    },
+  });
+}
 
 describe('allowed hosts', () => {
   for (const webSocketServer of webSocketServers) {
@@ -37,10 +54,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
@@ -48,7 +66,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -79,9 +97,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -109,10 +126,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
@@ -120,7 +138,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -152,9 +170,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -182,10 +199,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
@@ -193,7 +211,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -225,9 +243,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -256,10 +273,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${devServerHost}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
@@ -267,7 +285,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -299,9 +317,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -330,6 +347,7 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
         const hostHeader = `[${devServerHost}]:${devServerPort}`;
         const setProxyHost = (proxyReq) => {
           proxyReq.setHeader('host', hostHeader);
@@ -337,7 +355,7 @@ describe('allowed hosts', () => {
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // http-proxy-middleware v4 fails on IPv6 string targets like
             // "http://[::1]:port". Use a structured target, then restore the
             // correct Host header for both HTTP and WS requests.
@@ -348,8 +366,6 @@ describe('allowed hosts', () => {
             },
             ws: true,
             changeOrigin: true,
-            ejectPlugins: true,
-            plugins: [proxyEventsPlugin],
             on: {
               proxyReq: setProxyHost,
               proxyReqWs: setProxyHost,
@@ -357,7 +373,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -389,9 +405,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -421,10 +436,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${IPv4}:${devServerPort}`,
             ws: true,
             changeOrigin: true,
@@ -432,7 +448,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -464,9 +480,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -495,10 +510,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${devServerHost}:${devServerPort}`,
             on: {
               proxyReqWs: (proxyReq) => {
@@ -511,7 +527,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -543,9 +559,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -574,10 +589,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             target: `http://${devServerHost}:${devServerPort}`,
             on: {
               proxyReqWs: (proxyReq) => {
@@ -590,7 +606,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -622,9 +638,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -653,10 +668,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -670,7 +686,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -702,9 +718,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -733,10 +748,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -750,7 +766,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -782,9 +798,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -813,10 +828,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -830,7 +846,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -862,9 +878,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -893,10 +908,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -910,7 +926,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -942,9 +958,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -973,10 +988,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -993,7 +1009,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1025,9 +1041,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1056,10 +1071,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -1073,7 +1089,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1105,9 +1121,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1136,10 +1151,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -1153,7 +1169,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1185,9 +1201,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('(work) console messages');
         expect(pageErrors).toMatchSnapshot('(work) page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1216,10 +1231,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -1233,7 +1249,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1265,9 +1281,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1298,10 +1313,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -1316,7 +1332,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1348,9 +1364,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1379,10 +1394,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -1396,7 +1412,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1428,9 +1444,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1459,10 +1474,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReq: (proxyReq, req, res) => {
@@ -1477,7 +1493,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1512,9 +1528,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('console messages');
         expect(pageErrors).toMatchSnapshot('page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
@@ -1543,10 +1558,11 @@ describe('allowed hosts', () => {
 
       function startProxy(callback) {
         const app = express();
+        let proxy;
 
         app.use(
           '/',
-          createProxyMiddleware({
+          createTrackedProxyMiddleware(() => proxy, {
             // Emulation
             on: {
               proxyReqWs: (proxyReq) => {
@@ -1560,7 +1576,7 @@ describe('allowed hosts', () => {
           }),
         );
 
-        return app.listen(proxyPort, proxyHost, callback);
+        return (proxy = listenProxyServer(app, proxyPort, proxyHost, callback));
       }
 
       const proxy = await new Promise((resolve) => {
@@ -1592,9 +1608,8 @@ describe('allowed hosts', () => {
         ).toMatchSnapshot('(work) console messages');
         expect(pageErrors).toMatchSnapshot('(work) page errors');
       } finally {
-        proxy.close();
-
         await browser.close();
+        await closeProxyServer(proxy);
         await server.stop();
       }
     });
