@@ -6,3 +6,7 @@ packages:
 allowBuilds:
   puppeteer: true
   simple-git-hooks: false
+
+minimumReleaseAgeExclude:
+  - typescript
+  - '@typescript/*'
