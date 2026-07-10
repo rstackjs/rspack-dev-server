@@ -81,8 +81,12 @@ const overlayFixturePath = path.resolve(
 );
 const overlayFixtureCode = fs.readFileSync(overlayFixturePath);
 
+// Chromium serializes `border: none` with different `border-image` values across platforms.
+const normalizeBorderImage = (value) =>
+  value.replace(/border-image: (?:initial|none);/g, 'border-image: none;');
+
 const formatHtml = (html, normalize) =>
-  prettier.format(normalize(html), {
+  prettier.format(normalizeBorderImage(normalize(html)), {
     parser: 'html',
     plugins: [prettierHTML, prettierCSS],
   });
