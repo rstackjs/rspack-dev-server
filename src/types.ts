@@ -126,9 +126,7 @@ export interface MiddlewareObject {
 }
 
 export type Middleware =
-  | MiddlewareObject
-  | DevServerMiddlewareHandler
-  | ErrorHandleFunction;
+  MiddlewareObject | DevServerMiddlewareHandler | ErrorHandleFunction;
 
 export type OverlayMessageOptions = boolean | ((error: Error) => void);
 
