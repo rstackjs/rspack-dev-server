@@ -102,9 +102,7 @@ export interface Configuration<
   server?: ServerType<A, S> | ServerConfiguration<A, S>;
   app?: () => Promise<A>;
   webSocketServer?:
-    | boolean
-    | LiteralUnion<'ws', string>
-    | WebSocketServerConfiguration;
+    boolean | LiteralUnion<'ws', string> | WebSocketServerConfiguration;
   proxy?: DevServerProxyConfigArray;
   open?: boolean | string | Open | Array<string | Open>;
   setupExitSignals?: boolean;
@@ -192,8 +190,7 @@ class Server<
   isTlsServer = false;
   webSocketServer: WebSocketServerImplementation | null | undefined;
   middleware:
-    | import('@rspack/dev-middleware').API<Request, Response>
-    | undefined;
+    import('@rspack/dev-middleware').API<Request, Response> | undefined;
   server: S | undefined;
   app: A | undefined;
   stats: Stats | MultiStats | undefined;
@@ -1370,8 +1367,7 @@ class Server<
 
         new ProvidePlugin({
           __rspack_dev_server_client__: this.#getClientTransport() as
-            | string
-            | string[],
+            string | string[],
         }).apply(compiler);
 
         if (this.options.hot) {
@@ -2296,8 +2292,7 @@ class Server<
     ) {
       return (
         ((this.options.client as DevServerClient).webSocketURL as
-          | DevServerWebSocketURL['hostname']
-          | undefined) === value
+          DevServerWebSocketURL['hostname'] | undefined) === value
       );
     }
 

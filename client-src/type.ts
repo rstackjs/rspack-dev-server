@@ -1,12 +1,5 @@
 export type LogLevel =
-  | false
-  | true
-  | 'none'
-  | 'error'
-  | 'warn'
-  | 'info'
-  | 'log'
-  | 'verbose';
+  false | true | 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose';
 export type EXPECTED_ANY = any;
 
 declare global {
