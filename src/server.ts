@@ -1708,6 +1708,12 @@ class Server<
       const { createProxyMiddleware } = await import(
         /* webpackChunkName: "http-proxy-middleware" */ 'http-proxy-middleware'
       );
+      const defaultProxyLogger = {
+        // HPM logs every successful proxy request at info level, so treat it as verbose output.
+        info: this.logger.log.bind(this.logger),
+        warn: this.logger.warn.bind(this.logger),
+        error: this.logger.error.bind(this.logger),
+      };
 
       const getProxyMiddleware = (
         proxyConfig: DevServerProxyConfigArrayItem,
@@ -1720,7 +1726,7 @@ class Server<
         }
 
         if (typeof proxyOptions.logger === 'undefined') {
-          proxyOptions.logger = this.logger as EXPECTED_ANY;
+          proxyOptions.logger = defaultProxyLogger;
         }
 
         if (proxyOptions.target || proxyOptions.router) {
