@@ -30,9 +30,9 @@ export default defineConfig([
     },
   },
   {
-    files: ['example/**/*'],
-    rules: {
-      'no-undef': 'off',
+    files: ['example/src/**/*'],
+    languageOptions: {
+      globals: globals.browser,
     },
   },
 ]);
