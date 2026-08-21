@@ -617,7 +617,14 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
     }, trustedTypesPolicyName);
   }
 
-  let handleEscapeKey: (event: KeyboardEvent) => void;
+  /**
+   * ESC key press to dismiss the overlay.
+   */
+  function handleEscapeKey(event: KeyboardEvent): void {
+    if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
+      overlayService.send({ type: 'DISMISS' });
+    }
+  }
 
   const hideOverlayWithEscCleanup = (): void => {
     window.removeEventListener('keydown', handleEscapeKey);
@@ -629,15 +636,6 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
       show(level, messages, options.trustedTypesPolicyName, messageSource),
     hideOverlay: hideOverlayWithEscCleanup,
   });
-  /**
-   * ESC key press to dismiss the overlay.
-   */
-  handleEscapeKey = (event: KeyboardEvent): void => {
-    if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
-      overlayService.send({ type: 'DISMISS' });
-    }
-  };
-
   window.addEventListener('keydown', handleEscapeKey);
 
   if (options.catchRuntimeError) {

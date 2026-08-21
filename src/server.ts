@@ -907,6 +907,7 @@ class Server<
             ) {
               throw new Error(
                 'Cannot generate a self-signed certificate because optional peer dependency `selfsigned@^5.0.0` is not installed. Please install it and try again.',
+                { cause: error },
               );
             }
 
