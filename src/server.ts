@@ -1797,7 +1797,8 @@ class Server<
           }
 
           if (proxyMiddleware) {
-            return proxyMiddleware(req, res, next);
+            await proxyMiddleware(req, res, next);
+            return;
           }
 
           next();
