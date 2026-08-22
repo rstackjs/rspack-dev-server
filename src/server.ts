@@ -1718,7 +1718,7 @@ class Server<
 
       const getProxyMiddleware = (
         proxyConfig: DevServerProxyConfigArrayItem,
-      ): NextHandleFunction | undefined => {
+      ): RequestHandler | undefined => {
         const { context, ...proxyOptions } = proxyConfig;
         const pathFilter = proxyOptions.pathFilter ?? context;
 
@@ -1761,7 +1761,7 @@ class Server<
        * ]
        */
       for (const proxyConfigOrCallback of this.options.proxy) {
-        let proxyMiddleware: NextHandleFunction | undefined;
+        let proxyMiddleware: RequestHandler | undefined;
 
         let proxyConfig =
           typeof proxyConfigOrCallback === 'function'
