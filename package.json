@@ -63,7 +63,7 @@
     "@types/ws": "8.18.1",
     "chokidar": "^5.0.0",
     "connect-history-api-fallback": "^2.0.0",
-    "connect-next": "^4.0.3",
+    "connect-next": "^5.0.0",
     "cross-env": "^10.1.0",
     "express": "^5.2.1",
     "hono": "^4.13.3",
