@@ -6,7 +6,6 @@ export default defineConfig([
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
-      'no-undef': 'off',
     },
   },
   {
