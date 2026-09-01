@@ -3,9 +3,14 @@ packages:
   - 'tests'
   - 'example'
 
+trustPolicy: no-downgrade
+blockExoticSubdeps: true
+
 allowBuilds:
   puppeteer: true
   simple-git-hooks: false
+
+minimumReleaseAge: 10080
 
 minimumReleaseAgeExclude:
   - '@rsbuild/*'
