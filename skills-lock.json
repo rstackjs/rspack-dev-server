@@ -1,12 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "migrate-to-rstack-cli": {
-      "source": "rstackjs/rstack-cli",
-      "sourceType": "github",
-      "skillPath": ".agents/skills/migrate-to-rstack-cli/SKILL.md",
-      "computedHash": "6473095b585fa3b40d476847705ab721a191fc77e5e1f8a33401c5daab40d05b"
-    },
     "rstack-cli-docs": {
       "source": "rstackjs/rstack-cli",
       "sourceType": "github",
