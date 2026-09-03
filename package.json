@@ -22,27 +22,15 @@
     "client"
   ],
   "scripts": {
-    "build": "rslib",
-    "bump": "npx bumpp",
-    "dev": "rslib -w",
-    "format": "prettier --write .",
-    "lint": "rslint",
-    "lint:write": "rslint --fix",
-    "prettier:ci": "prettier --check .",
-    "test": "pnpm run test:type && rstest",
+    "build": "rs lib",
+    "bump": "pnpx bumpp",
+    "check": "rs check",
+    "dev": "rs lib -w",
+    "format": "rs fmt",
+    "lint": "rs lint",
+    "prepare": "rs hooks",
+    "test": "pnpm run test:type && rs test",
     "test:type": "pnpm run build && pnpm --dir tests run type-check"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx nano-staged"
-  },
-  "nano-staged": {
-    "*.{yaml,yml,json,md,json5}": [
-      "npm run format"
-    ],
-    "*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "npm run format",
-      "rslint --fix"
-    ]
   },
   "dependencies": {
     "@rspack/dev-middleware": "^2.0.3"
@@ -50,11 +38,8 @@
   "devDependencies": {
     "@hono/node-server": "^2.1.1",
     "@microsoft/api-extractor": "^7.59.0",
-    "@rslib/core": "^0.23.2",
-    "@rslint/core": "^0.9.0",
-    "@rspack/core": "2.0.0-rc.0",
+    "@rspack/core": "2.2.2",
     "@rspack/plugin-react-refresh": "2.0.2",
-    "@rstest/core": "^0.11.11",
     "@types/connect-history-api-fallback": "^1.5.4",
     "@types/mime-types": "3.0.1",
     "@types/node": "^24.13.3",
@@ -72,16 +57,15 @@
     "http-proxy-middleware": "4.2.0",
     "ipaddr.js": "^2.5.0",
     "launch-editor": "^2.14.1",
-    "nano-staged": "^1.0.2",
     "open": "^11.0.2",
     "p-retry": "^7.1.1",
     "prettier": "3.9.6",
     "puppeteer": "^24.43.1",
     "react-refresh": "0.18.0",
     "require-from-string": "^2.0.2",
+    "rstack": "^0.7.2",
     "selfsigned": "^5.5.0",
     "serve-static": "^2.2.1",
-    "simple-git-hooks": "^2.14.0",
     "typescript": "^7.0.2",
     "ws": "^8.21.3"
   },

@@ -99,8 +99,7 @@ export default {
     watchFiles: {
       paths: '.',
       options: {
-        ignored: (path, stats) =>
-          stats?.isFile() && !path.endsWith('.js'),
+        ignored: (path, stats) => stats?.isFile() && !path.endsWith('.js'),
       },
     },
   },
