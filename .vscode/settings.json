@@ -1,18 +1,4 @@
 {
   "search.useIgnoreFiles": true,
-  "[json]": {
-    "editor.defaultFormatter": "rstack.rstack"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "rstack.rstack"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "rstack.rstack"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "rstack.rstack"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "rstack.rstack"
-  }
+  "editor.defaultFormatter": "rstack.rstack"
 }
