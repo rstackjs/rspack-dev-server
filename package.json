@@ -60,7 +60,7 @@
     "open": "^11.0.2",
     "p-retry": "^7.1.1",
     "prettier": "3.9.6",
-    "puppeteer": "^24.43.1",
+    "puppeteer": "^25.10.0",
     "react-refresh": "0.18.0",
     "require-from-string": "^2.0.2",
     "rstack": "^0.7.2",
