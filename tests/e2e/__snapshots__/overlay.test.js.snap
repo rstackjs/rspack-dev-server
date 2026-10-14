@@ -113,8 +113,8 @@ exports[`overlay > should not show initially, then show on an error and allow to
           "
         >
           × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          template literal ╭──── 1 │ \`; · ── ╰──── help: You may need an
+          appropriate loader to handle this file type.
         </div>
       </div>
     </div>
@@ -243,8 +243,8 @@ exports[`overlay > should not show initially, then show on an error, then hide o
           "
         >
           × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          template literal ╭──── 1 │ \`; · ── ╰──── help: You may need an
+          appropriate loader to handle this file type.
         </div>
       </div>
     </div>
@@ -373,8 +373,8 @@ exports[`overlay > should not show initially, then show on an error, then show o
           "
         >
           × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`; · ── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          template literal ╭──── 1 │ \`; · ── ╰──── help: You may need an
+          appropriate loader to handle this file type.
         </div>
       </div>
     </div>
@@ -464,8 +464,8 @@ exports[`overlay > should not show initially, then show on an error, then show o
           "
         >
           × Module parse failed: ╰─▶ × JavaScript parse error: Unterminated
-          template ╭──── 1 │ \`;a · ─── ╰──── help: You may need an appropriate
-          loader to handle this file type.
+          template literal ╭──── 1 │ \`;a · ─── ╰──── help: You may need an
+          appropriate loader to handle this file type.
         </div>
       </div>
     </div>
