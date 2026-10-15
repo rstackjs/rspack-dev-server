@@ -18,3 +18,4 @@ minimumReleaseAgeExclude:
   - 'rsbuild-plugin-*'
   - rstack
   - typescript
+  - '@rspack-canary/*'
