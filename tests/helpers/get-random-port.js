@@ -32,10 +32,15 @@ function getDefaultPort() {
 }
 
 async function findAvailablePort(startPort, count, host) {
-  let port = Math.max(startPort, minRandomPort);
   const maxStartPort = maxRandomPort - count + 1;
+  let port = Math.min(Math.max(startPort, minRandomPort), maxStartPort);
 
-  while (port <= maxStartPort) {
+  // Search every valid start once, including ports below the random start.
+  for (
+    let remaining = maxStartPort - minRandomPort + 1;
+    remaining > 0;
+    remaining -= 1
+  ) {
     let isAvailable = true;
 
     for (let index = 0; index < count; index += 1) {
@@ -54,7 +59,7 @@ async function findAvailablePort(startPort, count, host) {
       return port;
     }
 
-    port += 1;
+    port = port === maxStartPort ? minRandomPort : port + 1;
   }
 
   throw new Error('No available ports found');
