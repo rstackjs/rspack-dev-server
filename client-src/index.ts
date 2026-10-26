@@ -278,7 +278,7 @@ const reloadApp = (
     }
   }
   // allow refreshing the page only if liveReload isn't disabled
-  else if (liveReload && allowToLiveReload) {
+  else if (liveReload && allowToLiveReload && typeof document !== 'undefined') {
     let rootWindow = self;
 
     // use parent window for reload (in case we're in an iframe with no valid src)
@@ -414,6 +414,10 @@ const onSocketMessage = {
     reloadApp(options, status);
   },
   'static-changed': function staticChanged(file: string) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     log.info(
       `${
         file ? `"${file}"` : 'Content'
