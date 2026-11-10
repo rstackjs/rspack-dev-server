@@ -118,7 +118,12 @@ const formatOverlayHtml = (html) =>
   formatHtml(
     html,
     // ANSI-rendered spans differ across platforms, but the text content is stable.
-    (value) => value.replace(/<\/?span[^>]*>/g, ''),
+    (value) =>
+      value
+        .replace(/<\/?span[^>]*>/g, '')
+        // swc-next 0.6.1 uses zero-length EOF ranges for these fixtures.
+        // Normalize the older marker while retaining the diagnostic and source.
+        .replace(/(1 │ `;a?)\s*· ─+(?=\s*╰────)/g, '$1'),
   );
 
 const waitForOverlay = async (page) => {
