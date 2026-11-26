@@ -19,3 +19,8 @@ minimumReleaseAgeExclude:
   - rstack
   - typescript
   - '@rspack-canary/*'
+
+permissions:
+  rstack:
+    skills:
+      - rstack-cli-docs
