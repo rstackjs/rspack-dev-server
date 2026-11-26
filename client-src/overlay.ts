@@ -594,6 +594,7 @@ const createOverlay = (options: CreateOverlayOptions): StateMachine => {
           typeElement.addEventListener('click', () => {
             fetch(
               `/rspack-dev-server/open-editor?fileName=${message.moduleIdentifier}`,
+              { headers: { 'X-Rspack-Dev-Server': '1' } },
             );
           });
         }

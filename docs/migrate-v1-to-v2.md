@@ -272,3 +272,5 @@ http://localhost:8080/?rspack-dev-server-hot=false&rspack-dev-server-live-reload
 GET /rspack-dev-server/invalidate
 GET /rspack-dev-server/open-editor?fileName=...
 ```
+
+When calling these two routes from a script, send the `X-Rspack-Dev-Server: 1` request header. The built-in error overlay sends it automatically.

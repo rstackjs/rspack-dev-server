@@ -58,6 +58,26 @@ describe('Built in routes', () => {
       expect(pageErrors).toMatchSnapshot('page errors');
     });
 
+    it('requires scripts to opt in to built-in actions', async () => {
+      const invalidate = rs
+        .spyOn(server, 'invalidate')
+        .mockImplementation(() => {});
+      const base = `http://127.0.0.1:${port}/rspack-dev-server`;
+      for (const route of ['invalidate', 'open-editor']) {
+        for (const method of ['GET', 'HEAD']) {
+          const response = await fetch(`${base}/${route}`, { method });
+          expect(response.status).toBe(403);
+        }
+      }
+      expect(invalidate).not.toHaveBeenCalled();
+
+      const response = await fetch(`${base}/invalidate`, {
+        headers: { 'X-Rspack-Dev-Server': '1' },
+      });
+      expect(response.status).toBe(200);
+      expect(invalidate).toHaveBeenCalledTimes(1);
+    });
+
     it('should handle GET request to directory index and list all middleware directories', async () => {
       page
         .on('console', (message) => {

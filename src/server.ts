@@ -38,6 +38,7 @@ import ipaddr from 'ipaddr.js';
 import type { App } from 'open';
 import type { IPv6 } from 'ipaddr.js';
 import { getPort } from './getPort.js';
+import { isTrustedActionRequest } from './isTrustedActionRequest.js';
 import { WebsocketServer } from './servers/WebsocketServer.js';
 import type {
   AddressInfo,
@@ -1594,6 +1595,12 @@ class Server<
           return;
         }
 
+        if (!isTrustedActionRequest(req.headers, this.isTlsServer)) {
+          res.statusCode = 403;
+          res.end('Cross-Origin request blocked');
+          return;
+        }
+
         this.invalidate();
 
         res.end();
@@ -1611,6 +1618,12 @@ class Server<
 
         if (!req.url) {
           next();
+          return;
+        }
+
+        if (!isTrustedActionRequest(req.headers, this.isTlsServer)) {
+          res.statusCode = 403;
+          res.end('Cross-Origin request blocked');
           return;
         }
 
