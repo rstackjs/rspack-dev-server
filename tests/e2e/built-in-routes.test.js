@@ -58,7 +58,7 @@ describe('Built in routes', () => {
       expect(pageErrors).toMatchSnapshot('page errors');
     });
 
-    it('requires scripts to opt in to built-in actions', async () => {
+    it('requires a trusted request source for built-in actions', async () => {
       const invalidate = rs
         .spyOn(server, 'invalidate')
         .mockImplementation(() => {});
@@ -72,7 +72,7 @@ describe('Built in routes', () => {
       expect(invalidate).not.toHaveBeenCalled();
 
       const response = await fetch(`${base}/invalidate`, {
-        headers: { 'X-Rspack-Dev-Server': '1' },
+        headers: { Origin: new URL(base).origin },
       });
       expect(response.status).toBe(200);
       expect(invalidate).toHaveBeenCalledTimes(1);

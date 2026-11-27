@@ -10,7 +10,11 @@ describe('isTrustedActionRequest', () => {
   ])('checks the browser-provided site %s first', (site, expected) => {
     expect(
       isTrustedActionRequest(
-        { 'sec-fetch-site': site, 'x-rspack-dev-server': '1' },
+        {
+          'sec-fetch-site': site,
+          host: 'localhost',
+          origin: 'http://localhost',
+        },
         false,
       ),
     ).toBe(expected);
@@ -27,7 +31,7 @@ describe('isTrustedActionRequest', () => {
     (origin, expected) => {
       expect(
         isTrustedActionRequest(
-          { host: 'localhost:8080', origin, 'x-rspack-dev-server': '1' },
+          { host: 'localhost:8080', origin, referer: 'http://localhost:8080/' },
           false,
         ),
       ).toBe(expected);
@@ -51,10 +55,19 @@ describe('isTrustedActionRequest', () => {
     }
   });
 
-  it('requires an explicit header when the source is unknown', () => {
-    expect(isTrustedActionRequest({}, false)).toBe(false);
-    expect(isTrustedActionRequest({ 'x-rspack-dev-server': '1' }, false)).toBe(
-      true,
-    );
-  });
+  it.each([
+    ['http://dev.test:8080/app?tab=1', true],
+    ['https://dev.test:8080/', false],
+    ['http://dev.test:8081/', false],
+    ['http://other.test:8080/', false],
+    ['invalid', false],
+    [undefined, false],
+  ])(
+    'checks the referrer %s without Fetch Metadata or Origin',
+    (referer, expected) => {
+      expect(
+        isTrustedActionRequest({ host: 'dev.test:8080', referer }, false),
+      ).toBe(expected);
+    },
+  );
 });

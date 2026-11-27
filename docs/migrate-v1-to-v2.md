@@ -273,4 +273,4 @@ GET /rspack-dev-server/invalidate
 GET /rspack-dev-server/open-editor?fileName=...
 ```
 
-When calling these two routes from a script, send the `X-Rspack-Dev-Server: 1` request header. The built-in error overlay sends it automatically.
+When calling either route from a script, set the `Origin` header to the dev server's origin, including its port (for example, `Origin: http://localhost:8080`).

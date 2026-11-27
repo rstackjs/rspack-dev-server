@@ -10,20 +10,22 @@ export function isTrustedActionRequest(
     return site === 'same-origin' || site === 'none';
   }
 
-  if (headers.origin !== undefined) {
-    const authority = headers[':authority'] ?? headers.host;
-    if (typeof authority !== 'string') {
-      return false;
-    }
-    try {
-      const protocol = isTlsServer ? 'https' : 'http';
-      return headers.origin === new URL(`${protocol}://${authority}`).origin;
-    } catch {
-      return false;
-    }
+  const authority = headers[':authority'] ?? headers.host;
+  if (typeof authority !== 'string') {
+    return false;
   }
-
-  // Without browser-provided origin information, require an explicit request.
-  // A cross-origin page cannot set this header in a simple request.
-  return headers['x-rspack-dev-server'] === '1';
+  try {
+    const protocol = isTlsServer ? 'https' : 'http';
+    const expectedOrigin = new URL(`${protocol}://${authority}`).origin;
+    if (headers.origin !== undefined) {
+      return headers.origin === expectedOrigin;
+    }
+    // Same-origin GET requests on plain HTTP may only carry a Referer.
+    return (
+      headers.referer !== undefined &&
+      new URL(headers.referer).origin === expectedOrigin
+    );
+  } catch {
+    return false;
+  }
 }

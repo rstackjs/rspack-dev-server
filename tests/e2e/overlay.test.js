@@ -701,9 +701,6 @@ describe('overlay', () => {
 
       const openEditorResponse = await openEditorResponsePromise;
 
-      expect(
-        openEditorResponse.request().headers()['x-rspack-dev-server'],
-      ).toBe('1');
       expect(openEditorResponse.status()).toBe(200);
     } finally {
       fs.writeFileSync(pathToFile, originalCode);
