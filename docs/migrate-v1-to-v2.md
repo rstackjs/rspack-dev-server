@@ -272,5 +272,3 @@ http://localhost:8080/?rspack-dev-server-hot=false&rspack-dev-server-live-reload
 GET /rspack-dev-server/invalidate
 GET /rspack-dev-server/open-editor?fileName=...
 ```
-
-When calling either route from a script, set the `Origin` header to the dev server's origin, including its port (for example, `Origin: http://localhost:8080`).
